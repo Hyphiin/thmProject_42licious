@@ -1,6 +1,6 @@
 h1 {
 
-    color: #4D2A31;
+    color: #4D2F25;
 }
 
 
@@ -17,14 +17,14 @@ h1 {
     margin: auto;
     width: 45%;
     height: auto;
-    border: 3px solid #4D2A31;
+    border: 3px solid #4D2F25;
 }
 
 .recipe-preview {
 
     width: auto;
     height: auto;
-    border: 3px solid #4D2A31;
+    border: 3px solid #4D2F25;
     margin: 10px;
     padding: 5px;
 }
