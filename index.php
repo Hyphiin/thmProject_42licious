@@ -8,7 +8,7 @@
     <link href="css/general.css" rel="stylesheet" type="text/css">
     <link href="css/navigation.css" rel="stylesheet" type="text/css">
     <link href="css/main.css" rel="stylesheet" type="text/css">
-    <link href="css/forms/anmeldeFormular.css" rel="stylesheet" type="text/css">
+    <link href="css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
 
 
 </head>
@@ -17,7 +17,7 @@
 
 <div id="website">
 
-    <?php include("externFiles/Navigation.php"); ?>
+    <?php include("externFiles/navigation.php"); ?>
     <?php include("externFiles/forms/anmeldeFormular.php"); ?>
 
     <div id="main" class="main">
