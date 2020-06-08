@@ -18,7 +18,7 @@
 <div id="website">
 
     <?php include("externFiles/navigation.php"); ?>
-    <?php include("externFiles/forms/anmeldeFormular.php"); ?>
+    <?php include("externFiles/rezept/rezeptAnsicht.php"); ?>
 
     <div id="main" class="main">
 
