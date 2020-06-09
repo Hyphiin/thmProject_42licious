@@ -20,5 +20,68 @@
 #main-content{
     margin: 10px;
     display: flex;
+    flex-direction: row;
+}
+
+#profil_inhalt{
+    width: 90%;
+    margin: 10px 25% 10px auto;
+    height: auto;
+    border-style: solid;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#profil_rechts{
+    width: 100%;
+    margin: 10px 25% 10px auto;
+    height: auto;
+    border-style: solid;
+    display: flex;
+    flex-wrap: nowrap;
     flex-direction: column;
+    justify-content: center;
+}
+
+#details{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+img{
+    margin: 10px 25% 10px auto;
+    width: 50%;
+    height: 50%;
+}
+
+#top_rezept{
+    margin: 10px 25% 10px auto;
+    height: auto;
+    border-style: solid;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+}
+#last_blog{
+    margin: 10px 25% 10px auto;
+    height: auto;
+    border-style: solid;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+}
+label{
+    font-weight: bold;
+}
+
+#test{
+    display: flex;
+    flex-direction: row;
 }

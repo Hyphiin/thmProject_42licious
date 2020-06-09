@@ -6,7 +6,7 @@
 
     <title>42licious-Profil-Rezeptansicht</title>
     <link href="../../css/general.css" rel="stylesheet" type="text/css">
-    <link href="css/profil_css/profil_rezept.css" rel="stylesheet" type="text/css">
+    <link href="../../css/profil_css/profil_rezept.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>

@@ -6,7 +6,7 @@
 
     <title>42licious-Profil-Ansicht</title>
     <link href="../../css/general.css" rel="stylesheet" type="text/css">
-    <link href="css/profil_css/profil_ansicht.css" rel="stylesheet" type="text/css">
+    <link href="../../css/profil_css/profil_ansicht.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -25,21 +25,22 @@
                 <h1>Profil von USER</h1>
             </div>
             <div id="profil_inhalt">
-                <button id="edit_profil">Profil bearbeiten</button>
-                <img alt="Profil-Bild" src="images/profil/flo.png">
+                <img alt="Profil-Bild" src="shindy.jpg">
+                <div id="details">
                 <p id="name">Name: Max Mustermann</p>
                 <p id="nickname">Nickname: USER</p>
                 <p id="birthday">Geburtsdatum: TT.MM.JJ</p>
+                </div>
 
                 <label for="beschreibung">Beschreibung</label>
                 <textarea id="beschreibung" cols="50" rows="4"></textarea>
 
                 <p>Mitglied seit: TT.MM.JJ</p>
-            </div>
                 <div id="linksbuttons">
                     <button id="user_rezept">Rezepte von USER</button>
                     <button id="user_blog">Blog von USER</button>
                 </div>
+            </div>
             </div>
             <div id="profil_rechts">
                 <div id="top_rezept">

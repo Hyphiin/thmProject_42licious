@@ -6,38 +6,38 @@
 
     <title>42licious-Profil-Bearbeitung</title>
     <link href="../../css/general.css" rel="stylesheet" type="text/css">
-    <link href="css/profil_css/profil_edit.css" rel="stylesheet" type="text/css">
+    <link href="../../css/profil_css/profil_edit.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 <div id="website">
-    <?php include("externFiles/navigation.php"); ?>
     <div id="main">
         <div id="top-buttons">
             <button class="button">Zurück</button>
         </div>
-
         <div id="main-content">
-                <div id="profil-title">
-                    <h1>Profil bearbeiten</h1>
-                </div>
-                <div id="profil_inhalt">
-                    <img alt="Profil-Bild" src="images/profil/flo.png">
+            <div id="profil-title">
+                <h1>Profil bearbeiten</h1>
+            </div>
+            <div id="profil_inhalt">
+                <div id="Picture">
+                    <img id="profilpic" alt="Profil-Bild" src="shindy.jpg">
 
                     <form action="form.php" method="post">
                         <input type="file" value="Datei auswählen" id="profil_pic">
                         <input type="submit" value="Hochladen" />
                     </form>
+                </div>
 
-                    <label for="vorname">Vorname</label>
-                    <input type="text" maxlength="25" id="vorname" placeholder="Vorname">
+                <label for="vorname">Vorname</label>
+                <input type="text" maxlength="25" id="vorname" placeholder="Vorname">
 
-                    <label for="nachname">Nachname</label>
-                    <input type="text" maxlength="25" id="nachname" placeholder="Nachname">
+                <label for="nachname">Nachname</label>
+                <input type="text" maxlength="25" id="nachname" placeholder="Nachname">
 
-                    <label for="birthday">Geburtsdatum</label>
-                    <div id="birthday">
-                    <select id="TT" size="31">
+                <label for="birthday">Geburtsdatum</label>
+                <div id="birthday">
+                    <select id="TT" size="1">
                         <option>01</option>
                         <option>02</option>
                         <option>03</option>
@@ -70,7 +70,7 @@
                         <option>30</option>
                         <option>31</option>
                     </select>
-                    <select id="MM" size="12">
+                    <select id="MM" size="1">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -84,7 +84,7 @@
                         <option>11</option>
                         <option>12</option>
                     </select>
-                    <select id="JJ" size="9999">
+                    <select id="JJ" size="1">
                         <option>2020</option>
                         <option>2019</option>
                         <option>2018</option>
@@ -160,22 +160,27 @@
                         <option>1948</option>
                         <option>1947</option>
                     </select>
-                    </div>
+                </div>
 
-                    <label for="namensanzeige">Namensanzeige</label>
-                    <select id="namensanzeige" size="4">
-                        <option>Voller Name</option>
-                        <option>Nur Vorname</option>
-                        <option>Vorname + Initiale</option>
-                    </select>
+                <label for="namensanzeige">Namensanzeige</label>
+                <select id="namensanzeige" size="1">
+                    <option>Voller Name</option>
+                    <option>Nur Vorname</option>
+                    <option>Vorname + Initiale</option>
+                </select>
 
-                    <label for="beschreibung">Beschreibung</label>
-                    <textarea id="beschreibung" cols="50" rows="4"></textarea>
-        </div>
-            <div id="bottom-buttons">
-                <button>Abbrechen</button>
-                <button>Änderungen Speichern</button>
+
+
+                <label for="beschreibung">Beschreibung</label>
+                <textarea id="beschreibung" cols="50" rows="4"></textarea>
+
+                <div id="bottom-buttons">
+                    <button>Abbrechen</button>
+                    <button>Änderungen Speichern</button>
+                </div>
+
             </div>
+    </div>
     </div>
 </div>
 </body>
