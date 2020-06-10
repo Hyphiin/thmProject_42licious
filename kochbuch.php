@@ -16,9 +16,17 @@
 
     <div id="main">
 
+        <div id="title">
+            <h1>Kochbuch</h1>
+        </div>
+
+        <div id="kochbuchheader">
+            <h3>Meine Rezepte | Meine Favoriten</h3>
+        </div>
+
         <div id="top-buttons">
 
-            <button class="button">Zurück zur Suche</button>
+            <button class="button">Rezept erstellen</button>
             <label id="sortieren">Sortieren nach:
                 <select name="sortieren" size="1">
                     <option>Bewertung</option>
@@ -30,17 +38,6 @@
 
         <div id="main-content">
 
-            <div id="blog-info">
-
-                <div id="blog-title">
-                    <h1>Suchergebnisse:</h1>
-                </div>
-
-                <div id="timestamp">
-                    <p>TT.MM.JJ SS:MM</p>
-                </div>
-
-            </div>
 
             <div id="main" class="main">
 
