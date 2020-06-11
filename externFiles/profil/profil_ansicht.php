@@ -6,11 +6,16 @@
 
     <title>42licious-Profil-Ansicht</title>
     <link href="../../css/general.css" rel="stylesheet" type="text/css">
+    <link href="../../css/navigation.css" rel="stylesheet" type="text/css">
+    <link href="../../css/main.css" rel="stylesheet" type="text/css">
     <link href="../../css/profil_css/profil_ansicht.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 <div id="website">
+
+    <?php include("../navigation.php"); ?>
+
     <div id="main">
         <div id="top-buttons">
 
