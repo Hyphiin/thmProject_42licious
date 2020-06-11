@@ -97,6 +97,7 @@
 </div>
 
 <script src="jscript/navigation.js"></script>
+<script src="jscript/recipeModal.js"></script>
 
 </body>
 </html>
