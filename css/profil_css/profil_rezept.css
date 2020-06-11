@@ -21,4 +21,38 @@
     margin: 10px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+#rezepte{
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+#rezept{
+    margin:2px;
+    display: flex;
+    border-style: solid;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#rezeptinfos{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#infos{
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+img{
+    margin:2px;
+    width:50%;
+    height:50%;
 }
