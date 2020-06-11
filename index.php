@@ -26,13 +26,13 @@
             <h1>Top der Woche</h1>
 
             <div class="recipe-preview">
-                    <diV class="recipe-preview-image-container">
-                        <img src="images/lasagne.jpg" alt="">
-                    </diV>
-                    <div class="recipe-preview-description">
-                        <h4>Rezeptname</h4>
-                        <h5>von Username</h5>
-                    </div>
+                <diV class="recipe-preview-image-container">
+                    <img src="images/lasagne.jpg" alt="">
+                </diV>
+                <div class="recipe-preview-description">
+                    <h4>Rezeptname</h4>
+                    <h5>von Username</h5>
+                </div>
             </div>
 
             <div class="recipe-preview">
@@ -96,6 +96,7 @@
 
 </div>
 
+<script src="jscript/navigation.js"></script>
 
 </body>
 </html>
