@@ -6,7 +6,7 @@
 
     <title>42licious-BlogAnsicht</title>
     <link href="../../css/general.css" rel="stylesheet" type="text/css">
-    <link href="../../css/blog_css/blogAnsicht.css" rel="stylesheet" type="text/css">
+    <link href="../../css/blog_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>

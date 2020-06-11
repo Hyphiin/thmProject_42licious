@@ -1,4 +1,6 @@
-<div class = accEinstellung>
+<link href="css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
+
+<div class = anmeldefo>
 
     <div class="ueberschrift">Accounteinstellungen</div>
 
@@ -13,19 +15,11 @@
                 <label for="email">E-Mail:</label>
                 <input type="email" name="email" id="email"/>
             </div>
+            <button class="button" id="pwAendern">Passwort ändern</button>
+            <button class="button">Account löschen</button>
+            <button class="button">Speichern</button>
+            <button class="button">Abbrechen</button>
 
-            <div class="Button">
-                <button id="pwAendern">Passwort ändern</button>
-            </div>
-            <div class="Button">
-                <button>Account löschen</button>
-            </div>
-            <div class="Button">
-                <button>Speichern</button>
-            </div>
-            <div class="Button">
-                <button>Abbrechen</button>
-            </div>
         </form>
     </div>
 

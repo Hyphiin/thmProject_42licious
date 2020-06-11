@@ -1,3 +1,5 @@
+<link href="css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
+
 <div class = anmeldefo>
 
     <div class="ueberschrift">Anmeldung</div>
@@ -13,18 +15,12 @@
             <label for="pw">Passwort:</label>
                 <input type="text" name="passwort" id="pw">
             </div>
-            <div class="Button">
-            <button id="pwVergessenButton">Passwort vergessen?</button>
-            </div>
-            <div class="Button">
-            <button>Anmelden</button>
-            </div>
-            <div class="Button">
-            <button>Abbrechen</button>
-            </div>
-            <div class="ButtonReg">
+
+            <button class="button" id="pwVergessenButton">Passwort vergessen?</button>
+            <button class="button">Anmelden</button>
+            <button class="button">Abbrechen</button>
             <label for="registrierenButton">Noch keinen Account?</label>
-                <button id="registrierenButton">Registrieren</button>
+                <button class="button" id="registrierenButton">Registrieren</button>
             </div>
         </form>
     </div>

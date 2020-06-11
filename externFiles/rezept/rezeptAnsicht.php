@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>42licious-RezeptAnsicht</title>
 
-    <title>42licious-BlogAnsicht</title>
-    <link href="../../css/general.css" rel="stylesheet" type="text/css">
-    <link href="../../css/blog_css/blogAnsicht.css" rel="stylesheet" type="text/css">
-    <link href="css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
+    <link href="../../css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
+
+
 
 </head>
 <body>
@@ -24,16 +24,17 @@
 
         <div id="main-content">
 
-            <div id="blog-info">
-
-                <div id="blog-title">
+            <div id="recipe-info">
+                <div id="recipe-title">
                     <h1>Rezeptname</h1>
                 </div>
-
                 <div id="timestamp">
                     <p>TT.MM.JJ SS:MM</p>
                 </div>
+            </div>
 
+            <div id="creator">
+                <h5>von:...</h5>
             </div>
 
             <div class="recipe-preview">
@@ -44,6 +45,7 @@
             </div>
 
             <div id="recipe-rating">
+
                 <div id="stars">
                     <p class="sternebewertung">
                         <input type="radio" id="stern5" name="bewertung" value="5"><label for="stern5" title="5 Sterne">5 Sterne</label>
@@ -57,10 +59,20 @@
                     </p>
 
                 </div>
-                <div id="like"></div>
-                <div id="dauer"></div>
-                <div id="schwierigkeit"></div>
+
+                <div id="like">
+                    <p class="merken">
+                        <input type="radio" id="like" name="like" value="like"><label for="like" title="Rezept merken"></label>
+                        <span id="Merken">
+                        Merken:
+                        </span>
+                    </p>
+                </div>
+
             </div>
+
+            <div id="dauer">Dauer: 50min</div>
+            <div id="schwierigkeit">Schwierigkeit: mittel</div>
 
         <div id="beschreibung">
                 <p>

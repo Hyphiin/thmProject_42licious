@@ -1,4 +1,6 @@
-<div class = pwAendern>
+<link href="css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
+
+<div class = anmeldefo>
 
     <div class="ueberschrift">Anmeldung</div>
 
@@ -17,12 +19,10 @@
                 <label for="bestätigen">Passwort bestätigen:</label>
                 <input type="text" name="bestätigen" id="bestätigen"/>
             </div>
-            <div class="Button">
-                <button>Speichern</button>
-            </div>
-            <div class="Button">
-                <button>Abbrechen</button>
-            </div>
+
+            <button class="button">Speichern</button>
+            <button class="button">Abbrechen</button>
+
         </form>
     </div>
 

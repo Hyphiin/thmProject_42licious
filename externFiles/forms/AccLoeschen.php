@@ -1,4 +1,6 @@
-<div class = AccLoeschen>
+<link href="css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
+
+<div class = anmeldefo>
 
     <div class="ueberschrift">Anmeldung</div>
 
@@ -8,12 +10,10 @@
             <div class="text">
                 Account unwiederruflich löschen?
             </div>
-            <div class="Button">
-                <button>LÖSCHEN!</button>
-            </div>
-            <div class="Button">
-                <button>Abbrechen</button>
-            </div>
+
+            <button class="button">LÖSCHEN!</button>
+            <button class="button">Abbrechen</button>
+
 
         </form>
     </div>

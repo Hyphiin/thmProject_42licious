@@ -1,4 +1,6 @@
-<div class = registrierung>
+<link href="css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
+
+<div class = anmeldefo>
 
     <div class="ueberschrift">Registrierung</div>
 
@@ -21,12 +23,10 @@
                 <label for="pw2">Passwort bestätigen:</label>
                 <input type="text" name="passwort" id="pw2">
             </div>
-            <div class="Button">
-                <button>Registrieren</button>
-            </div>
-            <div class="Button">
-                <button>Abbrechen</button>
-            </div>
+
+            <button class="button">Registrieren</button>
+            <button class="button">Abbrechen</button>
+
         </form>
     </div>
 

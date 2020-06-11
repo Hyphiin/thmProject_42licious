@@ -1,4 +1,6 @@
-<div class = pwZurueksetzen>
+<link href="css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
+
+<div class = anmeldefo>
 
     <div class="ueberschrift">Passwort zurücksetzen</div>
 
@@ -9,12 +11,11 @@
                 <label for="email">E-Mail eingeben:</label>
                 <input type="email" name="email" id="email"/>
             </div>
-            <div class="Button">
-                <button id="emailAnfordern">E-Mail anfordern</button>
-            </div>
-            <div class="Button">
-                <button>Abbrechen</button>
-            </div>
+
+            <button class="button" id="emailAnfordern">E-Mail anfordern</button>
+
+            <button class="button">Abbrechen</button>
+
         </form>
     </div>
 
