@@ -21,7 +21,7 @@
             </div>
 
             <div id="top-buttons">
-                    <button class="button" id="b-create-blog">Blogeintrag erstellen</button>
+                    <a href="blogErstellen.php"><button class="button" id="b-create-blog">Blogeintrag erstellen</button></a>
                      <div>
                         <label for="filter">Sortieren nach:</label>
                         <select id="filter" name="filter">

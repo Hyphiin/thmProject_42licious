@@ -16,8 +16,8 @@
 
     <div id="top-buttons">
 
-        <button class="button">Zurück zum Blog</button>
-        <button class="button">Bearbeiten</button>
+        <a href="blogUSER.php"><button class="button">Zurück zum Blog</button></a>
+        <a href="blogBearbeiten.php"><button class="button">Bearbeiten</button></a>
 
     </div>
 

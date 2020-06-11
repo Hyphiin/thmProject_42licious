@@ -21,7 +21,7 @@
 
             <header id="kommentare-head">
                 <h1>Kommentare</h1>
-                <button id="kommentar_schreiben">Kommentar schreiben</button>
+                <a href="kommentar_schreiben.php"><button id="kommentar_schreiben">Kommentar schreiben</button></a>
             </header>
 
             <div id="kommentar_sektion">

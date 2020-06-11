@@ -8,9 +8,9 @@
     </a>
 
     <ul class="content" id="b">
-        <li><a href="#">Kochbuch</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Profil</a></li>
+        <li><a href="../kochbuch.php">Kochbuch</a></li>
+        <li><a href="externFiles/blog/blogUSER.php">Blog</a></li>
+        <li><a href="externFiles/profil/profil_ansicht.php">Profil</a></li>
     </ul>
 
 

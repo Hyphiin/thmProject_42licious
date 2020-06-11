@@ -13,7 +13,7 @@
 <div id="website">
     <div id="main">
         <div id="top-buttons">
-            <button class="button">Zurück</button>
+            <a href="profil_ansicht.php"><button class="button">Zurück</button></a>
         </div>
         <div id="main-content">
             <div id="profil-title">
@@ -175,7 +175,7 @@
                 <textarea id="beschreibung" cols="50" rows="4"></textarea>
 
                 <div id="bottom-buttons">
-                    <button>Abbrechen</button>
+                    <a href="profil_edit.php"><button>Abbrechen</button></a>
                     <button>Änderungen Speichern</button>
                 </div>
 

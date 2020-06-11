@@ -14,8 +14,8 @@
     <div id="main">
         <div id="top-buttons">
 
-            <button class="button">Zurück</button>
-            <button class="button">Bearbeiten</button>
+            <a href="../../index.php"><button class="button">Zurück</button></a>
+            <a href="profil_edit.php"><button class="button">Bearbeiten</button></a>
 
         </div>
 
@@ -28,8 +28,8 @@
                     <div id="BildUndButtons">
                         <img alt="Profil-Bild" id="profil_bild" src="shindy.jpg">
                         <div id="linksbuttons">
-                            <button id="user_rezept">Rezepte</button>
-                            <button id="user_blog">Blog</button>
+                            <a href="profil_rezept.php"><button id="user_rezept">Rezepte</button></a>
+                            <a href="../blog/blogUSER.php"><button id="user_blog">Blog</button></a>
                         </div>
                     </div>
                     <div id="details">

@@ -30,8 +30,8 @@
         </div>
 
         <div id="bottom-buttons">
-            <button class="button" id="cancel">Abbrechen</button>
-            <button class="button" id="create">Erstellen</button>
+            <a href="blogUSER.php"><button class="button" id="cancel">Abbrechen</button></a>
+            <a href="blogErstellen.php"><button class="button" id="create">Erstellen</button></a>
 
         </div>
 

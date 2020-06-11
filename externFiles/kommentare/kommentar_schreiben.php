@@ -14,7 +14,7 @@
     <div id="main">
         <div id="top-buttons">
 
-            <button class="button">Zurück</button>
+            <a href="kommentare_ansicht.php"><button class="button">Zurück</button></a>
 
         </div>
         <div id="main-content">
@@ -27,7 +27,7 @@
                 <textarea id="kommentieren" cols="50" rows="4" placeholder="Kommentar schreiben..."></textarea>
 
                 <span id="commentbuttons">
-                <button id="abbrechen"> Abbrechen </button>
+                <a href="kommentar_schreiben.php"><button id="abbrechen"> Abbrechen </button></a>
 
                 <button id="abschicken" type="submit"> Kommentieren </button>
                 </span>

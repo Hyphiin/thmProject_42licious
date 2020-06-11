@@ -17,8 +17,8 @@
 
         <div id="top-buttons">
 
-            <button class="button">Zurück zur Suche</button>
-            <button class="button">Bearbeiten</button>
+            <a href="../../rezepteSuchen.php"><button class="button">Zurück zur Suche</button></a>
+            <a href="rezeptBearbeiten.php"><button class="button">Bearbeiten</button></a>
 
         </div>
 
@@ -143,7 +143,7 @@
 
         <div id="comments">
             <h3>Kommentare</h3>
-            <button class="button">Kommentar schreiben</button>
+            <a href="../kommentare/kommentar_schreiben.php"><button class="button">Kommentar schreiben</button></a>
         </div>
 </div>
 
