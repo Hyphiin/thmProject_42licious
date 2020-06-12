@@ -90,7 +90,6 @@
 
             <div id="bottom-buttons">
                  <button class="button" id="show-more">Mehr anzeigen</button>
-
             </div>
 
         </div>

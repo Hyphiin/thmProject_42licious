@@ -4,9 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>42licious-BlogAnsicht</title>
+    <title>42licious-Kochbuch</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
-    <link href="../css/blog_css/blogAnsicht.css" rel="stylesheet" type="text/css">
     <link href="../css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
     <link href="../css/suchergebnisse.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
@@ -81,11 +80,13 @@
                     </div>
 
                 </div>
+
             </div>
 
-            <div id="loadmore">
-                <button class="buttoncenter">Mehr Anzeigen</button>
+            <div id="bottom-buttons">
+                <button class="button" id="show-more">Mehr anzeigen</button>
             </div>
+
         </div>
     </div>
 </div>
