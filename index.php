@@ -8,10 +8,6 @@
     <link href="css/general.css" rel="stylesheet" type="text/css">
     <link href="css/navigation.css" rel="stylesheet" type="text/css">
     <link href="css/main.css" rel="stylesheet" type="text/css">
-    <link href="css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
-    <link href="css/rezept_css/rezeptBearbeiten.css" rel="stylesheet" type="text/css">
-    <link href="css/rezept_css/rezeptErstellen.css" rel="stylesheet" type="text/css">
-    <link href="css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
 
 
 </head>
