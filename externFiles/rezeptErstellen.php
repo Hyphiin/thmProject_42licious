@@ -15,6 +15,8 @@
 
 <div id="website">
 
+    <?php include("navigation.php"); ?>
+
     <div id="main">
 
         <div id="create-recipe">

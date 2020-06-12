@@ -29,7 +29,7 @@
 
         <div id="top-buttons">
 
-            <button class="button">Rezept erstellen</button>
+            <a href="rezeptErstellen.php"><button class="button">Rezept erstellen</button></a>
             <label id="sortieren">Sortieren nach:
                 <select name="sortieren" size="1">
                     <option>Bewertung</option>

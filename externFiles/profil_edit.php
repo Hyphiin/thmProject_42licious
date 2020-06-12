@@ -23,7 +23,7 @@
                 <div id="Picture">
                     <img id="profilpic" alt="Profil-Bild" src="shindy.jpg">
 
-                    <form action="dulliform.php" method="post">
+                    <form action="#" method="post">
                         <input type="file" value="Datei auswählen" id="profil_pic">
                         <input type="submit" value="Hochladen" />
                     </form>

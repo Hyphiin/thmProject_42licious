@@ -6,12 +6,16 @@
 
     <title>42licious-BlogErstellen</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
+    <link href="../css/navigation.css" rel="stylesheet" type="text/css">
+    <link href="../css/main.css" rel="stylesheet" type="text/css">
     <link href="../css/blog_css/blogErstellen.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 
 <div id="website">
+
+    <?php include("navigation.php"); ?>
 
     <div id="main">
 

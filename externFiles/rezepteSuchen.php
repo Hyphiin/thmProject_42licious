@@ -9,6 +9,7 @@
     <link href="../css/blog_css/blogAnsicht.css" rel="stylesheet" type="text/css">
     <link href="../css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
     <link href="../css/suchergebnisse.css" rel="stylesheet" type="text/css">
+    <link href="../css/main.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -82,7 +83,7 @@
                 </div>
             </div>
 
-            <div id="loadmore">
+            <div id="bottom-buttons">
                 <button class="buttoncenter">Mehr Anzeigen</button>
             </div>
         </div>

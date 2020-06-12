@@ -27,10 +27,10 @@
 
 }
 
-.button{
-    background-color: #99523A;
+button{
+    background-color: #2C997C;
 }
-.button:hover{
+button:hover{
     background-color: #4D2F25;
 }
 

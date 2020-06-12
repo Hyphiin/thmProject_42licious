@@ -50,15 +50,20 @@
                 <label for="zubereitung">Zubereitung:</label><br/>
                 <textarea rows="20" maxlength="2000" name="zubereitung" form="zubereitung" id="zubereitung" placeholder="Inhalt eingeben..."></textarea></br>
                 </br>
-                +++ Bilder hochladen +++
+
             </form>
             </br>
+
+            <form action="#" method="post">
+                <input type="file" value="Datei auswählen" id="profil_pic">
+                <input type="submit" value="Hochladen" />
+            </form>
 
         </div>
 
         <div id="bottom-buttons">
-            <button class="button" id="cancel">Abbrechen</button>
-            <button class="button" id="create">Speichern</button>
+            <a href="rezeptAnsicht.php"><button class="button" id="cancel">Abbrechen</button></a>
+            <button type="submit" class="button" id="create">Speichern</button>
 
         </div>
 
