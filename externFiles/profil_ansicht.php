@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>42licious-Profil-Ansicht</title>
-    <link href="../../css/general.css" rel="stylesheet" type="text/css">
-    <link href="../../css/navigation.css" rel="stylesheet" type="text/css">
-    <link href="../../css/main.css" rel="stylesheet" type="text/css">
-    <link href="../../css/profil_css/profil_ansicht.css" rel="stylesheet" type="text/css">
+    <link href="../css/general.css" rel="stylesheet" type="text/css">
+    <link href="../css/navigation.css" rel="stylesheet" type="text/css">
+    <link href="../css/main.css" rel="stylesheet" type="text/css">
+    <link href="../css/profil_css/profil_ansicht.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 <div id="website">
 
-    <?php include("../navigation.php"); ?>
+    <?php include("navigation.php"); ?>
 
     <div id="main">
         <div id="top-buttons">
 
-            <a href="../../index.php"><button class="button">Zurück</button></a>
+            <a href="../index.php"><button class="button">Zurück</button></a>
             <a href="profil_edit.php"><button class="button">Bearbeiten</button></a>
 
         </div>
@@ -34,7 +34,7 @@
                         <img alt="Profil-Bild" id="profil_bild" src="shindy.jpg">
                         <div id="linksbuttons">
                             <a href="profil_rezept.php"><button id="user_rezept">Rezepte</button></a>
-                            <a href="../blog/blogUSER.php"><button id="user_blog">Blog</button></a>
+                            <a href="blogUSER.php"><button id="user_blog">Blog</button></a>
                         </div>
                     </div>
                     <div id="details">

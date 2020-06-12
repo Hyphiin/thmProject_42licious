@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>42licious-Profil-Rezeptansicht</title>
-    <link href="../../css/general.css" rel="stylesheet" type="text/css">
-    <link href="../../css/profil_css/profil_rezept.css" rel="stylesheet" type="text/css">
+    <link href="../css/general.css" rel="stylesheet" type="text/css">
+    <link href="../css/profil_css/profil_rezept.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -34,7 +34,7 @@
             <div id="rezepte">
                 <div id="rezept">
                     <div id="rezeptinfos">
-                        <img src="../../images/lasagne.jpg">
+                        <img src="../images/lasagne.jpg">
                         <div id="infos">
                             <p id="rezepttitle">Rezeptname</p>
                             <p id="User">von USER</p>
@@ -64,7 +64,7 @@
                 </div>
                 <div id="rezept">
                     <div id="rezeptinfos">
-                        <img src="../../images/lasagne.jpg">
+                        <img src="../images/lasagne.jpg">
                         <div id="infos">
                             <p id="rezepttitle">Rezeptname</p>
                             <p id="User">von USER</p>
@@ -93,7 +93,7 @@
                 </div>
                 <div id="rezept">
                     <div id="rezeptinfos">
-                        <img src="../../images/lasagne.jpg">
+                        <img src="../images/lasagne.jpg">
                         <div id="infos">
                             <p id="rezepttitle">Rezeptname</p>
                             <p id="User">von USER</p>

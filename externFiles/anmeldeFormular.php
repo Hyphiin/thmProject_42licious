@@ -1,4 +1,4 @@
-<link href="../../css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
+<link href="../css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
 
 <div class = anmeldefo>
 

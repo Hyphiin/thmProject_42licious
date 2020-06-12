@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>42licious-Profil-Bearbeitung</title>
-    <link href="../../css/general.css" rel="stylesheet" type="text/css">
-    <link href="../../css/profil_css/profil_edit.css" rel="stylesheet" type="text/css">
+    <link href="../css/general.css" rel="stylesheet" type="text/css">
+    <link href="../css/profil_css/profil_edit.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -23,7 +23,7 @@
                 <div id="Picture">
                     <img id="profilpic" alt="Profil-Bild" src="shindy.jpg">
 
-                    <form action="form.php" method="post">
+                    <form action="dulliform.php" method="post">
                         <input type="file" value="Datei auswählen" id="profil_pic">
                         <input type="submit" value="Hochladen" />
                     </form>

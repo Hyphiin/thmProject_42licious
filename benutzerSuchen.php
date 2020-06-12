@@ -52,7 +52,7 @@
                                 <h4>Profil von USER</h4>
                             </div>
                             <div id="profil_inhalt">
-                                <img alt="Profil-Bild" src="externFiles/profil/shindy.jpg">
+                                <img alt="Profil-Bild" src="externFiles/shindy.jpg">
                                 <div id="details">
                                     <p id="name">Name: Max Mustermann</p>
                                     <p id="nickname">Nickname: USER</p>
@@ -69,7 +69,7 @@
                                 <h4>Profil von USER</h4>
                             </div>
                             <div id="profil_inhalt">
-                                <img alt="Profil-Bild" src="externFiles/profil/shindy.jpg">
+                                <img alt="Profil-Bild" src="externFiles/shindy.jpg">
                                 <div id="details">
                                     <p id="name">Name: Max Mustermann</p>
                                     <p id="nickname">Nickname: USER</p>
@@ -86,7 +86,7 @@
                                 <h4>Profil von USER</h4>
                             </div>
                             <div id="profil_inhalt">
-                                <img alt="Profil-Bild" src="externFiles/profil/shindy.jpg">
+                                <img alt="Profil-Bild" src="externFiles/shindy.jpg">
                                 <div id="details">
                                     <p id="name">Name: Max Mustermann</p>
                                     <p id="nickname">Nickname: USER</p>

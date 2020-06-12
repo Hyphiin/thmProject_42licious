@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>42licious-BlogBearbeiten</title>
-    <link href="../../css/general.css" rel="stylesheet" type="text/css">
-    <link href="../../css/blog_css/blogBearbeiten.css" rel="stylesheet" type="text/css">
+    <link href="../css/general.css" rel="stylesheet" type="text/css">
+    <link href="../css/blog_css/blogBearbeiten.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>

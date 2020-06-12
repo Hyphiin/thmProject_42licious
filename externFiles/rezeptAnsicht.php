@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>42licious-RezeptAnsicht</title>
 
-    <link href="../../css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
+    <link href="../css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
 
 
 
@@ -13,13 +13,13 @@
 <body>
 <div id="website">
 
-    <?php include("../navigation.php"); ?>
+    <?php include("navigation.php"); ?>
 
     <div id="main">
 
         <div id="top-buttons">
 
-            <a href="../../rezepteSuchen.php"><button class="button">Zurück zur Suche</button></a>
+            <a href="../rezepteSuchen.php"><button class="button">Zurück zur Suche</button></a>
             <a href="rezeptBearbeiten.php"><button class="button">Bearbeiten</button></a>
 
         </div>
@@ -41,7 +41,7 @@
 
             <div class="recipe-preview">
                 <diV class="recipe-preview-image-container">
-                    <img src="images/lasagne.jpg" alt="">
+                    <img src="../images/lasagne.jpg" alt="">
                 </diV>
                 <div class="recipe-preview-description"></div>
             </div>
@@ -145,7 +145,7 @@
 
         <div id="comments">
             <h3>Kommentare</h3>
-            <a href="../kommentare/kommentar_schreiben.php"><button class="button">Kommentar schreiben</button></a>
+            <a href="kommentar_schreiben.php"><button class="button">Kommentar schreiben</button></a>
         </div>
 </div>
 
