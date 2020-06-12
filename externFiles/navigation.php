@@ -1,6 +1,6 @@
 <div class="navbar-links" xmlns="">
-    <a href="../index.php">
-        <img alt="Logo-Links-Navbar" class="logo" src="images/42licious_bearbeitet.png">
+    <a href="index.php">
+        <img alt="Logo-Links-Navbar" class="logo" src="../images/42licious_bearbeitet.png">
     </a>
 
     <div class="searchBar">
@@ -11,21 +11,21 @@
             </select>
             <input type="text" placeholder="Suchen..." name="search">
             <button class="submitBtn" type="submit">
-                <img src="images/searchIcon.png" alt="SearchIcon">
+                <img src="../images/searchIcon.png" alt="SearchIcon">
             </button>
             <button id="modalBtn" class="modalBtn" type="button" onclick="recipeModalOpen()">
-                <img src="images/angleDown.png" alt="ModalIconForSearchFilter">
+                <img src="../images/angleDown.png" alt="ModalIconForSearchFilter">
             </button>
         </form>
     </div>
 
     <div class="dropdown">
         <button onclick="dropdown()" class="dropbtn">
-            <img src="images/profile/profileIcon.png">
+            <img src="../images/profile/profileIcon.png">
         </button>
         <div id="myDropdown" class="dropdown-content">
-            <a href="#">Login</a>
-            <a href="#">Register</a>
+            <a href="anmeldeFormular.php">Login</a>
+            <a href="registrierung.php">Register</a>
         </div>
     </div>
 

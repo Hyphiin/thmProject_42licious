@@ -19,7 +19,7 @@
     <div id="main">
         <div id="top-buttons">
 
-            <a href="../index.php"><button class="button">Zurück</button></a>
+            <a href="index.php"><button class="button">Zurück</button></a>
             <a href="profil_edit.php"><button class="button">Bearbeiten</button></a>
 
         </div>

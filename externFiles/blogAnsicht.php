@@ -8,7 +8,7 @@
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
     <link href="../css/main.css" rel="stylesheet" type="text/css">
-    <link href="../../css/blog_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
+    <link href="../css/blog_css/blogAnsicht.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>

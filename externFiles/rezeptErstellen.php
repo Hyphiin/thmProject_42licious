@@ -7,6 +7,8 @@
     <title>42licious-RezeptErstellen</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/rezept_css/rezeptErstellen.css" rel="stylesheet" type="text/css">
+    <link href="../css/navigation.css" rel="stylesheet" type="text/css">
+    <link href="../css/main.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>

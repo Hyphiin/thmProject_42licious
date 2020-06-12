@@ -6,6 +6,8 @@
     <title>42licious-BlogUSER</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/blog_css/blogUSER.css" rel="stylesheet" type="text/css">
+    <link href="../css/navigation.css" rel="stylesheet" type="text/css">
+    <link href="../css/main.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>

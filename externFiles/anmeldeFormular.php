@@ -1,4 +1,6 @@
 <link href="../css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
+<link href="../css/general.css" rel="stylesheet" type="text/css">
+
 
 <div class = anmeldefo>
 
@@ -18,10 +20,9 @@
 
             <button class="button" id="pwVergessenButton">Passwort vergessen?</button>
             <button class="button">Anmelden</button>
-            <button class="button">Abbrechen</button>
+            <button class="button">Abbrechen</button> </br>
             <label for="registrierenButton">Noch keinen Account?</label>
-                <button class="button" id="registrierenButton">Registrieren</button>
-            </div>
+               <a href="registrierung.php"><button class="button" id="registrierenButton">Registrieren</button> </a>
         </form>
     </div>
 

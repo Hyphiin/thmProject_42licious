@@ -6,6 +6,9 @@
     <title>42licious-RezeptAnsicht</title>
 
     <link href="../css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
+    <link href="../css/navigation.css" rel="stylesheet" type="text/css">
+    <link href="../css/main.css" rel="stylesheet" type="text/css">
+    <link href="../css/general.css" rel="stylesheet" type="text/css">
 
 
 
@@ -19,7 +22,7 @@
 
         <div id="top-buttons">
 
-            <a href="../rezepteSuchen.php"><button class="button">Zurück zur Suche</button></a>
+            <a href="rezepteSuchen.php"><button class="button">Zurück zur Suche</button></a>
             <a href="rezeptBearbeiten.php"><button class="button">Bearbeiten</button></a>
 
         </div>
