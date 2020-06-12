@@ -6,23 +6,24 @@
 
     <title>42licious-Kommentare-Ansicht</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
+    <link href="../css/navigation.css" rel="stylesheet" type="text/css">
+    <link href="../css/main.css" rel="stylesheet" type="text/css">
     <link href="../css/kommentare_css/kommentare_ansicht.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 <div id="website">
+
+    <?php include("navigation.php"); ?>
+
     <div id="main">
+
         <div id="top-buttons">
 
-            <button class="button">Zurück</button>
+            <a href="kommentar_schreiben.php"><button class="button">Zurück</button></a>
 
         </div>
         <div id="main-content">
-
-            <header id="kommentare-head">
-                <h1>Kommentare</h1>
-                <a href="kommentar_schreiben.php"><button id="kommentar_schreiben">Kommentar schreiben</button></a>
-            </header>
 
             <div id="kommentar_sektion">
             <ul>
@@ -37,8 +38,6 @@
                 </li>
             </ul>
             </div>
-
-            <button id="mehr_Anzeigen">mehr Anzeigen</button>
 
         </div>
     </div>

@@ -6,15 +6,20 @@
 
     <title>42licious-Kommentare-Ansicht</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
+    <link href="../css/navigation.css" rel="stylesheet" type="text/css">
+    <link href="../css/main.css" rel="stylesheet" type="text/css">
     <link href="../css/kommentare_css/kommentar_schreiben.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 <div id="website">
+
+    <?php include("navigation.php"); ?>
+
     <div id="main">
         <div id="top-buttons">
 
-            <a href="kommentare_ansicht.php"><button class="button">Zurück</button></a>
+            <a href="rezeptAnsicht.php"><button class="button">Zurück</button></a>
 
         </div>
         <div id="main-content">
@@ -27,9 +32,9 @@
                 <textarea id="kommentieren" cols="50" rows="4" placeholder="Kommentar schreiben..."></textarea>
 
                 <span id="commentbuttons">
-                <a href="kommentar_schreiben.php"><button id="abbrechen"> Abbrechen </button></a>
+                <a href="kommentar_schreiben.php"><button class="button" id="abbrechen"> Abbrechen </button></a>
 
-                <button id="abschicken" type="submit"> Kommentieren </button>
+                <button class="button" id="abschicken" type="submit"> Kommentieren </button>
                 </span>
 
             </div>
@@ -48,8 +53,9 @@
                 </ul>
             </div>
 
-            <button id="mehr_Anzeigen">mehr Anzeigen</button>
-
+            <div id="bottom-buttons">
+            <a href="kommentare_ansicht.php"><button class="button" id="mehr_Anzeigen">mehr Anzeigen</button></a>
+            </div>
 
         </div>
     </div>

@@ -24,13 +24,6 @@
     flex-wrap: nowrap;
 }
 
-#kommentare-head{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
 #kommentar_schreiben{
     width: 50%;
 }
