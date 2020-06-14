@@ -24,8 +24,8 @@
             <img src="../images/profile/profileIcon.png">
         </button>
         <div id="myDropdown" class="dropdown-content">
-            <a href="anmeldeFormular.php">Login</a>
-            <a href="registrierung.php">Register</a>
+            <a href="login.php">Login</a>
+            <a href="registrieren.php">Register</a>
         </div>
     </div>
 
