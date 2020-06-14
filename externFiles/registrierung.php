@@ -1,33 +1,16 @@
-<link href="../css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
+<html>
+<head>
+    <title>Registrieren</title>
+</head>
+<body>
+<h1>Registrierungsformular</h1>
+<form action="inc/signup-inc.php" method="POST">
+    <input type="text" name="firstname" placeholder="Vorname"><br>
+    <input type="text" name="lastname" placeholder="Nachname"><br>
+    <input type="text" name="user" placeholder="Benutzername"><br>
+    <input type="password" name="password" placeholder ="Passwort"><br>
+    <button type="submit" name="submit">Registrieren</button>
+</form>
 
-<div class = anmeldefo>
-
-    <div class="ueberschrift">Registrierung</div>
-
-    <div class="form">
-        <form action="" method="post">
-
-            <div class="textfeld">
-                <label for="nick">Nickname:</label>
-                <input type="text" name="nick" id="nick"/>
-            </div>
-            <div class="textfeld">
-                <label for="email">E-Mail:</label>
-                <input type="email" name="email" id="email"/>
-            </div>
-            <div class="textfeld">
-                <label for="pw">Passwort:</label>
-                <input type="text" name="passwort" id="pw">
-            </div>
-            <div class="textfeld">
-                <label for="pw2">Passwort bestätigen:</label>
-                <input type="text" name="passwort" id="pw2">
-            </div>
-
-            <button class="button">Registrieren</button>
-            <button class="button">Abbrechen</button>
-
-        </form>
-    </div>
-
-</div>
+</body>
+</html>
