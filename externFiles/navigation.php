@@ -26,6 +26,7 @@
         <div id="myDropdown" class="dropdown-content">
             <a href="login.php">Login</a>
             <a href="registrieren.php">Register</a>
+            <a href="logout.php">Logout</a>
         </div>
     </div>
 
