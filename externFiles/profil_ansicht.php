@@ -20,7 +20,7 @@
         <div id="top-buttons">
 
             <a href="index.php"><button class="button">Zurück</button></a>
-            <a href="profil_edit.php"><button class="button">Bearbeiten</button></a>
+            <a href="p_editieren.php"><button class="button">Bearbeiten</button></a>
 
         </div>
 
@@ -40,7 +40,6 @@
                     <div id="details">
                         <p id="name">Name: Max Mustermann</p>
                         <p id="nickname">Nickname: USER</p>
-                        <p id="birthday">Geburtsdatum: TT.MM.JJ</p>
                     </div>
 
                     <label for="beschreibung">Beschreibung</label>

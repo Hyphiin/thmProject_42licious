@@ -2,6 +2,9 @@
 session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
 
+
+
+
 if (isset($_GET['login'])) {
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];

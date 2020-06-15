@@ -1,9 +1,8 @@
 <?php
 session_start();
-session_unset();
-session_destroy();
+    session_destroy();
+    echo "Logout erfolgreich";
 
-echo "Logout erfolgreich";
 ?>
 
 <a href="index.php">Startseite</a>
