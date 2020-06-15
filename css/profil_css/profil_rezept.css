@@ -1,13 +1,4 @@
-#main{
-    width: 50%;
-    margin: 10px 25% 10px auto;
-    height: auto;
-    border-style: solid;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    justify-content: center;
-}
+
 
 #top-buttons{
     margin: 10px;
@@ -24,35 +15,21 @@
     align-items: center;
 }
 
-#rezepte{
+#profil_rezept-title{
+    display: flex;
+    justify-content: center;
+}
+
+.sortierung{
     margin: 5px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
 }
 
-#rezept{
-    margin:2px;
-    display: flex;
-    border-style: solid;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-
-#rezeptinfos{
-    display: flex;
-    flex-wrap: wrap;
+#bottom-buttons{
+    margin: 10px;
+    display:flex;
+    flex-wrap: nowrap;
     flex-direction: row;
-}
-
-#infos{
-    margin: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-
-img{
-    margin:2px;
-    width:50%;
-    height:50%;
+    justify-content: center;
 }

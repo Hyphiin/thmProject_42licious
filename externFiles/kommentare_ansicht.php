@@ -7,7 +7,6 @@
     <title>42licious-Kommentare-Ansicht</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
-    <link href="../css/main.css" rel="stylesheet" type="text/css">
     <link href="../css/kommentare_css/kommentare_ansicht.css" rel="stylesheet" type="text/css">
 
 </head>

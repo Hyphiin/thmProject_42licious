@@ -1,3 +1,4 @@
+<a href="blogAnsicht.php">
 <div class="blog-preview">
     <div class="blog-preview-head">
         <h2 class="blog-preview-title">Titel</h2>
@@ -13,3 +14,4 @@
     </div>
 
 </div>
+</a>

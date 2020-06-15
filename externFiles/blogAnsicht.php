@@ -7,13 +7,14 @@
     <title>42licious-BlogAnsicht</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
-    <link href="../css/main.css" rel="stylesheet" type="text/css">
     <link href="../css/blog_css/blogAnsicht.css" rel="stylesheet" type="text/css">
+    <link href="../css/navigation.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 <div id="website">
 
+    <?php include("navigation.php"); ?>
 <div id="main">
 
     <div id="top-buttons">
@@ -23,7 +24,7 @@
 
     </div>
 
-    <div id="main-content">
+    <div class="blog-main">
 
         <div id="blog-info">
 
@@ -57,12 +58,13 @@
             </p>
         </div>
 
-    </div>
+
 
     <div id="comments">
         <h3>Kommentare</h3>
     </div>
 
+    </div>
 
 </div>
 

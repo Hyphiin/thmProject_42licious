@@ -53,10 +53,14 @@
 }
 
 /**********************************************************************************************/
+.search {
+
+
+}
 
 .searchBar {
     position: absolute;
-    width: 450px;
+    width: 520px;
     height: 36px;
     margin: 19.5px auto 19.5px auto;
     left: 0;
@@ -65,7 +69,7 @@
 
 .selection {
     background: #E6E6E6;
-    width: 68px;
+    width: 95px;
     float: left;
     height: 36px;
     border: none;

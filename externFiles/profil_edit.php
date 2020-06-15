@@ -7,10 +7,15 @@
     <title>42licious-Profil-Bearbeitung</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/profil_css/profil_edit.css" rel="stylesheet" type="text/css">
+    <link href="../css/navigation.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 <div id="website">
+
+    <?php include("navigation.php"); ?>
+
+
     <div id="main">
         <div id="top-buttons">
             <a href="profil_ansicht.php"><button class="button">Zurück</button></a>

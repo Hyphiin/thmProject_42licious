@@ -6,10 +6,9 @@
 
     <title>42licious-Kochbuch</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
-    <link href="../css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
     <link href="../css/suchergebnisse.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
-    <link href="../css/main.css" rel="stylesheet" type="text/css">
+    <link href="../css/recipePreview.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -19,6 +18,7 @@
 
     <div id="main">
 
+        <div class="main-content">
         <div id="title">
             <h1>Kochbuch</h1>
         </div>
@@ -39,57 +39,36 @@
             </label>
         </div>
 
-        <div id="main-content">
 
+        <div class="recipies">
+        <div class="recipe-container">
 
-            <div id="main" class="main">
+                    <?php
+                    include("rezeptPreview.php");
+                    include("rezeptPreview.php");
+                    include("rezeptPreview.php");
+                    include("rezeptPreview.php");
+                    include("rezeptPreview.php");
+                    include("rezeptPreview.php");
+                    include("rezeptPreview.php");
+                    include("rezeptPreview.php");
+                    include("rezeptPreview.php");
+                    include("rezeptPreview.php");
+                    include("rezeptPreview.php");
+                    include("rezeptPreview.php");
+                    ?>
 
-                <div class="container">
-
-                    <div class="recipe-preview">
-                        <diV class="recipe-preview-image-container">
-                            <img src="../images/lasagne.jpg" alt="">
-                        </diV>
-                        <div class="recipe-preview-description">
-                            <h4>Rezeptname</h4>
-                            <h5>von Username</h5>
-                            <hr>
-                        </div>
-                    </div>
-
-                    <div class="recipe-preview">
-                        <diV class="recipe-preview-image-container">
-                            <img src="../images/lasagne.jpg" alt="">
-                        </diV>
-                        <div class="recipe-preview-description">
-                            <h4>Rezeptname</h4>
-                            <h5>von Username</h5>
-                            <hr>
-                        </div>
-                    </div>
-
-                    <div class="recipe-preview">
-                        <diV class="recipe-preview-image-container">
-                            <img src="../images/lasagne.jpg" alt="">
-                        </diV>
-                        <div class="recipe-preview-description">
-                            <h4>Rezeptname</h4>
-                            <h5>von Username</h5>
-                            <hr>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
+        </div>
+        </div>
             <div id="bottom-buttons">
                 <button class="button" id="show-more">Mehr anzeigen</button>
             </div>
-
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="../jscript/recipePreview.js"></script>
 
 
 </body>

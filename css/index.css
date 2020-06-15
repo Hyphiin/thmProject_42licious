@@ -1,0 +1,19 @@
+.container-index {
+    padding-left: 10px;
+    margin: 10px;
+    width: 45%;
+    height: auto;
+    border: 3px solid #4D2F25;
+
+}
+ .index-title{
+     display: flex;
+     justify-content: center;
+ }
+
+ .recipe-preview-container{
+     display: flex;
+     justify-content: center;
+ }
+
+

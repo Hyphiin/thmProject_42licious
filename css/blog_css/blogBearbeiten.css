@@ -1,4 +1,4 @@
-#main {
+.blog-main {
     width: 50%;
     margin: 10px 25% 10px auto;
     height: auto;
@@ -24,9 +24,6 @@
     justify-content: space-between;
 }
 
-#delete{
-
-}
 
 #blog-inhalt{
     margin-top: 10px;

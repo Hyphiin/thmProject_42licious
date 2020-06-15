@@ -7,7 +7,7 @@
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/blog_css/blogUSER.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
-    <link href="../css/main.css" rel="stylesheet" type="text/css">
+
 
 </head>
 <body>
@@ -17,7 +17,7 @@
     <?php include("navigation.php"); ?>
 
     <div id="main">
-
+        <div class="main-content">
         <div id="bloglist-user">
 
             <div id="head-title">
@@ -60,10 +60,7 @@
             </div>
 
         </div>
-
-
-
-
+        </div>
     </div>
 
 </div>

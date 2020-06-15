@@ -1,5 +1,5 @@
-#main{
-    width: 50%;
+#main-content{
+    width: 80%;
     margin: 10px 25% 10px auto;
     height: auto;
     border-style: solid;
@@ -21,6 +21,9 @@
     margin: 10px;
     display: flex;
     flex-direction: column ;
+}
+#profil-title{
+text-align: center;
 }
 
 #profil_inhalt{
@@ -54,7 +57,6 @@
     margin: 5px;
     height: auto;
     width: auto;
-    border-style: solid;
     display: flex;
     align-self: center;
     flex-wrap: nowrap;
@@ -74,7 +76,7 @@
     margin: 5px;
 }
 
-#top_rezept{
+.recipe-highlight{
     margin: 10px;
     height: auto;
     border-style: solid;
@@ -84,16 +86,7 @@
     justify-content: center;
     align-items: center;
 }
-#last_blog{
-    margin: 10px;
-    height: auto;
-    border-style: solid;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+
 label{
     font-weight: bold;
 }
@@ -107,7 +100,8 @@ label{
     border-style: solid ;
 }
 
-#test{
+.recipe-preview-container{
     display: flex;
-    flex-direction: row;
+    justify-content: center;
 }
+

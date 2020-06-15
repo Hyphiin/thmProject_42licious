@@ -1,13 +1,4 @@
-#main {
-    width: 50%;
-    margin: 10px 25% 10px auto;
-    height: auto;
-    border-style: solid;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    justify-content: center;
-}
+
 
 #bloglist-user{
     margin: 10px;

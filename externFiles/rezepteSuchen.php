@@ -6,90 +6,67 @@
 
     <title>42licious-BlogAnsicht</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
-    <link href="../css/blog_css/blogAnsicht.css" rel="stylesheet" type="text/css">
-    <link href="../css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
     <link href="../css/suchergebnisse.css" rel="stylesheet" type="text/css">
-    <link href="../css/main.css" rel="stylesheet" type="text/css">
+    <link href="../css/navigation.css" rel="stylesheet" type="text/css">
+    <link href="../css/recipePreview.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 <div id="website">
 
+    <?php include("navigation.php"); ?>
+
     <div id="main">
 
         <div id="top-buttons">
 
-            <button class="button">Zurück zur Suche</button>
-            <label id="sortieren">Sortieren nach:
-                <select name="sortieren" size="1">
-                    <option>Bewertung</option>
-                    <option>Name</option>
-                    <option>Einstelldatum</option>
-                </select>
-            </label>
+            <a href="index.php"><button class="button">Zurück</button></a>
+
         </div>
 
-        <div id="main-content">
-
-            <div id="blog-info">
-
-                <div id="blog-title">
-                    <h1>Suchergebnisse:</h1>
-                </div>
-
-                <div id="timestamp">
-                    <p>TT.MM.JJ SS:MM</p>
-                </div>
-
+        <div class="main-content">
+            <div id="rezeptsuche-title">
+                <h1>Suchergebnisse</h1>
             </div>
 
-            <div id="main" class="main">
-
-                <div class="container">
-
-                    <div class="recipe-preview">
-                        <diV class="recipe-preview-image-container">
-                            <img src="../images/lasagne.jpg" alt="">
-                        </diV>
-                        <div class="recipe-preview-description">
-                            <h4>Rezeptname</h4>
-                            <h5>von Username</h5>
-                            <hr>
-                        </div>
-                    </div>
-
-                    <div class="recipe-preview">
-                        <diV class="recipe-preview-image-container">
-                            <img src="../images/lasagne.jpg" alt="">
-                        </diV>
-                        <div class="recipe-preview-description">
-                            <h4>Rezeptname</h4>
-                            <h5>von Username</h5>
-                            <hr>
-                        </div>
-                    </div>
-
-                    <div class="recipe-preview">
-                        <diV class="recipe-preview-image-container">
-                            <img src="../images/lasagne.jpg" alt="">
-                        </diV>
-                        <div class="recipe-preview-description">
-                            <h4>Rezeptname</h4>
-                            <h5>von Username</h5>
-                            <hr>
-                        </div>
-                    </div>
-
-                </div>
+            <div class="sortierung">
+                <label for="sortieren">Sortieren nach</label>
+                <select id="sortieren" size="1">
+                    <option>Bewertung</option>
+                    <option>Name</option>
+                    <option>Erstellungsdatum</option>
+                </select>
             </div>
 
+            <div class="recipies">
+            <div class="recipe-container">
+
+                <?php
+                include("rezeptPreview.php");
+                include("rezeptPreview.php");
+                include("rezeptPreview.php");
+                include("rezeptPreview.php");
+                include("rezeptPreview.php");
+                include("rezeptPreview.php");
+                include("rezeptPreview.php");
+                include("rezeptPreview.php");
+                include("rezeptPreview.php");
+                include("rezeptPreview.php");
+                include("rezeptPreview.php");
+                include("rezeptPreview.php");
+                ?>
+
+            </div>
+            </div>
             <div id="bottom-buttons">
-                <button class="buttoncenter">Mehr Anzeigen</button>
+                <button class="button" id="show-more">Mehr anzeigen</button>
             </div>
+
         </div>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="../jscript/recipePreview.js"></script>
 
 </body>
 </html>

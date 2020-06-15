@@ -7,7 +7,6 @@
     <title>42licious-Profil-Ansicht</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
-    <link href="../css/main.css" rel="stylesheet" type="text/css">
     <link href="../css/profil_css/profil_ansicht.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -16,15 +15,18 @@
 
     <?php include("navigation.php"); ?>
 
-    <div id="main">
+    <div class="main">
+    <div id="main-content">
+
         <div id="top-buttons">
 
             <a href="index.php"><button class="button">Zurück</button></a>
             <a href="profil_edit.php"><button class="button">Bearbeiten</button></a>
+            <link href="../css/recipePreview.css" rel="stylesheet" type="text/css">
 
         </div>
 
-        <div id="main-content">
+        <div id="main-profile">
             <div id="profil-title">
                 <h1>Profil von USER</h1>
             </div>
@@ -49,17 +51,21 @@
                     <p>Mitglied seit: TT.MM.JJ</p>
                 </div>
                 <div id="profil_rechts">
-                    <div id="top_rezept">
-                        <label>Top Rezept</label>
-                        <p id="toprezept">Hier soll das Top Rezept stehen!</p>
+
+                    <div class="recipe-highlight">
+                        <h4>Top Rezept</h4>
+                        <?php include("rezeptPreview.php"); ?>
                     </div>
-                    <div id="last_blog">
-                        <label>Letzter Blog</label>
-                        <p id="lastblog">Hier soll der letzte Blog stehen!</p>
+
+                    <div class="recipe-highlight">
+                        <h4>Letzter Blog</h4>
+                        <?php include("rezeptPreview.php"); ?>
                     </div>
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 </body>

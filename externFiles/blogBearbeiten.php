@@ -7,14 +7,17 @@
     <title>42licious-BlogBearbeiten</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/blog_css/blogBearbeiten.css" rel="stylesheet" type="text/css">
+    <link href="../css/navigation.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 
 <div id="website">
 
-    <div id="main">
+    <?php include("navigation.php"); ?>
 
+    <div id="main">
+        <div class="blog-main">
         <div id="edit-blog">
             <h1>Blogeintrag bearbeiten</h1>
 
@@ -39,7 +42,7 @@
             </div>
 
         </div>
-
+    </div>
     </div>
 </div>
 

@@ -1,6 +1,12 @@
+#rezeptsuche-title{
+    display: flex;
+    justify-content: center;
+}
 
-#sortieren{
-    padding-top: 8px;
+.sortierung{
+    margin: 5px;
+    display: flex;
+    justify-content: center;
 }
 
 #title{
@@ -27,3 +33,4 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
