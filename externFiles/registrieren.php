@@ -5,7 +5,15 @@ $pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
 <!DOCTYPE html>
 <html>
 <head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <title>Registrierung</title>
+    <link href="../css/general.css" rel="stylesheet" type="text/css">
+    <link href="../css/navigation.css" rel="stylesheet" type="text/css">
+    <link href="../css/main.css" rel="stylesheet" type="text/css">
+    <link href="../css/form_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -64,27 +72,44 @@ if (isset($_GET['register'])) {
 
 if ($showFormular) {
     ?>
-    <form action="?register=1" method="post">
-        Vorname:<br>
-        <input type="text" size="40" maxlength="250" name="vorname"><br><br>
+    <div id="website">
 
-        Nachname:<br>
-        <input type="text" size="40" maxlength="250" name="nachname"><br><br>
+        <?php include("navigation.php"); ?>
 
-        E-Mail:<br>
-        <input type="email" size="40" maxlength="250" name="email"><br><br>
+        <div id="main">
 
-        Nickname:<br>
-        <input type="text" size="40" maxlength="250" name="nickname"><br><br>
+            <div id="top-buttons">
 
-        Dein Passwort:<br>
-        <input type="password" size="40" maxlength="250" name="passwort"><br>
+                <a href="index.php"><button class="button">Zurück</button></a>
 
-        Passwort wiederholen:<br>
-        <input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+            </div>
 
-        <input type="submit" value="Abschicken">
-    </form>
+            <div id="main-content">
+                <form action="?register=1" method="post">
+                    Vorname:<br>
+                    <input type="text" size="40" maxlength="250" name="vorname"><br><br>
+
+                    Nachname:<br>
+                    <input type="text" size="40" maxlength="250" name="nachname"><br><br>
+
+                    E-Mail:<br>
+                    <input type="email" size="40" maxlength="250" name="email"><br><br>
+
+                    Nickname:<br>
+                    <input type="text" size="40" maxlength="250" name="nickname"><br><br>
+
+                    Dein Passwort:<br>
+                    <input type="password" size="40" maxlength="250" name="passwort"><br>
+
+                    Passwort wiederholen:<br>
+                    <input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+
+                    <input type="submit" value="Abschicken">
+                </form>
+            </div>
+        </div>
+    </div>
+
     <?php
 } //Ende von if($showFormular)
 ?>
