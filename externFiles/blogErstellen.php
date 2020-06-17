@@ -1,3 +1,14 @@
+<?php
+session_start();
+$pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
+
+$sess = $_SESSION['userid'];
+
+if ($sess == true) {
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -22,25 +33,46 @@
         <div id="create-blog">
             <h1>Blogeintrag erstellen</h1>
 
-            <form id="blog-erstellen">
-                <label for="titel">Titel:</label>
-                <input type="text" name="titel" id="titel" size="40" placeholder="Titel eingeben..."><br/>
-                <br/>
-                <label for="blog-inhalt">Inhalt:</label><br/>
+            <form action="?erstellen=1" method="post">
+                Titel:<br>
+                <input type="text" name="titel" size="40" maxlength="255">
+                <br><br>
+                Inhalt:<br>
+                <input type="text" name="inhalt" size="40" maxlength="255">
+                <br><br>
+                <input type="submit" value="Bloggen" class="button">
             </form>
-
-            <textarea rows="20" maxlength="2000" name="blog-inhalt" form="blog-erstellen" id="blog-inhalt" placeholder="Inhalt eingeben..."></textarea>
 
         </div>
 
         <div id="bottom-buttons">
             <a href="blogUSER.php"><button class="button" id="cancel">Abbrechen</button></a>
-            <a href="blogErstellen.php"><button class="button" id="create">Erstellen</button></a>
 
         </div>
 
     </div>
 </div>
 
+<?php
+if(isset($_GET['erstellen'])){
+    $titel = $_POST['titel'];
+    $inhalt = $_POST['inhalt'];
+
+    $statement = $pdo->prepare("INSERT INTO blog (Nutzer, titel, inhalt) VALUES (:Nutzer ,:titel, :inhalt)");
+    $result = $statement->execute(array('Nutzer' => $sess, 'titel' => $titel, 'inhalt' => $inhalt));
+}
+?>
+
 </body>
 </html>
+
+    <?php
+    ;
+} else if($sess != true){
+
+    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+    echo'<br>';
+    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+
+}
+?>
