@@ -1,6 +1,9 @@
 <?php
 session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
 $sess = $_SESSION['userid'];
 
 if ($sess == true) {
