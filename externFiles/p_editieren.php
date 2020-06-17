@@ -53,7 +53,6 @@ if($sess==true){
 
         $vorname= $user['vorname'];
         $nachname= $user['nachname'];
-        $email= $user['email'];
         $nickname= $user['nickname'];
 
         echo "Vorname :". $vorname;
