@@ -31,7 +31,7 @@ if($sess==true){
     </form>
 <?php
 
-    if(isset($_POST['edit'])) {
+    if(isset($_POST['Bearbeitung'])) {
 
         $vorname = $_POST['vorname'];
         $nachname = $_POST['nachname'];
@@ -57,9 +57,11 @@ if($sess==true){
         $nickname= $user['nickname'];
 
         echo "Vorname :". $vorname;
+        echo '<br>';
         echo "Nachname :". $nachname;
-        echo "Email :". $email;
+        echo '<br>';
         echo "Nickname :". $nickname;
+        echo '<br>';
         ?>
     </div>
 
