@@ -13,7 +13,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
     <link href="../css/main.css" rel="stylesheet" type="text/css">
-    <link href="../css/form_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
+    <link href="../css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 

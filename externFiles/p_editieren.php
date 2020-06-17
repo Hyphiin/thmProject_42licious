@@ -3,7 +3,6 @@ session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
 $sess = $_SESSION['userid'];
 
-if($sess==true){
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,19 +30,16 @@ if($sess==true){
     </form>
 <?php
 
-    if(isset($_POST['edit'])) {
-
+    if (isset($_GET['edit'])) {
         $vorname = $_POST['vorname'];
         $nachname = $_POST['nachname'];
         $nickname = $_POST['nickname'];
 
+        $sql="UPDATE users SET vorname = '$vorname', nachname = '$nachname', nickname= '$nickname' WHERE  id = '$sess' ";
+        $update = $pdo->prepare($sql);
+        $update->execute();
+   }
 
-        $update = $pdo->prepare("UPDATE users SET (vorname = ?, nachname= ?, nickname= ?) WHERE id = '$sess'");
-        $update->bind_param($vorname, $nachname, $nickname);
-        if ($update->execute()) {
-            echo '<p class="feedbackerfolg">Datensatz wurde geändert</p>';
-        }
-    }
 ?>
 
     <div>
@@ -67,8 +63,5 @@ if($sess==true){
 </html>
 
 <?php
-    ;}
-else{
-    echo "Bitte einloggen".'<a href="login.php">Login</a>';
-}
+
 ?>
