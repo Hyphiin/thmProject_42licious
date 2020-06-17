@@ -1,3 +1,14 @@
+<?php
+session_start();
+$pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+$sess = $_SESSION['userid'];
+
+if ($sess == true) {
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -18,14 +29,16 @@
         <div id="edit-blog">
             <h1>Blogeintrag bearbeiten</h1>
 
-            <form id="blog-bearbeiten">
-                <label for="titel">Titel:</label>
-                <input type="text" name="titel" id="titel" size="40" value="Titel"><br/>
-                <br/>
-                <label for="blog-inhalt">Inhalt:</label><br/>
+            <form action="?bearbeiten=1" method="post">
+                Titel:<br>
+                <input type="text" name="titel" size="40" maxlength="255">
+                <br><br>
+                Inhalt:<br>
+                <input type="text" name="inhalt" size="40" maxlength="255">
+                <br><br>
+                <input type="submit" value="Bloggen" class="button">
             </form>
 
-            <textarea rows="20" maxlength="2000" name="blog-inhalt" form="blog-erstellen" id="blog-inhalt">Blog Inhalt...</textarea>
 
         </div>
 
@@ -35,7 +48,6 @@
             </div>
             <div>
             <button class="button" id="cancel">Abbrechen</button>
-            <button class="button" id="save">Speichern</button>
             </div>
 
         </div>
@@ -45,3 +57,14 @@
 
 </body>
 </html>
+
+    <?php
+    ;
+} else if($sess != true){
+
+    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+    echo'<br>';
+    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+
+}
+?>
