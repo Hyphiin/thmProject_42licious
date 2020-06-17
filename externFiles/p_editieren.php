@@ -25,6 +25,11 @@ if ($sess == true) {
         <?php include("navigation.php"); ?>
 
         <div id="main">
+
+            <div id="top-buttons">
+                <a href="profil_ansicht.php"><button class="button">Zurück</button></a>
+            </div>
+
             <div id="main-content">
                 <form action="?edit=1" method="POST">
 
