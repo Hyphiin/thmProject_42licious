@@ -3,65 +3,75 @@ session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
 $sess = $_SESSION['userid'];
 
-?>
-<!DOCTYPE html>
-<html>
-<head>
+if ($sess == true) {
+    ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
 
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title>Editieren</title>
-</head>
-<body>
-    <form action="?edit=1" method="POST">
+        <title>Editieren</title>
+        <link href="../css/general.css" rel="stylesheet" type="text/css">
+        <link href="../css/navigation.css" rel="stylesheet" type="text/css">
+        <link href="../css/main.css" rel="stylesheet" type="text/css">
+        <link href="../css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
 
-        Vorname:<br>
-        <input type="text" size="40" maxlength="250" name="vorname"><br><br>
+    </head>
+    <body>
+    <div id="website">
 
-        Nachname:<br>
-        <input type="text" size="40" maxlength="250" name="nachname"><br><br>
+        <?php include("navigation.php"); ?>
 
-        Nickname:<br>
-        <input type="text" size="40" maxlength="250" name="nickname"><br><br>
+        <div id="main">
+            <div id="main-content">
+                <form action="?edit=1" method="POST">
 
-        <input type="submit" value="Bearbeitung">
+                    Vorname:<br>
+                    <input type="text" size="40" maxlength="250" name="vorname"><br><br>
 
-    </form>
-<?php
+                    Nachname:<br>
+                    <input type="text" size="40" maxlength="250" name="nachname"><br><br>
+
+                    Nickname:<br>
+                    <input type="text" size="40" maxlength="250" name="nickname"><br><br>
+
+                    <input type="submit" value="Bearbeitung">
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php
 
     if (isset($_GET['edit'])) {
         $vorname = $_POST['vorname'];
         $nachname = $_POST['nachname'];
         $nickname = $_POST['nickname'];
 
-        $sql="UPDATE users SET vorname = '$vorname', nachname = '$nachname', nickname= '$nickname' WHERE  id = '$sess' ";
+        $sql = "UPDATE users SET vorname = '$vorname', nachname = '$nachname', nickname= '$nickname' WHERE  id = '$sess' ";
         $update = $pdo->prepare($sql);
         $update->execute();
-   }
+    }
 
-?>
+    ?>
 
-    <div>
-        <?php
-        $statement = $pdo->query("SELECT * FROM users WHERE id = '$sess' ");
-        $user = $statement->fetch();
+    </body>
+    </html>
 
-        $vorname= $user['vorname'];
-        $nachname= $user['nachname'];
-        $email= $user['email'];
-        $nickname= $user['nickname'];
+    <?php
+    ;
+} else if($sess != true){
+    echo '<div id="website">';
 
-        echo "Vorname :". $vorname;
-        echo "Nachname :". $nachname;
-        echo "Email :". $email;
-        echo "Nickname :". $nickname;
-        ?>
-    </div>
-
-</body>
-</html>
-
-<?php
-
+        echo'<div id="main">';
+            echo'<div id="main-content">';
+                    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+                    echo'<br>';
+                    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+            echo'</div>';
+        echo'</div>';
+    echo'</div>';
+}
 ?>
