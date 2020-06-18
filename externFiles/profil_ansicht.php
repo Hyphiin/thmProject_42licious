@@ -43,6 +43,7 @@ if ($sess == true) {
             $nachname= $user['nachname'];
             $nickname= $user['nickname'];
             $date= $user['created_at'];
+            $pic= $user['pic'];
 
 
             echo '<div id="main-content">';
@@ -53,7 +54,7 @@ if ($sess == true) {
             echo '<div id="profil_inhalt">';
                 echo '<div id="profil_links">';
                     echo '<div id="BildUndButtons">';
-                        echo '<img alt="Profil-Bild" id="profil_bild" src="shindy.jpg">';
+                        echo '<img alt="Profil-Bild" id="profil_bild" src='."$pic".'>';
                         echo '<div id="linksbuttons">';
                             echo '<a href="profil_rezept.php"><button id="user_rezept">Rezepte</button></a>';
                             echo '<a href="blogUSER.php"><button id="user_blog">Blog</button></a>';

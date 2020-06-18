@@ -45,6 +45,9 @@ if ($sess == true) {
                     Nickname:<br>
                     <input type="text" size="40" maxlength="250" name="nickname"><br><br>
 
+                    Profil-Bild:<br>
+                    <input type="file" accept="image/*" name="pic"/><br><br>
+
                     <input type="submit" value="Bearbeitung">
 
                 </form>
@@ -57,8 +60,9 @@ if ($sess == true) {
         $vorname = $_POST['vorname'];
         $nachname = $_POST['nachname'];
         $nickname = $_POST['nickname'];
+        $pic = $_POST['pic'];
 
-        $sql = "UPDATE users SET vorname = '$vorname', nachname = '$nachname', nickname= '$nickname' WHERE  id = '$sess' ";
+        $sql = "UPDATE users SET vorname = '$vorname', nachname = '$nachname', nickname= '$nickname', pic= '$pic' WHERE  id = '$sess' ";
         $update = $pdo->prepare($sql);
         $update->execute();
     }

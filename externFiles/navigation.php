@@ -5,9 +5,9 @@
 
     <div class="searchBar">
         <form class="search" action="">
-            <select class="selection">
+            <select class="selection" onchange="location = this.value;">
                 <option value="recipe">in Rezepten</option>
-                <option value="user">in Nutzern</option>
+                <option value="profile_anzeigen.php">in Nutzern</option>
             </select>
             <input type="text" placeholder="Suchen..." name="search">
             <button class="submitBtn" type="submit">

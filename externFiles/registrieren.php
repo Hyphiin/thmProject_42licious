@@ -28,6 +28,7 @@ if (isset($_GET['register'])) {
     $nickname = $_POST['nickname'];
     $passwort = $_POST['passwort'];
     $passwort2 = $_POST['passwort2'];
+    $pic = $_POST['pic'];
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
@@ -58,8 +59,8 @@ if (isset($_GET['register'])) {
     if (!$error) {
         $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
 
-        $statement = $pdo->prepare("INSERT INTO users (vorname, nachname, email, nickname, passwort) VALUES (:vorname ,:nachname, :email, :nickname, :passwort)");
-        $result = $statement->execute(array('vorname' => $vorname, 'nachname' => $nachname, 'email' => $email, 'nickname' => $nickname, 'passwort' => $passwort_hash));
+        $statement = $pdo->prepare("INSERT INTO users (vorname, nachname, email, nickname, passwort, pic) VALUES (:vorname ,:nachname, :email, :nickname, :passwort, :pic)");
+        $result = $statement->execute(array('vorname' => $vorname, 'nachname' => $nachname, 'email' => $email, 'nickname' => $nickname, 'passwort' => $passwort_hash, 'pic' => $pic));
 
         if ($result) {
             echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
@@ -103,6 +104,9 @@ if ($showFormular) {
 
                     Passwort wiederholen:<br>
                     <input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+
+                    Profil-Bild einfügen:<br>
+                    <input type="file" accept="image/*" name="pic"/><br><br>
 
                     <input type="submit" value="Abschicken">
                 </form>
