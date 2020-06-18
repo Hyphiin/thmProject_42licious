@@ -22,7 +22,7 @@
         <div id="create-recipe">
             <h1>Rezept erstellen</h1>
 
-            <form id="recipe-erstellen">
+            <form id="recipe-erstellen" action="?hochladen" method="post">
                 <label for="titel">Titel:</label>
                 <input type="text" name="titel" id="titel" size="40" placeholder="Titel eingeben..."><br/>
                 <br/>
@@ -38,7 +38,7 @@
                         </select></br>
                 <br/>
                 <label for="beschreibung">Beschreibung:</label><br/>
-                <textarea rows="20" maxlength="2000" name="beschreibung" form="beschreibung" id="beschreibung" placeholder="Inhalt eingeben..."></textarea></br>
+                <input type="text" rows="20" maxlength="2000" name="beschreibung" form="beschreibung" id="beschreibung" placeholder="Inhalt eingeben..." ></br>
                 <label for="zutaten">Zutaten:</label>
                 <table>
                     <tr>
@@ -49,9 +49,10 @@
                 <button class="button" id="plus">+</button>
                 <br/>
                 <label for="zubereitung">Zubereitung:</label><br/>
-                <textarea rows="20" maxlength="2000" name="zubereitung" form="zubereitung" id="zubereitung" placeholder="Inhalt eingeben..."></textarea></br>
+                <input type="text" rows="20" maxlength="2000" name="zubereitung" form="zubereitung" id="zubereitung" placeholder="Inhalt eingeben..."></br>
                 </br>
                 +++ Bilder hochladen +++
+                <button class="button" id="create" type="submit">Erstellen</button>
             </form>
             </br>
 
@@ -59,8 +60,6 @@
 
         <div id="bottom-buttons">
             <button class="button" id="cancel">Abbrechen</button>
-            <button class="button" id="create">Erstellen</button>
-
         </div>
 
     </div>
