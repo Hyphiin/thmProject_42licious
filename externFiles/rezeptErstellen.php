@@ -40,13 +40,13 @@
                 <label for="beschreibung">Beschreibung:</label><br/>
                 <input type="text" rows="20" maxlength="2000" name="beschreibung" form="beschreibung" id="beschreibung" placeholder="Inhalt eingeben..." ></br>
                 <label for="zutaten">Zutaten:</label>
-                <table>
+                <table id="zutatenTable">
                     <tr>
                         <td><input type="text" name="menge" id="menge" size="40" placeholder="Menge eingeben..."></td>
                         <td><input type="text" name="zutaten" id="zutaten" size="40" placeholder="Zutaten eingeben..."></td>
                     </tr>
                 </table>
-                <button class="button" id="plus">+</button>
+                <button class="button" id="plus" type="button" onclick="addRow()">+</button>
                 <br/>
                 <label for="zubereitung">Zubereitung:</label><br/>
                 <input type="text" rows="20" maxlength="2000" name="zubereitung" form="zubereitung" id="zubereitung" placeholder="Inhalt eingeben..."></br>
@@ -56,6 +56,7 @@
             </form>
             </br>
 
+
         </div>
 
         <div id="bottom-buttons">
@@ -64,6 +65,26 @@
 
     </div>
 </div>
+
+<script>
+    function addRow() {
+        var table = document.getElementById("zutatenTable");
+        var row = table.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        cell1.innerHTML = "<input type=\"text\" name=\"menge\" id=\"menge\" size=\"40\" placeholder=\"Menge eingeben...\">";
+        cell2.innerHTML = "<input type=\"text\" name=\"zutaten\" id=\"zutaten\" size=\"40\" placeholder=\"Zutaten eingeben...\">";
+        cell3.innerHTML = "<button class=\"button\" type=\"button\" onclick=\"deleteRow(this)\">-</button>"
+    }
+
+    function deleteRow(row)
+    {
+        var i=row.parentNode.parentNode.rowIndex;
+        document.getElementById('zutatenTable').deleteRow(i);
+    }
+
+</script>
 
 </body>
 </html>
