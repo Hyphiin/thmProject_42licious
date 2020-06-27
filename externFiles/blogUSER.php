@@ -1,3 +1,13 @@
+<?php
+session_start();
+$pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+$sess = $_SESSION['userid'];
+
+if ($sess == true) {
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -29,8 +39,8 @@
                      <div>
                         <label for="filter">Sortieren nach:</label>
                         <select id="filter" name="filter">
-                            <option value="name">Name</option>
                             <option value="date">Datum</option>
+                            <option value="name">Name</option>
                          </select>
                     </div>
 
@@ -39,18 +49,30 @@
             <div class="blog-list">
 
                 <?php
-                include("blogPreview.php");
-                include("blogPreview.php");
-                include("blogPreview.php");
-                include("blogPreview.php");
-                include("blogPreview.php");
-                include("blogPreview.php");
-                include("blogPreview.php");
-                include("blogPreview.php");
-                include("blogPreview.php");
-                include("blogPreview.php");
-                include("blogPreview.php");
-                include("blogPreview.php");
+                $statement = $pdo->query("SELECT * FROM blog WHERE nutzer = 13 ORDER BY id DESC");
+                while($blog = $statement->fetch()) {
+
+                    $blogID= $blog['id'];
+                    $title = $blog['titel'];
+                    $timestamp = $blog['rdate'];
+                    $entry = $blog['inhalt'];
+
+                    echo '<a href="blogAnsicht.php?id='.$blogID.'">';
+                    echo '<div class="blog-preview">';
+                    echo '<div class="blog-preview-head">';
+                    echo '<h2 class="blog-preview-title">' . $title . '</h2>';
+                    echo '<p class="blog-preview-timestamp">' . $timestamp . '</p>';
+                    echo '</div>';
+                    echo '<div class="blog-preview-body">';
+                    echo '<p>';
+                    echo nl2br(substr($entry,0,100));
+                    echo '</p>';
+                    echo '</div>';
+                    
+                    echo '</div>';
+                    echo '</a>';
+                }
+
                 ?>
 
             </div>
@@ -73,3 +95,17 @@
 
 </body>
 </html>
+    <?php
+} else if($sess != true){
+    echo '<div id="website">';
+
+    echo'<div id="main">';
+    echo'<div id="main-content">';
+    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+    echo'<br>';
+    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+    echo'</div>';
+    echo'</div>';
+    echo'</div>';
+}
+?>
