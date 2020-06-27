@@ -1,3 +1,13 @@
+<?php
+session_start();
+$pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+$sess = $_SESSION['userid'];
+
+if ($sess == true) {
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -54,3 +64,17 @@
 
 </body>
 </html>
+    <?php
+} else if($sess != true){
+    echo '<div id="website">';
+
+    echo'<div id="main">';
+    echo'<div id="main-content">';
+    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+    echo'<br>';
+    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+    echo'</div>';
+    echo'</div>';
+    echo'</div>';
+}
+?>

@@ -31,9 +31,11 @@
     </div>
 
     <ul class="content" id="b">
-        <li><a href="kochbuch.php">Kochbuch</a></li>
-        <li><a href="blogUSER.php">Blog</a></li>
-        <li><a href="profil_ansicht.php">Profil</a></li>
+        <?php
+        echo '<li><a href="kochbuch.php">Kochbuch</a></li>';
+        echo '<li><a href="blogUSER.php?nutzer='.$sess.'">Blog</a></li>';
+        echo '<li><a href="profil_ansicht.php">Profil</a></li>';
+        ?>
     </ul>
 
 
