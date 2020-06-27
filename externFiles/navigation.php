@@ -4,13 +4,13 @@
     </a>
 
     <div class="searchBar">
-        <form class="search" action="">
+        <form class="search" action="profile_gefiltert.php" method="get">
             <select class="selection" onchange="location = this.value;">
                 <option value="recipe">in Rezepten</option>
                 <option value="profile_anzeigen.php">in Nutzern</option>
             </select>
-            <input type="text" placeholder="Suchen..." name="search">
-            <button class="submitBtn" type="submit">
+            <input type="text" placeholder="Suchen..." name="suchbegriff">
+            <button class="submitBtn" type="submit" value="suchen">
                 <img src="../images/searchIcon.png" alt="SearchIcon">
             </button>
             <button id="modalBtn" class="modalBtn" type="button" onclick="recipeModalOpen()">
