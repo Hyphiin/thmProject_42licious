@@ -36,5 +36,9 @@
     font-style: italic;
 }
 
+p {
+    word-break: break-all;
+}
+
 
 

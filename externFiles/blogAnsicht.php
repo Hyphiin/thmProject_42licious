@@ -1,3 +1,13 @@
+<?php
+session_start();
+$pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+$sess = $_SESSION['userid'];
+
+if ($sess == true) {
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -15,49 +25,56 @@
 <div id="website">
 
     <?php include("navigation.php"); ?>
+
 <div id="main">
 
     <div id="top-buttons">
 
         <a href="blogUSER.php"><button class="button">Zurück zum Blog</button></a>
-        <a href="blogBearbeiten.php"><button class="button">Bearbeiten</button></a>
+
+        <?php
+        if(isset($_GET['id'])){
+            $blogID= $_GET['id'];
+        }
+
+        $statement = $pdo->query("SELECT * FROM blog WHERE id = '$blogID' ");
+        $blog = $statement->fetch();
+
+        $author= $blog['nutzer'];
+        $title = $blog['titel'];
+        $timestamp = $blog['rdate'];
+        $entry = $blog['inhalt'];
+
+        if ($sess==$author) {
+            echo '<a href="blogBearbeiten.php?id='.$blogID.'"><button class="button">Bearbeiten</button></a>';
+        }
+        ?>
 
     </div>
 
-    <div class="blog-main">
+    <div id="main-content">
+        <?php
 
-        <div id="blog-info">
 
-        <div id="blog-title">
-            <h1>Titel</h1>
-        </div>
+        echo '<div id="blog-info">';
 
-        <div id="timestamp">
-            <p>TT.MM.JJ SS:MM</p>
-        </div>
+        echo  '<div id="blog-title">';
+        echo    '<h1>' .$title. '</h1>';
+        echo  '</div>';
 
-        </div>
+        echo  '<div id="timestamp">';
+        echo    '<p>' .$timestamp. '</p>';
+        echo  '</div>';
 
-        <div id="blog-content">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque dignissim ipsum id placerat.
-                Aenean egestas lacus et quam varius, sit amet hendrerit lorem rutrum. Morbi feugiat velit quis pretium auctor.
-                Praesent a magna vel mauris interdum bibendum et sit amet augue. Aliquam blandit, diam nec elementum vehicula,
-                lorem sem mollis libero, at pellentesque nunc nibh et lorem. Cras ac facilisis quam. Donec laoreet nisi at purus venenatis,
-                a auctor tellus mattis. Aliquam erat volutpat. Pellentesque ac neque ac dui tincidunt fringilla. Duis in elementum felis,
-                sit amet porttitor ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante
-                ipsum primis in faucibus. <br/>
-                <br/>
-                Morbi ac ex gravida, mollis nibh vitae, iaculis nunc. Suspendisse mollis arcu nec nunc tristique, eget hendrerit augue aliquet.
-                Phasellus iaculis ante sed purus dignissim dictum. Proin a faucibus felis. Suspendisse ullamcorper blandit ex, ut lacinia nulla
-                consequat at. Sed blandit lacinia erat, a porttitor ex sodales at. Etiam ultricies gravida venenatis. Pellentesque et ante eu velit
-                ultricies porttitor eget sit amet arcu. Quisque tempus dui sed condimentum condimentum. Integer pulvinar, mauris eu consectetur
-                convallis, odio erat sollicitudin justo, ut pulvinar magna sem auctor nunc. Suspendisse molestie felis et accumsan iaculis.
-                Nam laoreet laoreet fermentum. Mauris vitae porta eros. Etiam quis accumsan lorem. Sed consequat tellus quis tincidunt mattis.
-                Nullam ac tortor ipsum.
-            </p>
-        </div>
+        echo '</div>';
 
+        echo '<div id="blog-content">';
+        echo    '<p>';
+        echo       nl2br($entry);
+        echo    '</p>';
+        echo  '</div>';
+?>
+    </div>
 
 
     <div id="comments">
@@ -72,3 +89,17 @@
 
 </body>
 </html>
+    <?php
+} else if($sess != true){
+    echo '<div id="website">';
+
+    echo'<div id="main">';
+    echo'<div id="main-content">';
+    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+    echo'<br>';
+    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+    echo'</div>';
+    echo'</div>';
+    echo'</div>';
+}
+?>

@@ -31,33 +31,63 @@ if ($sess == true) {
         <div class="blog-main">
         <div id="edit-blog">
             <h1>Blogeintrag bearbeiten</h1>
+            <?php
+            if (isset($_GET['bearbeiten'])) {
+                $titel = $_POST['titel'];
+                $inhalt = $_POST['inhalt'];
+                $ID = $_POST['blogid'];
 
-            <form action="?bearbeiten=1" method="post">
-                Titel:<br>
-                <input type="text" name="titel" size="40" maxlength="255">
-                <br><br>
-                Inhalt:<br>
-                <input type="text" name="inhalt" size="40" maxlength="255">
-                <br><br>
-                <input type="submit" value="Bloggen" class="button">
-            </form>
+                $sql = "UPDATE blog SET titel = '$titel', inhalt = '$inhalt' WHERE  id = '$ID' ";
+                $update = $pdo->prepare($sql);
+                $update->execute();
+                echo 'Bearbeitung erfolgreich!';
+                echo '<br><br>';
+                echo '<a href="blogAnsicht.php?id='.$ID.'"><button class="button" id="back">Zurück zum Blog</button></a>';
+                echo '<br><br>';
+            }else {
+
+                if (isset($_GET['id'])) {
+                    $blogID = $_GET['id'];
+                }
+
+                $statement = $pdo->query("SELECT * FROM blog WHERE id = '$blogID' ");
+                $blog = $statement->fetch();
+
+                $author = $blog['nutzer'];
+                $title = $blog['titel'];
+                $entry = $blog['inhalt'];
+
+                echo '<form action="?id=' . $blogID . '&bearbeiten=1" method="post">';
+                echo 'Titel:<br>';
+                echo '<input type="text" name="titel" size="40" maxlength="255" value="' . $title . '">';
+                echo '<br><br>';
+                echo 'Inhalt:<br>';
+                echo '<textarea name="inhalt">' . $entry . '</textarea>';
+                echo '<br><br>';
+                echo '<input type="hidden" name="blogid" value="' . $blogID . '">';
+                echo '<input type="submit" value="Bearbeiten" class="button">';
+                echo '</form>';
 
 
-        </div>
+                echo '</div>';
 
-        <div id="bottom-buttons">
-            <div>
-            <button class="button" id="delete">Eintrag löschen</button>
-            </div>
-            <div>
-            <button class="button" id="cancel">Abbrechen</button>
-            </div>
+                echo '<div id="bottom-buttons">';
+                echo '<div>';
+                echo '<button class="button" id="delete">Eintrag löschen</button>';
+                echo '</div>';
+                echo '<div>';
+                echo '<a href="blogAnsicht.php?id=' . $blogID . '"><button class="button" id="cancel">Abbrechen</button></a>';
+                echo '</div>';
 
-        </div>
-    </div>
-    </div>
-</div>
+                echo '</div>';
 
+                echo '</div>';
+                echo '</div>';
+
+            }
+
+
+            ?>
 </body>
 </html>
 

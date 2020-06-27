@@ -26,6 +26,7 @@
 }
 
 .blog-preview{
+
     margin: 10px;
     border-style: solid;
     display: flex;
@@ -72,4 +73,8 @@
     height: 26px;
     font-size: 15px;
     cursor: pointer;
+}
+
+p {
+    word-break: break-all;
 }
