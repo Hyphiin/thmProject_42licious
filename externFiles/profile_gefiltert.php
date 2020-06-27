@@ -59,6 +59,7 @@
             if(is_object($ergebnis)){
                 while($zeile = $ergebnis->fetch_object())
                 {
+                    echo '<div id="users">';
                     echo $zeile->vorname;
                     echo '<br>';
                     echo $zeile->nachname;
@@ -67,7 +68,7 @@
                     echo '<br>';
                     echo '<br>';
                     echo '<br>';
-                    echo '<br>';
+                    echo '</div>';
 
                 }
             }
