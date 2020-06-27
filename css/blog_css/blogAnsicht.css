@@ -40,5 +40,7 @@ p {
     word-break: break-all;
 }
 
-
+#main-content {
+    border-style: solid;
+}
 

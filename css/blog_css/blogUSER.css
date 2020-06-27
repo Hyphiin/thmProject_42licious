@@ -25,41 +25,7 @@
 
 }
 
-.blog-preview{
 
-    margin: 10px;
-    border-style: solid;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    justify-content: center;
-    cursor: pointer;
-
-}
-
-.blog-preview-head{
-    margin: 0px 5px;
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: space-between;
-
-}
-
-.blog-preview-title{
-    text-decoration: underline;
-
-}
-
-.blog-preview-timestamp{
-    font-style: italic;
-
-}
-
-.blog-preview-body{
-    margin: 0px 5px;
-
-}
 
 #bottom-buttons{
     margin: 10px;
@@ -75,6 +41,3 @@
     cursor: pointer;
 }
 
-p {
-    word-break: break-all;
-}

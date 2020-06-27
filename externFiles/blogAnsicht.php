@@ -30,8 +30,6 @@ if ($sess == true) {
 
     <div id="top-buttons">
 
-        <a href="blogUSER.php"><button class="button">Zurück zum Blog</button></a>
-
         <?php
         if(isset($_GET['id'])){
             $blogID= $_GET['id'];
@@ -45,6 +43,8 @@ if ($sess == true) {
         $timestamp = $blog['rdate'];
         $entry = $blog['inhalt'];
 
+        echo '<a href="blogUSER.php?nutzer='.$author.'"><button class="button">Zurück zum Blog</button></a>';
+
         if ($sess==$author) {
             echo '<a href="blogBearbeiten.php?id='.$blogID.'"><button class="button">Bearbeiten</button></a>';
         }
@@ -52,7 +52,7 @@ if ($sess == true) {
 
     </div>
 
-    <div id="main-content">
+    <div class="main-content">
         <?php
 
 
@@ -74,11 +74,13 @@ if ($sess == true) {
         echo    '</p>';
         echo  '</div>';
 ?>
-    </div>
+
 
 
     <div id="comments">
         <h3>Kommentare</h3>
+    </div>
+
     </div>
 
     </div>

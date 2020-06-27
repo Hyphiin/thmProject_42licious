@@ -2,6 +2,11 @@
 session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
 
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+$sess = $_SESSION['userid'];
+
+if ($sess == true) {
 ?>
     <!DOCTYPE html>
     <html lang="de">
@@ -12,8 +17,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
         <title>42licious-Profil-Ansicht</title>
         <link href="../css/general.css" rel="stylesheet" type="text/css">
         <link href="../css/navigation.css" rel="stylesheet" type="text/css">
-        <link href="../css/main.css" rel="stylesheet" type="text/css">
-        <link href="../css/profil_css/profil_ansicht.css" rel="stylesheet" type="text/css">
+        <link href="../css/profil_css/profil_anzeigen.css" rel="stylesheet" type="text/css">
 
     </head>
     <body>
@@ -21,31 +25,84 @@ $pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
 
         <?php include("navigation.php"); ?>
 
+        <div id="main">
 
+            <div class="main-content">
 
-            <?php
+                <div class="profil-list">
 
-            $statement = $pdo->query("SELECT * FROM users");
+                    <div id="head-title">
+                        <h1>Suchergebnisse</h1>
+                    </div>
 
+                    <div id="top-buttons">
+                        <div>
+                            <label for="filter">Sortieren nach:</label>
+                            <select id="filter" name="filter">
+                                <option value="name">Name</option>
+                                <option value="date">Datum</option>
+                            </select>
+                        </div>
 
-        echo '<div id="user">';
-        while ($user = $statement->fetch())
+                    </div>
 
-        {
+            <div class="users">
 
+                <?php
+        $statement = $pdo->query("SELECT * FROM users");
+        while ($user = $statement->fetch()) {
+
+            $nutzerID = $user['id'];
             $vorname = $user['vorname'];
             $nachname = $user['nachname'];
+            $nickname = $user['nickname'];
+            $created = $user['created_at'];
             $pic = $user['pic'];
 
-            echo '<img alt="Profil-Bild" id="profil_bild" src='."$pic".'>';
-            echo $vorname.'<br>';
-            echo $nachname.'<br>';
-            echo '<br>';
+            echo    '<a href="profil_ansicht.php?id='.$nutzerID.'">';
+            echo        '<div class="profil-preview">';
+            echo        '<div class="profil-preview-body">';
+            echo            '<div class="profil-preview-pic">';
+            echo               '<img alt="Profil-Bild" id="profil_bild" src='."$pic".'>';
+            echo            '</div>';
+            echo            '<div class="profil-preview-info">';
+            echo                '<p>Name: '.$vorname." ".substr($nachname,0,1).".".'</p>';
+            echo                '<p>Nutzername: '.$nickname.'</p>';
+            echo                   '<br>';
+            echo                '<p>Mitglied seit: '.$created.'</p>';
+            echo            '</div>';
+            echo            '</div>';
+            echo        '</div>';
+            echo    '</a>';
         }
-        echo "</div>";
-
 ?>
+            </div>
+                    <div id="bottom-buttons">
+                        <button class="button" id="show-more">Mehr anzeigen</button>
+                    </div>
 
+                </div>
+                </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="../jscript/profilPreview.js"></script>
 
     </body>
     </html>
+    <?php
+} else if($sess != true){
+    echo '<div id="website">';
+
+    echo'<div id="main">';
+    echo'<div id="main-content">';
+    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+    echo'<br>';
+    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+    echo'</div>';
+    echo'</div>';
+    echo'</div>';
+}
+?>

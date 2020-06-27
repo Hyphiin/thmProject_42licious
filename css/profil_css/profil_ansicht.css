@@ -44,6 +44,7 @@ text-align: center;
 #BildUndButtons{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 #linksbuttons{
     margin: 5px;
@@ -56,7 +57,7 @@ text-align: center;
 #profil_rechts{
     margin: 5px;
     height: auto;
-    width: auto;
+    width: 50%;
     display: flex;
     align-self: center;
     flex-wrap: nowrap;
@@ -111,3 +112,6 @@ text-align: center;
     justify-content: center;
 }
 
+.recipe-highlight a {
+    width: 98%;
+}

@@ -34,6 +34,20 @@ if ($sess == true) {
         <div id="create-blog">
             <h1>Blogeintrag erstellen</h1>
 
+            <?php
+            if(isset($_GET['erstellen'])){
+                $titel = $_POST['titel'];
+                $inhalt = $_POST['inhalt'];
+
+                $statement = $pdo->prepare("INSERT INTO blog (Nutzer, titel, inhalt) VALUES (:Nutzer ,:titel, :inhalt)");
+                $result = $statement->execute(array('Nutzer' => $sess, 'titel' => $titel, 'inhalt' => $inhalt));
+                echo 'Blogeintrag erstellt!';
+                echo '<br><br>';
+                echo '<a href="blogUSER.php?nutzer='.$sess.'"><button class="button" id="back">Zurück zum Blog</button></a>';
+                echo '<br><br>';
+            }else{
+?>
+
             <form action="?erstellen=1" method="post">
                 Titel:<br>
                 <input type="text" name="titel" size="40" maxlength="255">
@@ -47,20 +61,17 @@ if ($sess == true) {
         </div>
 
         <div id="bottom-buttons">
-            <a href="blogUSER.php"><button class="button" id="cancel">Abbrechen</button></a>
-
+            <?php
+            if (isset($_GET['id'])){
+                $nutzer = $_GET['id'];
+            }
+            echo '<a href="blogUSER.php?nutzer='.$nutzer.'"><button class="button" id="cancel">Abbrechen</button></a>';
+            ?>
         </div>
         </div>
     </div>
 </div>
-
 <?php
-if(isset($_GET['erstellen'])){
-    $titel = $_POST['titel'];
-    $inhalt = $_POST['inhalt'];
-
-    $statement = $pdo->prepare("INSERT INTO blog (Nutzer, titel, inhalt) VALUES (:Nutzer ,:titel, :inhalt)");
-    $result = $statement->execute(array('Nutzer' => $sess, 'titel' => $titel, 'inhalt' => $inhalt));
 }
 ?>
 

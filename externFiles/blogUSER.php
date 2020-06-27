@@ -17,6 +17,7 @@ if ($sess == true) {
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/blog_css/blogUSER.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
+    <link href="../css/blog_css/BlogPreview.css" rel="stylesheet" type="text/css">
 
 
 </head>
@@ -29,29 +30,39 @@ if ($sess == true) {
     <div id="main">
         <div class="main-content">
         <div id="bloglist-user">
+            <?php
+            if(isset($_GET['nutzer'])){
+                $nutzer= $_GET['nutzer'];
+            }
 
-            <div id="head-title">
-                <h1>Blog von USER</h1>
-            </div>
+            $statement = $pdo->query("SELECT * FROM users WHERE id = '$nutzer' ");
+            $blogAuthor = $statement->fetch();
+            $authorID = $blogAuthor['id'];
+            $authorName = $blogAuthor['nickname'];
+            echo '<div id="head-title">';
+            echo    '<h1>Blog von '.$authorName.'</h1>';
+            echo '</div>';
 
-            <div id="top-buttons">
-                    <a href="blogErstellen.php"><button class="button" id="b-create-blog">Blogeintrag erstellen</button></a>
-                     <div>
-                        <label for="filter">Sortieren nach:</label>
-                        <select id="filter" name="filter">
-                            <option value="date">Datum</option>
-                            <option value="name">Name</option>
-                         </select>
-                    </div>
 
-            </div>
+            echo '<div id="top-buttons">';
 
-            <div class="blog-list">
-
-                <?php
-                if(isset($_GET['nutzer'])){
-                    $nutzer= $_GET['nutzer'];
+            if ($sess==$authorID) {
+             echo '<a href="blogErstellen.php?id='.$nutzer.'"><button class="button" id="b-create-blog">Blogeintrag erstellen</button></a>';
                 }
+
+            echo         '<div>';
+            echo           '<label for="filter">Sortieren nach:</label>';
+            echo           '<select id="filter" name="filter">';
+            echo               '<option value="date">Datum</option>';
+            echo               '<option value="name">Name</option>';
+            echo            '</select>';
+            echo       '</div>';
+
+            echo '</div>';
+
+            echo '<div class="blog-list">';
+
+
                 $statement = $pdo->query("SELECT * FROM blog WHERE nutzer = '$nutzer' ORDER BY id DESC");
                 while($blog = $statement->fetch()) {
 

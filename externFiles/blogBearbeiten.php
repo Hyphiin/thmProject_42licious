@@ -44,6 +44,16 @@ if ($sess == true) {
                 echo '<br><br>';
                 echo '<a href="blogAnsicht.php?id='.$ID.'"><button class="button" id="back">Zurück zum Blog</button></a>';
                 echo '<br><br>';
+            }elseif(isset($_GET['delete'])) {
+                $blogID = $_POST['blogID'];
+
+                $sql = "DELETE FROM blog WHERE id = '$blogID'";
+                $update = $pdo->prepare($sql);
+                $update->execute();
+                echo 'Löschen erfolgreich!';
+                echo '<br><br>';
+                echo '<a href="blogUSER.php?nutzer='.$sess.'"><button class="button" id="back">Zurück zum Blog</button></a>';
+                echo '<br><br>';
             }else {
 
                 if (isset($_GET['id'])) {
@@ -73,7 +83,10 @@ if ($sess == true) {
 
                 echo '<div id="bottom-buttons">';
                 echo '<div>';
+                echo '<form action="?delete=1" method="post">';
+                echo '<input type="hidden" name="blogID" value="'.$blogID.'">';
                 echo '<button class="button" id="delete">Eintrag löschen</button>';
+                echo '</form>';
                 echo '</div>';
                 echo '<div>';
                 echo '<a href="blogAnsicht.php?id=' . $blogID . '"><button class="button" id="cancel">Abbrechen</button></a>';
