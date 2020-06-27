@@ -1,3 +1,13 @@
+<?php
+session_start();
+$pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+$sess = $_SESSION['userid'];
+
+if ($sess == true) {
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -21,40 +31,48 @@
         <div id="top-buttons">
 
             <a href="index.php"><button class="button">Zurück</button></a>
-            <a href="profil_edit.php"><button class="button">Bearbeiten</button></a>
-            <link href="../css/recipePreview.css" rel="stylesheet" type="text/css">
+            <a href="p_editieren.php"><button class="button">Bearbeiten</button></a>
 
         </div>
 
-        <div id="main-profile">
-            <div id="profil-title">
-                <h1>Profil von USER</h1>
-            </div>
-            <div id="profil_inhalt">
-                <div id="profil_links">
-                    <div id="BildUndButtons">
-                        <img alt="Profil-Bild" id="profil_bild" src="shindy.jpg">
-                        <div id="linksbuttons">
-                            <a href="profil_rezept.php"><button id="user_rezept">Rezepte</button></a>
-                            <a href="blogUSER.php"><button id="user_blog">Blog</button></a>
-                        </div>
-                    </div>
-                    <div id="details">
-                        <p id="name">Name: Max Mustermann</p>
-                        <p id="nickname">Nickname: USER</p>
-                        <p id="birthday">Geburtsdatum: TT.MM.JJ</p>
-                    </div>
+            <?php
 
-                    <label for="beschreibung">Beschreibung</label>
-                    <textarea id="beschreibung" cols="50" rows="4"></textarea>
+            $statement = $pdo->query("SELECT * FROM users WHERE id = '$sess' ");
+            $user = $statement->fetch();
 
-                    <p>Mitglied seit: TT.MM.JJ</p>
-                </div>
+            $vorname= $user['vorname'];
+            $nachname= $user['nachname'];
+            $nickname= $user['nickname'];
+            $date= $user['created_at'];
+            $pic= $user['pic'];
+
+
+            echo '<div id="main-content">';
+            echo '<div id="profil-title">';
+               echo' <h1>Profil von' .' '.$vorname.' '.'</h1>';
+            echo '</div>';
+
+            echo '<div id="profil_inhalt">';
+                echo '<div id="profil_links">';
+                    echo '<div id="BildUndButtons">';
+                        echo '<img alt="Profil-Bild" id="profil_bild" src='."$pic".'>';
+                        echo '<div id="linksbuttons">';
+                            echo '<a href="profil_rezept.php"><button id="user_rezept">Rezepte</button></a>';
+                            echo '<a href="blogUSER.php"><button id="user_blog">Blog</button></a>';
+                        echo '</div>';
+                    echo '</div>';
+                    echo '<div id="details">';
+                        echo '<p id="name">Name:</p>'.' '. $vorname. ' '. $nachname;
+                        echo '<p id="nickname">Nickname:</p>' .' '. $nickname;
+                    echo '</div>';
+
+                    echo '<p>Mitglied seit:</p>'.' '. $date;
+                echo '</div>';
+                ?>
                 <div id="profil_rechts">
-
-                    <div class="recipe-highlight">
-                        <h4>Top Rezept</h4>
-                        <?php include("rezeptPreview.php"); ?>
+                    <div id="top_rezept">
+                        <label>Top Rezept</label>
+                        <p id="toprezept">Hier soll das Top-Rezept stehen!</p>
                     </div>
 
                     <div class="recipe-highlight">
@@ -68,5 +86,21 @@
     </div>
     </div>
 </div>
+
 </body>
 </html>
+
+<?php
+} else if($sess != true){
+echo '<div id="website">';
+
+    echo'<div id="main">';
+        echo'<div id="main-content">';
+            echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+            echo'<br>';
+            echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+            echo'</div>';
+        echo'</div>';
+    echo'</div>';
+}
+?>

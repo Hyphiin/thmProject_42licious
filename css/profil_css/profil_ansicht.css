@@ -86,9 +86,15 @@ text-align: center;
     justify-content: center;
     align-items: center;
 }
-
-label{
-    font-weight: bold;
+#last_blog{
+    margin: 10px;
+    height: auto;
+    border-style: solid;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #toprezept{
