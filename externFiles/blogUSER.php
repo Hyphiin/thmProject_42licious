@@ -49,7 +49,7 @@ if ($sess == true) {
             <div class="blog-list">
 
                 <?php
-                $statement = $pdo->query("SELECT * FROM blog WHERE nutzer = 13 ORDER BY id DESC");
+                $statement = $pdo->query("SELECT * FROM blog WHERE nutzer = '$sess' ORDER BY id DESC");
                 while($blog = $statement->fetch()) {
 
                     $blogID= $blog['id'];
