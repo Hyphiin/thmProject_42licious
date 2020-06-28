@@ -44,3 +44,15 @@ p {
     border-style: solid;
 }
 
+#bottom-buttons{
+    margin: 10px;
+    display:flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.comment-list .comment {
+    display: none;
+}
+

@@ -1,0 +1,44 @@
+textarea {
+    margin: 5px auto;
+    width: 98%;
+    height: 100px;
+    resize: none;
+}
+
+.timestamp {
+    font-style: italic;
+    font-size: large;
+}
+
+#comments h3 {
+    text-decoration: underline;
+}
+.comment {
+    margin: 5px 0;
+    border-style: solid;
+    border-width: 1px;
+}
+
+
+.comment-body{
+    margin: 0 5px ;
+}
+
+.comment-info{
+    margin: 0 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.comment .button{
+    margin: 5px;
+}
+
