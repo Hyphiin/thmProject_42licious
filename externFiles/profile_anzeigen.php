@@ -28,27 +28,39 @@ $sess = $_SESSION['userid'];
 
             <div class="main-content">
 
-                <div class="profil-list">
-
-                    <div id="head-title">
-                        <h1>Suchergebnisse</h1>
-                    </div>
-
-                    <div id="top-buttons">
-                        <div>
-                            <label for="filter">Sortieren nach:</label>
-                            <select id="filter" name="filter">
-                                <option value="name">Name</option>
-                                <option value="date">Datum</option>
-                            </select>
-                        </div>
-
-                    </div>
-
-            <div class="users">
-
                 <?php
-        $statement = $pdo->query("SELECT * FROM users");
+
+                if (isset($_GET['order'])){
+                    $selected = 'selected';
+                }else{
+                    $selected = '';
+                }
+                echo '<div class="profil-list">';
+
+                 echo   '<div id="head-title">';
+                 echo       '<h1>Suchergebnisse</h1>';
+                 echo   '</div>';
+
+                 echo   '<div id="top-buttons">';
+                  echo      '<div>';
+                  echo          '<label for="filter">Sortieren nach:</label>';
+                  echo          '<select id="filter" name="filter" onchange="location = this.value">';
+                  echo              '<option value="profile_anzeigen.php">Name</option>';
+                  echo              '<option value="profile_anzeigen.php?order=created_at" '.$selected.'>Datum</option>';
+                  echo          '</select>';
+                  echo      '</div>';
+
+                  echo  '</div>';
+
+            echo '<div class="users">';
+
+        if(isset($_GET['order'])){
+            $order = $_GET['order'];
+        }else{
+            $order = 'nickname';
+        }
+
+        $statement = $pdo->query("SELECT * FROM users ORDER BY $order");
         while ($user = $statement->fetch()) {
 
             $nutzerID = $user['id'];
