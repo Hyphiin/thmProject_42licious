@@ -61,7 +61,6 @@
 /**********************************************************************************************/
 .search {
 
-
 }
 
 .searchBar {
@@ -221,8 +220,8 @@ form.search::after {
 
 .modalCloseBtn, .modalApplyBtn {
     width: 100px;
-    margin: 0 5px 0 5px;
     height: 50px;
+    margin: 0 5px 0 5px;
     position: relative;
     color: black;
     text-decoration: none;
@@ -247,7 +246,8 @@ form.search::after {
 }
 
 .modal-body {
-    padding: 2px 16px;
+    font-size: 17px;
+
 }
 
 .modal-footer {
@@ -259,6 +259,12 @@ form.search::after {
     color: white;
 }
 
+
+.tableModal{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
 
 
 /**********************************************************************************************/
