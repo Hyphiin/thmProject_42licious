@@ -6,7 +6,16 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 $sess = $_SESSION['userid'];
 
-if ($sess == true) {
+if(isset($_GET['nutzer'])){
+    $nutzer= $_GET['nutzer'];
+}
+if($nutzer==0){
+
+    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+    echo'<br>';
+    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+
+}else{
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -31,9 +40,7 @@ if ($sess == true) {
         <div class="main-content">
         <div id="bloglist-user">
             <?php
-            if(isset($_GET['nutzer'])){
-                $nutzer= $_GET['nutzer'];
-            }
+
 
             $statement = $pdo->query("SELECT * FROM users WHERE id = '$nutzer' ");
             $blogAuthor = $statement->fetch();
@@ -87,14 +94,15 @@ if ($sess == true) {
                     echo '</a>';
                 }
 
+
+            echo '</div>';
+
+            echo '<div id="bottom-buttons">';
+            echo     '<button class="button" id="show-more">Mehr anzeigen</button>';
+            echo '</div>';
+
+                }
                 ?>
-
-            </div>
-
-            <div id="bottom-buttons">
-                 <button class="button" id="show-more">Mehr anzeigen</button>
-            </div>
-
         </div>
         </div>
     </div>
@@ -106,17 +114,3 @@ if ($sess == true) {
 
 </body>
 </html>
-    <?php
-} else if($sess != true){
-    echo '<div id="website">';
-
-    echo'<div id="main">';
-    echo'<div id="main-content">';
-    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
-    echo'<br>';
-    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
-    echo'</div>';
-    echo'</div>';
-    echo'</div>';
-}
-?>

@@ -6,6 +6,12 @@
     margin: auto;
 }
 
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
 .content a {
     line-height: 75px;
     display: block;

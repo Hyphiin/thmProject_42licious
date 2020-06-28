@@ -6,7 +6,16 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 $sess = $_SESSION['userid'];
 
-if ($sess == true) {
+if(isset($_GET['id'])){
+    $nutzerID = $_GET['id'];
+}
+if($nutzerID==0){
+
+    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+    echo'<br>';
+    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+
+}else{
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -30,9 +39,7 @@ if ($sess == true) {
     <div id="main-content">
 
         <?php
-            if(isset($_GET['id'])){
-                $nutzerID = $_GET['id'];
-            }
+
 
             $statement = $pdo->query("SELECT * FROM users WHERE id = '$nutzerID' ");
             $user = $statement->fetch();
@@ -111,6 +118,7 @@ if ($sess == true) {
              echo       '</div>';
 
              echo   '</div>';
+        }
                 ?>
             </div>
         </div>
@@ -121,17 +129,3 @@ if ($sess == true) {
 </body>
 </html>
 
-<?php
-} else if($sess != true){
-echo '<div id="website">';
-
-    echo'<div id="main">';
-        echo'<div id="main-content">';
-            echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
-            echo'<br>';
-            echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
-            echo'</div>';
-        echo'</div>';
-    echo'</div>';
-}
-?>
