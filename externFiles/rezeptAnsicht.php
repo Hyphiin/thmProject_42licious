@@ -31,7 +31,7 @@ $sess = $_SESSION['userid'];
         $rezeptID= $_GET['id'];
     }
 
-    $statement = $pdo->query("SELECT * FROM rezepte WHERE rid = '2' ");
+    $statement = $pdo->query("SELECT * FROM rezepte WHERE rid = '1' ");
     $rezept = $statement->fetch();
 
     $titel = $rezept['titel'];
