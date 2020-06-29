@@ -16,7 +16,7 @@ $sess = $_SESSION['userid'];
     <title>42licious-Profil-Ansicht</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
-    <link href="../css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
+    <link href="../css/rezept_css/rezepte_anzeigen.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -57,34 +57,34 @@ $sess = $_SESSION['userid'];
             if(isset($_GET['order'])){
                 $order = $_GET['order'];
             }else{
-                $order = 'name';
+                $order = 'titel';
             }
 
-            $statement = $pdo->query("SELECT * FROM rezept ORDER BY $order");
+            $statement = $pdo->query("SELECT * FROM rezepte ORDER BY '$order' ");
             while ($recipe = $statement->fetch()) {
 
-                $rezeptID = $recipe['id'];
-                $name = $recipe['name'];
-                $kat = $recipe['kat'];
-                $diff = $recipe['diff'];
-                $time = $recipe['time'];
-                $bewertung = $recipe['bewertung'];
-                $userid = $recipe['user'];
-                $zutaten = $recipe['zutaten'];
-                $zubereitung = $recipe['zubereitung'];
+                $rezeptID = $recipe['rid'];
+                $userID = $recipe['uid'];
+                $titel = $recipe['titel'];
+                $dauer = $recipe['dauer'];
+                $schwierigkeit = $recipe['schwierigkeit'];
+                $kategorien = $recipe['kategorien'];
+                $beschreibung = $recipe['beschreibung'];
+                $zutatenListe = $recipe['zutatenListe'];
+                $anleitung = $recipe['anleitung'];
                 $pic = $recipe['pic'];
 
-                echo    '<a href="rezept_ansicht.php?id='.$userid.'">';
+                echo    '<a href="rezept_ansicht.php?id='.$userID.'">';
                 echo        '<div class="rezept-preview">';
                 echo        '<div class="rezept-preview-body">';
                 echo            '<div class="rezept-preview-pic">';
                 echo               '<img alt="Rezept-Bild" id="rezept_bild" src='."$pic".'>';
                 echo            '</div>';
                 echo            '<div class="rezept-preview-info">';
-                echo                '<p>Name: '.$name.'</p>';
-                echo                '<p>Schwierigkeit: '.$diff.'</p>';
+                echo                '<p>Name: '.$titel.'</p>';
+                echo                '<p>Schwierigkeit: '.$schwierigkeit.'</p>';
                 echo                   '<br>';
-                echo                '<p>Kochzeit: '.$time.'</p>';
+                echo                '<p>Kochzeit: '.$dauer.'</p>';
                 echo            '</div>';
                 echo            '</div>';
                 echo        '</div>';
