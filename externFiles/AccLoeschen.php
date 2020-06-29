@@ -1,21 +1,67 @@
-<link href="../css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
+<?php
+session_start();
+$pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
 
-<div class = anmeldefo>
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
-    <div class="ueberschrift">Anmeldung</div>
+$sess = $_SESSION['userid'];
 
-    <div class="form">
-        <form action="" method="post">
+if ($sess == true){
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-            <div class="text">
-                Account unwiederruflich löschen?
+    <link href="../css/general.css" rel="stylesheet" type="text/css">
+    <link href="../css/navigation.css" rel="stylesheet" type="text/css">
+    <link href="../css/main.css" rel="stylesheet" type="text/css">
+    <link href="../css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="website">
+    <?php include("navigation.php"); ?>
+
+    <div id="main">
+        <div id="main-content">
+
+            <div class=anmeldefo>
+
+                <div class="form">
+                    <form action="?delete=1" method="post">
+
+                        <div class="text">
+                            Account unwiederruflich löschen?
+                        </div>
+
+                        <button class="button" type="submit" name="delete">LÖSCHEN!</button>
+
+                    </form>
+
+                    <div id="bottom-buttons">
+                        <a href="index.php"><button class="button" id="zurück">Zurück</button></a>
+                    </div>
+                </div>
             </div>
 
-            <button class="button">LÖSCHEN!</button>
-            <button class="button">Abbrechen</button>
 
+    <?php
 
-        </form>
+    if (isset($_GET['delete'])) {
+        $statement = $pdo->query("DELETE FROM users WHERE id= '$sess'");
+        session_destroy();
+        echo "Löschen erfolgreich!\n";
+        echo "<a href='index.php'><button class='button'>Startseite</button></a>";
+    }
+    }
+    else {
+        include("nosess.php");
+    }
+
+    ?>
+        </div>
     </div>
-
 </div>
+</body>
+</html>

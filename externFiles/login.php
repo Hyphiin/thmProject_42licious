@@ -16,9 +16,9 @@ if (isset($_GET['login'])) {
     //Überprüfung des Passworts
     if ($user !== false && password_verify($passwort, $user['passwort'])) {
         $_SESSION['userid'] = $user['id'];
-        die('Login erfolgreich! Weiter zur' .' '. '<a href="index.php">Startseite</a>');
+        die(include 'loginAnzeige.php');
     } else {
-        $errorMessage = "E-Mail oder Passwort war ungültig<br>";
+        die(include 'loginFehlerAnzeige.php');
     }
 
 }
@@ -43,6 +43,7 @@ if (isset($errorMessage)) {
     echo $errorMessage;
 }
 ?>
+
 <div id="website">
 
     <?php include("navigation.php"); ?>
