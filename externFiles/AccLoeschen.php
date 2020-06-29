@@ -36,6 +36,10 @@ if ($sess == true){
                         <button class="button" type="submit" name="delete">LÖSCHEN!</button>
 
                     </form>
+
+                    <div id="bottom-buttons">
+                        <a href="index.php"><button class="button" id="zurück">Zurück</button></a>
+                    </div>
                 </div>
             </div>
         </div>
