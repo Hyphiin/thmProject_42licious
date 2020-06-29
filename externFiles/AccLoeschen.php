@@ -2,6 +2,8 @@
 session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
 
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
 $sess = $_SESSION['userid'];
 
 if ($sess == true){
@@ -42,16 +44,15 @@ if ($sess == true){
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
 
     <?php
 
     if (isset($_GET['delete'])) {
         $statement = $pdo->query("DELETE FROM users WHERE id= '$sess'");
         session_destroy();
-        echo "Löschen erfolgreich!";
-        echo '<a href=' . 'index.php' . '>Startseite</a>';
+        echo "Löschen erfolgreich!\n";
+        echo "<a href='index.php'><button class='button'>Startseite</button></a>";
     }
     }
     else {
@@ -59,7 +60,8 @@ if ($sess == true){
     }
 
     ?>
-
+        </div>
+    </div>
 </div>
 </body>
 </html>
