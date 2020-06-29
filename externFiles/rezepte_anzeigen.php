@@ -45,8 +45,8 @@ $sess = $_SESSION['userid'];
             echo      '<div>';
             echo          '<label for="filter">Sortieren nach:</label>';
             echo          '<select id="filter" name="filter" onchange="location = this.value">';
-            echo              '<option value="profile_anzeigen.php">Name</option>';
-            echo              '<option value="profile_anzeigen.php?order=created_at" '.$selected.'>Datum</option>';
+            echo              '<option value="rezepte_anzeigen.php">Name</option>';
+            echo              '<option value="rezepte_anzeigen.php?order=created_at" '.$selected.'>Datum</option>';
             echo          '</select>';
             echo      '</div>';
 
@@ -74,7 +74,7 @@ $sess = $_SESSION['userid'];
                 $anleitung = $recipe['anleitung'];
                 $pic = $recipe['pic'];
 
-                echo    '<a href="rezept_ansicht.php?id='.$userID.'">';
+                echo    '<a href="rezeptAnsicht.php?id='.$userID.'">';
                 echo        '<div class="rezept-preview">';
                 echo        '<div class="rezept-preview-body">';
                 echo            '<div class="rezept-preview-pic">';
