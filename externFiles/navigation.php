@@ -44,9 +44,17 @@ $sess = $_SESSION['userid'];
             ?>
         </button>
         <div id="myDropdown" class="dropdown-content">
-            <a href="login.php">Login</a>
-            <a href="registrieren.php">Register</a>
-            <a href="logout.php">Logout</a>
+            <?php
+            if(!isset($sess)) {
+                echo "<a href='login.php'>Login</a>";
+                echo "<a href='registrieren.php'>Register</a>";
+            }
+            ?>
+            <?php
+            if(isset($sess)) {
+                echo "<a href='logout.php'>Logout</a>";
+            }
+            ?>
         </div>
     </div>
 
