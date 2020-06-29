@@ -31,7 +31,7 @@ $sess = $_SESSION['userid'];
         $rezeptID= $_GET['id'];
     }
 
-    $statement = $pdo->query("SELECT * FROM rezepte WHERE rid = '2' ");
+    $statement = $pdo->query("SELECT * FROM rezepte WHERE rid = '$rezeptID' ");
     $rezept = $statement->fetch();
 
     $titel = $rezept['titel'];
@@ -134,9 +134,6 @@ $sess = $_SESSION['userid'];
 
         <div id="zutaten">
             <h3>Zutaten für '.$personen.' Personen</h3>';
-
-
-
 
     echo '<div id="table">';
         echo  '<table style="width:100%">';

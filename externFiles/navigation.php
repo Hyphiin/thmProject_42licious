@@ -54,7 +54,7 @@ $sess = $_SESSION['userid'];
 
     <ul class="content" id="b">
         <?php
-        echo '<li><a href="kochbuch.php">Kochbuch</a></li>';
+        echo '<li><a href="kochbuch.php?nutzer='.$sess.'">Kochbuch</a></li>';
         echo '<li><a href="blogUSER.php?nutzer='.$sess.'">Blog</a></li>';
         echo '<li><a href="profil_ansicht.php?id='.$sess.'">Profil</a></li>';
         ?>
