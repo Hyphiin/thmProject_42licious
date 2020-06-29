@@ -74,6 +74,7 @@ if ($sess == true) {
 
                 echo '<input type="submit" value="Bearbeiten" class="button">';
                 echo '<a href="profil_ansicht.php?id='.$sess.'"><button type="button" class="button">Abbrechen</button></a>';
+                echo '<a href="AccLoeschen.php"><button type="button" class="button" id="accloeschenbutton">Account löschen</button></a>';
 
                 echo '</form>';
                 echo '</div>';

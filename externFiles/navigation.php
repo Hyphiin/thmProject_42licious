@@ -47,7 +47,6 @@ $sess = $_SESSION['userid'];
             <a href="login.php">Login</a>
             <a href="registrieren.php">Register</a>
             <a href="logout.php">Logout</a>
-            <a href="AccLoeschen.php">Account löschen</a>
         </div>
     </div>
 

@@ -42,3 +42,7 @@ img{
     width: 50%;
     height: 50%;
 }
+
+#accloeschenbutton{
+    float: right;
+}
