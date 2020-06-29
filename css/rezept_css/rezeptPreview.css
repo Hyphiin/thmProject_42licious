@@ -1,5 +1,8 @@
-.recipe-preview{
+.recipe-container .recipe-preview-container {
+    display: none;
+}
 
+.recipe-preview{
     margin: 10px;
     border-style: solid;
     border-width: 1px;
@@ -7,6 +10,7 @@
     flex-direction: row;
     justify-content: space-between;
     cursor: pointer;
+    width: 96%;
 
 }
 

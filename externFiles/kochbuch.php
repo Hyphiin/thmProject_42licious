@@ -74,6 +74,7 @@ if($nutzer==0){
                         $beschreibung = $rezept['beschreibung'];
 
                         echo '<a href="rezeptAnsicht.php?id='.$rezeptID.'">';
+                        echo '<div class="recipe-preview-container">';
                         echo '<div class="recipe-preview">';
                         echo '<div class="recipe-preview-pic">';
                         echo '<img alt="Rezept-Vorschau" class="recipe-pic" src="">';
@@ -101,6 +102,7 @@ if($nutzer==0){
                         echo '</p>';
                         echo '</div>';
 
+                        echo '</div>';
                         echo '</div>';
                         echo '</a>';
                     }

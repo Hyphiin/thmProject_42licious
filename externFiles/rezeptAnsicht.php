@@ -56,20 +56,16 @@ $sess = $_SESSION['userid'];
 
         <div id="top-buttons">
 
-            <a href="rezepteSuchen.php"><button class="button">Zurück zur Suche</button></a>
-            <a href="rezeptBearbeiten.php"><button class="button">Bearbeiten</button></a>
+            <a href="javascript:history.back()"><button class="button">Zurück</button></a>';
+            if ($sess==$uid){
+            echo '<a href="rezeptBearbeiten.php?id='.$rezeptID.'"><button class="button">Bearbeiten</button></a>';
+            };
+        echo '</div>
 
-        </div>
+        <div class="main-content">
+        
+        <div class="kategorien">';
 
-        <div id="main-content">
-
-            <div id="recipe-info">
-                <div class="recipe-title">
-                    <h1>'.$titel.'</h1>
-                    <a href="profil_ansicht.php?id='.$uid.'"><h5>von: '.$ersteller.'</h5></a>
-                </div>
-                
-                <div class="kategorien">';
                     $kategorie = explode(";", $kategorienListe);
 
     for($i=0;$i<count($kategorie);$i++){
@@ -83,6 +79,13 @@ $sess = $_SESSION['userid'];
 
 
                 echo '</div>
+
+            <div id="recipe-info">
+                <div class="recipe-title">
+                    <h1>'.$titel.'</h1>
+                    <a href="profil_ansicht.php?id='.$uid.'"><h5>von: '.$ersteller.'</h5></a>
+                </div>
+                
                 
                 <div id="timestamp">
                     <p>erstellt : '.$timestamp.'</p>
@@ -127,7 +130,7 @@ $sess = $_SESSION['userid'];
             <div id="schwierigkeit">Schwierigkeit: '.$schwierigkeit.'</div><br/>
 
         <div id="beschreibung">
-        <h3>Beschreibung:</h3>
+        <h3>Beschreibung:</h3><br/>
                 '.nl2br($beschreibung).'
             </div><br/>
 
@@ -150,9 +153,9 @@ $sess = $_SESSION['userid'];
         echo '</div><br/>';
 
 
-            echo   '<h3>Zubereitung</h3><br/>
+            echo   '<h3>Zubereitung:</h3><br/>
                      <div id="zubereitung">
-                         '.nl2br($anleitung).'
+                         <p>'.nl2br($anleitung).'</p>
                      </div>
                     </div><br/>';
         ?>
