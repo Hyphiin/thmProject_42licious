@@ -74,7 +74,7 @@ $sess = $_SESSION['userid'];
                 $anleitung = $recipe['anleitung'];
                 $pic = $recipe['pic'];
 
-                echo    '<a href="rezept_ansicht.php?id='.$userID.'">';
+                echo    '<a href="rezeptAnsicht.php?id='.$userID.'">';
                 echo        '<div class="rezept-preview">';
                 echo        '<div class="rezept-preview-body">';
                 echo            '<div class="rezept-preview-pic">';
