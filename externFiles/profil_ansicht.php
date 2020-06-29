@@ -11,9 +11,7 @@ if(isset($_GET['id'])){
 }
 if($nutzerID==0){
 
-    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
-    echo'<br>';
-    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+    include("nosess.php");
 
 }else{
 ?>
