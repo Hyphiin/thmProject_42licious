@@ -33,6 +33,7 @@ if ($sess == true) {
         $dauer = $_POST['dauer'];
         $schwierigkeit = $_POST['schwierigkeit'];
         $beschreibung = $_POST['beschreibung'];
+        $personen = $_POST['personen'];
         $anleitung = $_POST['anleitung'];
         $cat1 = $_POST['cat1'];
         $cat2 = $_POST['cat2'];
@@ -62,8 +63,8 @@ if ($sess == true) {
 
         }
 
-        $statement = $pdo->prepare("INSERT INTO rezepte (uid, titel, dauer, schwierigkeit, kategorien, beschreibung, zutatenListe,  anleitung, pic) VALUES (:uid, :titel , :dauer, :schwierigkeit, :kategorien, :beschreibung, :zutatenListe, :anleitung, :pic)");
-        $result = $statement->execute(array('uid' => $sess, 'titel' => $titel, 'dauer' => $dauer, 'schwierigkeit' => $schwierigkeit,'kategorien' => $kategorien, 'beschreibung' => $beschreibung, 'zutatenListe' => $zutatenListe, 'anleitung' => $anleitung, 'pic' => $pic));
+        $statement = $pdo->prepare("INSERT INTO rezepte (uid, titel, dauer, schwierigkeit, kategorien, beschreibung, personen, zutatenListe,  anleitung, pic) VALUES (:uid, :titel , :dauer, :schwierigkeit, :kategorien, :beschreibung, :personen, :zutatenListe, :anleitung, :pic)");
+        $result = $statement->execute(array('uid' => $sess, 'titel' => $titel, 'dauer' => $dauer, 'schwierigkeit' => $schwierigkeit,'kategorien' => $kategorien, 'beschreibung' => $beschreibung, 'personen' => $personen, 'zutatenListe' => $zutatenListe, 'anleitung' => $anleitung, 'pic' => $pic));
     }
     ?>
 
@@ -113,17 +114,17 @@ if ($sess == true) {
 
 
                 <label for="beschreibung">Beschreibung:</label><br/>
-                <textarea class="beschreibung" name="beschreibung" maxlength="500" placeholder="Beschreibung eingeben..."></textarea><br/>
+                <textarea class="beschreibung" name="beschreibung" maxlength="500" placeholder="Beschreibung eingeben..."></textarea><br/><br/>
 
-                <label for="zutaten">Zutaten:</label>
+                Zutaten für <input class="personen" type="number" name="personen"> Personen:
                 <table id="zutatenTable">
                     <tr>
-                        <td><input type="text" name="menge" id="menge" size="40" placeholder="Menge eingeben..."></td>
-                        <td><input type="text" name="zutaten" id="zutaten" size="40" placeholder="Zutaten eingeben..."></td>
+                        <td><input type="text" name="menge0" id="menge" size="40" placeholder="Menge eingeben..."></td>
+                        <td><input type="text" name="zutaten0" id="zutaten" size="40" placeholder="Zutaten eingeben..."></td>
                     </tr>
                 </table>
                 <button class="button" id="plus" type="button" onclick="addRow()">+</button>
-                <br/>
+                <br/><br/>
 
                 <input type="hidden" id="tableLength" name="tableLength" value="">
 
