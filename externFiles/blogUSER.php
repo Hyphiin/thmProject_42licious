@@ -36,7 +36,13 @@ if($nutzer==0){
 
     <div id="main">
         <div class="main-content">
+
         <div id="bloglist-user">
+
+            <div class="top-buttons">
+                <a href="javascript:history.back()"><button class="button">Zurück</button></a>
+            </div>
+
             <?php
 
 

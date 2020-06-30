@@ -18,6 +18,7 @@ $sess = $_SESSION['userid'];
     <link href="../css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
     <link href="../css/general.css" rel="stylesheet" type="text/css">
+    <link href="../css/kommentare_css/kommentar.css" rel="stylesheet" type="text/css">
 
 
 
@@ -26,6 +27,24 @@ $sess = $_SESSION['userid'];
 <div id="website">
 
     <?php include("navigation.php");
+
+    if(isset($_GET['comment'])) {
+        $rid = $_POST['rid'];
+        $message = $_POST['message'];
+
+
+        $statement1 = $pdo->prepare("INSERT INTO recipecomments (rid, uid, message) VALUES (:rid, :uid ,:message)");
+        $result = $statement1->execute(array('rid' => $rid, 'uid' => $sess, 'message' => $message));
+
+    }
+
+    if(isset($_GET['delete'])) {
+        $cid = $_POST['cid'];
+
+        $sql = "DELETE FROM recipecomments WHERE cid = '$cid'";
+        $update = $pdo->prepare($sql);
+        $update->execute();
+    }
 
     if(isset($_GET['id'])){
         $rezeptID= $_GET['id'];
@@ -160,12 +179,69 @@ $sess = $_SESSION['userid'];
                     </div><br/>';
         ?>
 
-        <div id="comments">
-            <h3>Kommentare</h3>
-            <a href="kommentar_schreiben.php"><button class="button">Kommentar schreiben</button></a>
-        </div>
+    <div id="comments">
+
+        <h3>Kommentare</h3>
+
+
+        <?php
+
+        if($sess==true){
+            echo '<div class="write-comment">';
+
+            echo '<form method="post" action="rezeptAnsicht.php?id='.$rezeptID.'&comment=1">';
+            echo  '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="600"></textarea>';
+            echo '<input type="hidden" name="rid" value="'.$rezeptID.'">';
+            echo '<input type="submit" class="button" value="Kommentieren">';
+            echo '</form>';
+            echo '</div>';
+        }
+        echo '<div class="comment-list">';
+
+        $statement3 = $pdo->query("SELECT * FROM recipecomments WHERE rid = '$rezeptID' ORDER BY cid DESC");
+        while($comment = $statement3->fetch()) {
+            $uid = $comment['uid'];
+            $date = $comment['date'];
+            $commentMessage = $comment['message'];
+            $cid = $comment['cid'];
+
+            $statement4 = $pdo->query("SELECT nickname FROM users WHERE id = '$uid'");
+            $nutzer= $statement4->fetch();
+            $nutzerName = $nutzer['nickname'];
+
+            echo '<div class="comment">';
+            echo '<div class="comment-info">';
+            echo '<h3>' . $nutzerName . '</h3>';
+            echo '<p class="timestamp">' . $date . '</p>';
+            echo '</div>';
+            echo '<div class="comment-body">';
+            echo '<p>';
+            echo    nl2br($commentMessage);
+            echo '</p>';
+            echo '</div>';
+
+            if($sess==$uid) {
+                echo '<div class="delete-button">';
+                echo '<form action="?delete=1&id='.$rezeptID.'" method="post">';
+                echo '<input type="hidden" name="cid" value="'.$cid.'">';
+                echo '<button class="button" id="delete">Löschen</button>';
+                echo '</form>';
+                echo '</div>';
+            }
+            echo '</div>';
+
+
+        }
+
+        echo '<div id="bottom-buttons">';
+        echo     '<button class="button" id="show-more">Mehr anzeigen</button>';
+        echo '</div>';
+        ?>
+    </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="../jscript/comments.js"></script>
 
 </body>
 </html>

@@ -51,7 +51,7 @@ if($nutzerID==0){
 
         echo '<div id="top-buttons">';
 
-         echo    '<a href="index.php"><button class="button">Zurück</button></a>';
+         echo    '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
 
          if ($profilID==$sess) {
              echo '<a href="p_editieren.php?id='.$nutzerID.'"><button class="button">Bearbeiten</button></a>';

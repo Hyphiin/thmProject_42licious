@@ -28,7 +28,7 @@ $sess = $_SESSION['userid'];
 
 <div id="main">
 
-    <div id="top-buttons">
+
 
         <?php
         if(isset($_GET['comment'])) {
@@ -59,6 +59,8 @@ $sess = $_SESSION['userid'];
         $title = $blog['titel'];
         $timestamp = $blog['rdate'];
         $entry = $blog['inhalt'];
+
+        echo '<div id="top-buttons">';
 
         echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
 
@@ -158,9 +160,7 @@ $sess = $_SESSION['userid'];
 
     </div>
 
-</div>
 
-</div>
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="../jscript/comments.js"></script>
