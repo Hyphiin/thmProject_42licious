@@ -55,20 +55,32 @@ if($nutzer==0){
              echo '<a href="blogErstellen.php?id='.$nutzer.'"><button class="button" id="b-create-blog">Blogeintrag erstellen</button></a>';
                 }
 
+            if (isset($_GET['order'])){
+                $selected = 'selected';
+            }else{
+                $selected = '';
+            }
+
             echo         '<div>';
             echo           '<label for="filter">Sortieren nach:</label>';
-            echo           '<select id="filter" name="filter">';
-            echo               '<option value="date">Datum</option>';
-            echo               '<option value="name">Name</option>';
-            echo            '</select>';
+            echo          '<select id="filter" name="filter" onchange="location = this.value">';
+            echo              '<option value="blogUSER.php?nutzer='.$nutzer.'">Neuste</option>';
+            echo              '<option value="blogUSER.php?nutzer='.$nutzer.'&order=titel" '.$selected.'>Titel</option>';
+            echo          '</select>';
             echo       '</div>';
 
             echo '</div>';
 
             echo '<div class="blog-list">';
 
+            if(isset($_GET['order'])){
+                $order = $_GET['order'];
+            }else{
+                $order = 'id DESC';
+            }
 
-                $statement = $pdo->query("SELECT * FROM blog WHERE nutzer = '$nutzer' ORDER BY id DESC");
+
+                $statement = $pdo->query("SELECT * FROM blog WHERE nutzer = '$nutzer' ORDER BY $order");
                 while($blog = $statement->fetch()) {
 
                     $blogID= $blog['id'];

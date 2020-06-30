@@ -46,7 +46,7 @@ $sess = $_SESSION['userid'];
                   echo          '<label for="filter">Sortieren nach:</label>';
                   echo          '<select id="filter" name="filter" onchange="location = this.value">';
                   echo              '<option value="profile_anzeigen.php">Name</option>';
-                  echo              '<option value="profile_anzeigen.php?order=created_at" '.$selected.'>Datum</option>';
+                  echo              '<option value="profile_anzeigen.php?order=created_at" '.$selected.'>Erstellungsdatum</option>';
                   echo          '</select>';
                   echo      '</div>';
 

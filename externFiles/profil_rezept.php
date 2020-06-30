@@ -52,22 +52,31 @@ if($nutzer==0){
             echo '<div id="profil_rezept-title">';
             echo    '<h1>Rezepte von '.$authorName.'</h1>';
             echo '</div>';
-            ?>
 
-            <div class="sortierung">
-            <label for="sortieren">Sortieren nach </label>
-            <select id="sortieren" size="1">
-                <option>Bewertung</option>
-                <option>Name</option>
-                <option>Erstellungsdatum</option>
-            </select>
-            </div>
+            if (isset($_GET['order'])){
+                $selected = 'selected';
+            }else{
+                $selected = '';
+            }
 
-            <div class="recipies">
-            <div class="recipe-container">
+            echo '<div class="sortierung">';
+            echo '<label for="sortieren">Sortieren nach </label>';
+            echo          '<select id="filter" name="filter" onchange="location = this.value">';
+            echo              '<option value="profil_rezept.php?nutzer='.$nutzer.'">Name</option>';
+            echo              '<option value="profil_rezept.php?nutzer='.$nutzer.'&order=cdate" '.$selected.'>Neuste</option>';
+            echo          '</select>';
+            echo '</div>';
 
-                <?php
-                $statement2 = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzer' ORDER BY rid DESC");
+            echo '<div class="recipies">';
+            echo '<div class="recipe-container">';
+
+            if(isset($_GET['order'])){
+                $order = $_GET['order']." DESC";
+            }else{
+                $order = 'titel';
+            }
+
+                $statement2 = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzer' ORDER BY $order");
                 while($rezept = $statement2->fetch()) {
 
                     $rezeptID= $rezept['rid'];

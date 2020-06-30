@@ -33,6 +33,12 @@ $sess = $_SESSION['userid'];
 
                 <?php
 
+                if (isset($_GET['order'])){
+                    $selected = 'selected';
+                }else{
+                    $selected = '';
+                }
+
                 if(isset($_GET["suchbegriff"])) {
                     $suchwort = $_GET["suchbegriff"];
 
@@ -43,10 +49,10 @@ $sess = $_SESSION['userid'];
                     echo'<div id="top-buttons">';
                     echo   '<div>';
                     echo    '<label for="filter">Sortieren nach:</label>';
-                    echo   '<select id="filter" name="filter">';
-                    echo       '<option value="name">Name</option>';
-                    echo       '<option value="date">Datum</option>';
-                    echo    '</select>';
+                    echo          '<select id="filter" name="filter" onchange="location = this.value">';
+                    echo              '<option value="profile_gefiltert.php?suchbegriff='.$suchwort.'">Name</option>';
+                    echo              '<option value="profile_gefiltert.php?suchbegriff='.$suchwort.'&order=created_at" '.$selected.'>Erstellungsdatum</option>';
+                    echo          '</select>';
                     echo '</div>';
 
                     echo '</div>';
@@ -84,10 +90,16 @@ $sess = $_SESSION['userid'];
 
         $db = mysqli_connect($host_name, $user_name, $password, $database);
 
+                    if(isset($_GET['order'])){
+                        $order = $_GET['order'];
+                    }else{
+                        $order = 'nickname';
+                    }
+
 
         if(mysqli_connect_errno() == 0)
         {
-            $sql = "SELECT * FROM `users` WHERE " . $abfrage;
+            $sql = "SELECT * FROM `users` WHERE $abfrage ORDER BY $order ";
             $ergebnis = $db->query($sql);
             if(is_object($ergebnis)){
                 while($zeile = $ergebnis->fetch_object())

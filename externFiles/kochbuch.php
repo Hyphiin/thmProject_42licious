@@ -44,25 +44,37 @@ if($nutzer==0){
         <div id="kochbuchheader">
             <h3>Meine Rezepte | Meine Favoriten</h3>
         </div>
+            <?php
 
-        <div id="top-buttons">
+        echo '<div id="top-buttons">';
 
-            <a href="rezeptErstellen.php"><button class="button">Rezept erstellen</button></a>
-            <label id="sortieren">Sortieren nach:
-                <select name="sortieren" size="1">
-                    <option>Bewertung</option>
-                    <option>Name</option>
-                    <option>Einstelldatum</option>
-                </select>
-            </label>
-        </div>
+            if (isset($_GET['order'])){
+                $selected = 'selected';
+            }else{
+                $selected = '';
+            }
+
+            echo     '<a href="rezeptErstellen.php"><button class="button">Rezept erstellen</button></a>';
+            echo     '<label id="sortieren">Sortieren nach:';
+            echo          '<select id="filter" name="filter" onchange="location = this.value">';
+            echo              '<option value="kochbuch.php?nutzer='.$nutzer.'">Name</option>';
+            echo              '<option value="kochbuch.php?nutzer='.$nutzer.'&order=cdate" '.$selected.'>Neuste</option>';
+            echo          '</select>';
+            echo '</label>';
+            echo '</div>';
 
 
-        <div class="recipies">
-        <div class="recipe-container">
+            echo '<div class="recipies">';
+            echo '<div class="recipe-container">';
 
-                    <?php
-                    $statement = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzer' ORDER BY rid DESC");
+            if(isset($_GET['order'])){
+                $order = $_GET['order']." DESC";
+            }else{
+                $order = 'titel';
+            }
+
+
+                    $statement = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzer' ORDER BY $order");
                     while($rezept = $statement->fetch()) {
 
                         $rezeptID= $rezept['rid'];
