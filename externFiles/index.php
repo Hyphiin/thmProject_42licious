@@ -39,9 +39,9 @@ if($sess!=true){
             </div>
 
             <?php
-            include("rezeptPreview.php");
-            include("rezeptPreview.php");
-            include("rezeptPreview.php");
+            include("vorschlagFuerDich.php");
+            include("vorschlagFuerDich.php");
+            include("vorschlagFuerDich.php");
             ?>
 
 
@@ -53,9 +53,9 @@ if($sess!=true){
             </div>
 
             <?php
-            include("rezeptPreview.php");
-            include("rezeptPreview.php");
-            include("rezeptPreview.php");
+            include("vorschlagFuerDich.php");
+            include("vorschlagFuerDich.php");
+            include("vorschlagFuerDich.php");
             ?>
 
         </div>
