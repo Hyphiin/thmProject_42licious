@@ -18,6 +18,7 @@ $sess = $_SESSION['userid'];
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
     <link href="../css/profil_css/profil_ansicht.css" rel="stylesheet" type="text/css">
     <link href="../css/profil_css/profil_anzeigen.css" rel="stylesheet" type="text/css">
+    <link href="../css/rezept_css/rezeptPreview.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -58,6 +59,7 @@ $sess = $_SESSION['userid'];
 
                     echo '<div class="result">';
 
+                    if($auswahl=='users'){
                         $suchwort = explode(" ", $suchwort);
                         $abfrage = "";
                         $a = array('vorname', 'nachname', 'nickname');
@@ -77,6 +79,7 @@ $sess = $_SESSION['userid'];
                                 $abfrage .= " AND ";
                             }
                         }
+                    }
 
                     $host_name = "localhost";
                     $database = "42licious";
@@ -111,8 +114,7 @@ $sess = $_SESSION['userid'];
 
                             }
                         } else if($auswahl == "rezepte"){
-
-                            $sql = "SELECT * FROM `rezepte` WHERE titel LIKE".'%'.$suchwort.'%';
+                            $sql = "SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%'";
                             $ergebnis = $db->query($sql);
                             if (is_object($ergebnis)) {
                                 while ($zeile = $ergebnis->fetch_object()) {
@@ -123,6 +125,7 @@ $sess = $_SESSION['userid'];
                                     echo '<img alt="Rezept-Vorschau" class="recipe-pic" src="">';
                                     echo '</div>';
                                     echo '<div class="recipe-preview-info">';
+
                                     echo '<div class="kategorien">';
                                     $kategorie = explode(";", $zeile -> kategorienListe);
 
@@ -136,7 +139,7 @@ $sess = $_SESSION['userid'];
                                         }}
                                     echo '</div>';
                                     echo '<div class="titleTime">';
-                                    echo '<h2 class="recipe-preview-title">' . $zeile -> title . '</h2>';
+                                    echo '<h2 class="recipe-preview-title">' . $zeile -> titel . '</h2>';
                                     echo '<p class="recipe-preview-timestamp">' . $zeile -> timestamp . '</p>';
                                     echo '</div>';
                                     echo 'Dauer: '.$zeile -> dauer.'<br/>';
