@@ -36,7 +36,6 @@ $sess = $_SESSION['userid'];
 
                 if (isset($_GET["selection"])) {
                     $auswahl = $_GET["selection"];
-                    echo $auswahl;
                 }
 
                 if (isset($_GET["suchbegriff"])) {
@@ -164,7 +163,7 @@ $sess = $_SESSION['userid'];
                         echo '</div>';
                         }
                         else{
-                            echo 'schade';
+                            echo 'Bitte eine gültige Auswahl treffen!';
                         }
                     }
                     $db->close();
