@@ -13,11 +13,11 @@ $sess = $_SESSION['userid'];
     </a>
 
     <div class="searchBar">
-        <form class="search" action="profile_gefiltert.php" method="get">
-            <select class="selection" onchange="location = this.value;">
+        <form class="search" action="Suche.php" method="get">
+            <select class="selection" name="selection">
                 <option value="Auswahl">Auswahl</option>
-                <option value="rezepte_anzeigen.php">in Rezepten</option>
-                <option value="profile_anzeigen.php">in Nutzern</option>
+                <option value="rezepte" name="rezepte">in Rezepten</option>
+                <option value="users" name="users">in Nutzern</option>
             </select>
             <input type="text" placeholder="Suchen..." name="suchbegriff">
             <button class="submitBtn" type="submit" value="suchen">
