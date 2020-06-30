@@ -90,6 +90,9 @@ $sess = $_SESSION['userid'];
 
                     if (mysqli_connect_errno() == 0) {
                         if ($auswahl == "users") {
+
+                            echo '<div class="users">';
+
                             $sql = "SELECT * FROM `users` WHERE " . $abfrage;
                             $ergebnis = $db->query($sql);
                             if (is_object($ergebnis)) {
@@ -112,7 +115,11 @@ $sess = $_SESSION['userid'];
                                 }
 
                             }
+                            echo '</div>';
                         } else if($auswahl == "rezepte"){
+
+                            echo '<div class="recipe-container">';
+
                             $sql = "SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%'";
                             $ergebnis = $db->query($sql);
                             if (is_object($ergebnis)) {
@@ -153,7 +160,7 @@ $sess = $_SESSION['userid'];
                                 }
 
                             }
-
+                        echo '</div>';
                         }
                         else{
                             echo 'Bitte eine gültige Auswahl treffen!';
@@ -175,6 +182,7 @@ $sess = $_SESSION['userid'];
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="../jscript/profilPreview.js"></script>
+<script src="../jscript/recipePreview.js"></script>
 
 </body>
 </html>
