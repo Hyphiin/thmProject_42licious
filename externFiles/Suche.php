@@ -41,6 +41,12 @@ $sess = $_SESSION['userid'];
                 if (isset($_GET["suchbegriff"])) {
                     $suchwort = $_GET["suchbegriff"];
 
+                    if (isset($_GET['order'])){
+                        $selected = 'selected';
+                    }else{
+                        $selected = '';
+                    }
+
                     echo '<div id="head-title">';
                     echo '<h1>Suchergebnisse für "' . $suchwort . '"</h1>';
                     echo ' </div>';
@@ -48,10 +54,14 @@ $sess = $_SESSION['userid'];
                     echo '<div id="top-buttons">';
                     echo '<div>';
                     echo '<label for="filter">Sortieren nach:</label>';
-                    echo '<select id="filter" name="filter">';
-                    echo '<option value="name">Name</option>';
-                    echo '<option value="date">Datum</option>';
-                    echo '</select>';
+                    echo          '<select id="filter" name="filter" onchange="location = this.value">';
+                    echo              '<option value="Suche.php?selection='.$auswahl.'&suchbegriff='.$suchwort.'">Name</option>';
+                    if($auswahl=='users') {
+                        echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwort . '&order=created_at" ' . $selected . '>Erstellungsdatum</option>';
+                    }elseif($auswahl=='rezepte') {
+                        echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwort . '&order=cdate" ' . $selected . '>Neuste</option>';
+                    }
+                    echo          '</select>';
                     echo '</div>';
 
                     echo '</div>';
@@ -93,7 +103,13 @@ $sess = $_SESSION['userid'];
 
                             echo '<div class="users">';
 
-                            $sql = "SELECT * FROM `users` WHERE " . $abfrage;
+                            if(isset($_GET['order'])){
+                                $order = $_GET['order'];
+                            }else{
+                                $order = 'nickname';
+                            }
+
+                            $sql = "SELECT * FROM `users` WHERE $abfrage ORDER BY $order";
                             $ergebnis = $db->query($sql);
                             if (is_object($ergebnis)) {
                                 while ($zeile = $ergebnis->fetch_object()) {
@@ -120,7 +136,13 @@ $sess = $_SESSION['userid'];
 
                             echo '<div class="recipe-container">';
 
-                            $sql = "SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%'";
+                            if(isset($_GET['order'])){
+                                $order = $_GET['order']." DESC";
+                            }else{
+                                $order = 'titel';
+                            }
+
+                            $sql = "SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order";
                             $ergebnis = $db->query($sql);
                             if (is_object($ergebnis)) {
                                 while ($zeile = $ergebnis->fetch_object()) {
@@ -181,8 +203,14 @@ $sess = $_SESSION['userid'];
 </div>
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="../jscript/profilPreview.js"></script>
-<script src="../jscript/recipePreview.js"></script>
+<?php
+
+if ($auswahl=='users'){
+    echo '<script src="../jscript/profilPreview.js"></script>';
+}elseif($auswahl=="rezepte") {
+    echo '<script src = "../jscript/recipePreview.js" ></script>';
+}
+?>
 
 </body>
 </html>
