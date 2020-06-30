@@ -1,3 +1,20 @@
+<?php
+session_start();
+$pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+$sess = $_SESSION['userid'];
+
+if(isset($_GET['nutzer'])){
+    $nutzer= $_GET['nutzer'];
+}
+if($nutzer==0){
+
+    include("nosess.php");
+
+}else{
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -7,7 +24,7 @@
     <title>42licious-Profil-Rezeptansicht</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/profil_css/profil_rezept.css" rel="stylesheet" type="text/css">
-    <link href="../css/recipePreview.css" rel="stylesheet" type="text/css">
+    <link href="../css/rezept_css/rezeptPreview.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -25,12 +42,20 @@
         </div>
 
         <div class="main-content">
-            <div id="profil_rezept-title">
-                <h1>Rezepte von USER</h1>
-            </div>
+
+            <?php
+            $statement = $pdo->query("SELECT * FROM users WHERE id = '$nutzer' ");
+            $rezeptAuthor = $statement->fetch();
+
+            $authorName = $rezeptAuthor['nickname'];
+
+            echo '<div id="profil_rezept-title">';
+            echo    '<h1>Rezepte von '.$authorName.'</h1>';
+            echo '</div>';
+            ?>
 
             <div class="sortierung">
-            <label for="sortieren">Sortieren nach</label>
+            <label for="sortieren">Sortieren nach </label>
             <select id="sortieren" size="1">
                 <option>Bewertung</option>
                 <option>Name</option>
@@ -42,18 +67,51 @@
             <div class="recipe-container">
 
                 <?php
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
+                $statement2 = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzer' ORDER BY rid DESC");
+                while($rezept = $statement2->fetch()) {
+
+                    $rezeptID= $rezept['rid'];
+                    $title = $rezept['titel'];
+                    $timestamp = $rezept['cdate'];
+                    $kategorienListe = $rezept['kategorien'];
+                    $dauer = $rezept['dauer'];
+                    $schwierigkeit = $rezept['schwierigkeit'];
+                    $beschreibung = $rezept['beschreibung'];
+
+                    echo '<a href="rezeptAnsicht.php?id='.$rezeptID.'">';
+                    echo '<div class="recipe-preview-container">';
+                    echo '<div class="recipe-preview">';
+                    echo '<div class="recipe-preview-pic">';
+                    echo '<img alt="Rezept-Vorschau" class="recipe-pic" src="">';
+                    echo '</div>';
+                    echo '<div class="recipe-preview-info">';
+                    echo '<div class="kategorien">';
+                    $kategorie = explode(";", $kategorienListe);
+
+                    for($i=0;$i<count($kategorie);$i++){
+                        if($kategorie[$i]=="fleisch"){
+                            echo '<div>Fleisch</div>';
+                        }elseif($kategorie[$i]=="vegetarisch"){
+                            echo '<div>Vegetarisch</div>';
+                        }elseif($kategorie[$i]=="vegan"){
+                            echo '<div>Vegan</div>';
+                        }}
+                    echo '</div>';
+                    echo '<div class="titleTime">';
+                    echo '<h2 class="recipe-preview-title">' . $title . '</h2>';
+                    echo '<p class="recipe-preview-timestamp">' . $timestamp . '</p>';
+                    echo '</div>';
+                    echo 'Dauer: '.$dauer.'<br/>';
+                    echo 'Schwierigkeit: '.$schwierigkeit.'<br/><br/>';
+                    echo    nl2br($beschreibung);
+                    echo '</p>';
+                    echo '</div>';
+
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</a>';
+                }
+                }
                 ?>
             </div>
             </div>

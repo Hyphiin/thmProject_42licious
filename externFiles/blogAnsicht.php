@@ -60,7 +60,7 @@ $sess = $_SESSION['userid'];
         $timestamp = $blog['rdate'];
         $entry = $blog['inhalt'];
 
-        echo '<a href="blogUSER.php?nutzer='.$author.'"><button class="button">Zurück zum Blog</button></a>';
+        echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
 
         if ($sess==$author) {
             echo '<a href="blogBearbeiten.php?id='.$blogID.'"><button class="button">Bearbeiten</button></a>';

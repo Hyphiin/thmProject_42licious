@@ -42,8 +42,38 @@
 }
 
 
+
 #timestamp{
     font-style: italic;
+}
+
+#recipe-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kategorien{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.kategorien div {
+    background-color: #2C997C;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 2px 2px;
+}
+
+p {
+    word-break: break-all;
 }
 
 

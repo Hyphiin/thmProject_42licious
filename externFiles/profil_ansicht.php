@@ -26,6 +26,7 @@ if($nutzerID==0){
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
     <link href="../css/profil_css/profil_ansicht.css" rel="stylesheet" type="text/css">
     <link href="../css/blog_css/BlogPreview.css" rel="stylesheet" type="text/css">
+    <link href="../css/rezept_css/rezeptPreview.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -67,9 +68,9 @@ if($nutzerID==0){
             echo '<div id="profil_inhalt">';
                 echo '<div id="profil_links">';
                     echo '<div id="BildUndButtons">';
-                        echo '<img alt="Profil-Bild" id="profil_bild" src='."$pic".'>';
+                        echo '<img alt="Profil-Bild" id="profil_pic" src='."$pic".'>';
                         echo '<div id="linksbuttons">';
-                            echo '<a href="profil_rezept.php"><button id="user_rezept" class="button">Rezepte</button></a>';
+                            echo '<a href="profil_rezept.php?nutzer='.$nutzerID.'"><button id="user_rezept" class="button">Rezepte</button></a>';
                             echo '<a href="blogUSER.php?nutzer='.$nutzerID.'"><button id="user_blog" class="button">Blog</button></a>';
                         echo '</div>';
                     echo '</div>';
@@ -82,9 +83,53 @@ if($nutzerID==0){
                 echo '</div>';
 
                 echo '<div id="profil_rechts">';
-            echo    '<div id="top_rezept">';
-            echo        '<label>Top Rezept</label>';
-            echo        '<p id="toprezept">Hier soll das Top-Rezept stehen!</p>';
+
+
+            echo    '<div class="recipe-highlight">';
+            echo        '<h4>Top Rezept</h4>';
+
+        $statement = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzerID' ORDER BY rid DESC LIMIT 1");
+        $rezept = $statement->fetch();
+
+            $rezeptID= $rezept['rid'];
+            $title = $rezept['titel'];
+            $timestamp = $rezept['cdate'];
+            $kategorienListe = $rezept['kategorien'];
+            $dauer = $rezept['dauer'];
+            $schwierigkeit = $rezept['schwierigkeit'];
+            $beschreibung = $rezept['beschreibung'];
+
+            echo '<a href="rezeptAnsicht.php?id='.$rezeptID.'">';
+            echo '<div class="recipe-preview-container">';
+            echo '<div class="recipe-preview">';
+            echo '<div class="recipe-preview-pic">';
+            echo '<img alt="Rezept-Vorschau" class="recipe-pic" src="">';
+            echo '</div>';
+            echo '<div class="recipe-preview-info">';
+            echo '<div class="kategorien">';
+            $kategorie = explode(";", $kategorienListe);
+
+            for($i=0;$i<count($kategorie);$i++){
+                if($kategorie[$i]=="fleisch"){
+                    echo '<div>Fleisch</div>';
+                }elseif($kategorie[$i]=="vegetarisch"){
+                    echo '<div>Vegetarisch</div>';
+                }elseif($kategorie[$i]=="vegan"){
+                    echo '<div>Vegan</div>';
+                }}
+            echo '</div>';
+            echo '<div class="titleTime">';
+            echo '<h2 class="recipe-preview-title">' . $title . '</h2>';
+            echo '</div>';
+            echo 'Dauer: '.$dauer.'<br/>';
+            echo 'Schwierigkeit: '.$schwierigkeit.'<br/><br/>';
+            echo    nl2br($beschreibung);
+            echo '</p>';
+            echo '</div>';
+
+            echo '</div>';
+            echo '</div>';
+            echo '</a>';
             echo       '</div>';
 
               echo      '<div class="recipe-highlight">';

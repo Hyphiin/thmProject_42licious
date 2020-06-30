@@ -15,7 +15,8 @@ $sess = $_SESSION['userid'];
     <div class="searchBar">
         <form class="search" action="profile_gefiltert.php" method="get">
             <select class="selection" onchange="location = this.value;">
-                <option value="recipe">in Rezepten</option>
+                <option value="Auswahl">Auswahl</option>
+                <option value="rezepte_anzeigen.php">in Rezepten</option>
                 <option value="profile_anzeigen.php">in Nutzern</option>
             </select>
             <input type="text" placeholder="Suchen..." name="suchbegriff">
@@ -60,7 +61,7 @@ $sess = $_SESSION['userid'];
 
     <ul class="content" id="b">
         <?php
-        echo '<li><a href="kochbuch.php">Kochbuch</a></li>';
+        echo '<li><a href="kochbuch.php?nutzer='.$sess.'">Kochbuch</a></li>';
         echo '<li><a href="blogUSER.php?nutzer='.$sess.'">Blog</a></li>';
         echo '<li><a href="profil_ansicht.php?id='.$sess.'">Profil</a></li>';
         ?>

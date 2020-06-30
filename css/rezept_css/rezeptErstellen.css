@@ -66,5 +66,25 @@ button:hover{
     background-color: #f3f3f3;
 }
 
+.zubereitung {
+    width: 90%;
+    height: 300px;
+    resize: none;
+}
 
+.beschreibung {
+    width: 90%;
+    height: 100px;
+    resize: none;
+}
+
+.kategorie {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.personen {
+    width: 40px;
+}
 

@@ -1,3 +1,13 @@
+<?php
+session_start();
+$pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+$sess = $_SESSION['userid'];
+
+
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -15,35 +25,76 @@
 <body>
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("navigation.php");
 
-    <div id="main">
+    if(isset($_GET['id'])){
+        $rezeptID= $_GET['id'];
+    }
+
+    $statement = $pdo->query("SELECT * FROM rezepte WHERE rid = '$rezeptID' ");
+    $rezept = $statement->fetch();
+
+    $titel = $rezept['titel'];
+    $timestamp = $rezept['cdate'];
+    $uid = $rezept['uid'];
+    $pic = $rezept['pic'];
+    $dauer = $rezept['dauer'];
+    $schwierigkeit = $rezept['schwierigkeit'];
+    $kategorienListe = $rezept['kategorien'];
+    $beschreibung = $rezept['beschreibung'];
+    $personen = $rezept['personen'];
+    $zutatenListe = $rezept['zutatenListe'];
+    $anleitung = $rezept['anleitung'];
+
+    $statement2 = $pdo->query("SELECT * FROM users WHERE id = '$uid' ");
+    $autor = $statement2->fetch();
+    $ersteller = $autor['nickname'];
+
+    $zutatenTable = explode(";", $zutatenListe);
+
+    echo '<div id="main">
 
         <div id="top-buttons">
 
-            <a href="rezepteSuchen.php"><button class="button">Zurück zur Suche</button></a>
-            <a href="rezeptBearbeiten.php"><button class="button">Bearbeiten</button></a>
+            <a href="javascript:history.back()"><button class="button">Zurück</button></a>';
+            if ($sess==$uid){
+            echo '<a href="rezeptBearbeiten.php?id='.$rezeptID.'"><button class="button">Bearbeiten</button></a>';
+            };
+        echo '</div>
 
-        </div>
+        <div class="main-content">
+        
+        <div class="kategorien">';
 
-        <div id="main-content">
+                    $kategorie = explode(";", $kategorienListe);
+
+    for($i=0;$i<count($kategorie);$i++){
+        if($kategorie[$i]=="fleisch"){
+            echo '<div>Fleisch</div>';
+        }elseif($kategorie[$i]=="vegetarisch"){
+            echo '<div>Vegetarisch</div>';
+        }elseif($kategorie[$i]=="vegan"){
+            echo '<div>Vegan</div>';
+        }};
+
+
+                echo '</div>
 
             <div id="recipe-info">
-                <div id="recipe-title">
-                    <h1>Rezeptname</h1>
+                <div class="recipe-title">
+                    <h1>'.$titel.'</h1>
+                    <a href="profil_ansicht.php?id='.$uid.'"><h5>von: '.$ersteller.'</h5></a>
                 </div>
+                
+                
                 <div id="timestamp">
-                    <p>TT.MM.JJ SS:MM</p>
+                    <p>erstellt : '.$timestamp.'</p>
                 </div>
-            </div>
-
-            <div id="creator">
-                <h5>von:...</h5>
             </div>
 
             <div class="recipe-preview">
                 <diV class="recipe-preview-image-container">
-                    <img src="../images/lasagne.jpg" alt="">
+                    <img alt="Rezept-Vorschaubild" id="rezept-vorschaubild" src='."".'> 
                 </diV>
                 <div class="recipe-preview-description"></div>
             </div>
@@ -75,75 +126,39 @@
 
             </div>
 
-            <div id="dauer">Dauer: 50min</div>
-            <div id="schwierigkeit">Schwierigkeit: mittel</div>
+            <div id="dauer">Dauer: '.$dauer.'</div>
+            <div id="schwierigkeit">Schwierigkeit: '.$schwierigkeit.'</div><br/>
 
         <div id="beschreibung">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque dignissim ipsum id placerat.
-                    Aenean egestas lacus et quam varius, sit amet hendrerit lorem rutrum. Morbi feugiat velit quis pretium auctor.
-                    Praesent a magna vel mauris interdum bibendum et sit amet augue. Aliquam blandit, diam nec elementum vehicula,
-                    lorem sem mollis libero, at pellentesque nunc nibh et lorem. Cras ac facilisis quam. Donec laoreet nisi at purus venenatis,
-                    a auctor tellus mattis. Aliquam erat volutpat. Pellentesque ac neque ac dui tincidunt fringilla. Duis in elementum felis,
-                    sit amet porttitor ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante
-                    ipsum primis in faucibus.
-                </p>
-            </div>
+        <h3>Beschreibung:</h3><br/>
+                '.nl2br($beschreibung).'
+            </div><br/>
 
 
         <div id="zutaten">
-            <h3>Zutaten für
-            <select name="numbers" id="numbers">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-            </select>
-                Personen</h3>
+            <h3>Zutaten für '.$personen.' Personen</h3>';
+
+    echo '<div id="table">';
+        echo  '<table style="width:100%">';
+
+            for($i=0;$i<count($zutatenTable);$i++){
+            $zutatenSpalte = explode(":", $zutatenTable[$i]);
+            echo '<tr>';
+                echo     '<td>'.$zutatenSpalte[0].'</td>';
+                echo    '<td>'.$zutatenSpalte[1].'</td>';
+                echo '</tr>';
+            }
+
+            echo   '</table>';
+        echo '</div><br/>';
 
 
-            <div id="table">
-                <table style="width:100%">
-                    <tr>
-                        <td>100 ml</td>
-                        <td>Wasser</td>
-                    </tr>
-                    <tr>
-                        <td>500 g</td>
-                        <td>Mehl</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Eier</td>
-                    </tr>
-                    <tr>
-                        <td>1/4 TL</td>
-                        <td>Backpulver</td>
-                    </tr>
-                    <tr>
-                        <td>...</td>
-                        <td>...</td>
-                    </tr>
-                </table>
-
-            </div>
-            <h3>Zubereitung</h3>
-            <div id="zubereitung">
-                <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque dignissim ipsum id placerat.
-                Aenean egestas lacus et quam varius, sit amet hendrerit lorem rutrum. Morbi feugiat velit quis pretium auctor.
-                Praesent a magna vel mauris interdum bibendum et sit amet augue. Aliquam blandit, diam nec elementum vehicula,
-                lorem sem mollis libero, at pellentesque nunc nibh et lorem. Cras ac facilisis quam. Donec laoreet nisi at purus venenatis,
-                a auctor tellus mattis. Aliquam erat volutpat. Pellentesque ac neque ac dui tincidunt fringilla. Duis in elementum felis,
-                sit amet porttitor ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum et malesuada fames ac ante
-                ipsum primis in faucibus.
-                </p>
-            </div>
-        </div>
+            echo   '<h3>Zubereitung:</h3><br/>
+                     <div id="zubereitung">
+                         <p>'.nl2br($anleitung).'</p>
+                     </div>
+                    </div><br/>';
+        ?>
 
         <div id="comments">
             <h3>Kommentare</h3>
