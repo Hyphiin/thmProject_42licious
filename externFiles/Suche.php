@@ -168,7 +168,7 @@ $sess = $_SESSION['userid'];
                                     echo '</div>';
                                     echo '<div class="titleTime">';
                                     echo '<h2 class="recipe-preview-title">' . $zeile -> titel . '</h2>';
-                                    echo '<p class="recipe-preview-timestamp">' . $zeile -> timestamp . '</p>';
+                                    echo '<p class="recipe-preview-timestamp">' . $zeile -> cdate . '</p>';
                                     echo '</div>';
                                     echo 'Dauer: '.$zeile -> dauer.'<br/>';
                                     echo 'Schwierigkeit: '.$zeile -> schwierigkeit.'<br/><br/>';
