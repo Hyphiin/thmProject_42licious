@@ -53,7 +53,7 @@ if ($sess == true) {
         $counter = $_POST['tableLength'];
         $zutatenListe = "";
 
-        for($i = 0; $i < ($counter+1); $i+=1){
+        for($i = 0; $i < (intval($counter)+1); $i+=1){
             $menge = $_POST['menge'.$i.''];
             $zutat = $_POST['zutaten'.$i.''];
 
