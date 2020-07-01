@@ -135,7 +135,7 @@ $sess = $_SESSION['userid'];
     echo '
                         </span>
                     </p>
-                        <input type="submit" value="Bewerten">
+                        <input type="submit" id="bewertenButton" value="Bewerten">
 
                 </form>';
 

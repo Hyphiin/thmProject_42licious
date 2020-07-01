@@ -103,16 +103,28 @@ p {
     background-color: #f3f3f3;
 }
 
-
+#recipe-rating{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
 /* Sternebewertung */
- span#Bewertung label {
+ span#Bewertung {
      line-height: 45px;
      cursor: Pointer;
  }
 
-span#Bewertung input[type="radio"] {
-    /*display: None;*/
+
+form {
+  display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+#bewertenButton{
+    margin-top: 30px;
+    height: 30px;
 }
 
 p.sternebewertung {
@@ -145,7 +157,6 @@ p.sternebewertung > input:checked ~ label {
 
     color: #FFD700;
     text-shadow: 1px 1px #C06000, 2px 2px #904000, .1em .1em .2em rgba(0,0,0,.5);
-    animation: twinkle 3.5s steps(2, start) infinite;
 }
 
 p.sternebewertung:not(:checked) > label:hover,
@@ -164,21 +175,13 @@ p.sternebewertung > label:hover ~ input:checked ~ label {
     text-shadow: 1px 1px #F8BA01, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
 }
 
-@keyframes twinkle {
-    to {
-        text-shadow: 1px 1px #FFE653, 2px 2px #FFF5BF, .1em .1em .2em rgba(0,0,0,.5);
-    }
-}
 
 /* Merken */
-span#Merken label {
+span#Merken {
     line-height: 45px;
     cursor: Pointer;
 }
 
-span#Merken input[type="radio"] {
-    /*display: None;*/
-}
 
 p.merken {
     float: right;
