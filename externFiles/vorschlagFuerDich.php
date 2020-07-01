@@ -1,6 +1,7 @@
 <?php
 $statement1 = $pdo->query("SELECT COUNT(*) FROM rezepte");
-$anzahlRezepte = intval($statement1)+2;
+$zwischenspeicher = $statement1->fetch();
+$anzahlRezepte = intval($zwischenspeicher[0]);
 do {
     $random = rand(1,$anzahlRezepte);
     $statement = $pdo->query("SELECT * FROM rezepte WHERE rid = '$random' ORDER BY rid DESC LIMIT 1");
