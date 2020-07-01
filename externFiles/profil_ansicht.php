@@ -91,7 +91,7 @@ if($nutzerID==0){
             echo    '<div class="recipe-highlight">';
             echo        '<h4>Top Rezept</h4>';
 
-        $statement = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzerID' ORDER BY rid DESC LIMIT 1");
+        $statement = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzerID' ORDER BY gesamtBewertung DESC LIMIT 1");
         $rezept = $statement->fetch();
 
             $rezeptID= $rezept['rid'];
