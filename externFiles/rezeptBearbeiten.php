@@ -19,6 +19,13 @@
     
     <div id="main">
 
+        <?php
+        if (isset($_GET['bearbeiten'])) {
+            $rezeptID = $_POST['id'];
+            echo $rezeptID;
+        }
+        ?>
+
         <div id="change-recipe">
             <h1>Rezept bearbeiten</h1>
 

@@ -32,7 +32,7 @@ if ($sess == true) {
         <div id="edit-blog">
             <h1>Blogeintrag bearbeiten</h1>
             <?php
-            if (isset($_GET['bearbeiten'])) {
+            if (isset($_GET['edit'])) {
                 $titel = $_POST['titel'];
                 $inhalt = $_POST['inhalt'];
                 $ID = $_POST['blogid'];
@@ -56,8 +56,8 @@ if ($sess == true) {
                 echo '<br><br>';
             }else {
 
-                if (isset($_GET['id'])) {
-                    $blogID = $_GET['id'];
+                if (isset($_GET['bearbeiten'])) {
+                    $blogID = $_POST['id'];
                 }
 
                 $statement = $pdo->query("SELECT * FROM blog WHERE id = '$blogID' ");
@@ -67,7 +67,7 @@ if ($sess == true) {
                 $title = $blog['titel'];
                 $entry = $blog['inhalt'];
 
-                echo '<form action="?id=' . $blogID . '&bearbeiten=1" method="post">';
+                echo '<form action="?id=' . $blogID . '&edit" method="post">';
                 echo 'Titel:<br>';
                 echo '<input type="text" name="titel" size="40" maxlength="255" value="' . $title . '">';
                 echo '<br><br>';

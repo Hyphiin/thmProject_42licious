@@ -54,7 +54,10 @@ if($nutzerID==0){
          echo    '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
 
          if ($profilID==$sess) {
-             echo '<a href="p_editieren.php?id='.$nutzerID.'"><button class="button">Bearbeiten</button></a>';
+             echo '<form action="p_editieren.php?bearbeiten" method="post">';
+             echo '<input type="hidden" name="id" value="'.$profilID.'">';
+             echo '<button type="submit" class="button">Bearbeiten</button>';
+             echo '</form>';
          }
 
         echo '</div>';

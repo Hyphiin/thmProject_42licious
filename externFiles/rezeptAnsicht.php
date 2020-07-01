@@ -76,8 +76,11 @@ $sess = $_SESSION['userid'];
 
             <a href="javascript:history.back()"><button class="button">Zurück</button></a>';
     if ($sess == $uid) {
-        echo '<a href="rezeptBearbeiten.php?id=' . $rezeptID . '"><button class="button">Bearbeiten</button></a>';
-    };
+        echo '<form action="rezeptBearbeiten.php?bearbeiten" method="post">';
+        echo '<input type="hidden" name="id" value="'.$rezeptID.'">';
+        echo '<button type="submit" class="button">Bearbeiten</button>';
+        echo '</form>';
+    }
     echo '</div>
 
         <div class="main-content">
@@ -211,7 +214,7 @@ $sess = $_SESSION['userid'];
 
             echo '<div class="comment">';
             echo '<div class="comment-info">';
-            echo '<h3>' . $nutzerName . '</h3>';
+            echo '<a href="profil_ansicht.php?id='.$uid.'"><h3>' . $nutzerName . '</h3></a>';
             echo '<p class="timestamp">' . $date . '</p>';
             echo '</div>';
             echo '<div class="comment-body">';
