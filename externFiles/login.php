@@ -3,8 +3,6 @@ session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
 
 
-
-
 if (isset($_GET['login'])) {
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];
@@ -32,7 +30,6 @@ if (isset($_GET['login'])) {
     <title>Login</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
-    <link href="../css/main.css" rel="stylesheet" type="text/css">
     <link href="../css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -52,11 +49,18 @@ if (isset($errorMessage)) {
 
         <div id="top-buttons">
 
-            <a href="index.php"><button class="button">Zurück</button></a>
+            <a href="javascript:history.back()"><button class="button">Zurück</button></a>
 
         </div>
 
+
+
         <div id="main-content">
+
+            <div id="head-title">
+                <h1>Login</h1>
+            </div>
+
             <form action="?login=1" method="post">
                 E-Mail:<br>
                 <input type="email" size="40" maxlength="250" name="email"><br><br>

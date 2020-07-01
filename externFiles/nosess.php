@@ -16,9 +16,9 @@
     <div id="main">
         <div id="main-content">
             <?php
-            echo "Bitte einloggen!" . " " . '<a href="login.php">zum Login</a>';
+            echo "Bitte einloggen!" . " " . '<a href="login.php"><button type="button" class="button">Zum Login</button></a>';
             echo '<br>';
-            echo "Noch kein Mitglied?" . " " . '<a href="registrieren.php">Mitglied werden!</a>';
+            echo "Noch kein Mitglied?" . " " . '<a href="registrieren.php"><button type="button" class="button">Mitglied werden!</button></a>';
             ?>
         </div>
     </div>

@@ -41,9 +41,9 @@ $sess = $_SESSION['userid'];
                 if (isset($_GET["suchbegriff"])) {
                     $suchwort = $_GET["suchbegriff"];
 
-                    if (isset($_GET['order'])){
+                    if (isset($_GET['order'])) {
                         $selected = 'selected';
-                    }else{
+                    } else {
                         $selected = '';
                     }
 
@@ -54,21 +54,21 @@ $sess = $_SESSION['userid'];
                     echo '<div id="top-buttons">';
                     echo '<div>';
                     echo '<label for="filter">Sortieren nach:</label>';
-                    echo          '<select id="filter" name="filter" onchange="location = this.value">';
-                    echo              '<option value="Suche.php?selection='.$auswahl.'&suchbegriff='.$suchwort.'">Name</option>';
-                    if($auswahl=='users') {
+                    echo '<select id="filter" name="filter" onchange="location = this.value">';
+                    echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwort . '">Name</option>';
+                    if ($auswahl == 'users') {
                         echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwort . '&order=created_at" ' . $selected . '>Erstellungsdatum</option>';
-                    }elseif($auswahl=='rezepte') {
+                    } elseif ($auswahl == 'rezepte') {
                         echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwort . '&order=cdate" ' . $selected . '>Neuste</option>';
                     }
-                    echo          '</select>';
+                    echo '</select>';
                     echo '</div>';
 
                     echo '</div>';
 
                     echo '<div class="result">';
 
-                    if($auswahl=='users'){
+                    if ($auswahl == 'users') {
                         $suchwort = explode(" ", $suchwort);
                         $abfrage = "";
                         $a = array('vorname', 'nachname', 'nickname');
@@ -103,9 +103,9 @@ $sess = $_SESSION['userid'];
 
                             echo '<div class="users">';
 
-                            if(isset($_GET['order'])){
+                            if (isset($_GET['order'])) {
                                 $order = $_GET['order'];
-                            }else{
+                            } else {
                                 $order = 'nickname';
                             }
 
@@ -132,13 +132,13 @@ $sess = $_SESSION['userid'];
 
                             }
                             echo '</div>';
-                        } else if($auswahl == "rezepte"){
+                        } else if ($auswahl == "rezepte") {
 
                             echo '<div class="recipe-container">';
 
-                            if(isset($_GET['order'])){
-                                $order = $_GET['order']." DESC";
-                            }else{
+                            if (isset($_GET['order'])) {
+                                $order = $_GET['order'] . " DESC";
+                            } else {
                                 $order = 'titel';
                             }
 
@@ -146,7 +146,7 @@ $sess = $_SESSION['userid'];
                             $ergebnis = $db->query($sql);
                             if (is_object($ergebnis)) {
                                 while ($zeile = $ergebnis->fetch_object()) {
-                                    echo '<a href="rezeptAnsicht.php?id='.$zeile -> rid.'">';
+                                    echo '<a href="rezeptAnsicht.php?id=' . $zeile->rid . '">';
                                     echo '<div class="recipe-preview-container">';
                                     echo '<div class="recipe-preview">';
                                     echo '<div class="recipe-preview-pic">';
@@ -155,24 +155,30 @@ $sess = $_SESSION['userid'];
                                     echo '<div class="recipe-preview-info">';
 
                                     echo '<div class="kategorien">';
-                                    $kategorie = explode(";", $zeile -> kategorienListe);
+                                    $kategorie = explode(";", $zeile->kategorienListe);
 
-                                    for($i=0;$i<count($kategorie);$i++){
-                                        if($kategorie[$i]=="fleisch"){
+                                    for ($i = 0; $i < count($kategorie); $i++) {
+                                        if ($kategorie[$i] == "fleisch") {
                                             echo '<div>Fleisch</div>';
-                                        }elseif($kategorie[$i]=="vegetarisch"){
+                                        } elseif ($kategorie[$i] == "vegetarisch") {
                                             echo '<div>Vegetarisch</div>';
-                                        }elseif($kategorie[$i]=="vegan"){
+                                        } elseif ($kategorie[$i] == "vegan") {
                                             echo '<div>Vegan</div>';
-                                        }}
+                                        }
+                                    }
                                     echo '</div>';
                                     echo '<div class="titleTime">';
-                                    echo '<h2 class="recipe-preview-title">' . $zeile -> titel . '</h2>';
-                                    echo '<p class="recipe-preview-timestamp">' . $zeile -> cdate . '</p>';
+                                    echo '<h2 class="recipe-preview-title">' . $zeile->titel . '</h2>';
+                                    echo '<p class="recipe-preview-timestamp">' . $zeile->cdate . '</p>';
                                     echo '</div>';
-                                    echo 'Dauer: '.$zeile -> dauer.'<br/>';
-                                    echo 'Schwierigkeit: '.$zeile -> schwierigkeit.'<br/><br/>';
-                                    echo    nl2br($zeile -> beschreibung);
+                                    $uid = $zeile->uid;
+                                    $statement = $pdo->query("SELECT * FROM users WHERE id = '$uid'");
+                                    $autor = $statement->fetch();
+                                    $ersteller = $autor['nickname'];
+                                    echo 'von: ' . $ersteller . '<br/><br/>';
+                                    echo 'Dauer: ' . $zeile->dauer . '<br/>';
+                                    echo 'Schwierigkeit: ' . $zeile->schwierigkeit . '<br/><br/>';
+                                    echo nl2br($zeile->beschreibung);
                                     echo '</p>';
                                     echo '</div>';
 
@@ -182,9 +188,8 @@ $sess = $_SESSION['userid'];
                                 }
 
                             }
-                        echo '</div>';
-                        }
-                        else{
+                            echo '</div>';
+                        } else {
                             echo 'Bitte eine gültige Auswahl treffen!';
                         }
                     }
@@ -204,9 +209,9 @@ $sess = $_SESSION['userid'];
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <?php
 
-if ($auswahl=='users'){
+if ($auswahl == 'users') {
     echo '<script src="../jscript/profilPreview.js"></script>';
-}elseif($auswahl=="rezepte") {
+} elseif ($auswahl == "rezepte") {
     echo '<script src = "../jscript/recipePreview.js" ></script>';
 }
 ?>

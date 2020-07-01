@@ -12,7 +12,6 @@ $pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
     <title>Registrierung</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
-    <link href="../css/main.css" rel="stylesheet" type="text/css">
     <link href="../css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -81,11 +80,16 @@ if ($showFormular) {
 
             <div id="top-buttons">
 
-                <a href="index.php"><button class="button">Zurück</button></a>
+                <a href="javascript:history.back()"><button class="button">Zurück</button></a>
 
             </div>
 
             <div id="main-content">
+
+                <div id="head-title">
+                    <h1>Registrierung</h1>
+                </div>
+
                 <form action="?register=1" method="post">
                     Vorname:<br>
                     <input type="text" size="40" maxlength="250" name="vorname"><br><br>

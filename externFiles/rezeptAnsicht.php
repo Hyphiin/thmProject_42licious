@@ -11,8 +11,8 @@ $sess = $_SESSION['userid'];
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>42licious-RezeptAnsicht</title>
 
     <link href="../css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
@@ -21,14 +21,13 @@ $sess = $_SESSION['userid'];
     <link href="../css/kommentare_css/kommentar.css" rel="stylesheet" type="text/css">
 
 
-
 </head>
 <body>
 <div id="website">
 
     <?php include("navigation.php");
 
-    if(isset($_GET['comment'])) {
+    if (isset($_GET['comment'])) {
         $rid = $_POST['rid'];
         $message = $_POST['message'];
 
@@ -38,7 +37,7 @@ $sess = $_SESSION['userid'];
 
     }
 
-    if(isset($_GET['delete'])) {
+    if (isset($_GET['delete'])) {
         $cid = $_POST['cid'];
 
         $sql = "DELETE FROM recipecomments WHERE cid = '$cid'";
@@ -46,8 +45,8 @@ $sess = $_SESSION['userid'];
         $update->execute();
     }
 
-    if(isset($_GET['id'])){
-        $rezeptID= $_GET['id'];
+    if (isset($_GET['id'])) {
+        $rezeptID = $_GET['id'];
     }
 
     $statement = $pdo->query("SELECT * FROM rezepte WHERE rid = '$rezeptID' ");
@@ -76,44 +75,45 @@ $sess = $_SESSION['userid'];
         <div id="top-buttons">
 
             <a href="javascript:history.back()"><button class="button">Zurück</button></a>';
-            if ($sess==$uid){
-            echo '<a href="rezeptBearbeiten.php?id='.$rezeptID.'"><button class="button">Bearbeiten</button></a>';
-            };
-        echo '</div>
+    if ($sess == $uid) {
+        echo '<a href="rezeptBearbeiten.php?id=' . $rezeptID . '"><button class="button">Bearbeiten</button></a>';
+    };
+    echo '</div>
 
         <div class="main-content">
         
         <div class="kategorien">';
 
-                    $kategorie = explode(";", $kategorienListe);
+    $kategorie = explode(";", $kategorienListe);
 
-    for($i=0;$i<count($kategorie);$i++){
-        if($kategorie[$i]=="fleisch"){
+    for ($i = 0; $i < count($kategorie); $i++) {
+        if ($kategorie[$i] == "fleisch") {
             echo '<div>Fleisch</div>';
-        }elseif($kategorie[$i]=="vegetarisch"){
+        } elseif ($kategorie[$i] == "vegetarisch") {
             echo '<div>Vegetarisch</div>';
-        }elseif($kategorie[$i]=="vegan"){
+        } elseif ($kategorie[$i] == "vegan") {
             echo '<div>Vegan</div>';
-        }};
+        }
+    };
 
 
-                echo '</div>
+    echo '</div>
 
             <div id="recipe-info">
                 <div class="recipe-title">
-                    <h1>'.$titel.'</h1>
-                    <a href="profil_ansicht.php?id='.$uid.'"><h5>von: '.$ersteller.'</h5></a>
+                    <h1>' . $titel . '</h1>
+                    <a href="profil_ansicht.php?id=' . $uid . '"><h5>von: ' . $ersteller . '</h5></a>
                 </div>
                 
                 
                 <div id="timestamp">
-                    <p>erstellt : '.$timestamp.'</p>
+                    <p>erstellt : ' . $timestamp . '</p>
                 </div>
             </div>
 
             <div class="recipe-preview">
                 <diV class="recipe-preview-image-container">
-                    <img alt="Rezept-Vorschaubild" id="rezept-vorschaubild" src='."".'> 
+                    <img alt="Rezept-Vorschaubild" id="rezept-vorschaubild" src=' . "" . '> 
                 </diV>
                 <div class="recipe-preview-description"></div>
             </div>
@@ -145,39 +145,39 @@ $sess = $_SESSION['userid'];
 
             </div>
 
-            <div id="dauer">Dauer: '.$dauer.'</div>
-            <div id="schwierigkeit">Schwierigkeit: '.$schwierigkeit.'</div><br/>
+            <div id="dauer">Dauer: ' . $dauer . '</div>
+            <div id="schwierigkeit">Schwierigkeit: ' . $schwierigkeit . '</div><br/>
 
         <div id="beschreibung">
         <h3>Beschreibung:</h3><br/>
-                '.nl2br($beschreibung).'
+                ' . nl2br($beschreibung) . '
             </div><br/>
 
 
         <div id="zutaten">
-            <h3>Zutaten für '.$personen.' Personen</h3>';
+            <h3>Zutaten für ' . $personen . ' Personen</h3>';
 
     echo '<div id="table">';
-        echo  '<table style="width:100%">';
+    echo '<table style="width:100%">';
 
-            for($i=0;$i<count($zutatenTable);$i++){
-            $zutatenSpalte = explode(":", $zutatenTable[$i]);
-            echo '<tr>';
-                echo     '<td>'.$zutatenSpalte[0].'</td>';
-                echo    '<td>'.$zutatenSpalte[1].'</td>';
-                echo '</tr>';
-            }
+    for ($i = 0; $i < count($zutatenTable); $i++) {
+        $zutatenSpalte = explode(":", $zutatenTable[$i]);
+        echo '<tr>';
+        echo '<td>' . $zutatenSpalte[0] . '</td>';
+        echo '<td>' . $zutatenSpalte[1] . '</td>';
+        echo '</tr>';
+    }
 
-            echo   '</table>';
-        echo '</div><br/>';
+    echo '</table>';
+    echo '</div><br/>';
 
 
-            echo   '<h3>Zubereitung:</h3><br/>
+    echo '<h3>Zubereitung:</h3><br/>
                      <div id="zubereitung">
-                         <p>'.nl2br($anleitung).'</p>
+                         <p>' . nl2br($anleitung) . '</p>
                      </div>
                     </div><br/>';
-        ?>
+    ?>
 
     <div id="comments">
 
@@ -186,12 +186,12 @@ $sess = $_SESSION['userid'];
 
         <?php
 
-        if($sess==true){
+        if ($sess == true) {
             echo '<div class="write-comment">';
 
-            echo '<form method="post" action="rezeptAnsicht.php?id='.$rezeptID.'&comment=1">';
-            echo  '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="600"></textarea>';
-            echo '<input type="hidden" name="rid" value="'.$rezeptID.'">';
+            echo '<form method="post" action="rezeptAnsicht.php?id=' . $rezeptID . '&comment=1">';
+            echo '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="600"></textarea>';
+            echo '<input type="hidden" name="rid" value="' . $rezeptID . '">';
             echo '<input type="submit" class="button" value="Kommentieren">';
             echo '</form>';
             echo '</div>';
@@ -199,14 +199,14 @@ $sess = $_SESSION['userid'];
         echo '<div class="comment-list">';
 
         $statement3 = $pdo->query("SELECT * FROM recipecomments WHERE rid = '$rezeptID' ORDER BY cid DESC");
-        while($comment = $statement3->fetch()) {
+        while ($comment = $statement3->fetch()) {
             $uid = $comment['uid'];
             $date = $comment['date'];
             $commentMessage = $comment['message'];
             $cid = $comment['cid'];
 
             $statement4 = $pdo->query("SELECT nickname FROM users WHERE id = '$uid'");
-            $nutzer= $statement4->fetch();
+            $nutzer = $statement4->fetch();
             $nutzerName = $nutzer['nickname'];
 
             echo '<div class="comment">';
@@ -216,14 +216,14 @@ $sess = $_SESSION['userid'];
             echo '</div>';
             echo '<div class="comment-body">';
             echo '<p>';
-            echo    nl2br($commentMessage);
+            echo nl2br($commentMessage);
             echo '</p>';
             echo '</div>';
 
-            if($sess==$uid) {
+            if ($sess == $uid) {
                 echo '<div class="delete-button">';
-                echo '<form action="?delete=1&id='.$rezeptID.'" method="post">';
-                echo '<input type="hidden" name="cid" value="'.$cid.'">';
+                echo '<form action="?delete=1&id=' . $rezeptID . '" method="post">';
+                echo '<input type="hidden" name="cid" value="' . $cid . '">';
                 echo '<button class="button" id="delete">Löschen</button>';
                 echo '</form>';
                 echo '</div>';
@@ -234,7 +234,7 @@ $sess = $_SESSION['userid'];
         }
 
         echo '<div id="bottom-buttons">';
-        echo     '<button class="button" id="show-more">Mehr anzeigen</button>';
+        echo '<button class="button" id="show-more">Mehr anzeigen</button>';
         echo '</div>';
         ?>
     </div>

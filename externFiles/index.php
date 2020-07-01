@@ -20,7 +20,7 @@ if($sess!=true){
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
     <link href="../css/index.css" rel="stylesheet" type="text/css">
-    <link href="../css/recipePreview.css" rel="stylesheet" type="text/css">
+    <link href="../css/rezept_css/rezeptPreview.css" rel="stylesheet" type="text/css">
 
 
 </head>
