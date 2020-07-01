@@ -37,7 +37,7 @@ if($nutzer==0){
 
         <div id="top-buttons">
 
-            <a href="profil_ansicht.php"><button class="button">Zurück</button></a>
+            <a href="profil_ansicht.php?id=<?php echo "$nutzer"?>"><button class="button">Zurück</button></a>
 
         </div>
 
