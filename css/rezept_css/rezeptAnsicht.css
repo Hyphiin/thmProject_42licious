@@ -145,7 +145,6 @@ p.sternebewertung > input:checked ~ label {
 
     color: #FFD700;
     text-shadow: 1px 1px #C06000, 2px 2px #904000, .1em .1em .2em rgba(0,0,0,.5);
-    animation: twinkle 3.5s steps(2, start) infinite;
 }
 
 p.sternebewertung:not(:checked) > label:hover,
