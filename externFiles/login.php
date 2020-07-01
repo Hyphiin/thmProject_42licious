@@ -68,7 +68,7 @@ if (isset($errorMessage)) {
                 Dein Passwort:<br>
                 <input type="password" size="40" maxlength="250" name="passwort"><br>
 
-                <input type="submit" value="Abschicken">
+                <input type="submit" class="button" value="Abschicken">
             </form>
         </div>
     </div>

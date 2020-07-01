@@ -112,7 +112,7 @@ if ($showFormular) {
                     Profil-Bild einfügen:<br>
                     <input type="file" accept="image/*" name="pic"/><br><br>
 
-                    <input type="submit" value="Abschicken">
+                    <input type="submit" class="button" value="Abschicken">
                 </form>
             </div>
         </div>
