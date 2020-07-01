@@ -62,10 +62,13 @@ $sess = $_SESSION['userid'];
 
         echo '<div id="top-buttons">';
 
-        echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
+        echo '<a href="blogUSER.php?nutzer='.$author.'"><button class="button">Zurück</button></a>';
 
         if ($sess==$author) {
-            echo '<a href="blogBearbeiten.php?id='.$blogID.'"><button class="button">Bearbeiten</button></a>';
+            echo '<form action="blogBearbeiten.php?bearbeiten" method="post">';
+            echo '<input type="hidden" name="id" value="'.$blogID.'">';
+            echo '<button type="submit" class="button">Bearbeiten</button>';
+            echo '</form>';
         }
         ?>
 
@@ -128,7 +131,7 @@ $sess = $_SESSION['userid'];
 
                 echo '<div class="comment">';
                 echo '<div class="comment-info">';
-                echo '<h3>' . $nutzerName . '</h3>';
+                echo '<a href="profil_ansicht.php?id='.$uid.'"><h3>' . $nutzerName . '</h3></a>';
                 echo '<p class="timestamp">' . $date . '</p>';
                 echo '</div>';
                 echo '<div class="comment-body">';

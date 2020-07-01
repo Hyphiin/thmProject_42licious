@@ -47,8 +47,8 @@ if ($sess == true) {
                 echo '<br><br>';
             }else {
 
-                if (isset($_GET['id'])) {
-                    $userID = $_GET['id'];
+                if (isset($_GET['bearbeiten'])) {
+                    $userID = $_POST['id'];
                 }
                 $statement = $pdo->query("SELECT * FROM users WHERE id = '$userID' ");
                 $user = $statement->fetch();
