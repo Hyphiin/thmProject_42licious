@@ -39,9 +39,9 @@ if($sess!=true){
             </div>
 
             <?php
-            include("vorschlagFuerDich.php");
-            include("vorschlagFuerDich.php");
-            include("vorschlagFuerDich.php");
+            include("topDerWoche.php");
+            include("topDerWoche2.php");
+            include("topDerWoche3.php");
             ?>
 
 
