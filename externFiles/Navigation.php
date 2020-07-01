@@ -50,13 +50,13 @@ $sess = $_SESSION['userid'];
         <div id="myDropdown" class="dropdown-content">
             <?php
             if(!isset($sess)) {
-                echo "<a href='login.php'>Login</a>";
-                echo "<a href='registrieren.php'>Register</a>";
+                echo "<a href='AccLogin.php'>Login</a>";
+                echo "<a href='AccRegistrieren.php'>Register</a>";
             }
             ?>
             <?php
             if(isset($sess)) {
-                echo "<a href='logout.php'>Logout</a>";
+                echo "<a href='AccLogout.php'>Logout</a>";
             }
             ?>
         </div>
@@ -64,9 +64,9 @@ $sess = $_SESSION['userid'];
 
     <ul class="content" id="b">
         <?php
-        echo '<li><a href="kochbuch.php?nutzer='.$sess.'">Kochbuch</a></li>';
-        echo '<li><a href="blogUSER.php?nutzer='.$sess.'">Blog</a></li>';
-        echo '<li><a href="profil_ansicht.php?id='.$sess.'">Profil</a></li>';
+        echo '<li><a href="Kochbuch.php?nutzer='.$sess.'">Kochbuch</a></li>';
+        echo '<li><a href="BlogUser.php?nutzer='.$sess.'">Blog</a></li>';
+        echo '<li><a href="ProfilAnsicht.php?id='.$sess.'">Profil</a></li>';
         ?>
     </ul>
 

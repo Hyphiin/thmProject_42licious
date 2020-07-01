@@ -25,7 +25,7 @@ $sess = $_SESSION['userid'];
 <body>
 <div id="website">
 
-    <?php include("navigation.php");
+    <?php include("Navigation.php");
 
     if (isset($_GET['comment'])) {
         $rid = $_POST['rid'];
@@ -76,7 +76,7 @@ $sess = $_SESSION['userid'];
 
             <a href="javascript:history.back()"><button class="button">Zurück</button></a>';
     if ($sess == $uid) {
-        echo '<form action="rezeptBearbeiten.php?bearbeiten" method="post">';
+        echo '<form action="RezeptBearbeiten.php?bearbeiten" method="post">';
         echo '<input type="hidden" name="id" value="'.$rezeptID.'">';
         echo '<button type="submit" class="button">Bearbeiten</button>';
         echo '</form>';
@@ -213,7 +213,7 @@ $sess = $_SESSION['userid'];
         if ($sess == true) {
             echo '<div class="write-comment">';
 
-            echo '<form method="post" action="rezeptAnsicht.php?id=' . $rezeptID . '&comment=1">';
+            echo '<form method="post" action="RezeptAnsicht.php?id=' . $rezeptID . '&comment=1">';
             echo '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="600"></textarea>';
             echo '<input type="hidden" name="rid" value="' . $rezeptID . '">';
             echo '<input type="submit" class="button" value="Kommentieren">';

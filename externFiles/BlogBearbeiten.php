@@ -25,7 +25,7 @@ if ($sess == true) {
 
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
         <div class="blog-main">
@@ -42,7 +42,7 @@ if ($sess == true) {
                 $update->execute();
                 echo 'Bearbeitung erfolgreich!';
                 echo '<br><br>';
-                echo '<a href="blogAnsicht.php?id='.$ID.'"><button class="button" id="back">Zurück zum Blog</button></a>';
+                echo '<a href="BlogAnsicht.php?id='.$ID.'"><button class="button" id="back">Zurück zum Blog</button></a>';
                 echo '<br><br>';
             }elseif(isset($_GET['delete'])) {
                 $blogID = $_POST['blogID'];
@@ -89,7 +89,7 @@ if ($sess == true) {
                 echo '</form>';
                 echo '</div>';
                 echo '<div>';
-                echo '<a href="blogAnsicht.php?id=' . $blogID . '"><button class="button" id="cancel">Abbrechen</button></a>';
+                echo '<a href="BlogAnsicht.php?id=' . $blogID . '"><button class="button" id="cancel">Abbrechen</button></a>';
                 echo '</div>';
 
                 echo '</div>';
@@ -108,9 +108,9 @@ if ($sess == true) {
     ;
 } else if($sess != true){
 
-    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+    echo"Bitte einloggen!". " ". '<a href="AccLogin.php">zum Login</a>';
     echo'<br>';
-    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+    echo"Noch kein Mitglied?". " ". '<a href="AccRegistrieren.php">Mitglied werden!</a>';
 
 }
 ?>

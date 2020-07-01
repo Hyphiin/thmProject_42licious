@@ -17,7 +17,7 @@ if (mysqli_connect_errno() == 0)
         while ($zeile = $ergebnis->fetch_object())
         {
 
-            echo '<a href="rezeptAnsicht.php">';
+            echo '<a href="RezeptAnsicht.php">';
             echo '<div class="recipe-preview-container">';
             echo '<div class="recipe-preview">';
             echo '<diV class="recipe-preview-image-container">';

@@ -15,7 +15,7 @@
 
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
     
     <div id="main">
 
@@ -71,7 +71,7 @@
         </div>
 
         <div id="bottom-buttons">
-            <a href="rezeptAnsicht.php"><button class="button" id="cancel">Abbrechen</button></a>
+            <a href="RezeptAnsicht.php"><button class="button" id="cancel">Abbrechen</button></a>
             <button type="submit" class="button" id="create">Speichern</button>
 
         </div>

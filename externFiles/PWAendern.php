@@ -46,10 +46,10 @@ if (isset($_GET['Speichern'])) {
         if ($user !== false && password_verify($aktuell, $user['passwort'])) {
             $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
             $statement = $pdo->query("UPDATE users SET passwort = '$passwort_hash' WHERE id = '$sess'");
-            die(include 'passwortErfolgreichGeändert.php');
+            die(include 'PWErfolgreichGeaendert.php');
         }
         else{
-            die(include 'passwortAendernFehler.php');
+            die(include 'PWAenderFehler.php');
         }
     }
 }
@@ -58,7 +58,7 @@ if ($showFormular) {
     ?>
     <div id="website">
 
-        <?php include("navigation.php"); ?>
+        <?php include("Navigation.php"); ?>
 
         <div id="main">
 

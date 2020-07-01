@@ -24,7 +24,7 @@ $sess = $_SESSION['userid'];
 <body>
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
 
@@ -113,7 +113,7 @@ $sess = $_SESSION['userid'];
                             $ergebnis = $db->query($sql);
                             if (is_object($ergebnis)) {
                                 while ($zeile = $ergebnis->fetch_object()) {
-                                    echo '<a href="profil_ansicht.php?id=' . $zeile->id . '">';
+                                    echo '<a href="ProfilAnsicht.php?id=' . $zeile->id . '">';
                                     echo '<div class="profil-preview">';
                                     echo '<div class="profil-preview-body">';
                                     echo '<div class="profil-preview-pic">';
@@ -146,7 +146,7 @@ $sess = $_SESSION['userid'];
                             $ergebnis = $db->query($sql);
                             if (is_object($ergebnis)) {
                                 while ($zeile = $ergebnis->fetch_object()) {
-                                    echo '<a href="rezeptAnsicht.php?id=' . $zeile->rid . '">';
+                                    echo '<a href="RezeptAnsicht.php?id=' . $zeile->rid . '">';
                                     echo '<div class="recipe-preview-container">';
                                     echo '<div class="recipe-preview">';
                                     echo '<div class="recipe-preview-pic">';

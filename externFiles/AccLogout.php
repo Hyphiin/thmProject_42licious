@@ -1,7 +1,7 @@
 <?php
 session_start();
     session_destroy();
-    die(include 'logoutAnzeige.php');
+    die(include 'AccLogoutAnzeige.php');
 
 ?>
 
