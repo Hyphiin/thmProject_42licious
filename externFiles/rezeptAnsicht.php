@@ -122,8 +122,8 @@ $sess = $_SESSION['userid'];
             </div>
 
             <div id="recipe-rating">
-
-                <div id="stars">
+    
+                <form id="stars" method="post" action="?id=' . $rezeptID . '">
                     <p class="sternebewertung">
                         <input type="radio" id="stern5" name="bewertung" value="5"><label for="stern5" title="5 Sterne">5 Sterne</label>
                         <input type="radio" id="stern4" name="bewertung" value="4"><label for="stern4" title="4 Sterne">4 Sterne</label>
@@ -131,11 +131,32 @@ $sess = $_SESSION['userid'];
                         <input type="radio" id="stern2" name="bewertung" value="2"><label for="stern2" title="2 Sterne">2 Sterne</label>
                         <input type="radio" id="stern1" name="bewertung" value="1"><label for="stern1" title="1 Stern">1 Stern</label>
                         <span id="Bewertung" title="Keine Bewertung">
-                        Bewertung:
+                        Bewertung: ';
+    $statementbewertung = $pdo->query("SELECT gesamtBewertung FROM rezepte WHERE rid = '$rezeptID'");
+    $bewertungsanzeige = $statementbewertung->fetch();
+    echo "$bewertungsanzeige[0] Sterne";
+    echo '
                         </span>
                     </p>
+                        <input type="submit" class="button" id="bewertenButton" value="Bewerten">
 
-                </div>
+                </form>';
+
+    if ($sess) {
+        if (isset($_POST['bewertung'])) {
+            $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
+            $bewertungscheck = $fetch->fetch();
+            $bewertung = $_POST['bewertung'];
+            if ($bewertungscheck[0] == 0) {
+                $statement5 = $pdo->prepare("INSERT INTO bewertung (rezeptID, BSterne, BNutzer) VALUES(:rezeptid, :bsterne, :bnutzer)");
+                $ergebnis = $statement5->execute(array('rezeptid' => $rezeptID, 'bsterne' => $bewertung, 'bnutzer' => $sess));
+            } elseif ($bewertungscheck[0] != 0) {
+                $statement6 = $pdo->query("UPDATE bewertung SET BSterne = '$bewertung' WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
+            }
+        }
+    }
+
+    echo '
 
                 <div id="like">
                     <p class="merken">

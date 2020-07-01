@@ -103,16 +103,28 @@ p {
     background-color: #f3f3f3;
 }
 
-
+#recipe-rating{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
 /* Sternebewertung */
- span#Bewertung label {
+ span#Bewertung {
      line-height: 45px;
      cursor: Pointer;
  }
 
-span#Bewertung input[type="radio"] {
-    /*display: None;*/
+
+form {
+  display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+#bewertenButton{
+    margin-top: 30px;
+    height: 30px;
 }
 
 p.sternebewertung {
@@ -165,14 +177,11 @@ p.sternebewertung > label:hover ~ input:checked ~ label {
 
 
 /* Merken */
-span#Merken label {
+span#Merken {
     line-height: 45px;
     cursor: Pointer;
 }
 
-span#Merken input[type="radio"] {
-    /*display: None;*/
-}
 
 p.merken {
     float: right;
