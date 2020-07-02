@@ -25,7 +25,7 @@ $sess = $_SESSION['userid'];
 <body>
 <div id="website">
 
-    <?php include("navigation.php");
+    <?php include("Navigation.php");
 
     if (isset($_GET['comment'])) {
         $rid = $_POST['rid'];
@@ -123,7 +123,7 @@ $sess = $_SESSION['userid'];
             <div id="recipe-info">
                 <div class="recipe-title">
                     <h1>' . $titel . '</h1>
-                    <a href="profil_ansicht.php?id=' . $uid . '"><h5>von: ' . $ersteller . '</h5></a>
+                    <a href="ProfilAnsicht.php?id=' . $uid . '"><h5>von: ' . $ersteller . '</h5></a>
                 </div>
                 
                 

@@ -62,7 +62,7 @@ if (isset($_GET['register'])) {
         $result = $statement->execute(array('vorname' => $vorname, 'nachname' => $nachname, 'email' => $email, 'nickname' => $nickname, 'passwort' => $passwort_hash, 'pic' => $pic));
 
         if ($result) {
-            die(include "registriertAnzeige.php");
+            die(include "AccRegistriertAnzeige.php");
             $showFormular = false;
         } else {
             echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
@@ -74,7 +74,7 @@ if ($showFormular) {
     ?>
     <div id="website">
 
-        <?php include("navigation.php"); ?>
+        <?php include("Navigation.php"); ?>
 
         <div id="main">
 

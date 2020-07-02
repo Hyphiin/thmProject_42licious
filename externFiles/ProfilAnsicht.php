@@ -11,7 +11,7 @@ if(isset($_GET['id'])){
 }
 if($nutzerID==0){
 
-    include("nosess.php");
+    include("AccNoSess.php");
 
 }else{
 ?>
@@ -32,7 +32,7 @@ if($nutzerID==0){
 <body>
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div class="main">
     <div id="main-content">
@@ -54,7 +54,7 @@ if($nutzerID==0){
          echo    '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
 
          if ($profilID==$sess) {
-             echo '<form action="p_editieren.php?bearbeiten" method="post">';
+             echo '<form action="ProfilBearbeiten.php?bearbeiten" method="post">';
              echo '<input type="hidden" name="id" value="'.$profilID.'">';
              echo '<button type="submit" class="button">Bearbeiten</button>';
              echo '</form>';
@@ -73,8 +73,8 @@ if($nutzerID==0){
                     echo '<div id="BildUndButtons">';
                         echo '<img alt="Profil-Bild" id="profil_pic" src='."$pic".'>';
                         echo '<div id="linksbuttons">';
-                            echo '<a href="profil_rezept.php?nutzer='.$nutzerID.'"><button id="user_rezept" class="button">Rezepte</button></a>';
-                            echo '<a href="blogUSER.php?nutzer='.$nutzerID.'"><button id="user_blog" class="button">Blog</button></a>';
+                            echo '<a href="ProfilRezept.php?nutzer='.$nutzerID.'"><button id="user_rezept" class="button">Rezepte</button></a>';
+                            echo '<a href="BlogUser.php?nutzer='.$nutzerID.'"><button id="user_blog" class="button">Blog</button></a>';
                         echo '</div>';
                     echo '</div>';
                     echo '<div id="details">';
@@ -102,7 +102,7 @@ if($nutzerID==0){
             $schwierigkeit = $rezept['schwierigkeit'];
             $beschreibung = $rezept['beschreibung'];
 
-            echo '<a href="rezeptAnsicht.php?id='.$rezeptID.'">';
+            echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
             echo '<div class="recipe-preview-container">';
             echo '<div class="recipe-preview">';
             echo '<div class="recipe-preview-pic">';
@@ -146,7 +146,7 @@ if($nutzerID==0){
         $timestamp = $blog['rdate'];
         $entry = $blog['inhalt'];
 
-        echo '<a href="blogAnsicht.php?id='.$blogID.'">';
+        echo '<a href="BlogAnsicht.php?id='.$blogID.'">';
         echo '<div class="blog-preview">';
         echo '<div class="blog-preview-head">';
         echo '<h4 class="blog-preview-title">' . $title . '</h4>';

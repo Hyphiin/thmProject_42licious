@@ -25,7 +25,7 @@ if ($sess == true) {
     <body>
     <div id="website">
 
-        <?php include("navigation.php"); ?>
+        <?php include("Navigation.php"); ?>
 
         <div id="main">
             <div class="profil-edit-main">
@@ -43,7 +43,7 @@ if ($sess == true) {
                 $update->execute();
                 echo 'Bearbeitung erfolgreich!';
                 echo '<br><br>';
-                echo '<a href="profil_Ansicht.php?id='.$sess.'"><button class="button" id="back">Zurück zum Profil</button></a>';
+                echo '<a href="ProfilAnsicht.php?id='.$sess.'"><button class="button" id="back">Zurück zum Profil</button></a>';
                 echo '<br><br>';
             }else {
 
@@ -73,8 +73,8 @@ if ($sess == true) {
                 echo '<input type="file" accept="image/*" name="pic"/><br><br>';
 
                 echo '<input type="submit" value="Bearbeiten" class="button">';
-                echo '<a href="profil_ansicht.php?id='.$sess.'"><button type="button" class="button">Abbrechen</button></a>';
-                echo '<a href="pwAendern.php"><button type="button" class="button">Passwort Ändern</button></a>';
+                echo '<a href="ProfilAnsicht.php?id='.$sess.'"><button type="button" class="button">Abbrechen</button></a>';
+                echo '<a href="PWAendern.php"><button type="button" class="button">Passwort Ändern</button></a>';
                 echo '<a href="AccLoeschen.php"><button type="button" class="button" id="accloeschenbutton">Account löschen</button></a>';
 
                 echo '</form>';
@@ -99,9 +99,9 @@ if ($sess == true) {
 
         echo'<div id="main">';
             echo'<div id="main-content">';
-                    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+                    echo"Bitte einloggen!". " ". '<a href="AccLogin.php">zum Login</a>';
                     echo'<br>';
-                    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+                    echo"Noch kein Mitglied?". " ". '<a href="AccRegistrieren.php">Mitglied werden!</a>';
             echo'</div>';
         echo'</div>';
     echo'</div>';

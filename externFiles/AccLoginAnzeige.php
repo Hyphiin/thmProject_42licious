@@ -7,19 +7,18 @@
     <title>NoSess</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
-    <link href="../css/main.css" rel="stylesheet" type="text/css">
     <link href="../css/nosess.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="website">
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
         <div id="main-content">
             <?php
-            echo 'Logout erfolgreich!';
+            echo 'Login erfolgreich!';
             echo '<br><br>';
-            echo '<a href="index.php"><button class="button" id="back">Startseite</button></a>';
+            echo '<a href="index.php"><button class="button" id="back">Weiter zur Startseite</button></a>';
             echo '<br><br>';
             ?>
         </div>

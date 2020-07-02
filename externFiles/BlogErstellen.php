@@ -27,7 +27,7 @@ if ($sess == true) {
 
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
         <div class="blog-main">
@@ -43,7 +43,7 @@ if ($sess == true) {
                 $result = $statement->execute(array('Nutzer' => $sess, 'titel' => $titel, 'inhalt' => $inhalt));
                 echo 'Blogeintrag erstellt!';
                 echo '<br><br>';
-                echo '<a href="blogUSER.php?nutzer='.$sess.'"><button class="button" id="back">Zurück zum Blog</button></a>';
+                echo '<a href="BlogUser.php?nutzer='.$sess.'"><button class="button" id="back">Zurück zum Blog</button></a>';
                 echo '<br><br>';
             }else{
 ?>
@@ -65,7 +65,7 @@ if ($sess == true) {
             if (isset($_GET['id'])){
                 $nutzer = $_GET['id'];
             }
-            echo '<a href="blogUSER.php?nutzer='.$nutzer.'"><button class="button" id="cancel">Abbrechen</button></a>';
+            echo '<a href="BlogUser.php?nutzer='.$nutzer.'"><button class="button" id="cancel">Abbrechen</button></a>';
             ?>
         </div>
         </div>
@@ -82,9 +82,9 @@ if ($sess == true) {
     ;
 } else if($sess != true){
 
-    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+    echo"Bitte einloggen!". " ". '<a href="AccLogin.php">zum Login</a>';
     echo'<br>';
-    echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
+    echo"Noch kein Mitglied?". " ". '<a href="AccRegistrieren.php">Mitglied werden!</a>';
 
 }
 ?>

@@ -11,7 +11,7 @@ if(isset($_GET['nutzer'])){
 }
 if($nutzer==0){
 
-    include("nosess.php");
+    include("AccNoSess.php");
 
 }else{
 ?>
@@ -32,7 +32,7 @@ if($nutzer==0){
 
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
         <div class="main-content">
@@ -51,14 +51,14 @@ if($nutzer==0){
             $authorID = $blogAuthor['id'];
             $authorName = $blogAuthor['nickname'];
             echo '<div id="head-title">';
-            echo    '<h1>Blog von '.$authorName.'</h1>';
+            echo    '<h1>Blog von <a href="ProfilAnsicht.php?id='.$authorID.'">'.$authorName.'</a></h1>';
             echo '</div>';
 
 
             echo '<div id="top-buttons">';
 
             if ($sess==$authorID) {
-             echo '<a href="blogErstellen.php?id='.$nutzer.'"><button class="button" id="b-create-blog">Blogeintrag erstellen</button></a>';
+             echo '<a href="BlogErstellen.php?id='.$nutzer.'"><button class="button" id="b-create-blog">Blogeintrag erstellen</button></a>';
                 }
 
             if (isset($_GET['order'])){
@@ -70,8 +70,8 @@ if($nutzer==0){
             echo         '<div>';
             echo           '<label for="filter">Sortieren nach:</label>';
             echo          '<select id="filter" name="filter" onchange="location = this.value">';
-            echo              '<option value="blogUSER.php?nutzer='.$nutzer.'">Neuste</option>';
-            echo              '<option value="blogUSER.php?nutzer='.$nutzer.'&order=titel" '.$selected.'>Titel</option>';
+            echo              '<option value="BlogUser.php?nutzer='.$nutzer.'">Neuste</option>';
+            echo              '<option value="BlogUser.php?nutzer='.$nutzer.'&order=titel" '.$selected.'>Titel</option>';
             echo          '</select>';
             echo       '</div>';
 
@@ -94,7 +94,7 @@ if($nutzer==0){
                     $timestamp = $blog['rdate'];
                     $entry = $blog['inhalt'];
 
-                    echo '<a href="blogAnsicht.php?id='.$blogID.'">';
+                    echo '<a href="BlogAnsicht.php?id='.$blogID.'">';
                     echo '<div class="blog-preview">';
                     echo '<div class="blog-preview-head">';
                     echo '<h2 class="blog-preview-title">' . $title . '</h2>';

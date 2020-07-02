@@ -16,12 +16,11 @@ if ($sess == true){
 
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
-    <link href="../css/main.css" rel="stylesheet" type="text/css">
     <link href="../css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="website">
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
         <div id="main-content">
@@ -56,7 +55,7 @@ if ($sess == true){
     }
     }
     else {
-        include("nosess.php");
+        include("AccNoSess.php");
     }
 
     ?>

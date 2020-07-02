@@ -11,7 +11,7 @@ if(isset($_GET['nutzer'])){
 }
 if($nutzer==0){
 
-    include("nosess.php");
+    include("AccNoSess.php");
 
 }else{
 ?>
@@ -32,7 +32,7 @@ if($nutzer==0){
 <body>
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
 
@@ -54,7 +54,7 @@ if($nutzer==0){
                 $selected = '';
             }
 
-            echo     '<a href="rezeptErstellen.php"><button class="button">Rezept erstellen</button></a>';
+            echo '<a href="RezeptErstellen.php"><button class="button">Rezept erstellen</button></a>';
             echo     '<label id="sortieren">Sortieren nach:';
             echo          '<select id="filter" name="filter" onchange="location = this.value">';
             echo              '<option value="kochbuch.php?nutzer='.$nutzer.'">Neuste</option>';
@@ -85,7 +85,7 @@ if($nutzer==0){
                         $schwierigkeit = $rezept['schwierigkeit'];
                         $beschreibung = $rezept['beschreibung'];
 
-                        echo '<a href="rezeptAnsicht.php?id='.$rezeptID.'">';
+                        echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
                         echo '<div class="recipe-preview-container">';
                         echo '<div class="recipe-preview">';
                         echo '<div class="recipe-preview-pic">';

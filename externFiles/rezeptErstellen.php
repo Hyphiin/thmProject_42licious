@@ -24,7 +24,7 @@ if ($sess == true) {
 
 <div id="website">
 
-    <?php include("navigation.php");
+    <?php include("Navigation.php");
 
     echo '<div id="main">';
 
@@ -136,9 +136,7 @@ if ($sess == true) {
 
                 <div class="bottom-buttons">
                     <button type="submit" class="button" id="create" type="submit">Erstellen</button>
-                    <a href="kochbuch.php">
-                        <button type="button" class="button" id="cancel">Abbrechen</button>
-                    </a>
+                    <a href="Kochbuch.php"><button type="button" class="button" id="cancel">Abbrechen</button></a>
                 </div>
 
 
@@ -182,9 +180,9 @@ if ($sess == true) {
     }
 } else if ($sess != true) {
 
-    echo "Bitte einloggen!" . " " . '<a href="login.php">zum Login</a>';
-    echo '<br>';
-    echo "Noch kein Mitglied?" . " " . '<a href="registrieren.php">Mitglied werden!</a>';
+    echo"Bitte einloggen!". " ". '<a href="AccLogin.php">zum Login</a>';
+    echo'<br>';
+    echo"Noch kein Mitglied?". " ". '<a href="AccRegistrieren.php">Mitglied werden!</a>';
 
 }
 ?>
