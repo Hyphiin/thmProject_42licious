@@ -117,7 +117,7 @@ $sess = $_SESSION['userid'];
                                     echo '<div class="profil-preview">';
                                     echo '<div class="profil-preview-body">';
                                     echo '<div class="profil-preview-pic">';
-                                    echo '<img alt="Profil-Bild" id="profil_bild" src=' . "$zeile->pic" . '>';
+                                    echo "<img alt='Profil-Bild' id='profil_bild' src='../images/$zeile->pic'>";
                                     echo '</div>';
                                     echo '<div class="profil-preview-info">';
                                     echo '<p>Name: ' . $zeile->vorname . " " . substr($zeile->nachname, 0, 1) . "." . '</p>';
