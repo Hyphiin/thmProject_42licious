@@ -75,6 +75,17 @@ if ($sess == true) {
                 echo '<br><br>';
                 echo '<a href="RezeptAnsicht.php?id='.$rid.'"><button class="button" id="back">Zurück zum Rezept</button></a>';
                 echo '<br><br>';
+            }elseif(isset($_GET['delete'])) {
+                $rezeptID = $_POST['rezeptID'];
+
+                $statement1 = $pdo->query("DELETE FROM recipecomments WHERE rid= '$rezeptID'");
+                $statement2 = $pdo->query("DELETE FROM bewertung WHERE rezeptID= '$rezeptID'");
+                $statement3 = $pdo->query("DELETE FROM rezepte WHERE rid= '$rezeptID'");
+                echo '<br>';
+                echo 'Löschen erfolgreich!';
+                echo '<br><br>';
+                echo '<a href="Kochbuch.php?nutzer='.$sess.'"><button class="button" id="back">Zurück zum Kochbuch</button></a>';
+                echo '<br><br>';
             }else{
             if (isset($_GET['bearbeiten'])) {
                 $rezeptID = $_POST['id'];
@@ -113,7 +124,7 @@ if ($sess == true) {
 
 
                 echo '<label for="dauer">Dauer:</label>
-                <input name="dauer" class="personen" type="number" size="4" value="'.$dauer.'" > Minuten<br/>
+                <input name="dauer" class="personen" type="number" min="5" max="600" size="4" value="'.$dauer.'" > Minuten<br/>
                 <br/>';
 
 
@@ -160,7 +171,7 @@ if ($sess == true) {
                 <label for="beschreibung">Beschreibung:</label><br/>
                 <textarea class="beschreibung" name="beschreibung" maxlength="500">' . $beschreibung . '</textarea><br/><br/>
 
-                Zutaten für <input class="personen" type="number" name="personen" value="' . $personen . '"> Personen:
+                Zutaten für <input class="personen" type="number" min="1" max="30" maxlength="3" name="personen" value="' . $personen . '"> Personen:
                 <table id="zutatenTable">';
                 for ($i = 0; $i < (count($zutatenTable)-1); $i++) {
                     $zutatenSpalte = explode(":", $zutatenTable[$i]);
@@ -180,18 +191,25 @@ if ($sess == true) {
 
                 <label for="zubereitung">Zubereitung:</label><br/>
                 <textarea class="zubereitung" name="anleitung" >' . $anleitung . '</textarea><br/>
-                </br>';
-                echo '<input type="hidden" name="rid" value="' . $rezeptID . '">';
+                </br>
+                <input type="hidden" name="rid" value="' . $rezeptID . '">
+                </form>';
 
-                echo '<div class="bottom-buttons">
-                    <button type="submit" class="button" id="create" type="submit">Bearbeiten</button>
-                    <a href="RezeptAnsicht.php?id='.$rezeptID.'">
-                        <button type="button" class="button" id="cancel">Abbrechen</button>
-                    </a>
-                </div>
+                echo '<div id="bottom-buttons">
+                        <div class="bottom-buttons-left">
+                            <button type="submit" form="recipe-bearbeiten" class="button" id="create" type="submit">Bearbeiten</button>
+                            <a href="RezeptAnsicht.php?id='.$rezeptID.'"><button type="button" class="button" id="cancel">Abbrechen</button></a>
+                        </div>   
+                        <div id="bottom-buttons-right">
+                            <form action="?delete" method="post">
+                                <input type="hidden" name="rezeptID" value="'.$rezeptID.'">   
+                                <button class="button" id="delete">Rezept löschen</button>
+                            </form>
+                        </div> 
+                      </div>';
 
 
-            </form>';
+
                 }
                 ?>
                 <br/>

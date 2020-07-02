@@ -89,7 +89,7 @@ if ($sess == true) {
                 <input type="file" accept="image/*" name="pic"/><br><br>
 
                 <label for="dauer">Dauer:</label>
-                <input name="dauer" class="personen" type="number" size="4"> Minuten<br/>
+                <input name="dauer" class="personen" type="number" min="5" maxlength="3" max="600" size="4"> Minuten<br/>
                 <br/>
 
                 <label for="schwierigkeit">Schwierigkeit:</label>
@@ -117,7 +117,7 @@ if ($sess == true) {
                 <textarea class="beschreibung" name="beschreibung" maxlength="500"
                           placeholder="Beschreibung eingeben..."></textarea><br/><br/>
 
-                Zutaten für <input class="personen" type="number" name="personen"> Personen:
+                Zutaten für <input class="personen" type="number" min="1" max="30" name="personen"> Personen:
                 <table id="zutatenTable">
                     <tr>
                         <td><input type="text" name="menge0" id="menge" size="40" placeholder="Menge eingeben..."></td>

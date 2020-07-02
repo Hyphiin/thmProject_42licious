@@ -50,6 +50,9 @@ if ($sess == true) {
                 $sql = "DELETE FROM blog WHERE id = '$blogID'";
                 $update = $pdo->prepare($sql);
                 $update->execute();
+                $sql2 = "DELETE FROM blogcomments WHERE bid = '$blogID'";
+                $update2 = $pdo->prepare($sql2);
+                $update2->execute();
                 echo 'Löschen erfolgreich!';
                 echo '<br><br>';
                 echo '<a href="BlogUser.php?nutzer='.$sess.'"><button class="button" id="back">Zurück zum Blog</button></a>';
