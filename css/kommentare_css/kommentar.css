@@ -3,6 +3,8 @@ textarea {
     width: 98%;
     height: 100px;
     resize: none;
+    border-color: #4D2F25;
+    border-width: 2px;
 }
 
 .timestamp {
@@ -16,7 +18,9 @@ textarea {
 .comment {
     margin: 5px 0;
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
+    background-color: #FFFFFF;
+    border-color: #4D2F25;
 }
 
 

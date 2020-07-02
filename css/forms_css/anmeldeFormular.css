@@ -7,6 +7,8 @@
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: center;
+    border-color: #ABD1C7;
+    background-color: #F3F7F6;
 }
 
 #top-buttons{
@@ -15,6 +17,10 @@
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-between;
+}
+
+form input.button{
+    margin-top: 20px;
 }
 
 #main-content{

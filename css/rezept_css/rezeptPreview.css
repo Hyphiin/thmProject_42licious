@@ -2,16 +2,28 @@
     display: none;
 }
 
+
 .recipe-preview{
     margin: 10px;
     border-style: solid;
     border-width: 1px;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     cursor: pointer;
     width: 96%;
+    border-width: 2px;
+    background-color: #FFFFFF;
+    border-color: #ABD1C7;
+}
 
+.recipe-preview:hover{
+    border-color: #4D2F25;
+}
+
+.recipe-preview:hover .kategorien div{
+    background-color: #4D2F25;
 }
 
 .recipe-preview-pic {
@@ -39,7 +51,7 @@
 }
 
 .kategorien div {
-    background-color: #2C997C;
+    background-color: #99695A;
     border: none;
     color: white;
     padding: 8px 16px;

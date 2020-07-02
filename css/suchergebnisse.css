@@ -15,7 +15,9 @@
 
 #kochbuchheader{
     text-align: center;
-    border: solid black 1px;
+    border-color: #4D2F25;
+    background-color: #99695A;
+    color: #FFFFFF;
 }
 
 #bottom-buttons{

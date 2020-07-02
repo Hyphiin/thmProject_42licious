@@ -3,8 +3,8 @@
     margin: 10px;
     width: 45%;
     height: auto;
-    border: 3px solid #4D2F25;
-
+    border: 3px solid #ABD1C7;
+    background-color: #F3F7F6;
 }
  .index-title{
      display: flex;
