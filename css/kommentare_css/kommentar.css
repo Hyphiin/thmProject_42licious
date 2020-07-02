@@ -42,3 +42,12 @@ textarea {
     margin: 5px;
 }
 
+#comment-area {
+    display: flex;
+    flex-direction: column;
+}
+
+#comment {
+    width: 20%;
+}
+

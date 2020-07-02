@@ -49,6 +49,8 @@ $sess = $_SESSION['userid'];
         $rezeptID = $_GET['id'];
     }
 
+
+
     $statement = $pdo->query("SELECT * FROM rezepte WHERE rid = '$rezeptID' ");
     $rezept = $statement->fetch();
 
@@ -70,6 +72,22 @@ $sess = $_SESSION['userid'];
 
     $zutatenTable = explode(";", $zutatenListe);
 
+    if ($sess) {
+        if (isset($_POST['bewertung'])) {
+            if ($sess != $uid) {
+                $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
+                $bewertungscheck = $fetch->fetch();
+                $bewertung = $_POST['bewertung'];
+                if ($bewertungscheck[0] == 0) {
+                    $statement5 = $pdo->prepare("INSERT INTO bewertung (rezeptID, BSterne, BNutzer) VALUES(:rezeptid, :bsterne, :bnutzer)");
+                    $ergebnis = $statement5->execute(array('rezeptid' => $rezeptID, 'bsterne' => $bewertung, 'bnutzer' => $sess));
+                } elseif ($bewertungscheck[0] != 0) {
+                    $statement6 = $pdo->query("UPDATE bewertung SET BSterne = '$bewertung' WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
+                }
+            }
+        }
+    }
+
     echo '<div id="main">
 
         <div id="top-buttons">
@@ -77,7 +95,7 @@ $sess = $_SESSION['userid'];
             <a href="javascript:history.back()"><button class="button">Zurück</button></a>';
     if ($sess == $uid) {
         echo '<form action="rezeptBearbeiten.php?bearbeiten" method="post">';
-        echo '<input type="hidden" name="id" value="'.$rezeptID.'">';
+        echo '<input type="hidden" name="id" value="' . $rezeptID . '">';
         echo '<button type="submit" class="button">Bearbeiten</button>';
         echo '</form>';
     }
@@ -113,6 +131,7 @@ $sess = $_SESSION['userid'];
                     <p>erstellt : ' . $timestamp . '</p>
                 </div>
             </div>
+            <div id="recipe-body">
 
             <div class="recipe-preview">
                 <diV class="recipe-preview-image-container">
@@ -142,19 +161,6 @@ $sess = $_SESSION['userid'];
 
                 </form>';
 
-    if ($sess) {
-        if (isset($_POST['bewertung'])) {
-            $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
-            $bewertungscheck = $fetch->fetch();
-            $bewertung = $_POST['bewertung'];
-            if ($bewertungscheck[0] == 0) {
-                $statement5 = $pdo->prepare("INSERT INTO bewertung (rezeptID, BSterne, BNutzer) VALUES(:rezeptid, :bsterne, :bnutzer)");
-                $ergebnis = $statement5->execute(array('rezeptid' => $rezeptID, 'bsterne' => $bewertung, 'bnutzer' => $sess));
-            } elseif ($bewertungscheck[0] != 0) {
-                $statement6 = $pdo->query("UPDATE bewertung SET BSterne = '$bewertung' WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
-            }
-        }
-    }
 
     echo '
 
@@ -169,8 +175,8 @@ $sess = $_SESSION['userid'];
 
             </div>
 
-            <div id="dauer">Dauer: ' . $dauer . '</div>
-            <div id="schwierigkeit">Schwierigkeit: ' . $schwierigkeit . '</div><br/>
+            <div id="dauer"><h4>Dauer: </h4>' . $dauer . ' Minuten</div>
+            <div id="schwierigkeit"><h4>Schwierigkeit: </h4>' . $schwierigkeit . '</div><br/>
 
         <div id="beschreibung">
         <h3>Beschreibung:</h3><br/>
@@ -201,68 +207,66 @@ $sess = $_SESSION['userid'];
                          <p>' . nl2br($anleitung) . '</p>
                      </div>
                     </div><br/>';
-    ?>
 
-    <div id="comments">
+    echo '</div>';
+    echo '<div id="comments">';
 
-        <h3>Kommentare</h3>
+    echo '<h3>Kommentare</h3>';
 
 
-        <?php
+    if ($sess == true) {
+        echo '<div class="write-comment">';
 
-        if ($sess == true) {
-            echo '<div class="write-comment">';
+        echo '<form id="comment-area" method="post" action="rezeptAnsicht.php?id=' . $rezeptID . '&comment=1">';
+        echo '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="600"></textarea>';
+        echo '<input type="hidden" name="rid" value="' . $rezeptID . '">';
+        echo '<input id="comment" type="submit" class="button" value="Kommentieren">';
+        echo '</form>';
+        echo '</div>';
+    }
+    echo '<div class="comment-list">';
 
-            echo '<form method="post" action="rezeptAnsicht.php?id=' . $rezeptID . '&comment=1">';
-            echo '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="600"></textarea>';
-            echo '<input type="hidden" name="rid" value="' . $rezeptID . '">';
-            echo '<input type="submit" class="button" value="Kommentieren">';
+    $statement3 = $pdo->query("SELECT * FROM recipecomments WHERE rid = '$rezeptID' ORDER BY cid DESC");
+    while ($comment = $statement3->fetch()) {
+        $uid = $comment['uid'];
+        $date = $comment['date'];
+        $commentMessage = $comment['message'];
+        $cid = $comment['cid'];
+
+        $statement4 = $pdo->query("SELECT nickname FROM users WHERE id = '$uid'");
+        $nutzer = $statement4->fetch();
+        $nutzerName = $nutzer['nickname'];
+
+        echo '<div class="comment">';
+        echo '<div class="comment-info">';
+        echo '<a href="profil_ansicht.php?id=' . $uid . '"><h3>' . $nutzerName . '</h3></a>';
+        echo '<p class="timestamp">' . $date . '</p>';
+        echo '</div>';
+        echo '<div class="comment-body">';
+        echo '<p>';
+        echo nl2br($commentMessage);
+        echo '</p>';
+        echo '</div>';
+
+        if ($sess == $uid) {
+            echo '<div class="delete-button">';
+            echo '<form action="?delete=1&id=' . $rezeptID . '" method="post">';
+            echo '<input type="hidden" name="cid" value="' . $cid . '">';
+            echo '<button class="button" id="delete">Löschen</button>';
             echo '</form>';
             echo '</div>';
         }
-        echo '<div class="comment-list">';
-
-        $statement3 = $pdo->query("SELECT * FROM recipecomments WHERE rid = '$rezeptID' ORDER BY cid DESC");
-        while ($comment = $statement3->fetch()) {
-            $uid = $comment['uid'];
-            $date = $comment['date'];
-            $commentMessage = $comment['message'];
-            $cid = $comment['cid'];
-
-            $statement4 = $pdo->query("SELECT nickname FROM users WHERE id = '$uid'");
-            $nutzer = $statement4->fetch();
-            $nutzerName = $nutzer['nickname'];
-
-            echo '<div class="comment">';
-            echo '<div class="comment-info">';
-            echo '<a href="profil_ansicht.php?id='.$uid.'"><h3>' . $nutzerName . '</h3></a>';
-            echo '<p class="timestamp">' . $date . '</p>';
-            echo '</div>';
-            echo '<div class="comment-body">';
-            echo '<p>';
-            echo nl2br($commentMessage);
-            echo '</p>';
-            echo '</div>';
-
-            if ($sess == $uid) {
-                echo '<div class="delete-button">';
-                echo '<form action="?delete=1&id=' . $rezeptID . '" method="post">';
-                echo '<input type="hidden" name="cid" value="' . $cid . '">';
-                echo '<button class="button" id="delete">Löschen</button>';
-                echo '</form>';
-                echo '</div>';
-            }
-            echo '</div>';
-
-
-        }
-
-        echo '<div id="bottom-buttons">';
-        echo '<button class="button" id="show-more">Mehr anzeigen</button>';
         echo '</div>';
-        ?>
-    </div>
+
+
+    }
+
+    echo '<div id="bottom-buttons">';
+    echo '<button class="button" id="show-more">Mehr anzeigen</button>';
+    echo '</div>';
+    ?>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="../jscript/comments.js"></script>

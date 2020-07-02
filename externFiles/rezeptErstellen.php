@@ -70,7 +70,7 @@ if ($sess == true) {
 
     <div id="main">
 
-        <div id="create-recipe">
+        <div id="change-recipe">
             <h1>Rezept erstellen</h1>
 
             <form id="recipe-erstellen" action="?erstellen" method="post">
@@ -83,14 +83,7 @@ if ($sess == true) {
                 <input type="file" accept="image/*" name="pic"/><br><br>
 
                 <label for="dauer">Dauer:</label>
-                <select name="dauer" id="dauer">
-                    <option value="15 Min">15 Min</option>
-                    <option value="30 Min">30 Min</option>
-                    <option value="45 Min">45 Min</option>
-                    <option value="60 Min">60 Min</option>
-                    <option value="90 Min">90 Min</option>
-                    <option value="120 Min">120 Min</option>
-                </select><br/>
+                <input name="dauer" class="personen" type="number" size="4" > Minuten<br/>
                 <br/>
 
                 <label for="schwierigkeit">Schwierigkeit:</label>
