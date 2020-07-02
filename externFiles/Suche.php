@@ -42,10 +42,16 @@ $sess = $_SESSION['userid'];
                     $suchwort = $_GET["suchbegriff"];
 
                     if (isset($_GET['order'])) {
+                        if($_GET['order']=="created_at" || $_GET['order']=="cdate" ){
                         $selected = 'selected';
-                    } else {
+                        $selected2 = '';
+                    } elseif($_GET['order']=="bewertung") {
                         $selected = '';
-                    }
+                        $selected2 = 'selected';
+                    }else{
+                        $selected = '';
+                        $selected2 = '';
+                    }}
 
                     echo '<div id="head-title">';
                     echo '<h1>Suchergebnisse für "' . $suchwort . '"</h1>';
@@ -60,6 +66,7 @@ $sess = $_SESSION['userid'];
                         echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwort . '&order=created_at" ' . $selected . '>Erstellungsdatum</option>';
                     } elseif ($auswahl == 'rezepte') {
                         echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwort . '&order=cdate" ' . $selected . '>Neuste</option>';
+                        echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwort . '&order=bewertung" ' . $selected2 . '>Bewertung</option>';
                     }
                     echo '</select>';
                     echo '</div>';
@@ -137,7 +144,11 @@ $sess = $_SESSION['userid'];
                             echo '<div class="recipe-container">';
 
                             if (isset($_GET['order'])) {
-                                $order = $_GET['order'] . " DESC";
+                                if ($_GET['order']=="cdate") {
+                                    $order = $_GET['order'] . " DESC";
+                                }else{
+                                    $order = "gesamtBewertung DESC";
+                                }
                             } else {
                                 $order = 'titel';
                             }

@@ -48,17 +48,24 @@ if($nutzer==0){
 
         echo '<div id="top-buttons">';
 
-            if (isset($_GET['order'])){
-                $selected = 'selected';
-            }else{
-                $selected = '';
-            }
+            if (isset($_GET['order'])) {
+                if($_GET['order']=="cdate" ){
+                    $selected = 'selected';
+                    $selected2 = '';
+                } elseif($_GET['order']=="bewertung") {
+                    $selected = '';
+                    $selected2 = 'selected';
+                }else{
+                    $selected = '';
+                    $selected2 = '';
+                }}
 
             echo '<a href="RezeptErstellen.php"><button class="button">Rezept erstellen</button></a>';
             echo     '<label id="sortieren">Sortieren nach:';
             echo          '<select id="filter" name="filter" onchange="location = this.value">';
             echo              '<option value="Kochbuch.php?nutzer='.$nutzer.'">Neuste</option>';
             echo              '<option value="Kochbuch.php?nutzer='.$nutzer.'&order=titel" '.$selected.'>Name</option>';
+            echo              '<option value="Kochbuch.php?nutzer='.$nutzer.'&order=bewertung" '.$selected2.'>Bewertung</option>';
             echo          '</select>';
             echo '</label>';
             echo '</div>';
@@ -67,9 +74,13 @@ if($nutzer==0){
             echo '<div class="recipies">';
             echo '<div class="recipe-container">';
 
-            if(isset($_GET['order'])){
-                $order = $_GET['order'];
-            }else{
+            if (isset($_GET['order'])) {
+                if ($_GET['order']=="titel") {
+                    $order = $_GET['order'];
+                }else{
+                    $order = "gesamtBewertung DESC";
+                }
+            } else {
                 $order = 'cdate DESC';
             }
 

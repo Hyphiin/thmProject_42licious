@@ -6,10 +6,10 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 $sess = $_SESSION['userid'];
 
-if(isset($_GET['nutzer'])){
-    $nutzer= $_GET['nutzer'];
+if (isset($_GET['nutzer'])) {
+    $nutzer = $_GET['nutzer'];
 }
-if($nutzer==0){
+if ($nutzer == 0){
 
     include("AccNoSess.php");
 
@@ -37,7 +37,9 @@ if($nutzer==0){
 
         <div id="top-buttons">
 
-            <a href="javascript:history.back()"><button class="button">Zurück</button></a>
+            <a href="javascript:history.back()">
+                <button class="button">Zurück</button>
+            </a>
 
         </div>
 
@@ -50,36 +52,48 @@ if($nutzer==0){
             $authorName = $rezeptAuthor['nickname'];
 
             echo '<div id="profil_rezept-title">';
-            echo    '<h1>Rezepte von <a href="ProfilAnsicht.php?id='.$nutzer.'">'.$authorName.'</a></h1>';
+            echo '<h1>Rezepte von <a href="ProfilAnsicht.php?id=' . $nutzer . '">' . $authorName . '</a></h1>';
             echo '</div>';
 
-            if (isset($_GET['order'])){
-                $selected = 'selected';
-            }else{
-                $selected = '';
-            }
+            if (isset($_GET['order'])) {
+                    if ($_GET['order'] == "cdate") {
+                        $selected = 'selected';
+                        $selected2 = '';
+                    } elseif ($_GET['order'] == "bewertung") {
+                        $selected = '';
+                        $selected2 = 'selected';
+                    } else {
+                        $selected = '';
+                        $selected2 = '';
+                    }
+                }
 
-            echo '<div class="sortierung">';
-            echo '<label for="sortieren">Sortieren nach </label>';
-            echo          '<select id="filter" name="filter" onchange="location = this.value">';
-            echo              '<option value="ProfilRezept.php?nutzer='.$nutzer.'">Name</option>';
-            echo              '<option value="ProfilRezept.php?nutzer='.$nutzer.'&order=cdate" '.$selected.'>Neuste</option>';
-            echo          '</select>';
-            echo '</div>';
+                echo '<div class="sortierung">';
+                echo '<label for="sortieren">Sortieren nach </label>';
+                echo '<select id="filter" name="filter" onchange="location = this.value">';
+                echo '<option value="ProfilRezept.php?nutzer=' . $nutzer . '">Name</option>';
+                echo '<option value="ProfilRezept.php?nutzer=' . $nutzer . '&order=cdate" ' . $selected . '>Neuste</option>';
+                echo '<option value="ProfilRezept.php?nutzer=' . $nutzer . '&order=bewertung" ' . $selected2 . '>Bewertung</option>';
+                echo '</select>';
+                echo '</div>';
 
-            echo '<div class="recipies">';
-            echo '<div class="recipe-container">';
+                echo '<div class="recipies">';
+                echo '<div class="recipe-container">';
 
-            if(isset($_GET['order'])){
-                $order = $_GET['order']." DESC";
-            }else{
-                $order = 'titel';
-            }
+                if (isset($_GET['order'])) {
+                    if ($_GET['order'] == "cdate") {
+                        $order = $_GET['order'] . " DESC";
+                    } else {
+                        $order = "gesamtBewertung DESC";
+                    }
+                } else {
+                    $order = 'titel';
+                }
 
                 $statement2 = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzer' ORDER BY $order");
-                while($rezept = $statement2->fetch()) {
+                while ($rezept = $statement2->fetch()) {
 
-                    $rezeptID= $rezept['rid'];
+                    $rezeptID = $rezept['rid'];
                     $title = $rezept['titel'];
                     $timestamp = $rezept['cdate'];
                     $kategorienListe = $rezept['kategorien'];
@@ -87,15 +101,15 @@ if($nutzer==0){
                     $schwierigkeit = $rezept['schwierigkeit'];
                     $beschreibung = $rezept['beschreibung'];
                     $bewertung = $rezept['gesamtBewertung'];
-                    if($bewertung==0){
+                    if ($bewertung == 0) {
                         $bewertung = "Keine Bewertungen";
-                    }elseif($bewertung==1){
-                        $bewertung.=" Stern";
-                    }else{
-                        $bewertung.=" Sterne";
+                    } elseif ($bewertung == 1) {
+                        $bewertung .= " Stern";
+                    } else {
+                        $bewertung .= " Sterne";
                     }
 
-                    echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
+                    echo '<a href="RezeptAnsicht.php?id=' . $rezeptID . '">';
                     echo '<div class="recipe-preview-container">';
                     echo '<div class="recipe-preview">';
                     echo '<div class="recipe-preview-pic">';
@@ -105,39 +119,41 @@ if($nutzer==0){
                     echo '<div class="kategorien">';
                     $kategorie = explode(";", $kategorienListe);
 
-                    for($i=0;$i<count($kategorie);$i++){
-                        if($kategorie[$i]=="fleisch"){
+                    for ($i = 0; $i < count($kategorie); $i++) {
+                        if ($kategorie[$i] == "fleisch") {
                             echo '<div>Fleisch</div>';
-                        }elseif($kategorie[$i]=="vegetarisch"){
+                        } elseif ($kategorie[$i] == "vegetarisch") {
                             echo '<div>Vegetarisch</div>';
-                        }elseif($kategorie[$i]=="vegan"){
+                        } elseif ($kategorie[$i] == "vegan") {
                             echo '<div>Vegan</div>';
-                        }}
+                        }
+                    }
                     echo '</div>';
                     echo '<div class="titleTime">';
                     echo '<h2 class="recipe-preview-title">' . $title . '</h2>';
-                    echo '<p class="recipe-preview-timestamp">' . substr($timestamp,0,10) . '</p>';
+                    echo '<p class="recipe-preview-timestamp">' . substr($timestamp, 0, 10) . '</p>';
                     echo '</div>';
-                    echo 'Bewertung: '.$bewertung.'<br/>';
-                    echo 'Dauer: '.$dauer.' Minuten<br/>';
-                    echo 'Schwierigkeit: '.$schwierigkeit.'<br/><br/>';
-                    echo    nl2br($beschreibung);
+                    echo 'Bewertung: ' . $bewertung . '<br/>';
+                    echo 'Dauer: ' . $dauer . ' Minuten<br/>';
+                    echo 'Schwierigkeit: ' . $schwierigkeit . '<br/><br/>';
+                    echo nl2br($beschreibung);
                     echo '</div>';
 
                     echo '</div>';
                     echo '</div>';
                     echo '</a>';
                 }
-                }
-                ?>
-            </div>
-            </div>
-            <div id="bottom-buttons">
-                <button class="button" id="show-more">Mehr anzeigen</button>
-            </div>        </div>
+            }
+            ?>
+        </div>
+    </div>
+    <div id="bottom-buttons">
+        <button class="button" id="show-more">Mehr anzeigen</button>
     </div>
 </div>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="../jscript/recipePreview.js"></script>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="../jscript/recipePreview.js"></script>
 </body>
 </html>
