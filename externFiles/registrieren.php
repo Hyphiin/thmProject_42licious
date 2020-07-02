@@ -55,7 +55,7 @@ if (isset($_GET['register'])) {
         }
     }
 
-    if(isset($_FILES['pic'])){
+    if($_FILES['pic']['error']!=4){
         $errors= array();
         $file_name = $_FILES['pic']['name'];
         $file_size = $_FILES['pic']['size'];
@@ -81,6 +81,7 @@ if (isset($_GET['register'])) {
             move_uploaded_file($file_tmp,"../images/".$file_name);
         }else{
             print_r($errors);
+            $error = true;
         }
     }
     else{

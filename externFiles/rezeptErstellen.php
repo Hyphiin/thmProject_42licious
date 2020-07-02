@@ -63,7 +63,7 @@ if ($sess == true) {
 
         }
 
-        if(isset($_FILES['pic'])){
+        if($_FILES['pic']['error']!=4){
             $errors= array();
             $file_name = $_FILES['pic']['name'];
             $file_size = $_FILES['pic']['size'];
@@ -96,8 +96,9 @@ if ($sess == true) {
         }
 
 
-
-        $statement = $pdo->query("INSERT INTO rezepte (uid, titel, dauer, schwierigkeit, kategorien, beschreibung, personen, zutatenListe,  anleitung, pic) VALUES ('$sess', '$titel', '$dauer', '$schwierigkeit', '$kategorien', '$beschreibung', '$personen', '$zutatenListe', '$anleitung', '$file_name')");
+        if(empty($errors)) {
+            $statement = $pdo->query("INSERT INTO rezepte (uid, titel, dauer, schwierigkeit, kategorien, beschreibung, personen, zutatenListe,  anleitung, pic) VALUES ('$sess', '$titel', '$dauer', '$schwierigkeit', '$kategorien', '$beschreibung', '$personen', '$zutatenListe', '$anleitung', '$file_name')");
+        }
 
         echo '<br>';
         echo 'Rezept erstellt!';
