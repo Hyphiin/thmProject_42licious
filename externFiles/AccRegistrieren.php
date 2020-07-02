@@ -94,7 +94,7 @@ if (isset($_GET['register'])) {
         global $file_name;
         $statement = $pdo->query("INSERT INTO users (vorname, nachname, email, nickname, passwort, pic) VALUES ('$vorname', '$nachname', '$email', '$nickname', '$passwort_hash', '$file_name')");
         if (!empty($statement)) {
-            die(include "registriertAnzeige.php");
+            die(include "AccRegistriertAnzeige.php");
         } else {
             echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
         }
@@ -105,7 +105,7 @@ if ($showFormular) {
     ?>
     <div id="website">
 
-        <?php include("navigation.php"); ?>
+        <?php include("Navigation.php"); ?>
 
         <div id="main">
 

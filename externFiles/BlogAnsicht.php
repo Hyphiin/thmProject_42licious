@@ -24,7 +24,7 @@ $sess = $_SESSION['userid'];
 <body>
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
 <div id="main">
 
@@ -65,7 +65,7 @@ $sess = $_SESSION['userid'];
         echo '<a href="blogUSER.php?nutzer='.$author.'"><button class="button">Zurück</button></a>';
 
         if ($sess==$author) {
-            echo '<form action="blogBearbeiten.php?bearbeiten" method="post">';
+            echo '<form action="BlogBearbeiten.php?bearbeiten" method="post">';
             echo '<input type="hidden" name="id" value="'.$blogID.'">';
             echo '<button type="submit" class="button">Bearbeiten</button>';
             echo '</form>';
@@ -109,7 +109,7 @@ $sess = $_SESSION['userid'];
             if($sess==true){
             echo '<div class="write-comment">';
 
-        echo '<form method="post" action="blogAnsicht.php?comment=1&id='.$blogID.'">';
+        echo '<form method="post" action="BlogAnsicht.php?comment=1&id='.$blogID.'">';
             echo  '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="600"></textarea>';
              echo '<input type="hidden" name="bid" value="'.$blogID.'">';
             echo '<input type="submit" class="button" value="Kommentieren">';
@@ -131,7 +131,7 @@ $sess = $_SESSION['userid'];
 
                 echo '<div class="comment">';
                 echo '<div class="comment-info">';
-                echo '<a href="profil_ansicht.php?id='.$uid.'"><h3>' . $nutzerName . '</h3></a>';
+                echo '<a href="ProfilAnsicht.php?id='.$uid.'"><h3>' . $nutzerName . '</h3></a>';
                 echo '<p class="timestamp">' . $date . '</p>';
                 echo '</div>';
                 echo '<div class="comment-body">';

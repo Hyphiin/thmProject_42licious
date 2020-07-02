@@ -12,7 +12,7 @@
 </head>
 <body>
 <div id="website">
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
         <div id="main-content">

@@ -14,9 +14,9 @@ if (isset($_GET['login'])) {
     //Überprüfung des Passworts
     if ($user !== false && password_verify($passwort, $user['passwort'])) {
         $_SESSION['userid'] = $user['id'];
-        die(include 'loginAnzeige.php');
+        die(include 'AccLoginAnzeige.php');
     } else {
-        die(include 'loginFehlerAnzeige.php');
+        die(include 'AccLoginFehlerAnzeige.php');
     }
 
 }
@@ -43,7 +43,7 @@ if (isset($errorMessage)) {
 
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
 

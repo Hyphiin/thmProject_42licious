@@ -12,14 +12,12 @@
 </head>
 <body>
 <div id="website">
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
         <div id="main-content">
             <?php
-            echo 'Fehlerhafte Eingabe!';
-            echo '<br><br>';
-            echo '<a href="javascript:history.back()"><button class="button" id="back">Zurück</button></a>';
+            echo 'Passwort erfolgreich geändert!';
             echo '<br><br>';
             echo '<a href="index.php"><button class="button" id="back">Weiter zur Startseite</button></a>';
             echo '<br><br>';

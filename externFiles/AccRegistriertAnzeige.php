@@ -12,14 +12,14 @@
 </head>
 <body>
 <div id="website">
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
         <div id="main-content">
             <?php
             echo 'Du wurdest erfolgreich registriert!';
             echo '<br><br>';
-            echo '<a href="login.php"><button class="button" id="back">Weiter zum Login</button></a>';
+            echo '<a href="AccLogin.php"><button class="button" id="back">Weiter zum Login</button></a>';
             echo '<br><br>';
             ?>
         </div>

@@ -14,7 +14,7 @@
 <body>
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
 
@@ -42,18 +42,18 @@
             <div class="recipe-container">
 
                 <?php
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
-                include("rezeptPreview.php");
+                include("RezeptPreview.php");
+                include("RezeptPreview.php");
+                include("RezeptPreview.php");
+                include("RezeptPreview.php");
+                include("RezeptPreview.php");
+                include("RezeptPreview.php");
+                include("RezeptPreview.php");
+                include("RezeptPreview.php");
+                include("RezeptPreview.php");
+                include("RezeptPreview.php");
+                include("RezeptPreview.php");
+                include("RezeptPreview.php");
                 ?>
 
             </div>

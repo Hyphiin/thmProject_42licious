@@ -11,7 +11,7 @@ if(isset($_GET['nutzer'])){
 }
 if($nutzer==0){
 
-    include("nosess.php");
+    include("AccNoSess.php");
 
 }else{
 ?>
@@ -32,7 +32,7 @@ if($nutzer==0){
 <body>
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
 

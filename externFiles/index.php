@@ -29,7 +29,7 @@ if($sess!=true){
 
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div class="main">
 
@@ -39,9 +39,9 @@ if($sess!=true){
             </div>
 
             <?php
-            include("topDerWoche.php");
-            include("topDerWoche2.php");
-            include("topDerWoche3.php");
+            include("RezeptTopDerWoche.php");
+            include("RezeptTopDerWoche2.php");
+            include("RezeptTopDerWoche3.php");
             ?>
 
 
@@ -56,11 +56,11 @@ if($sess!=true){
             $check1 = 0;
             $check2 = 0;
             $rezeptID = 0;
-            include("vorschlagFuerDich.php");
+            include("RezeptVorschlaegeFuerDich.php");
             $check1 = $rezeptID;
-            include("vorschlagFuerDich.php");
+            include("RezeptVorschlaegeFuerDich.php");
             $check2 = $rezeptID;
-            include("vorschlagFuerDich.php");
+            include("RezeptVorschlaegeFuerDich.php");
             ?>
 
         </div>

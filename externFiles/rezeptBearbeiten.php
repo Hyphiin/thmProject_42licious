@@ -25,7 +25,7 @@ if ($sess == true) {
 
     <div id="website">
 
-        <?php include("navigation.php"); ?>
+        <?php include("Navigation.php"); ?>
 
         <div id="main">
 
@@ -233,9 +233,9 @@ if ($sess == true) {
     <?php
 } else if ($sess != true) {
 
-    echo "Bitte einloggen!" . " " . '<a href="login.php">zum Login</a>';
+    echo "Bitte einloggen!" . " " . '<a href="AccLogin.php">zum Login</a>';
     echo '<br>';
-    echo "Noch kein Mitglied?" . " " . '<a href="registrieren.php">Mitglied werden!</a>';
+    echo "Noch kein Mitglied?" . " " . '<a href="AccRegistrieren.php">Mitglied werden!</a>';
 
 }
 ?>

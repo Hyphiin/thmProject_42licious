@@ -135,7 +135,7 @@ if ($sess == true) {
 
         echo'<div id="main">';
             echo'<div id="main-content">';
-                    echo"Bitte einloggen!". " ". '<a href="login.php">zum Login</a>';
+                    echo"Bitte einloggen!". " ". '<a href="AccLogin.php">zum Login</a>';
                     echo'<br>';
                     echo"Noch kein Mitglied?". " ". '<a href="registrieren.php">Mitglied werden!</a>';
             echo'</div>';
