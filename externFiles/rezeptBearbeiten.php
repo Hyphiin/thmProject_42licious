@@ -70,6 +70,7 @@ if ($sess == true) {
                 $sql = "UPDATE rezepte SET titel = '$titel', pic = '$pic', dauer = '$dauer', schwierigkeit = '$schwierigkeit', kategorien = '$kategorien', beschreibung = '$beschreibung', personen = '$personen', zutatenListe = '$zutatenListe', anleitung = '$anleitung'  WHERE  rid = '$rid' ";
                 $update = $pdo->prepare($sql);
                 $update->execute();
+                echo '<br>';
                 echo 'Bearbeitung erfolgreich!';
                 echo '<br><br>';
                 echo '<a href="rezeptAnsicht.php?id='.$rid.'"><button class="button" id="back">Zurück zum Rezept</button></a>';
@@ -193,7 +194,7 @@ if ($sess == true) {
             </form>';
                 }
                 ?>
-                </br>
+                <br/>
 
 
             </div>
@@ -203,14 +204,14 @@ if ($sess == true) {
     </div>
 
     <script>
-        var counter = (document.getElementById("zutatenTable").rows.length) + 1;
+        let counter = (document.getElementById("zutatenTable").rows.length) + 1;
 
         function addRow() {
-            var table = document.getElementById("zutatenTable");
-            var row = table.insertRow(-1);
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
+            let table = document.getElementById("zutatenTable");
+            let row = table.insertRow(-1);
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            let cell3 = row.insertCell(2);
             cell1.innerHTML = '<input type="text" name="menge' + counter + '" id="menge" size="40" placeholder="Menge eingeben...">';
             cell2.innerHTML = '<input type="text" name="zutaten' + counter + '" id="zutaten" size="40" placeholder="Zutaten eingeben...">';
             cell3.innerHTML = "<button class=\"button\" type=\"button\" onclick=\"deleteRow(this)\">-</button>"
@@ -220,7 +221,7 @@ if ($sess == true) {
         }
 
         function deleteRow(row) {
-            var i = row.parentNode.parentNode.rowIndex;
+            let i = row.parentNode.parentNode.rowIndex;
             document.getElementById('zutatenTable').deleteRow(i);
         }
 
@@ -230,7 +231,6 @@ if ($sess == true) {
     </body>
     </html>
     <?php
-    ;
 } else if ($sess != true) {
 
     echo "Bitte einloggen!" . " " . '<a href="login.php">zum Login</a>';
