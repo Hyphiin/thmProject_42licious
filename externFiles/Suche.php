@@ -146,6 +146,14 @@ $sess = $_SESSION['userid'];
                             $ergebnis = $db->query($sql);
                             if (is_object($ergebnis)) {
                                 while ($zeile = $ergebnis->fetch_object()) {
+                                    $bewertung = $zeile->gesamtBewertung;
+                                    if($bewertung==0){
+                                        $bewertung = "Keine Bewertungen";
+                                    }elseif($bewertung==1){
+                                        $bewertung.=" Stern";
+                                    }else{
+                                        $bewertung.=" Sterne";
+                                    }
                                     echo '<a href="RezeptAnsicht.php?id=' . $zeile->rid . '">';
                                     echo '<div class="recipe-preview-container">';
                                     echo '<div class="recipe-preview">';
@@ -169,17 +177,18 @@ $sess = $_SESSION['userid'];
                                     echo '</div>';
                                     echo '<div class="titleTime">';
                                     echo '<h2 class="recipe-preview-title">' . $zeile->titel . '</h2>';
-                                    echo '<p class="recipe-preview-timestamp">' . $zeile->cdate . '</p>';
+                                    echo '<p class="recipe-preview-timestamp">' . substr($zeile->cdate,0,10) . '</p>';
                                     echo '</div>';
                                     $uid = $zeile->uid;
                                     $statement = $pdo->query("SELECT * FROM users WHERE id = '$uid'");
                                     $autor = $statement->fetch();
                                     $ersteller = $autor['nickname'];
                                     echo 'von: ' . $ersteller . '<br/><br/>';
+                                    echo 'Bewertung: '.$bewertung.'<br/>';
                                     echo 'Dauer: ' . $zeile->dauer . ' Minuten<br/>';
                                     echo 'Schwierigkeit: ' . $zeile->schwierigkeit . '<br/><br/>';
                                     echo nl2br($zeile->beschreibung);
-                                    echo '</p>';
+                                    echo '<br/><br/>';
                                     echo '</div>';
 
                                     echo '</div>';

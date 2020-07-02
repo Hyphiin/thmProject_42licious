@@ -84,6 +84,14 @@ if($nutzer==0){
                         $dauer = $rezept['dauer'];
                         $schwierigkeit = $rezept['schwierigkeit'];
                         $beschreibung = $rezept['beschreibung'];
+                        $bewertung = $rezept['gesamtBewertung'];
+                        if($bewertung==0){
+                            $bewertung = "Keine Bewertungen";
+                        }elseif($bewertung==1){
+                            $bewertung.=" Stern";
+                        }else{
+                            $bewertung.=" Sterne";
+                        }
 
                         echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
                         echo '<div class="recipe-preview-container">';
@@ -106,12 +114,13 @@ if($nutzer==0){
                         echo '</div>';
                         echo '<div class="titleTime">';
                         echo '<h2 class="recipe-preview-title">' . $title . '</h2>';
-                        echo '<p class="recipe-preview-timestamp">' . $timestamp . '</p>';
+                        echo '<p class="recipe-preview-timestamp">' . substr($timestamp,0,10) . '</p>';
                         echo '</div>';
+                        echo 'Bewertung: '.$bewertung.'<br/>';
                         echo 'Dauer: '.$dauer.' Minuten<br/>';
                         echo 'Schwierigkeit: '.$schwierigkeit.'<br/><br/>';
                         echo    nl2br($beschreibung);
-                        echo '</p>';
+                        echo '<br/><br/>';
                         echo '</div>';
 
                         echo '</div>';

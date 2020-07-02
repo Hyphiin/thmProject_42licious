@@ -65,6 +65,14 @@ $sess = $_SESSION['userid'];
     $personen = $rezept['personen'];
     $zutatenListe = $rezept['zutatenListe'];
     $anleitung = $rezept['anleitung'];
+    $bewertung = $rezept['gesamtBewertung'];
+    if($bewertung==0){
+        $bewertung = "Keine Bewertungen";
+    }elseif($bewertung==1){
+        $bewertung="Bewertung: ".$bewertung." Stern";
+    }else{
+        $bewertung="Bewertung: ".$bewertung." Sterne";
+    }
 
     $statement2 = $pdo->query("SELECT * FROM users WHERE id = '$uid' ");
     $autor = $statement2->fetch();
@@ -155,10 +163,8 @@ $sess = $_SESSION['userid'];
                         <input type="radio" id="stern2" name="bewertung" value="2"><label for="stern2" title="2 Sterne">2 Sterne</label>
                         <input type="radio" id="stern1" name="bewertung" value="1"><label for="stern1" title="1 Stern">1 Stern</label>
                         <span id="Bewertung" title="Keine Bewertung">
-                        Bewertung: ';
-    $statementbewertung = $pdo->query("SELECT gesamtBewertung FROM rezepte WHERE rid = '$rezeptID'");
-    $bewertungsanzeige = $statementbewertung->fetch();
-    echo "$bewertungsanzeige[0] Sterne";
+                        '.$bewertung.'';
+
     echo '
                         </span>
                     </p>
