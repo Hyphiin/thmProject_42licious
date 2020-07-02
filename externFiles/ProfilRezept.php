@@ -11,7 +11,7 @@ if(isset($_GET['nutzer'])){
 }
 if($nutzer==0){
 
-    include("nosess.php");
+    include("AccNoSess.php");
 
 }else{
 ?>
@@ -31,7 +31,7 @@ if($nutzer==0){
 <body>
 <div id="website">
 
-    <?php include("navigation.php"); ?>
+    <?php include("Navigation.php"); ?>
 
     <div id="main">
 
@@ -62,8 +62,8 @@ if($nutzer==0){
             echo '<div class="sortierung">';
             echo '<label for="sortieren">Sortieren nach </label>';
             echo          '<select id="filter" name="filter" onchange="location = this.value">';
-            echo              '<option value="profil_rezept.php?nutzer='.$nutzer.'">Name</option>';
-            echo              '<option value="profil_rezept.php?nutzer='.$nutzer.'&order=cdate" '.$selected.'>Neuste</option>';
+            echo              '<option value="ProfilRezept.php?nutzer='.$nutzer.'">Name</option>';
+            echo              '<option value="ProfilRezept.php?nutzer='.$nutzer.'&order=cdate" '.$selected.'>Neuste</option>';
             echo          '</select>';
             echo '</div>';
 
