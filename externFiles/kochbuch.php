@@ -80,6 +80,7 @@ if($nutzer==0){
                         $rezeptID= $rezept['rid'];
                         $title = $rezept['titel'];
                         $timestamp = $rezept['cdate'];
+                        $pic = $rezept['pic'];
                         $kategorienListe = $rezept['kategorien'];
                         $dauer = $rezept['dauer'];
                         $schwierigkeit = $rezept['schwierigkeit'];
@@ -89,7 +90,7 @@ if($nutzer==0){
                         echo '<div class="recipe-preview-container">';
                         echo '<div class="recipe-preview">';
                         echo '<div class="recipe-preview-pic">';
-                        echo '<img alt="Rezept-Vorschau" class="recipe-pic" src="">';
+                        echo '<img alt="Rezept-Vorschau" class="recipe-pic" src="../images/rezepte/'.$pic.'">';
                         echo '</div>';
                         echo '<div class="recipe-preview-info">';
                         echo '<div class="kategorien">';
