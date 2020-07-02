@@ -176,7 +176,7 @@ $sess = $_SESSION['userid'];
                                     $autor = $statement->fetch();
                                     $ersteller = $autor['nickname'];
                                     echo 'von: ' . $ersteller . '<br/><br/>';
-                                    echo 'Dauer: ' . $zeile->dauer . '<br/>';
+                                    echo 'Dauer: ' . $zeile->dauer . ' Minuten<br/>';
                                     echo 'Schwierigkeit: ' . $zeile->schwierigkeit . '<br/><br/>';
                                     echo nl2br($zeile->beschreibung);
                                     echo '</p>';

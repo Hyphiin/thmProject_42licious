@@ -108,7 +108,7 @@ if($nutzer==0){
                         echo '<h2 class="recipe-preview-title">' . $title . '</h2>';
                         echo '<p class="recipe-preview-timestamp">' . $timestamp . '</p>';
                         echo '</div>';
-                        echo 'Dauer: '.$dauer.'<br/>';
+                        echo 'Dauer: '.$dauer.' Minuten<br/>';
                         echo 'Schwierigkeit: '.$schwierigkeit.'<br/><br/>';
                         echo    nl2br($beschreibung);
                         echo '</p>';

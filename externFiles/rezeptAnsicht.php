@@ -90,9 +90,14 @@ $sess = $_SESSION['userid'];
 
     echo '<div id="main">
 
-        <div id="top-buttons">
+        <div id="top-buttons">';
 
-            <a href="javascript:history.back()"><button class="button">Zurück</button></a>';
+    if($sess!=$uid){
+            echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
+            }else{
+        echo '<a href="Kochbuch.php?nutzer='.$sess.'"><button class="button">Zurück</button></a>';
+    }
+
     if ($sess == $uid) {
         echo '<form action="RezeptBearbeiten.php?bearbeiten" method="post">';
         echo '<input type="hidden" name="id" value="' . $rezeptID . '">';

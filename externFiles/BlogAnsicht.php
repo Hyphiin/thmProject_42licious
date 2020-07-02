@@ -62,7 +62,11 @@ $sess = $_SESSION['userid'];
 
         echo '<div id="top-buttons">';
 
-        echo '<a href="BlogUser.php?nutzer='.$author.'"><button class="button">Zurück</button></a>';
+        if($sess!=$author){
+            echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
+        }else{
+            echo '<a href="BlogUser.php?nutzer='.$sess.'"><button class="button">Zurück</button></a>';
+        }
 
         if ($sess==$author) {
             echo '<form action="BlogBearbeiten.php?bearbeiten" method="post">';

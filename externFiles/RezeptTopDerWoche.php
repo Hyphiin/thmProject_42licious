@@ -33,7 +33,7 @@ echo '</div>';
 echo '<div class="titleTime">';
 echo '<h2 class="recipe-preview-title">' . $title . '</h2>';
 echo '</div>';
-echo 'Dauer: ' . $dauer . '<br/>';
+echo 'Dauer: ' . $dauer . ' Minuten<br/>';
 echo 'Schwierigkeit: ' . $schwierigkeit . '<br/><br/>';
 echo nl2br($beschreibung);
 echo '</p>';
