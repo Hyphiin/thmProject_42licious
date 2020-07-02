@@ -47,18 +47,20 @@ if ($sess == true) {
 
                     $extensions= array("jpeg","jpg","png");
 
+                    if($file_name=="standard.png"){
+                        $errors[]="Bitte Dateinamen ändern.";
+                    }
+
                     if(in_array($file_ext,$extensions)=== false){
-                        $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+                        $errors[]="Dateiendung nicht erlaubt, bitte wähle eine JPEG oder PNG Datei.";
                     }
 
                     if($file_size > 2097152){
                         $errors[]='Dateigröße darf 2MB nicht überschreiten!';
                     }
 
-                    if(empty($errors)==true){
-                        move_uploaded_file($file_tmp,"../images/".$file_name);
-                    }else{
-                        print_r($errors);
+                    if(empty($errors)==true) {
+                        move_uploaded_file($file_tmp, "../images/" . $file_name);
                     }
                 }
                 else{
@@ -67,10 +69,14 @@ if ($sess == true) {
                     $file_name = $noedit['pic'];
                 }
 
-                $sql = "UPDATE users SET vorname = '$vorname', nachname = '$nachname', nickname= '$nickname', pic= '$file_name' WHERE  id = '$sess' ";
-                $update = $pdo->prepare($sql);
-                $update->execute();
-                echo 'Bearbeitung erfolgreich!';
+                if(empty($errors)==true) {
+                    $sql = "UPDATE users SET vorname = '$vorname', nachname = '$nachname', nickname= '$nickname', pic= '$file_name' WHERE  id = '$sess' ";
+                    $update = $pdo->prepare($sql);
+                    $update->execute();
+                    echo 'Bearbeitung erfolgreich!';
+                }else{
+                    print_r($errors);
+                }
                 echo '<br><br>';
                 echo '<a href="profil_Ansicht.php?id='.$sess.'"><button class="button" id="back">Zurück zum Profil</button></a>';
                 echo '<br><br>';

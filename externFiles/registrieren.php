@@ -65,6 +65,10 @@ if (isset($_GET['register'])) {
 
         $extensions= array("jpeg","jpg","png");
 
+        if($file_name=="standard.png"){
+            $errors[]="Bitte Dateinamen ändern.";
+        }
+
         if(in_array($file_ext,$extensions)=== false){
             $errors[]="Dateiendung nicht erlaubt, bitte wähle eine JPEG oder PNG Datei.";
         }
