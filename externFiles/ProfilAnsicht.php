@@ -86,7 +86,7 @@ if ($nutzerID == 0){
             echo '<p id="nickname">Nickname: ' . $nickname . '</p>';
             echo '</div>';
 
-            echo '<p>Mitglied seit: ' . $date . '</p>';
+            echo '<p>Mitglied seit: ' . substr($date,0,10) . '</p>';
             echo '</div>';
 
             echo '<div id="profil_rechts">';

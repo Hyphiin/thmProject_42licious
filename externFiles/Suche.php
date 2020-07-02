@@ -130,7 +130,7 @@ $sess = $_SESSION['userid'];
                                     echo '<p>Name: ' . $zeile->vorname . " " . substr($zeile->nachname, 0, 1) . "." . '</p>';
                                     echo '<p>Nutzername: ' . $zeile->nickname . '</p>';
                                     echo '<br>';
-                                    echo '<p>Mitglied seit: ' . $zeile->created_at . '</p>';
+                                    echo '<p>Mitglied seit: ' . substr($zeile->created_at,0,10) . '</p>';
                                     echo '</div>';
                                     echo '</div>';
                                     echo '</div>';
