@@ -37,9 +37,10 @@ if ($sess == true) {
                 $nachname = $_POST['nachname'];
                 $nickname = $_POST['nickname'];
 
-                if(isset($_FILES['pic'])){
+                if($_FILES['pic']['error']!=4){
                     $errors= array();
                     $file_name = $_FILES['pic']['name'];
+                    $file_size = $_FILES['pic']['size'];
                     $file_tmp =$_FILES['pic']['tmp_name'];
                     $file_type=$_FILES['pic']['type'];
                     $file_ext=strtolower(end(explode('.',$_FILES['pic']['name'])));
@@ -50,13 +51,20 @@ if ($sess == true) {
                         $errors[]="extension not allowed, please choose a JPEG or PNG file.";
                     }
 
+                    if($file_size > 2097152){
+                        $errors[]='Dateigröße darf 2MB nicht überschreiten!';
+                    }
+
                     if(empty($errors)==true){
                         move_uploaded_file($file_tmp,"../images/".$file_name);
-                        echo $file_name;
-                        echo "<img src=../images/'.'$file_name'>";
                     }else{
                         print_r($errors);
                     }
+                }
+                else{
+                    $edit = $pdo->query("SELECT pic FROM users WHERE id='$sess'");
+                    $noedit = $edit->fetch();
+                    $file_name = $noedit['pic'];
                 }
 
                 $sql = "UPDATE users SET vorname = '$vorname', nachname = '$nachname', nickname= '$nickname', pic= '$file_name' WHERE  id = '$sess' ";
@@ -96,6 +104,7 @@ if ($sess == true) {
                 echo '<input type="submit" value="Bearbeiten" class="button">';
                 echo '<a href="profil_ansicht.php?id='.$sess.'"><button type="button" class="button">Abbrechen</button></a>';
                 echo '<a href="pwAendern.php"><button type="button" class="button">Passwort Ändern</button></a>';
+                echo '<a href="profilbildLoeschen.php"><button type="button" class="button">Profilbild löschen</button></a>';
                 echo '<a href="AccLoeschen.php"><button type="button" class="button" id="accloeschenbutton">Account löschen</button></a>';
 
                 echo '</form>';

@@ -1,6 +1,8 @@
 <?php
 session_start();
 $pdo = new PDO('mysql:host=localhost;dbname=42licious', 'root', '');
+
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +29,6 @@ if (isset($_GET['register'])) {
     $nickname = $_POST['nickname'];
     $passwort = $_POST['passwort'];
     $passwort2 = $_POST['passwort2'];
-    $pic = $_POST['pic'];
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
@@ -54,16 +55,41 @@ if (isset($_GET['register'])) {
         }
     }
 
+    if(isset($_FILES['pic'])){
+        $errors= array();
+        $file_name = $_FILES['pic']['name'];
+        $file_size = $_FILES['pic']['size'];
+        $file_tmp =$_FILES['pic']['tmp_name'];
+        $file_type=$_FILES['pic']['type'];
+        $file_ext=strtolower(end(explode('.',$_FILES['pic']['name'])));
+
+        $extensions= array("jpeg","jpg","png");
+
+        if(in_array($file_ext,$extensions)=== false){
+            $errors[]="Dateiendung nicht erlaubt, bitte wähle eine JPEG oder PNG Datei.";
+        }
+
+        if($file_size > 2097152){
+            $errors[]='Dateigröße darf 2MB nicht überschreiten!';
+        }
+
+        if(empty($errors)==true){
+            move_uploaded_file($file_tmp,"../images/".$file_name);
+        }else{
+            print_r($errors);
+        }
+    }
+    else{
+        $file_name="standard.png";
+    }
+
     //Keine Fehler, wir können den Nutzer registrieren
     if (!$error) {
         $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
-
-        $statement = $pdo->prepare("INSERT INTO users (vorname, nachname, email, nickname, passwort, pic) VALUES (:vorname ,:nachname, :email, :nickname, :passwort, :pic)");
-        $result = $statement->execute(array('vorname' => $vorname, 'nachname' => $nachname, 'email' => $email, 'nickname' => $nickname, 'passwort' => $passwort_hash, 'pic' => $pic));
-
-        if ($result) {
+        global $file_name;
+        $statement = $pdo->query("INSERT INTO users (vorname, nachname, email, nickname, passwort, pic) VALUES ('$vorname', '$nachname', '$email', '$nickname', '$passwort_hash', '$file_name')");
+        if (!empty($statement)) {
             die(include "registriertAnzeige.php");
-            $showFormular = false;
         } else {
             echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
         }
@@ -90,7 +116,7 @@ if ($showFormular) {
                     <h1>Registrierung</h1>
                 </div>
 
-                <form action="?register=1" method="post">
+                <form action="?register=1" method="post" enctype="multipart/form-data">
                     Vorname:<br>
                     <input type="text" size="40" maxlength="250" name="vorname"><br><br>
 
