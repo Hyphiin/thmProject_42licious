@@ -26,7 +26,15 @@
 
 .users .profil-preview{
     display: none;
+    background-color: #FFFFFF;
+    border-width: 2px;
+    border-color: #ABD1C7;
 }
+
+.profil-preview:hover{
+    border-color: #4D2F25;
+}
+
 
 .profil-preview-pic {
     margin: 0px 5px;

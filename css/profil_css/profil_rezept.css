@@ -13,6 +13,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-color: #ABD1C7;
+    background-color: #F3F7F6;
 }
 
 #profil_rezept-title{

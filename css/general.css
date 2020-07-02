@@ -6,7 +6,6 @@ body {
 }
 
 h1 {
-
     color: #4D2F25;
 }
 
@@ -26,7 +25,6 @@ h5{
     height: auto;
     display: flex;
     flex-wrap: wrap;
-    border-style: solid;
     justify-content: center;
 }
 
@@ -34,7 +32,6 @@ h5{
     width: 100%;
     margin: 10px 25% 10px auto;
     height: auto;
-    border-style: solid;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
@@ -98,7 +95,6 @@ a {
 
 
 .main-content {
-    width: 50%;
     margin: 10px 25% 10px auto;
     height: auto;
     border-style: solid;
@@ -106,12 +102,17 @@ a {
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
+    border-color: #ABD1C7;
+    background-color: #F3F7F6;
 }
 
 a {
     color: black;
     text-decoration: none;
  }
+
+
 
 
 
