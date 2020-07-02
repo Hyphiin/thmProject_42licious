@@ -25,7 +25,7 @@ if ($sess == true) {
 
     <div id="website">
 
-        <?php include("navigation.php"); ?>
+        <?php include("Navigation.php"); ?>
 
         <div id="main">
 
@@ -73,7 +73,7 @@ if ($sess == true) {
                 echo '<br>';
                 echo 'Bearbeitung erfolgreich!';
                 echo '<br><br>';
-                echo '<a href="rezeptAnsicht.php?id='.$rid.'"><button class="button" id="back">Zurück zum Rezept</button></a>';
+                echo '<a href="RezeptAnsicht.php?id='.$rid.'"><button class="button" id="back">Zurück zum Rezept</button></a>';
                 echo '<br><br>';
             }else{
             if (isset($_GET['bearbeiten'])) {
@@ -185,7 +185,7 @@ if ($sess == true) {
 
                 echo '<div class="bottom-buttons">
                     <button type="submit" class="button" id="create" type="submit">Bearbeiten</button>
-                    <a href="rezeptAnsicht.php?id='.$rezeptID.'">
+                    <a href="RezeptAnsicht.php?id='.$rezeptID.'">
                         <button type="button" class="button" id="cancel">Abbrechen</button>
                     </a>
                 </div>
@@ -233,9 +233,9 @@ if ($sess == true) {
     <?php
 } else if ($sess != true) {
 
-    echo "Bitte einloggen!" . " " . '<a href="login.php">zum Login</a>';
+    echo "Bitte einloggen!" . " " . '<a href="AccLogin.php">zum Login</a>';
     echo '<br>';
-    echo "Noch kein Mitglied?" . " " . '<a href="registrieren.php">Mitglied werden!</a>';
+    echo "Noch kein Mitglied?" . " " . '<a href="AccRegistrieren.php">Mitglied werden!</a>';
 
 }
 ?>

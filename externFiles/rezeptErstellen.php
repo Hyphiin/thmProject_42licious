@@ -70,7 +70,7 @@ if ($sess == true) {
         echo '<br>';
         echo 'Rezept erstellt!';
         echo '<br><br>';
-        echo '<a href="kochbuch.php?nutzer=' . $sess . '"><button class="button" id="back">Zurück zum Kochbuch</button></a>';
+        echo '<a href="Kochbuch.php?nutzer=' . $sess . '"><button class="button" id="back">Zurück zum Kochbuch</button></a>';
         echo '<br><br>';
     } else {
         ?>

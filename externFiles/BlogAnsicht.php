@@ -131,7 +131,7 @@ $sess = $_SESSION['userid'];
 
                 echo '<div class="comment">';
                 echo '<div class="comment-info">';
-                echo '<a href="ProfilAnsich.php?id='.$uid.'"><h3>' . $nutzerName . '</h3></a>';
+                echo '<a href="ProfilAnsicht.php?id='.$uid.'"><h3>' . $nutzerName . '</h3></a>';
                 echo '<p class="timestamp">' . $date . '</p>';
                 echo '</div>';
                 echo '<div class="comment-body">';
