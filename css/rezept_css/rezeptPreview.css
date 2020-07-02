@@ -18,6 +18,11 @@
     border-color: #ABD1C7;
 }
 
+.recipe-preview img {
+    width: 100%;
+    height: 100%;
+}
+
 .recipe-preview:hover{
     border-color: #4D2F25;
 }

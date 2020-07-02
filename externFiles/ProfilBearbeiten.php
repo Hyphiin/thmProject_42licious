@@ -36,12 +36,48 @@ if ($sess == true) {
                 $vorname = $_POST['vorname'];
                 $nachname = $_POST['nachname'];
                 $nickname = $_POST['nickname'];
-                $pic = $_POST['pic'];
 
-                $sql = "UPDATE users SET vorname = '$vorname', nachname = '$nachname', nickname= '$nickname', pic= '$pic' WHERE  id = '$sess' ";
+                if($_FILES['pic']['error']!=4){
+                    $errors= array();
+                    $file_name = $_FILES['pic']['name'];
+                    $file_size = $_FILES['pic']['size'];
+                    $file_tmp =$_FILES['pic']['tmp_name'];
+                    $file_type=$_FILES['pic']['type'];
+                    $file_ext=strtolower(end(explode('.',$_FILES['pic']['name'])));
+
+                    $extensions= array("jpeg","jpg","png");
+
+                    if($file_name=="standard.png"){
+                        $errors[]="Bitte Dateinamen ändern.";
+                    }
+
+                    if(in_array($file_ext,$extensions)=== false){
+                        $errors[]="Dateiendung nicht erlaubt, bitte wähle eine JPEG oder PNG Datei.";
+                    }
+
+                    if($file_size > 2097152){
+                        $errors[]='Dateigröße darf 2MB nicht überschreiten!';
+                    }
+
+                    if(empty($errors)==true) {
+                        move_uploaded_file($file_tmp, "../images/" . $file_name);
+                    }
+                }
+                else{
+                    $edit = $pdo->query("SELECT pic FROM users WHERE id='$sess'");
+                    $noedit = $edit->fetch();
+                    $file_name = $noedit['pic'];
+                }
+
+                if(empty($errors)==true) {
+
+                $sql = "UPDATE users SET vorname = '$vorname', nachname = '$nachname', nickname= '$nickname', pic= '$file_name' WHERE  id = '$sess' ";
                 $update = $pdo->prepare($sql);
                 $update->execute();
                 echo 'Bearbeitung erfolgreich!';
+                }else{
+                    print_r($errors);
+                }
                 echo '<br><br>';
                 echo '<a href="ProfilAnsicht.php?id='.$sess.'"><button class="button" id="back">Zurück zum Profil</button></a>';
                 echo '<br><br>';
@@ -58,7 +94,7 @@ if ($sess == true) {
 
 
                 echo '<div id="main-content">';
-                echo '<form action="?edit=1" method="POST">';
+                echo '<form action="?edit=1" method="POST" enctype="multipart/form-data">';
 
                 echo 'Vorname:<br>';
                 echo '<input type="text" size="40" maxlength="250" name="vorname" value="' . $vorname . '"><br><br>';
@@ -75,6 +111,7 @@ if ($sess == true) {
                 echo '<input type="submit" value="Bearbeiten" class="button">';
                 echo '<a href="ProfilAnsicht.php?id='.$sess.'"><button type="button" class="button">Abbrechen</button></a>';
                 echo '<a href="PWAendern.php"><button type="button" class="button">Passwort Ändern</button></a>';
+                echo '<a href="profilbildLoeschen.php"><button type="button" class="button">Profilbild löschen</button></a>';
                 echo '<a href="AccLoeschen.php"><button type="button" class="button" id="accloeschenbutton">Account löschen</button></a>';
 
                 echo '</form>';

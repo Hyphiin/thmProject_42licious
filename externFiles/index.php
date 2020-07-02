@@ -53,8 +53,13 @@ if($sess!=true){
             </div>
 
             <?php
+            $check1 = 0;
+            $check2 = 0;
+            $rezeptID = 0;
             include("RezeptVorschlaegeFuerDich.php");
+            $check1 = $rezeptID;
             include("RezeptVorschlaegeFuerDich.php");
+            $check2 = $rezeptID;
             include("RezeptVorschlaegeFuerDich.php");
             ?>
 

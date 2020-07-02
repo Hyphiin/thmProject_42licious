@@ -1,16 +1,13 @@
 <?php
-$statement1 = $pdo->query("SELECT COUNT(*) FROM rezepte");
-$zwischenspeicher = $statement1->fetch();
-$anzahlRezepte = intval($zwischenspeicher[0]);
 do {
-    $random = rand(1,$anzahlRezepte);
-    $statement = $pdo->query("SELECT * FROM rezepte WHERE rid = '$random' ORDER BY rid DESC LIMIT 1");
+    $statement = $pdo->query("SELECT * FROM rezepte ORDER BY RAND() DESC LIMIT 1");
     $rezept = $statement->fetch();
-}while(empty($rezept));
+    $rezeptID = $rezept['rid'];
+}while($check1==$rezeptID OR $check2==$rezeptID);
 
-$rezeptID= $rezept['rid'];
 $title = $rezept['titel'];
 $timestamp = $rezept['cdate'];
+$pic = $rezept['pic'];
 $kategorienListe = $rezept['kategorien'];
 $dauer = $rezept['dauer'];
 $schwierigkeit = $rezept['schwierigkeit'];
@@ -28,7 +25,7 @@ echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
 echo '<div class="recipe-preview-container">';
 echo '<div class="recipe-preview">';
 echo '<div class="recipe-preview-pic">';
-echo '<img alt="Rezept-Vorschau" class="recipe-pic" src="">';
+echo '<img alt="Rezept-Vorschau" class="recipe-pic" src="../images/rezepte/'.$pic.'">';
 echo '</div>';
 echo '<div class="recipe-preview-info">';
 echo '<div class="kategorien">';

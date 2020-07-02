@@ -178,7 +178,7 @@ $sess = $_SESSION['userid'];
 
             <div class="recipe-preview">
                 <diV class="recipe-preview-image-container">
-                    <img alt="Rezept-Vorschaubild" id="rezept-vorschaubild" src=' . "" . '> 
+                    <img alt="Rezept-Vorschaubild" id="rezept-vorschaubild" src=../images/rezepte/'.$pic.'>
                 </diV>
                 <div class="recipe-preview-description"></div>
             </div>

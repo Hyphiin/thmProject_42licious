@@ -75,7 +75,7 @@ if ($nutzerID == 0){
             echo '<div id="profil_inhalt">';
             echo '<div id="profil_links">';
             echo '<div id="BildUndButtons">';
-            echo '<img alt="Profil-Bild" id="profil_pic" src=' . "$pic" . '>';
+            echo "<img alt='Profil-Bild' id='profil_pic' src='../images/$pic'>";
             echo '<div id="linksbuttons">';
             echo '<a href="ProfilRezept.php?nutzer=' . $nutzerID . '"><button id="user_rezept" class="button">Rezepte</button></a>';
             echo '<a href="BlogUser.php?nutzer=' . $nutzerID . '"><button id="user_blog" class="button">Blog</button></a>';

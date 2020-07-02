@@ -41,7 +41,7 @@ $sess = $_SESSION['userid'];
     <div class="dropdown">
         <button onclick="dropdown()" class="dropbtn"><?php
             if (isset($pic)) {
-                echo '<img alt="Profil-Bild" id="profil_bild" src=' . "$pic" . '>';
+                echo "<img alt='Profil-Bild' id='profil_bild' src='../images/$pic'>";
             }else{
                 echo '<img alt="Profil-Bild" id="profil_bild" src="../images/profile/profileIcon.png">';
             }

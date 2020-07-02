@@ -64,8 +64,41 @@ if ($sess == true) {
 
         }
 
-        $statement = $pdo->prepare("INSERT INTO rezepte (uid, titel, dauer, schwierigkeit, kategorien, beschreibung, personen, zutatenListe,  anleitung, pic) VALUES (:uid, :titel , :dauer, :schwierigkeit, :kategorien, :beschreibung, :personen, :zutatenListe, :anleitung, :pic)");
-        $result = $statement->execute(array('uid' => $sess, 'titel' => $titel, 'dauer' => $dauer, 'schwierigkeit' => $schwierigkeit, 'kategorien' => $kategorien, 'beschreibung' => $beschreibung, 'personen' => $personen, 'zutatenListe' => $zutatenListe, 'anleitung' => $anleitung, 'pic' => $pic));
+        if($_FILES['pic']['error']!=4){
+            $errors= array();
+            $file_name = $_FILES['pic']['name'];
+            $file_size = $_FILES['pic']['size'];
+            $file_tmp =$_FILES['pic']['tmp_name'];
+            $file_type=$_FILES['pic']['type'];
+            $file_ext=strtolower(end(explode('.',$_FILES['pic']['name'])));
+
+            $extensions= array("jpeg","jpg","png");
+
+            if($file_name=="standard.png"){
+                $errors[]="Bitte Dateinamen ändern.";
+            }
+
+            if(in_array($file_ext,$extensions)=== false){
+                $errors[]="Dateiendung nicht erlaubt, bitte wähle eine JPEG oder PNG Datei.";
+            }
+
+            if($file_size > 2097152){
+                $errors[]='Dateigröße darf 2MB nicht überschreiten!';
+            }
+
+            if(empty($errors)==true){
+                move_uploaded_file($file_tmp,"../images/rezepte/".$file_name);
+            }else{
+                print_r($errors);
+            }
+        }
+        else{
+            $file_name="standard.png";
+        }
+
+        if(empty($errors)) {
+            $statement = $pdo->query("INSERT INTO rezepte (uid, titel, dauer, schwierigkeit, kategorien, beschreibung, personen, zutatenListe,  anleitung, pic) VALUES ('$sess', '$titel', '$dauer', '$schwierigkeit', '$kategorien', '$beschreibung', '$personen', '$zutatenListe', '$anleitung', '$file_name')");
+        }
 
         echo '<br>';
         echo 'Rezept erstellt!';
@@ -79,7 +112,7 @@ if ($sess == true) {
         <div id="change-recipe">
             <h1>Rezept erstellen</h1>
 
-            <form id="recipe-erstellen" action="?erstellen" method="post">
+            <form id="recipe-erstellen" action="?erstellen" method="post" enctype="multipart/form-data">
 
                 <label for="titel">Titel:</label>
                 <input type="text" name="titel" id="titel" size="40" placeholder="Titel eingeben..."><br/>
