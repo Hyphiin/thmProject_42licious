@@ -78,6 +78,7 @@ $sess = $_SESSION['userid'];
     $beschreibung = $rezept['beschreibung'];
     $personen = $rezept['personen'];
     $zutatenListe = $rezept['zutatenListe'];
+    $zutatenTable = explode(";", $zutatenListe);
     $anleitung = $rezept['anleitung'];
     $bewertung = $rezept['gesamtBewertung'];
 
@@ -99,9 +100,20 @@ $sess = $_SESSION['userid'];
     $autor = $statement3->fetch();
     $ersteller = $autor['nickname'];
 
-    $zutatenTable = explode(";", $zutatenListe);
-
-
+    $statement4 = $pdo->query("SELECT BSterne FROM bewertung WHERE rezeptID = '$rezeptID' AND BNutzer = '$sess' ");
+    $userBewertung = $statement4->fetch();
+    $UserWertung = $userBewertung['BSterne'];
+    if($UserWertung==5){
+        $Wertung5 = "checked";
+    }elseif ($UserWertung==4){
+        $Wertung4 = "checked";
+    }elseif ($UserWertung==3){
+        $Wertung3 = "checked";
+    }elseif ($UserWertung==2){
+        $Wertung2 = "checked";
+    }elseif ($UserWertung==1){
+        $Wertung1 = "checked";
+    }
 
     echo '<div id="main">
 
@@ -175,20 +187,17 @@ $sess = $_SESSION['userid'];
     
                 <form id="stars" method="post" action="?id=' . $rezeptID . '">
                     <p class="sternebewertung">
-                        <input type="radio" id="stern5" name="bewertung" value="5"><label for="stern5" title="5 Sterne">5 Sterne</label>
-                        <input type="radio" id="stern4" name="bewertung" value="4"><label for="stern4" title="4 Sterne">4 Sterne</label>
-                        <input type="radio" id="stern3" name="bewertung" value="3"><label for="stern3" title="3 Sterne">3 Sterne</label>
-                        <input type="radio" id="stern2" name="bewertung" value="2"><label for="stern2" title="2 Sterne">2 Sterne</label>
-                        <input type="radio" id="stern1" name="bewertung" value="1"><label for="stern1" title="1 Stern">1 Stern</label>
+                        <input type="radio" id="stern5" name="bewertung" value="5" '.$Wertung5.' onclick="this.form.submit()"><label for="stern5" title="5 Sterne">5 Sterne</label>
+                        <input type="radio" id="stern4" name="bewertung" value="4" '.$Wertung4.' onclick="this.form.submit()"><label for="stern4" title="4 Sterne">4 Sterne</label>
+                        <input type="radio" id="stern3" name="bewertung" value="3" '.$Wertung3.' onclick="this.form.submit()"><label for="stern3" title="3 Sterne">3 Sterne</label>
+                        <input type="radio" id="stern2" name="bewertung" value="2" '.$Wertung2.' onclick="this.form.submit()"><label for="stern2" title="2 Sterne">2 Sterne</label>
+                        <input type="radio" id="stern1" name="bewertung" value="1" '.$Wertung1.' onclick="this.form.submit()"><label for="stern1" title="1 Stern">1 Stern</label>
                         <span id="Bewertung" title="Keine Bewertung">
                         '.$bewertung.'';
 
-    echo '
-                        </span>
+    echo '    </span>
                     </p>
-                        <input type="submit" class="button" id="bewertenButton" value="Bewerten">
-
-                </form>';
+                        </form>';
 
 
     echo '</div>
