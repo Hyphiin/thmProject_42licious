@@ -49,7 +49,21 @@ $sess = $_SESSION['userid'];
         $rezeptID = $_GET['id'];
     }
 
-
+    if ($sess) {
+        if (isset($_POST['bewertung'])) {
+            if ($sess != $uid) {
+                $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
+                $bewertungscheck = $fetch->fetch();
+                $bewertung = $_POST['bewertung'];
+                if ($bewertungscheck[0] == 0) {
+                    $statement5 = $pdo->prepare("INSERT INTO bewertung (rezeptID, BSterne, BNutzer) VALUES(:rezeptid, :bsterne, :bnutzer)");
+                    $ergebnis = $statement5->execute(array('rezeptid' => $rezeptID, 'bsterne' => $bewertung, 'bnutzer' => $sess));
+                } elseif ($bewertungscheck[0] != 0) {
+                    $statement6 = $pdo->query("UPDATE bewertung SET BSterne = '$bewertung' WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
+                }
+            }
+        }
+    }
 
     $statement = $pdo->query("SELECT * FROM rezepte WHERE rid = '$rezeptID' ");
     $rezept = $statement->fetch();
@@ -66,35 +80,28 @@ $sess = $_SESSION['userid'];
     $zutatenListe = $rezept['zutatenListe'];
     $anleitung = $rezept['anleitung'];
     $bewertung = $rezept['gesamtBewertung'];
+
+    $statement2 = $pdo->query("SELECT COUNT(BID) FROM bewertung WHERE rezeptID = '$rezeptID' ");
+    $bewertungenAnzahl = $statement2->fetch();
+    if(!empty($bewertungenAnzahl)){
+        $bewertungenZahl = $bewertungenAnzahl[0];
+    }
+
     if($bewertung==0){
         $bewertung = "Keine Bewertungen";
     }elseif($bewertung==1){
-        $bewertung="Bewertung: ".$bewertung." Stern";
+        $bewertung="Bewertung: ".$bewertung." Stern (".$bewertungenZahl.")";
     }else{
-        $bewertung="Bewertung: ".$bewertung." Sterne";
+        $bewertung="Bewertung: ".$bewertung." Sterne (".$bewertungenZahl.")";
     }
 
-    $statement2 = $pdo->query("SELECT * FROM users WHERE id = '$uid' ");
-    $autor = $statement2->fetch();
+    $statement3 = $pdo->query("SELECT * FROM users WHERE id = '$uid' ");
+    $autor = $statement3->fetch();
     $ersteller = $autor['nickname'];
 
     $zutatenTable = explode(";", $zutatenListe);
 
-    if ($sess) {
-        if (isset($_POST['bewertung'])) {
-            if ($sess != $uid) {
-                $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
-                $bewertungscheck = $fetch->fetch();
-                $bewertung = $_POST['bewertung'];
-                if ($bewertungscheck[0] == 0) {
-                    $statement5 = $pdo->prepare("INSERT INTO bewertung (rezeptID, BSterne, BNutzer) VALUES(:rezeptid, :bsterne, :bnutzer)");
-                    $ergebnis = $statement5->execute(array('rezeptid' => $rezeptID, 'bsterne' => $bewertung, 'bnutzer' => $sess));
-                } elseif ($bewertungscheck[0] != 0) {
-                    $statement6 = $pdo->query("UPDATE bewertung SET BSterne = '$bewertung' WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
-                }
-            }
-        }
-    }
+
 
     echo '<div id="main">
 
@@ -116,6 +123,17 @@ $sess = $_SESSION['userid'];
 
         <div class="main-content">
         
+        <div id="top-info">
+        
+        <div id="like">
+                    <p class="merken">
+                        <input type="radio" id="like" name="like" value="like"><label for="like" title="Rezept merken"></label>
+                        <span id="Merken">
+                        Merken:
+                        </span>
+                    </p>
+                </div>
+        
         <div class="kategorien">';
 
     $kategorie = explode(";", $kategorienListe);
@@ -132,7 +150,7 @@ $sess = $_SESSION['userid'];
 
 
     echo '</div>
-
+            </div>
             <div id="recipe-info">
                 <div class="recipe-title">
                     <h1>' . $titel . '</h1>
@@ -173,18 +191,7 @@ $sess = $_SESSION['userid'];
                 </form>';
 
 
-    echo '
-
-                <div id="like">
-                    <p class="merken">
-                        <input type="radio" id="like" name="like" value="like"><label for="like" title="Rezept merken"></label>
-                        <span id="Merken">
-                        Merken:
-                        </span>
-                    </p>
-                </div>
-
-            </div>
+    echo '</div>
 
             <div id="dauer"><h4>Dauer: </h4>' . $dauer . ' Minuten</div>
             <div id="schwierigkeit"><h4>Schwierigkeit: </h4>' . $schwierigkeit . '</div><br/>
