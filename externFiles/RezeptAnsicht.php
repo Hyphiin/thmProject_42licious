@@ -105,7 +105,7 @@ $sess = $_SESSION['userid'];
             <div id="recipe-info">
                 <div class="recipe-title">
                     <h1>' . $titel . '</h1>
-                    <a href="profil_ansicht.php?id=' . $uid . '"><h5>von: ' . $ersteller . '</h5></a>
+                    <a href="ProfilAnsicht.php?id=' . $uid . '"><h5>von: ' . $ersteller . '</h5></a>
                 </div>
                 
                 
@@ -235,7 +235,7 @@ $sess = $_SESSION['userid'];
 
             echo '<div class="comment">';
             echo '<div class="comment-info">';
-            echo '<a href="profil_ansicht.php?id='.$uid.'"><h3>' . $nutzerName . '</h3></a>';
+            echo '<a href="ProfilAnsicht.php?id='.$uid.'"><h3>' . $nutzerName . '</h3></a>';
             echo '<p class="timestamp">' . $date . '</p>';
             echo '</div>';
             echo '<div class="comment-body">';

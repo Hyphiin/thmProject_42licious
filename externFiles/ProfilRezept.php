@@ -50,7 +50,7 @@ if($nutzer==0){
             $authorName = $rezeptAuthor['nickname'];
 
             echo '<div id="profil_rezept-title">';
-            echo    '<h1>Rezepte von '.$authorName.'</h1>';
+            echo    '<h1>Rezepte von <a href="ProfilAnsicht.php?id='.$nutzer.'">'.$authorName.'</a></h1>';
             echo '</div>';
 
             if (isset($_GET['order'])){

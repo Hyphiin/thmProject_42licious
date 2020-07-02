@@ -57,8 +57,8 @@ if($nutzer==0){
             echo '<a href="RezeptErstellen.php"><button class="button">Rezept erstellen</button></a>';
             echo     '<label id="sortieren">Sortieren nach:';
             echo          '<select id="filter" name="filter" onchange="location = this.value">';
-            echo              '<option value="kochbuch.php?nutzer='.$nutzer.'">Name</option>';
-            echo              '<option value="kochbuch.php?nutzer='.$nutzer.'&order=cdate" '.$selected.'>Neuste</option>';
+            echo              '<option value="Kochbuch.php?nutzer='.$nutzer.'">Name</option>';
+            echo              '<option value="Kochbuch.php?nutzer='.$nutzer.'&order=cdate" '.$selected.'>Neuste</option>';
             echo          '</select>';
             echo '</label>';
             echo '</div>';

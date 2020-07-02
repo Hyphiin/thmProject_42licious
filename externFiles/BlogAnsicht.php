@@ -62,7 +62,7 @@ $sess = $_SESSION['userid'];
 
         echo '<div id="top-buttons">';
 
-        echo '<a href="blogUSER.php?nutzer='.$author.'"><button class="button">Zurück</button></a>';
+        echo '<a href="BlogUser.php?nutzer='.$author.'"><button class="button">Zurück</button></a>';
 
         if ($sess==$author) {
             echo '<form action="BlogBearbeiten.php?bearbeiten" method="post">';
@@ -131,7 +131,7 @@ $sess = $_SESSION['userid'];
 
                 echo '<div class="comment">';
                 echo '<div class="comment-info">';
-                echo '<a href="profil_ansicht.php?id='.$uid.'"><h3>' . $nutzerName . '</h3></a>';
+                echo '<a href="ProfilAnsich.php?id='.$uid.'"><h3>' . $nutzerName . '</h3></a>';
                 echo '<p class="timestamp">' . $date . '</p>';
                 echo '</div>';
                 echo '<div class="comment-body">';

@@ -51,7 +51,7 @@ if($nutzer==0){
             $authorID = $blogAuthor['id'];
             $authorName = $blogAuthor['nickname'];
             echo '<div id="head-title">';
-            echo    '<h1>Blog von '.$authorName.'</h1>';
+            echo    '<h1>Blog von <a href="ProfilAnsicht.php?id='.$authorID.'">'.$authorName.'</a></h1>';
             echo '</div>';
 
 
@@ -70,8 +70,8 @@ if($nutzer==0){
             echo         '<div>';
             echo           '<label for="filter">Sortieren nach:</label>';
             echo          '<select id="filter" name="filter" onchange="location = this.value">';
-            echo              '<option value="blogUSER.php?nutzer='.$nutzer.'">Neuste</option>';
-            echo              '<option value="blogUSER.php?nutzer='.$nutzer.'&order=titel" '.$selected.'>Titel</option>';
+            echo              '<option value="BlogUser.php?nutzer='.$nutzer.'">Neuste</option>';
+            echo              '<option value="BlogUser.php?nutzer='.$nutzer.'&order=titel" '.$selected.'>Titel</option>';
             echo          '</select>';
             echo       '</div>';
 

@@ -52,7 +52,7 @@ if ($sess == true) {
                 $update->execute();
                 echo 'Löschen erfolgreich!';
                 echo '<br><br>';
-                echo '<a href="blogUSER.php?nutzer='.$sess.'"><button class="button" id="back">Zurück zum Blog</button></a>';
+                echo '<a href="BlogUser.php?nutzer='.$sess.'"><button class="button" id="back">Zurück zum Blog</button></a>';
                 echo '<br><br>';
             }else {
 

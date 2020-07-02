@@ -16,7 +16,6 @@ if ($sess == true){
 
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
-    <link href="../css/main.css" rel="stylesheet" type="text/css">
     <link href="../css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">
 </head>
 <body>
