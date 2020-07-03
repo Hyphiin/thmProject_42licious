@@ -81,7 +81,12 @@ $sess = $_SESSION['userid'];
                     }
                     for ($i = 0; $i < count($curFavorites); $i++) {
                         if ($i == 0) {
-                            $favRezepte = $curFavorites[$i];
+                            if ($remember!=0) {
+                                $favRezepte = $curFavorites[$i];
+                            }else{
+                                $favRezepte = $curFavorites[$i+1];
+                                $i++;
+                            }
                         } elseif ($i != $remember) {
                             $favRezepte .= "," . $curFavorites[$i];
                         }
