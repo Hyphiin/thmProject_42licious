@@ -33,7 +33,6 @@ if ($sess == true) {
             if (isset($_GET['edit'])) {
                 $rid = $_POST['rid'];
                 $titel = $_POST['titel'];
-                $pic = $_POST['pic'];
                 $dauer = $_POST['dauer'];
                 $schwierigkeit = $_POST['schwierigkeit'];
                 $beschreibung = $_POST['beschreibung'];
@@ -67,7 +66,39 @@ if ($sess == true) {
 
                 }
 
-                $sql = "UPDATE rezepte SET titel = '$titel', pic = '$pic', dauer = '$dauer', schwierigkeit = '$schwierigkeit', kategorien = '$kategorien', beschreibung = '$beschreibung', personen = '$personen', zutatenListe = '$zutatenListe', anleitung = '$anleitung'  WHERE  rid = '$rid' ";
+                if($_FILES['pic']['error']!=4){
+                    $errors= array();
+                    $file_name = $_FILES['pic']['name'];
+                    $file_size = $_FILES['pic']['size'];
+                    $file_tmp =$_FILES['pic']['tmp_name'];
+                    $file_type=$_FILES['pic']['type'];
+                    $file_ext=strtolower(end(explode('.',$_FILES['pic']['name'])));
+
+                    $extensions= array("jpeg","jpg","png");
+
+                    if($file_name=="standard.png"){
+                        $errors[]="Bitte Dateinamen ändern.";
+                    }
+
+                    if(in_array($file_ext,$extensions)=== false){
+                        $errors[]="Dateiendung nicht erlaubt, bitte wähle eine JPEG oder PNG Datei.";
+                    }
+
+                    if($file_size > 2097152){
+                        $errors[]='Dateigröße darf 2MB nicht überschreiten!';
+                    }
+
+                    if(empty($errors)==true) {
+                        move_uploaded_file($file_tmp, "../images/rezepte/" . $file_name);
+                    }
+                }
+                else{
+                    $edit = $pdo->query("SELECT pic FROM rezepte WHERE rid='$rid'");
+                    $noedit = $edit->fetch();
+                    $file_name = $noedit['pic'];
+                }
+
+                $sql = "UPDATE rezepte SET titel = '$titel', pic = '$file_name', dauer = '$dauer', schwierigkeit = '$schwierigkeit', kategorien = '$kategorien', beschreibung = '$beschreibung', personen = '$personen', zutatenListe = '$zutatenListe', anleitung = '$anleitung'  WHERE  rid = '$rid' ";
                 $update = $pdo->prepare($sql);
                 $update->execute();
                 echo '<br>';
@@ -113,7 +144,7 @@ if ($sess == true) {
 
                 <?php
 
-                echo '<form id="recipe-bearbeiten" action="?edit" method="post">
+                echo '<form id="recipe-bearbeiten" action="?edit" method="post" enctype="multipart/form-data">
 
                 <label for="titel">Titel:</label>
                 <input type="text" name="titel" id="titel" size="40" placeholder="Titel eingeben..." value="' . $titel . '"><br/>
@@ -199,6 +230,7 @@ if ($sess == true) {
                         <div class="bottom-buttons-left">
                             <button type="submit" form="recipe-bearbeiten" class="button" id="create" type="submit">Bearbeiten</button>
                             <a href="RezeptAnsicht.php?id='.$rezeptID.'"><button type="button" class="button" id="cancel">Abbrechen</button></a>
+                            <a href="RezeptbildLoeschen.php?rid='.$rezeptID.'"><button type="button" class="button" id="cancel">Rezeptbild löschen</button></a>
                         </div>   
                         <div id="bottom-buttons-right">
                             <form action="?delete" method="post">
