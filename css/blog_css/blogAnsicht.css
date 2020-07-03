@@ -7,6 +7,8 @@
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: center;
+    background-color: #ABD1C7;
+    border-color: #ABD1C7;
 }
 
 #top-buttons{

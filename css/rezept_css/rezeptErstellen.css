@@ -8,6 +8,7 @@
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: center;
+    background-color: #F5ECE9;
 
 }
 
@@ -19,12 +20,11 @@
     justify-content: space-between;
 }
 
-#create-recipe{
+#change-recipe{
     margin: 10px;
     display:flex;
     flex-wrap: wrap;
     flex-direction: column;
-
 }
 
 button{

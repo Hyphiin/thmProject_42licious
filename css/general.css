@@ -59,7 +59,7 @@ h5{
 }
 
 .button:hover{
-    background-color: #99695A;
+    background-color: #254D42;
 }
 
 
@@ -103,8 +103,8 @@ a {
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    border-color: #ABD1C7;
-    background-color: #F3F7F6;
+    border-color: #99695A;
+    background-color: #F5ECE9;
 }
 
 a {
