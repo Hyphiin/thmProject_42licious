@@ -24,6 +24,10 @@
     color: #FFFFFF;
 }
 
+#kochbuchheader a:hover{
+    color: #000000;
+}
+
 
 #bottom-buttons{
     margin: 10px;

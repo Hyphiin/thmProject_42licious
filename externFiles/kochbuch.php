@@ -53,7 +53,7 @@ if($nutzer==0){
 
 
          echo '<div id="kochbuchheader">';
-         echo   '<h3><a href="kochbuch.php?nutzer='.$sess.'">Meine Rezepte</a> | <a href="kochbuch.php?fav&nutzer='.$sess.'">Meine Favoriten</a></h3>';
+         echo   '<h3><a href="kochbuch.php?nutzer='.$sess.'">Meine Rezepte</a> | <a href="kochbuch.php?fav&nutzer='.$sess.'">Meine Favoriten ♥</a></h3>';
          echo '</div>';
 
 
