@@ -32,24 +32,35 @@ if($nutzer==0){
 <body>
 <div id="website">
 
-    <?php include("Navigation.php"); ?>
+    <?php include("Navigation.php");
+
+    if ($sess==$nutzer){
+    ?>
 
     <div id="main">
 
         <div class="main-content">
-        <div id="title">
-            <h1>Kochbuch</h1>
-        </div>
 
-        <div id="kochbuchheader">
-            <h3>Meine Rezepte | Meine Favoriten</h3>
-        </div>
             <?php
+            if (isset($_GET['fav'])){
+                $header = "Favoriten";
+            }else{
+                $header = "Eigene Rezepte";
+            }
+         echo '<div id="title">';
+         echo   '<h1>Kochbuch - '.$header.'</h1>';
+         echo '</div>';
+
+
+         echo '<div id="kochbuchheader">';
+         echo   '<h3><a href="kochbuch.php?nutzer='.$sess.'">Meine Rezepte</a> | <a href="kochbuch.php?fav&nutzer='.$sess.'">Meine Favoriten</a></h3>';
+         echo '</div>';
+
 
         echo '<div id="top-buttons">';
 
             if (isset($_GET['order'])) {
-                if($_GET['order']=="cdate" ){
+                if($_GET['order']=="titel" ){
                     $selected = 'selected';
                     $selected2 = '';
                 } elseif($_GET['order']=="bewertung") {
@@ -63,9 +74,15 @@ if($nutzer==0){
             echo '<a href="RezeptErstellen.php"><button class="button">Rezept erstellen</button></a>';
             echo     '<label id="sortieren">Sortieren nach:';
             echo          '<select id="filter" name="filter" onchange="location = this.value">';
-            echo              '<option value="Kochbuch.php?nutzer='.$nutzer.'">Neuste</option>';
-            echo              '<option value="Kochbuch.php?nutzer='.$nutzer.'&order=titel" '.$selected.'>Name</option>';
-            echo              '<option value="Kochbuch.php?nutzer='.$nutzer.'&order=bewertung" '.$selected2.'>Bewertung</option>';
+            if (isset($_GET['fav'])){
+               echo              '<option value="Kochbuch.php?fav&nutzer='.$nutzer.'">Neuste</option>';
+               echo              '<option value="Kochbuch.php?fav&nutzer='.$nutzer.'&order=titel" '.$selected.'>Name</option>';
+               echo              '<option value="Kochbuch.php?fav&nutzer='.$nutzer.'&order=bewertung" '.$selected2.'>Bewertung</option>';
+            }else{
+               echo              '<option value="Kochbuch.php?nutzer='.$nutzer.'">Neuste</option>';
+               echo              '<option value="Kochbuch.php?nutzer='.$nutzer.'&order=titel" '.$selected.'>Name</option>';
+               echo              '<option value="Kochbuch.php?nutzer='.$nutzer.'&order=bewertung" '.$selected2.'>Bewertung</option>';
+            }
             echo          '</select>';
             echo '</label>';
             echo '</div>';
@@ -84,61 +101,25 @@ if($nutzer==0){
                 $order = 'cdate DESC';
             }
 
+            if (isset($_GET['fav'])){
 
-                    $statement = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzer' ORDER BY $order");
-                    while($rezept = $statement->fetch()) {
+                $statement1 = $pdo->query("SELECT favRezepte FROM users WHERE id = '$sess' ");
+                $favorites = $statement1->fetch();
 
-                        $rezeptID= $rezept['rid'];
-                        $title = $rezept['titel'];
-                        $timestamp = $rezept['cdate'];
-                        $pic = $rezept['pic'];
-                        $kategorienListe = $rezept['kategorien'];
-                        $dauer = $rezept['dauer'];
-                        $schwierigkeit = $rezept['schwierigkeit'];
-                        $beschreibung = $rezept['beschreibung'];
-                        $bewertung = $rezept['gesamtBewertung'];
-                        if($bewertung==0){
-                            $bewertung = "Keine Bewertungen";
-                        }elseif($bewertung==1){
-                            $bewertung.=" Stern";
-                        }else{
-                            $bewertung.=" Sterne";
-                        }
+                $statement2 = $pdo->query("SELECT * FROM rezepte WHERE rid IN ($favorites[0]) ORDER BY $order");
+                while ($rezept = $statement2->fetch()) {
 
-                        echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
-                        echo '<div class="recipe-preview-container">';
-                        echo '<div class="recipe-preview">';
-                        echo '<div class="recipe-preview-pic">';
-                        echo '<img alt="Rezept-Vorschau" class="recipe-pic" src="../images/rezepte/'.$pic.'">';
-                        echo '</div>';
-                        echo '<div class="recipe-preview-info">';
-                        echo '<div class="kategorien">';
-                        $kategorie = explode(";", $kategorienListe);
+                    include('RezeptPreview.php');
+                }
 
-                        for($i=0;$i<count($kategorie);$i++){
-                            if($kategorie[$i]=="fleisch"){
-                                echo '<div>Fleisch</div>';
-                            }elseif($kategorie[$i]=="vegetarisch"){
-                                echo '<div>Vegetarisch</div>';
-                            }elseif($kategorie[$i]=="vegan"){
-                                echo '<div>Vegan</div>';
-                            }}
-                        echo '</div>';
-                        echo '<div class="titleTime">';
-                        echo '<h2 class="recipe-preview-title">' . $title . '</h2>';
-                        echo '<p class="recipe-preview-timestamp">' . substr($timestamp,0,10) . '</p>';
-                        echo '</div>';
-                        echo 'Bewertung: '.$bewertung.'<br/>';
-                        echo 'Dauer: '.$dauer.' Minuten<br/>';
-                        echo 'Schwierigkeit: '.$schwierigkeit.'<br/><br/>';
-                        echo    nl2br($beschreibung);
-                        echo '<br/><br/>';
-                        echo '</div>';
+            }else {
 
-                        echo '</div>';
-                        echo '</div>';
-                        echo '</a>';
-                    }
+                $statement3 = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzer' ORDER BY $order");
+                while ($rezept = $statement3->fetch()) {
+
+                    include('RezeptPreview.php');
+                }
+            }
                     ?>
 
         </div>
@@ -147,15 +128,20 @@ if($nutzer==0){
                 <button class="button" id="show-more">Mehr anzeigen</button>
             </div>
         </div>
-    </div>
-</div>
+
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="../jscript/recipePreview.js"></script>
+<?php
+}else{
+    echo '<div id="main">
+            <p>Es ist ein Fehler aufgetreten</p>
+            <a href="index.php"><button type="button" class="button">Zurück zur Starseite</button></a>
+           </div>';
 
+}
+}
+?>
 
 </body>
 </html>
-<?php
-}
-    ?>

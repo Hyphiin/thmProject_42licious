@@ -20,6 +20,11 @@
     color: #FFFFFF;
 }
 
+#kochbuchheader a {
+    color: #FFFFFF;
+}
+
+
 #bottom-buttons{
     margin: 10px;
     display:flex;

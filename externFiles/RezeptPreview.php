@@ -1,42 +1,54 @@
 <?php
-
-$host_name = "localhost";
-$database = "42licious";
-$user_name = "root";
-$password = "";
-
-$db = mysqli_connect($host_name, $user_name, $password, $database);
-
-
-if (mysqli_connect_errno() == 0)
-{
-    $sql = "SELECT rezept.name,users.vorname,rezept.bewertung,rezept.pic FROM `rezept`, `users` WHERE rezept.user = users.id";
-    $ergebnis = $db->query($sql);
-    if (is_object($ergebnis))
-    {
-        while ($zeile = $ergebnis->fetch_object())
-        {
-
-            echo '<a href="RezeptAnsicht.php">';
-            echo '<div class="recipe-preview-container">';
-            echo '<div class="recipe-preview">';
-            echo '<diV class="recipe-preview-image-container">';
-            echo '<img alt="Rezept_Bild_Vorschau" src='."$zeile->pic".'>';
-            echo '</diV>';
-            echo '<div class="recipe-preview-description">';
-            echo '<div class="recipe-name-author">';
-            echo '<h3>'.$zeile->name.'</h3>';
-            echo '<h5>von '.$zeile->vorname.'</h5>';
-            echo '</div>';
-            echo '<div class="recipe-rating">';
-            echo ' </div>';
-            echo '</div>';
-            echo '</div>';
-            echo '</div>';
-            echo '</a>';
-        }
-    }
+$rezeptID= $rezept['rid'];
+$title = $rezept['titel'];
+$timestamp = $rezept['cdate'];
+$pic = $rezept['pic'];
+$kategorienListe = $rezept['kategorien'];
+$dauer = $rezept['dauer'];
+$schwierigkeit = $rezept['schwierigkeit'];
+$beschreibung = $rezept['beschreibung'];
+$bewertung = $rezept['gesamtBewertung'];
+if($bewertung==0){
+$bewertung = "Keine Bewertungen";
+}elseif($bewertung==1){
+$bewertung.=" Stern";
+}else{
+$bewertung.=" Sterne";
 }
+
+echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
+    echo '<div class="recipe-preview-container">';
+        echo '<div class="recipe-preview">';
+            echo '<div class="recipe-preview-pic">';
+                echo '<img alt="Rezept-Vorschau" class="recipe-pic" src="../images/rezepte/'.$pic.'">';
+                echo '</div>';
+            echo '<div class="recipe-preview-info">';
+                echo '<div class="kategorien">';
+                    $kategorie = explode(";", $kategorienListe);
+
+                    for($i=0;$i<count($kategorie);$i++){
+                    if($kategorie[$i]=="fleisch"){
+                    echo '<div>Fleisch</div>';
+                    }elseif($kategorie[$i]=="vegetarisch"){
+                    echo '<div>Vegetarisch</div>';
+                    }elseif($kategorie[$i]=="vegan"){
+                    echo '<div>Vegan</div>';
+                    }}
+                    echo '</div>';
+                echo '<div class="titleTime">';
+                    echo '<h2 class="recipe-preview-title">' . $title . '</h2>';
+                    echo '<p class="recipe-preview-timestamp">' . substr($timestamp,0,10) . '</p>';
+                    echo '</div>';
+                echo 'Bewertung: '.$bewertung.'<br/>';
+                echo 'Dauer: '.$dauer.' Minuten<br/>';
+                echo 'Schwierigkeit: '.$schwierigkeit.'<br/><br/>';
+                echo    nl2br($beschreibung);
+                echo '<br/><br/>';
+                echo '</div>';
+
+            echo '</div>';
+        echo '</div>';
+    echo '</a>';
 
 
 

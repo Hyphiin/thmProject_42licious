@@ -49,21 +49,6 @@ $sess = $_SESSION['userid'];
         $rezeptID = $_GET['id'];
     }
 
-    if ($sess) {
-        if (isset($_POST['bewertung'])) {
-            if ($sess != $uid) {
-                $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
-                $bewertungscheck = $fetch->fetch();
-                $bewertung = $_POST['bewertung'];
-                if ($bewertungscheck[0] == 0) {
-                    $statement5 = $pdo->prepare("INSERT INTO bewertung (rezeptID, BSterne, BNutzer) VALUES(:rezeptid, :bsterne, :bnutzer)");
-                    $ergebnis = $statement5->execute(array('rezeptid' => $rezeptID, 'bsterne' => $bewertung, 'bnutzer' => $sess));
-                } elseif ($bewertungscheck[0] != 0) {
-                    $statement6 = $pdo->query("UPDATE bewertung SET BSterne = '$bewertung' WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
-                }
-            }
-        }
-    }
 
     $statement = $pdo->query("SELECT * FROM rezepte WHERE rid = '$rezeptID' ");
     $rezept = $statement->fetch();
@@ -82,18 +67,89 @@ $sess = $_SESSION['userid'];
     $anleitung = $rezept['anleitung'];
     $bewertung = $rezept['gesamtBewertung'];
 
+    if ($sess) {
+        if ($sess != $uid) {
+            if (isset($_POST['like'])) {
+                if ($_POST['checkFav'] == "checked") {
+                    $statement7 = $pdo->query("SELECT favRezepte FROM users WHERE id = '$sess' ");
+                    $favorites = $statement7->fetch();
+                    $curFavorites = explode(",", $favorites[0]);
+                    for ($i = 0; $i < count($curFavorites); $i++) {
+                        if ($curFavorites[$i] == $rezeptID) {
+                            $remember = $i;
+                        }
+                    }
+                    for ($i = 0; $i < count($curFavorites); $i++) {
+                        if ($i == 0) {
+                            $favRezepte = $curFavorites[$i];
+                        } elseif ($i != $remember) {
+                            $favRezepte .= "," . $curFavorites[$i];
+                        }
+                    }
+                    $statement9 = $pdo->query("UPDATE users SET favRezepte = '$favRezepte' WHERE id = '$sess'");
+                } else {
+                    $statement7 = $pdo->query("SELECT favRezepte FROM users WHERE id = '$sess' ");
+                    $favorites = $statement7->fetch();
+                    if (empty($favorites[0])) {
+                        $favRezepte = $rezeptID;
+                        $statement8 = $pdo->query("UPDATE users SET favRezepte = '$favRezepte' WHERE id = '$sess'");
+                    } else {
+                        $curFavorites = explode(",", $favorites[0]);
+                        $newFavorite = true;
+                        for ($i = 0; $i < count($curFavorites); $i++) {
+                            if ($curFavorites[$i] == $rezeptID) {
+                                $newFavorite = false;
+                                break;
+                            }
+                        }
+                        if ($newFavorite != false) {
+                            $favRezepte = $favorites[0];
+                            $favRezepte .= "," . $rezeptID;
+                            $statement9 = $pdo->query("UPDATE users SET favRezepte = '$favRezepte' WHERE id = '$sess'");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    $statement10 = $pdo->query("SELECT favRezepte FROM users WHERE id = '$sess' ");
+    $favorites = $statement10->fetch();
+    $curFavorites = explode(",", $favorites[0]);
+    for ($i = 0; $i < count($curFavorites); $i++) {
+        if ($curFavorites[$i] == $rezeptID) {
+            $fav = 'checked';
+        }
+    }
+
+    if ($sess) {
+        if (isset($_POST['bewertung'])) {
+            if ($sess != $uid) {
+                $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
+                $bewertungscheck = $fetch->fetch();
+                $bewertung = $_POST['bewertung'];
+                if ($bewertungscheck[0] == 0) {
+                    $statement5 = $pdo->prepare("INSERT INTO bewertung (rezeptID, BSterne, BNutzer) VALUES(:rezeptid, :bsterne, :bnutzer)");
+                    $ergebnis = $statement5->execute(array('rezeptid' => $rezeptID, 'bsterne' => $bewertung, 'bnutzer' => $sess));
+                } elseif ($bewertungscheck[0] != 0) {
+                    $statement6 = $pdo->query("UPDATE bewertung SET BSterne = '$bewertung' WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
+                }
+            }
+        }
+    }
+
     $statement2 = $pdo->query("SELECT COUNT(BID) FROM bewertung WHERE rezeptID = '$rezeptID' ");
     $bewertungenAnzahl = $statement2->fetch();
-    if(!empty($bewertungenAnzahl)){
+    if (!empty($bewertungenAnzahl)) {
         $bewertungenZahl = $bewertungenAnzahl[0];
     }
 
-    if($bewertung==0){
+    if ($bewertung == 0) {
         $bewertung = "Keine Bewertungen";
-    }elseif($bewertung==1){
-        $bewertung="Bewertung: ".$bewertung." Stern (".$bewertungenZahl.")";
-    }else{
-        $bewertung="Bewertung: ".$bewertung." Sterne (".$bewertungenZahl.")";
+    } elseif ($bewertung == 1) {
+        $bewertung = "Bewertung: " . $bewertung . " Stern (" . $bewertungenZahl . ")";
+    } else {
+        $bewertung = "Bewertung: " . $bewertung . " Sterne (" . $bewertungenZahl . ")";
     }
 
     $statement3 = $pdo->query("SELECT * FROM users WHERE id = '$uid' ");
@@ -103,15 +159,15 @@ $sess = $_SESSION['userid'];
     $statement4 = $pdo->query("SELECT BSterne FROM bewertung WHERE rezeptID = '$rezeptID' AND BNutzer = '$sess' ");
     $userBewertung = $statement4->fetch();
     $UserWertung = $userBewertung['BSterne'];
-    if($UserWertung==5){
+    if ($UserWertung == 5) {
         $Wertung5 = "checked";
-    }elseif ($UserWertung==4){
+    } elseif ($UserWertung == 4) {
         $Wertung4 = "checked";
-    }elseif ($UserWertung==3){
+    } elseif ($UserWertung == 3) {
         $Wertung3 = "checked";
-    }elseif ($UserWertung==2){
+    } elseif ($UserWertung == 2) {
         $Wertung2 = "checked";
-    }elseif ($UserWertung==1){
+    } elseif ($UserWertung == 1) {
         $Wertung1 = "checked";
     }
 
@@ -119,10 +175,10 @@ $sess = $_SESSION['userid'];
 
         <div id="top-buttons">';
 
-    if($sess!=$uid){
-            echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
-            }else{
-        echo '<a href="Kochbuch.php?nutzer='.$sess.'"><button class="button">Zurück</button></a>';
+    if ($sess != $uid) {
+        echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
+    } else {
+        echo '<a href="Kochbuch.php?nutzer=' . $sess . '"><button class="button">Zurück</button></a>';
     }
 
     if ($sess == $uid) {
@@ -137,14 +193,17 @@ $sess = $_SESSION['userid'];
         
         <div id="top-info">
         
-        <div id="like">
-                    <p class="merken">
-                        <input type="radio" id="like" name="like" value="like"><label for="like" title="Rezept merken"></label>
-                        <span id="Merken">
+        <div id="like-recipe">
+            <form id="fav" method="post" action="?id=' . $rezeptID . '">
+                <p class="merken">
+                    <input type="hidden" name="checkFav" value="' . $fav . '">
+                    <input type="radio" id="like" name="like" value="like" ' . $fav . ' onclick="this.form.submit()"><label for="like" title="Rezept merken"></label>
+                    <span id="Merken">
                         Merken:
-                        </span>
-                    </p>
-                </div>
+                    </span>
+                </p>
+            </form>
+        </div>
         
         <div class="kategorien">';
 
@@ -178,7 +237,7 @@ $sess = $_SESSION['userid'];
 
             <div class="recipe-preview">
                 <diV class="recipe-preview-image-container">
-                    <img alt="Rezept-Vorschaubild" id="rezept-vorschaubild" src=../images/rezepte/'.$pic.'>
+                    <img alt="Rezept-Vorschaubild" id="rezept-vorschaubild" src=../images/rezepte/' . $pic . '>
                 </diV>
                 <div class="recipe-preview-description"></div>
             </div>
@@ -187,13 +246,13 @@ $sess = $_SESSION['userid'];
     
                 <form id="stars" method="post" action="?id=' . $rezeptID . '">
                     <p class="sternebewertung">
-                        <input type="radio" id="stern5" name="bewertung" value="5" '.$Wertung5.' onclick="this.form.submit()"><label for="stern5" title="5 Sterne">5 Sterne</label>
-                        <input type="radio" id="stern4" name="bewertung" value="4" '.$Wertung4.' onclick="this.form.submit()"><label for="stern4" title="4 Sterne">4 Sterne</label>
-                        <input type="radio" id="stern3" name="bewertung" value="3" '.$Wertung3.' onclick="this.form.submit()"><label for="stern3" title="3 Sterne">3 Sterne</label>
-                        <input type="radio" id="stern2" name="bewertung" value="2" '.$Wertung2.' onclick="this.form.submit()"><label for="stern2" title="2 Sterne">2 Sterne</label>
-                        <input type="radio" id="stern1" name="bewertung" value="1" '.$Wertung1.' onclick="this.form.submit()"><label for="stern1" title="1 Stern">1 Stern</label>
+                        <input type="radio" id="stern5" name="bewertung" value="5" ' . $Wertung5 . ' onclick="this.form.submit()"><label for="stern5" title="5 Sterne">5 Sterne</label>
+                        <input type="radio" id="stern4" name="bewertung" value="4" ' . $Wertung4 . ' onclick="this.form.submit()"><label for="stern4" title="4 Sterne">4 Sterne</label>
+                        <input type="radio" id="stern3" name="bewertung" value="3" ' . $Wertung3 . ' onclick="this.form.submit()"><label for="stern3" title="3 Sterne">3 Sterne</label>
+                        <input type="radio" id="stern2" name="bewertung" value="2" ' . $Wertung2 . ' onclick="this.form.submit()"><label for="stern2" title="2 Sterne">2 Sterne</label>
+                        <input type="radio" id="stern1" name="bewertung" value="1" ' . $Wertung1 . ' onclick="this.form.submit()"><label for="stern1" title="1 Stern">1 Stern</label>
                         <span id="Bewertung" title="Keine Bewertung">
-                        '.$bewertung.'';
+                        ' . $bewertung . '';
 
     echo '    </span>
                     </p>
