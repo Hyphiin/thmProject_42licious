@@ -169,7 +169,7 @@ if ($sess == true) {
 
                 <div class="bottom-buttons">
                     <button type="submit" class="button" id="create" type="submit">Erstellen</button>
-                    <a href="Kochbuch.php"><button type="button" class="button" id="cancel">Abbrechen</button></a>
+                    <a href="javascript:history.back()"><button type="button" class="button" id="cancel">Abbrechen</button></a>
                 </div>
 
 

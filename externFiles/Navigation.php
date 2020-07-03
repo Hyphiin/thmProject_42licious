@@ -100,6 +100,7 @@ $sess = $_SESSION['userid'];
                     </label>
 
                     <p>
+                        <
                         <select>
                             <option value="time15">15</option>
                             <option value="time30">30</option>
@@ -107,7 +108,7 @@ $sess = $_SESSION['userid'];
                             <option value="time60">60</option>
                             <option value="time120">120</option>
                         </select>
-
+                        Minuten
                     </p>
                     <p>
                         <select>
