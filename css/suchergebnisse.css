@@ -28,6 +28,12 @@
     color: #000000;
 }
 
+#noFav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 
 #bottom-buttons{
     margin: 10px;

@@ -105,13 +105,17 @@ if($nutzer==0){
 
                 $statement1 = $pdo->query("SELECT favRezepte FROM users WHERE id = '$sess' ");
                 $favorites = $statement1->fetch();
+                if (!empty($favorites[0])) {
+                    $statement2 = $pdo->query("SELECT * FROM rezepte WHERE rid IN ($favorites[0]) ORDER BY $order");
+                    while ($rezept = $statement2->fetch()) {
 
-                $statement2 = $pdo->query("SELECT * FROM rezepte WHERE rid IN ($favorites[0]) ORDER BY $order");
-                while ($rezept = $statement2->fetch()) {
-
-                    include('RezeptPreview.php');
+                        include('RezeptPreview.php');
+                    }
+                }else{
+                    echo '<div id="noFav">';
+                    echo 'Keine Favoriten gespeichert.';
+                    echo '</div>';
                 }
-
             }else {
 
                 $statement3 = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzer' ORDER BY $order");
