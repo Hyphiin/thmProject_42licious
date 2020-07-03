@@ -49,6 +49,22 @@ $sess = $_SESSION['userid'];
         $rezeptID = $_GET['id'];
     }
 
+    if ($sess) {
+        if (isset($_POST['bewertung'])) {
+            if ($sess != $uid) {
+                $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
+                $bewertungscheck = $fetch->fetch();
+                $bewertung = $_POST['bewertung'];
+                if ($bewertungscheck[0] == 0) {
+                    $statement5 = $pdo->prepare("INSERT INTO bewertung (rezeptID, BSterne, BNutzer) VALUES(:rezeptid, :bsterne, :bnutzer)");
+                    $ergebnis = $statement5->execute(array('rezeptid' => $rezeptID, 'bsterne' => $bewertung, 'bnutzer' => $sess));
+                } elseif ($bewertungscheck[0] != 0) {
+                    $statement6 = $pdo->query("UPDATE bewertung SET BSterne = '$bewertung' WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
+                }
+            }
+        }
+    }
+
 
     $statement = $pdo->query("SELECT * FROM rezepte WHERE rid = '$rezeptID' ");
     $rezept = $statement->fetch();
@@ -65,7 +81,7 @@ $sess = $_SESSION['userid'];
     $zutatenListe = $rezept['zutatenListe'];
     $zutatenTable = explode(";", $zutatenListe);
     $anleitung = $rezept['anleitung'];
-    $bewertung = $rezept['gesamtBewertung'];
+    $gesBewertung = $rezept['gesamtBewertung'];
 
     if ($sess) {
         if ($sess != $uid) {
@@ -127,21 +143,7 @@ $sess = $_SESSION['userid'];
         }
     }
 
-    if ($sess) {
-        if (isset($_POST['bewertung'])) {
-            if ($sess != $uid) {
-                $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
-                $bewertungscheck = $fetch->fetch();
-                $bewertung = $_POST['bewertung'];
-                if ($bewertungscheck[0] == 0) {
-                    $statement5 = $pdo->prepare("INSERT INTO bewertung (rezeptID, BSterne, BNutzer) VALUES(:rezeptid, :bsterne, :bnutzer)");
-                    $ergebnis = $statement5->execute(array('rezeptid' => $rezeptID, 'bsterne' => $bewertung, 'bnutzer' => $sess));
-                } elseif ($bewertungscheck[0] != 0) {
-                    $statement6 = $pdo->query("UPDATE bewertung SET BSterne = '$bewertung' WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
-                }
-            }
-        }
-    }
+
 
     $statement2 = $pdo->query("SELECT COUNT(BID) FROM bewertung WHERE rezeptID = '$rezeptID' ");
     $bewertungenAnzahl = $statement2->fetch();
@@ -149,12 +151,12 @@ $sess = $_SESSION['userid'];
         $bewertungenZahl = $bewertungenAnzahl[0];
     }
 
-    if ($bewertung == 0) {
-        $bewertung = "Keine Bewertungen";
-    } elseif ($bewertung == 1) {
-        $bewertung = "Bewertung: " . $bewertung . " Stern (" . $bewertungenZahl . ")";
+    if ($gesBewertung == 0) {
+        $gesBewertung = "Keine Bewertungen";
+    } elseif ($gesBewertung == 1) {
+        $gesBewertung = "Bewertung: " . $gesBewertung . " Stern (" . $bewertungenZahl . ")";
     } else {
-        $bewertung = "Bewertung: " . $bewertung . " Sterne (" . $bewertungenZahl . ")";
+        $gesBewertung = "Bewertung: " . $gesBewertung . " Sterne (" . $bewertungenZahl . ")";
     }
 
     $statement3 = $pdo->query("SELECT * FROM users WHERE id = '$uid' ");
@@ -257,7 +259,7 @@ $sess = $_SESSION['userid'];
                         <input type="radio" id="stern2" name="bewertung" value="2" ' . $Wertung2 . ' onclick="this.form.submit()"><label for="stern2" title="2 Sterne">2 Sterne</label>
                         <input type="radio" id="stern1" name="bewertung" value="1" ' . $Wertung1 . ' onclick="this.form.submit()"><label for="stern1" title="1 Stern">1 Stern</label>
                         <span id="Bewertung" title="Keine Bewertung">
-                        ' . $bewertung . '';
+                        ' . $gesBewertung . '';
 
     echo '    </span>
                     </p>

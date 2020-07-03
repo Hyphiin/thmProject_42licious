@@ -8,12 +8,26 @@ $dauer = $rezept['dauer'];
 $schwierigkeit = $rezept['schwierigkeit'];
 $beschreibung = $rezept['beschreibung'];
 $bewertung = $rezept['gesamtBewertung'];
-if($bewertung==0){
-$bewertung = "Keine Bewertungen";
-}elseif($bewertung==1){
-$bewertung.=" Stern";
-}else{
-$bewertung.=" Sterne";
+
+$Wertung="";
+$Wertung1="";
+$Wertung2="";
+$Wertung3="";
+$Wertung4="";
+$Wertung5="";
+if ($bewertung>0) {
+    $Wertung = round($bewertung);
+}
+if ($Wertung == 5) {
+    $Wertung5 = "checked";
+} elseif ($Wertung == 4) {
+    $Wertung4 = "checked";
+} elseif ($Wertung == 3) {
+    $Wertung3 = "checked";
+} elseif ($Wertung == 2) {
+    $Wertung2 = "checked";
+} elseif ($Wertung == 1) {
+    $Wertung1 = "checked";
 }
 
 echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
@@ -39,7 +53,19 @@ echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
                     echo '<h2 class="recipe-preview-title">' . $title . '</h2>';
                     echo '<p class="recipe-preview-timestamp">' . substr($timestamp,0,10) . '</p>';
                     echo '</div>';
-                echo 'Bewertung: '.$bewertung.'<br/>';
+                        echo '<div id="recipe-rating">
+    
+                <form id="stars" method="post" action="">
+                    <p class="sternebewertung">               
+                        <input type="radio" id="stern5" name="bewertung" value="5" ' . $Wertung5 . ' disabled><label for="stern5" title="5 Sterne">5 Sterne</label>
+                        <input type="radio" id="stern4" name="bewertung" value="4" ' . $Wertung4 . ' disabled><label for="stern4" title="4 Sterne">4 Sterne</label>
+                        <input type="radio" id="stern3" name="bewertung" value="3" ' . $Wertung3 . ' disabled><label for="stern3" title="3 Sterne">3 Sterne</label>
+                        <input type="radio" id="stern2" name="bewertung" value="2" ' . $Wertung2 . ' disabled><label for="stern2" title="2 Sterne">2 Sterne</label>
+                        <input type="radio" id="stern1" name="bewertung" value="1" ' . $Wertung1 . ' disabled><label for="stern1" title="1 Stern">1 Stern</label>
+                    </p>   
+                    ('.$bewertung.')             
+                    </form>
+                </div>';
                 echo 'Dauer: '.$dauer.' Minuten<br/>';
                 echo 'Schwierigkeit: '.$schwierigkeit.'<br/><br/>';
                 echo    nl2br($beschreibung);
