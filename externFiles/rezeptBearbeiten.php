@@ -38,21 +38,8 @@ if ($sess == true) {
                 $beschreibung = $_POST['beschreibung'];
                 $personen = $_POST['personen'];
                 $anleitung = $_POST['anleitung'];
-                $cat1 = $_POST['cat1'];
-                $cat2 = $_POST['cat2'];
-                $cat3 = $_POST['cat3'];
-                $kategorien = "";
-
-                if($cat1!=""){
-                    $kategorien.=$cat1.";";
-                }
-                if($cat2!=""){
-                    $kategorien.=$cat2.";";
-                }
-                if($cat3!=""){
-                    $kategorien.=$cat3.";";
-                }
-
+                $kategorien = $_POST['cat'];
+                
                 $counter = $_POST['tableLength'];
                 $zutatenListe = "";
 
@@ -135,6 +122,14 @@ if ($sess == true) {
             $zutatenListe = $rezept['zutatenListe'];
             $anleitung = $rezept['anleitung'];
 
+            if ($kategorienListe=="fleisch;"){
+                $fleisch = "checked";
+            }elseif ($kategorienListe=="vegetarisch;"){
+                $vegetarisch = "checked";
+            }elseif ($kategorienListe=="vegetarisch;vegan;"){
+                $vegan = "checked";
+            }
+
             $zutatenTable = explode(";", $zutatenListe);
             ?>
 
@@ -177,23 +172,13 @@ if ($sess == true) {
                 </select><br/>
                 <br/>';
 
-                $kategorie = explode(";", $kategorienListe);
-    for ($i = 0; $i < count($kategorie); $i++) {
-        if ($kategorie[$i] == "fleisch") {
-            $fleisch = "checked";
-        } elseif ($kategorie[$i] == "vegetarisch") {
-            $vegetarisch = "checked";
-        } elseif ($kategorie[$i] == "vegan") {
-            $vegan = "checked";
-        }
-    }
                 echo '<div class="kategorie">
                     Kategorie:
-                    <input type="checkbox" id="cat1" name="cat1" value="fleisch" '.$fleisch.'>
+                    <input type="radio" id="cat1" name="cat" value="fleisch;" '.$fleisch.'>
                     <label for="cat1"> Fleisch </label>
-                    <input type="checkbox" id="cat2" name="cat2" value="vegetarisch" '.$vegetarisch.'>
+                    <input type="radio" id="cat2" name="cat" value="vegetarisch;" '.$vegetarisch.'>
                     <label for="cat2"> Vegetarisch </label><br>
-                    <input type="checkbox" id="cat3" name="cat3" value="vegan" '.$vegan.'>
+                    <input type="radio" id="cat3" name="cat" value="vegetarisch;vegan;" '.$vegan.'>
                     <label for="cat3"> Vegan </label><br>
                 </div>
                 <br/>

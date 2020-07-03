@@ -36,20 +36,7 @@ if ($sess == true) {
         $beschreibung = $_POST['beschreibung'];
         $personen = $_POST['personen'];
         $anleitung = $_POST['anleitung'];
-        $cat1 = $_POST['cat1'];
-        $cat2 = $_POST['cat2'];
-        $cat3 = $_POST['cat3'];
-        $kategorien = "";
-
-        if ($cat1 != "") {
-            $kategorien .= $cat1 . ";";
-        }
-        if ($cat2 != "") {
-            $kategorien .= $cat2 . ";";
-        }
-        if ($cat3 != "") {
-            $kategorien .= $cat3 . ";";
-        }
+        $kategorien = $_POST['cat'];
 
         $counter = $_POST['tableLength'];
         $zutatenListe = "";
@@ -136,11 +123,11 @@ if ($sess == true) {
 
                 <div class="kategorie">
                     Kategorie:
-                    <input type="checkbox" id="cat1" name="cat1" value="fleisch" checked="checked">
+                    <input type="radio" id="cat1" name="cat" value="fleisch;" checked="checked">
                     <label for="cat1"> Fleisch </label>
-                    <input type="checkbox" id="cat2" name="cat2" value="vegetarisch">
+                    <input type="radio" id="cat2" name="cat" value="vegetarisch;">
                     <label for="cat2"> Vegetarisch </label><br>
-                    <input type="checkbox" id="cat3" name="cat3" value="vegan">
+                    <input type="radio" id="cat3" name="cat" value="vegetarisch;vegan;">
                     <label for="cat3"> Vegan </label><br>
                 </div>
                 <br/>
