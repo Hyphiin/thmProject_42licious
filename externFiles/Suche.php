@@ -38,24 +38,48 @@ $sess = $_SESSION['userid'];
                     $auswahl = $_GET["selection"];
                 }
 
-                if (isset($_GET["suchbegriff"])) {
+                if (isset($_POST["fleisch"]) OR isset($_POST["vegetarisch"]) OR isset($_POST["vegan"])) {
+                    $special = true;
+                    $kategorien = true;
+                }
+
+                if ($_POST["zeit"] == "") {
+                    $zeit = 9999;
+                } else {
+                    $zeit = $_POST["zeit"];
+                    $special = true;
+                }
+
+                if ($_POST["schwierigkeit"] == "Auswahl") {
+                    $schwierigkeit = "";
+                } else {
+                    $schwierigkeit = $_POST["schwierigkeit"];
+                    $special = true;
+                }
+
+                if (isset($_GET["suchbegriff"]) OR isset($_POST["suchbegriff"])) {
                     $suchwort = $_GET["suchbegriff"];
 
+                    if ($_POST["suchbegriff"]) {
+                        $suchwort = $_POST["suchbegriff"];
+                    }
+
                     if (isset($_GET['order'])) {
-                        if($_GET['order']=="created_at" || $_GET['order']=="cdate" ){
-                        $selected = 'selected';
-                        $selected2 = '';
-                    } elseif($_GET['order']=="bewertung") {
-                        $selected = '';
-                        $selected2 = 'selected';
-                    }else{
-                        $selected = '';
-                        $selected2 = '';
-                    }}
+                        if ($_GET['order'] == "created_at" || $_GET['order'] == "cdate") {
+                            $selected = 'selected';
+                            $selected2 = '';
+                        } elseif ($_GET['order'] == "bewertung") {
+                            $selected = '';
+                            $selected2 = 'selected';
+                        } else {
+                            $selected = '';
+                            $selected2 = '';
+                        }
+                    }
 
                     echo '<div id="head-title">';
                     echo '<h1>Suchergebnisse für "' . $suchwort . '"</h1>';
-                    echo ' </div>';
+                    echo '</div>';
 
                     echo '<div id="top-buttons">';
                     echo '<div>';
@@ -130,7 +154,7 @@ $sess = $_SESSION['userid'];
                                     echo '<p>Name: ' . $zeile->vorname . " " . substr($zeile->nachname, 0, 1) . "." . '</p>';
                                     echo '<p>Nutzername: ' . $zeile->nickname . '</p>';
                                     echo '<br>';
-                                    echo '<p>Mitglied seit: ' . substr($zeile->created_at,0,10) . '</p>';
+                                    echo '<p>Mitglied seit: ' . substr($zeile->created_at, 0, 10) . '</p>';
                                     echo '</div>';
                                     echo '</div>';
                                     echo '</div>';
@@ -144,17 +168,42 @@ $sess = $_SESSION['userid'];
                             echo '<div class="recipe-container">';
 
                             if (isset($_GET['order'])) {
-                                if ($_GET['order']=="cdate") {
+                                if ($_GET['order'] == "cdate") {
                                     $order = $_GET['order'] . " DESC";
-                                }else{
+                                } else {
                                     $order = "gesamtBewertung DESC";
                                 }
                             } else {
                                 $order = 'titel';
                             }
 
-                            $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order");
-                            while($rezept = $statement1->fetch()){
+                            if ($special) {
+                                if ($kategorien) {
+                                    if(isset($_POST['fleisch']))
+                                    {
+                                        $suchkategorie = "'fleisch;'";
+                                    }
+                                    elseif(isset($_POST['vegetarisch']))
+                                    {
+                                        if(isset($_POST['vegan'])){
+                                            $suchkategorie = "'vegetarisch;' OR kategorien LIKE 'vegetarisch;vegan%'";
+                                        }
+                                        else{
+                                            $suchkategorie = "'vegetarisch;'";
+                                        }
+                                    }
+                                    else{
+                                        $suchkategorie = "'vegetarisch;vegan;'";
+                                    }
+                                    $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND kategorien LIKE $suchkategorie ORDER BY $order");
+                                } else {
+                                    $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') ORDER BY $order");
+                                }
+                            } else {
+                                $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order");
+                            }
+
+                            while ($rezept = $statement1->fetch()) {
                                 include('RezeptPreview.php');
                             }
 

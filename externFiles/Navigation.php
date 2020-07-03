@@ -15,7 +15,6 @@ $sess = $_SESSION['userid'];
     <div class="searchBar">
         <form class="search" action="Suche.php" method="get">
             <select class="selection" name="selection">
-                <option value="Auswahl">Auswahl</option>
                 <option value="rezepte" name="rezepte">in Rezepten</option>
                 <option value="users" name="users">in Nutzern</option>
             </select>
@@ -80,45 +79,41 @@ $sess = $_SESSION['userid'];
             </div>
 
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="Suche.php?selection=rezepte" method="post">
 
+
+                    <label for="fleisch">
+                        <input type="checkbox" id="fleisch" name="fleisch" value="fleisch">
+                        <span>Fleisch</span>
+                    </label>
                     <label for="vegetarisch">
-                        <input type="checkbox" id="vegetarisch" name="dietType[]" value="vegetarisch">
+                        <input type="checkbox" id="vegetarisch" name="vegetarisch" value="vegetarisch">
                         <span>Vegetarisch</span>
                     </label>
-                    <label for="laktosefrei">
-                        <input type="checkbox" id="laktosefrei" name="dietType[]" value="laktosefrei">
-                        <span>Laktosefrei</span>
-                    </label>
                     <label for="vegan">
-                        <input type="checkbox" id="vegan" name="dietType[]" value="vegan">
+                        <input type="checkbox" id="vegan" name="vegan" value="vegan">
                         <span>Vegan</span>
-                    </label>
-                    <label for="sonstiges">
-                        <input type="checkbox" id="sonstiges" name="dietType[]" value="sonstiges">
-                        <span>Sonstiges</span>
                     </label>
 
                     <p>
-                        <
-                        <select>
-                            <option value="time15">15</option>
-                            <option value="time30">30</option>
-                            <option value="time45">45</option>
-                            <option value="time60">60</option>
-                            <option value="time120">120</option>
-                        </select>
+                        max Dauer:
+                        <input type="number" name="zeit"/>
                         Minuten
                     </p>
                     <p>
-                        <select>
-                            <option value="difficultyEasy">Leicht</option>
-                            <option value="difficultyNormal">Mittel</option>
-                            <option value="difficultyHard">Schwer</option>
+                        max Schwierigkeit:
+                        <select name = "schwierigkeit">
+                            <option value="Auswahl">Auswahl</option>
+                            <option value="leicht">Leicht</option>
+                            <option value="leicht%' OR schwierigkeit LIKE '%mittel">Mittel</option>
+                            <option value="leicht%' OR schwierigkeit LIKE '%mittel%' OR schwierigkeit LIKE '%schwer%' AND schwierigkeit NOT LIKE '%sehr schwer">Schwer</option>
+                            <option value="">Sehr Schwer</option>
                         </select>
                     </p>
 
-                    <button class="modalApplyBtn" formaction="" type="submit">Speichern</button>
+                    <input type="text" placeholder="Suchen..." name="suchbegriff">
+
+                    <button class="modalApplyBtn" type="submit">Suchen</button>
 
                 </form>
             </div>
