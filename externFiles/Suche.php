@@ -153,62 +153,12 @@ $sess = $_SESSION['userid'];
                                 $order = 'titel';
                             }
 
-                            $sql = "SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order";
-                            $ergebnis = $db->query($sql);
-                            if (is_object($ergebnis)) {
-                                while ($zeile = $ergebnis->fetch_object()) {
-                                    $bewertung = $zeile->gesamtBewertung;
-                                    if($bewertung==0){
-                                        $bewertung = "Keine Bewertungen";
-                                    }elseif($bewertung==1){
-                                        $bewertung.=" Stern";
-                                    }else{
-                                        $bewertung.=" Sterne";
-                                    }
-                                    echo '<a href="RezeptAnsicht.php?id=' . $zeile->rid . '">';
-                                    echo '<div class="recipe-preview-container">';
-                                    echo '<div class="recipe-preview">';
-                                    echo '<div class="recipe-preview-pic">';
-                                    echo '<img alt="Rezept-Vorschau" class="recipe-pic" src="../images/rezepte/'.$zeile->pic.'">';
-                                    echo '</div>';
-                                    echo '<div class="recipe-preview-info">';
-
-                                    echo '<div class="kategorien">';
-                                    $kategorie = explode(";", $zeile->kategorienListe);
-
-                                    for ($i = 0; $i < count($kategorie); $i++) {
-                                        if ($kategorie[$i] == "fleisch") {
-                                            echo '<div>Fleisch</div>';
-                                        } elseif ($kategorie[$i] == "vegetarisch") {
-                                            echo '<div>Vegetarisch</div>';
-                                        } elseif ($kategorie[$i] == "vegan") {
-                                            echo '<div>Vegan</div>';
-                                        }
-                                    }
-                                    echo '</div>';
-                                    echo '<div class="titleTime">';
-                                    echo '<h2 class="recipe-preview-title">' . $zeile->titel . '</h2>';
-                                    echo '<p class="recipe-preview-timestamp">' . substr($zeile->cdate,0,10) . '</p>';
-                                    echo '</div>';
-                                    $uid = $zeile->uid;
-                                    $statement = $pdo->query("SELECT * FROM users WHERE id = '$uid'");
-                                    $autor = $statement->fetch();
-                                    $ersteller = $autor['nickname'];
-                                    echo 'von: ' . $ersteller . '<br/><br/>';
-                                    echo 'Bewertung: '.$bewertung.'<br/>';
-                                    echo 'Dauer: ' . $zeile->dauer . ' Minuten<br/>';
-                                    echo 'Schwierigkeit: ' . $zeile->schwierigkeit . '<br/><br/>';
-                                    echo nl2br($zeile->beschreibung);
-                                    echo '<br/><br/>';
-                                    echo '</div>';
-
-                                    echo '</div>';
-                                    echo '</div>';
-                                    echo '</a>';
-                                }
-
+                            $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order");
+                            while($rezept = $statement1->fetch()){
+                                include('RezeptPreview.php');
                             }
-                            echo '</div>';
+
+
                         } else {
                             echo 'Bitte eine gültige Auswahl treffen!';
                         }
