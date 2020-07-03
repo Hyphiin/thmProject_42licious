@@ -79,7 +79,7 @@ $sess = $_SESSION['userid'];
             </div>
 
             <div class="modal-body">
-                <form action="Suche.php?selection=rezepte" method="post">
+                <form action="SucheFilter.php" method="post">
 
 
                     <label for="fleisch">
