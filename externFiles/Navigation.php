@@ -94,7 +94,10 @@ $sess = $_SESSION['userid'];
                         <input type="checkbox" id="vegan" name="vegan" value="vegan">
                         <span>Vegan</span>
                     </label>
-
+                    <br>
+                    <input type="text" id = "zutat" name="zutat"/>
+                    <br>
+                    <input type="text" id="zutat2" name="zutat2" />
                     <p>
                         max Dauer:
                         <input type="number" name="zeit"/>
@@ -128,3 +131,16 @@ $sess = $_SESSION['userid'];
 
 <script src="../jscript/navigation.js"></script>
 <script src="../jscript/recipeModal.js"></script>
+<script>
+    let x = document.getElementById("zutat");
+    let y = document.getElementById("zutat2");
+    x.onchange = function (){
+        if(x.value!="") {
+            y.style.display = "block";
+        }
+        else
+        {
+            y.style.display = "none";
+        }
+    }
+</script>

@@ -183,7 +183,7 @@ $referer = $_SERVER['HTTP_REFERER'];
 
         <div id="top-buttons">';
 
-        if($referer == "http://localhost/42licious/externFiles/SucheFilter.php"){
+        if(substr($referer, -15, 15) == "SucheFilter.php"){
             echo '<a href="index.php"><button class="button">Zurück zur Startseite</button></a>';
         }
         else {

@@ -290,4 +290,6 @@ form.search::after {
 }
 
 
-
+#zutat2{
+    display: none;
+}

@@ -58,6 +58,20 @@ $sess = $_SESSION['userid'];
                     $suchwort = "";
                 }
 
+                if ($_POST['zutat'] == "Auswahl") {
+                    $zutat = "%%";
+                } else {
+                    $zutat = $_POST['zutat'];
+                    $special = true;
+                }
+
+                if ($_POST['zutat2'] == "Auswahl") {
+                    $zutat2 = "%%";
+                } else {
+                    $zutat2 = $_POST['zutat2'];
+                    $special = true;
+                }
+
                 if (isset($_POST['order'])) {
                     if ($_POST['order'] == "cdate") {
                         $selected = 'selected';
@@ -74,10 +88,9 @@ $sess = $_SESSION['userid'];
                 if (isset($_POST['order'])) {
                     if ($_POST['order'] == "cdate") {
                         $order = $_POST['order'] . " DESC";
-                    } elseif($_POST['order'] == "bewertung"){
+                    } elseif ($_POST['order'] == "bewertung") {
                         $order = "gesamtBewertung DESC";
-                    }
-                    else{
+                    } else {
                         $order = 'titel';
                     }
                 } else {
@@ -88,14 +101,14 @@ $sess = $_SESSION['userid'];
                     if ($kategorien) {
                         if (isset($_POST['fleisch'])) {
                             if (isset($_POST['vegetarisch'])) {
-                                if (isset($_POST['vegan'])){
+                                if (isset($_POST['vegan'])) {
                                     $suchkategorie = "'%%'";
-                                }else {
+                                } else {
                                     $suchkategorie = "'fleisch;' OR kategorien LIKE 'vegetarisch;'";
                                 }
-                            }elseif (isset($_POST['vegan'])){
+                            } elseif (isset($_POST['vegan'])) {
                                 $suchkategorie = "'%%'";
-                            }else {
+                            } else {
                                 $suchkategorie = "'fleisch;'";
                             }
                         } elseif (isset($_POST['vegetarisch'])) {
@@ -107,11 +120,11 @@ $sess = $_SESSION['userid'];
                         } else {
                             $suchkategorie = "'vegetarisch;vegan;'";
                         }
-                        $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND (kategorien LIKE $suchkategorie) ORDER BY $order");
-                        $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND (kategorien LIKE $suchkategorie) ORDER BY $order");
+                        $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND (kategorien LIKE $suchkategorie) AND (zutatenListe LIKE '%$zutat%') AND (zutatenListe LIKE '%$zutat2%') ORDER BY $order");
+                        $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND (kategorien LIKE $suchkategorie) AND (zutatenListe LIKE '%$zutat%') AND (zutatenListe LIKE '%$zutat2%') ORDER BY $order");
                     } else {
-                        $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') ORDER BY $order");
-                        $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') ORDER BY $order");
+                        $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND (zutatenListe LIKE '%$zutat%') AND (zutatenListe LIKE '%$zutat2%') ORDER BY $order");
+                        $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND (zutatenListe LIKE '%$zutat%') AND (zutatenListe LIKE '%$zutat2%') ORDER BY $order");
                     }
                 } else {
                     $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order");
@@ -120,20 +133,35 @@ $sess = $_SESSION['userid'];
                 $suchergebnisse = $anzahlErgebnisse->fetch();
 
                 echo '<div id="head-title">';
-                echo '<h1>'.$suchergebnisse[0].' Suchergebnisse für "' . $suchwort . '"</h1>';
+                echo '<h1>' . $suchergebnisse[0] . ' Suchergebnisse für "' . $suchwort . '"</h1>';
                 echo '</div>';
 
                 echo '<div id="top-buttons">';
                 echo '<div>';
                 echo '<label for="filter">Sortieren nach:</label>';
                 echo '<form id="reOrder" action="SucheFilter.php?order" method="post">';
-                if (isset($_POST['fleisch'])){echo      '<input type="hidden" name="fleisch" value="'.$_POST['fleisch'].'">';};
-                if (isset($_POST['vegetarisch'])){echo      '<input type="hidden" name="vegetarisch" value="'.$_POST['vegetarisch'].'">';};
-                if (isset($_POST['vegan'])){echo      '<input type="hidden" name="vegan" value="'.$_POST['vegan'].'">';};
-                if (isset($_POST['zeit'])){echo      '<input type="hidden" name="zeit" value="'.$_POST['zeit'].'">';};
-                if (isset($_POST['schwierigkeit'])){echo      '<input type="hidden" name="schwierigkeit" value="'.$_POST['schwierigkeit'].'">';};
-                if (isset($_POST['suchbegriff'])){echo      '<input type="hidden" name="suchbegriff" value="'.$_POST['suchbegriff'].'">';};
-                echo      '<input type="hidden" name="order" value="">';
+                if (isset($_POST['fleisch'])) {
+                    echo '<input type="hidden" name="fleisch" value="' . $_POST['fleisch'] . '">';
+                };
+                if (isset($_POST['vegetarisch'])) {
+                    echo '<input type="hidden" name="vegetarisch" value="' . $_POST['vegetarisch'] . '">';
+                };
+                if (isset($_POST['vegan'])) {
+                    echo '<input type="hidden" name="vegan" value="' . $_POST['vegan'] . '">';
+                };
+                if (isset($_POST['zeit'])) {
+                    echo '<input type="hidden" name="zeit" value="' . $_POST['zeit'] . '">';
+                };
+                if (isset($_POST['schwierigkeit'])) {
+                    echo '<input type="hidden" name="schwierigkeit" value="' . $_POST['schwierigkeit'] . '">';
+                };
+                if (isset($_POST['suchbegriff'])) {
+                    echo '<input type="hidden" name="suchbegriff" value="' . $_POST['suchbegriff'] . '">';
+                };
+                if (isset($_POST['zutat'])) {
+                    echo '<input type="hidden" name="zutat" value="' . $_POST['zutat'] . '">';
+                };
+                echo '<input type="hidden" name="order" value="">';
                 echo '<select id="filter" name="order" onchange="this.form.submit()">';
                 echo '<option value="">Name</option>';
                 echo '<option value="cdate" ' . $selected . '>Neueste</option>';
