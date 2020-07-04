@@ -71,8 +71,53 @@ $sess = $_SESSION['userid'];
                     }
                 }
 
+                if (isset($_POST['order'])) {
+                    if ($_POST['order'] == "cdate") {
+                        $order = $_POST['order'] . " DESC";
+                    } else {
+                        $order = "gesamtBewertung DESC";
+                    }
+                } else {
+                    $order = 'titel';
+                }
+
+                if ($special) {
+                    if ($kategorien) {
+                        if (isset($_POST['fleisch'])) {
+                            if (isset($_POST['vegetarisch'])) {
+                                if (isset($_POST['vegan'])){
+                                    $suchkategorie = "'%%'";
+                                }else {
+                                    $suchkategorie = "'fleisch;' OR kategorien LIKE 'vegetarisch;'";
+                                }
+                            }elseif (isset($_POST['vegan'])){
+                                $suchkategorie = "'%%'";
+                            }else {
+                                $suchkategorie = "'fleisch;'";
+                            }
+                        } elseif (isset($_POST['vegetarisch'])) {
+                            if (isset($_POST['vegan'])) {
+                                $suchkategorie = "'vegetarisch;' OR kategorien LIKE 'vegetarisch;vegan%'";
+                            } else {
+                                $suchkategorie = "'vegetarisch;'";
+                            }
+                        } else {
+                            $suchkategorie = "'vegetarisch;vegan;'";
+                        }
+                        $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND kategorien LIKE $suchkategorie ORDER BY $order");
+                        $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND kategorien LIKE $suchkategorie ORDER BY $order");
+                    } else {
+                        $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') ORDER BY $order");
+                        $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') ORDER BY $order");
+                    }
+                } else {
+                    $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order");
+                    $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order");
+                }
+                $suchergebnisse = $anzahlErgebnisse->fetch();
+
                 echo '<div id="head-title">';
-                echo '<h1>Suchergebnisse für "' . $suchwort . '"</h1>';
+                echo '<h1>'.$suchergebnisse[0].' Suchergebnisse für "' . $suchwort . '"</h1>';
                 echo '</div>';
 
                 echo '<div id="top-buttons">';
@@ -99,36 +144,6 @@ $sess = $_SESSION['userid'];
                 echo '<div class="result">';
                 echo '<div class="recipe-container">';
 
-                if (isset($_POST['order'])) {
-                    if ($_POST['order'] == "cdate") {
-                        $order = $_POST['order'] . " DESC";
-                    } else {
-                        $order = "gesamtBewertung DESC";
-                    }
-                } else {
-                    $order = 'titel';
-                }
-
-                if ($special) {
-                    if ($kategorien) {
-                        if (isset($_POST['fleisch'])) {
-                            $suchkategorie = "'fleisch;'";
-                        } elseif (isset($_POST['vegetarisch'])) {
-                            if (isset($_POST['vegan'])) {
-                                $suchkategorie = "'vegetarisch;' OR kategorien LIKE 'vegetarisch;vegan%'";
-                            } else {
-                                $suchkategorie = "'vegetarisch;'";
-                            }
-                        } else {
-                            $suchkategorie = "'vegetarisch;vegan;'";
-                        }
-                        $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND kategorien LIKE $suchkategorie ORDER BY $order");
-                    } else {
-                        $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') ORDER BY $order");
-                    }
-                } else {
-                    $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order");
-                }
                 while ($rezept = $statement1->fetch()) {
                     include('RezeptPreview.php');
                 }
