@@ -74,8 +74,11 @@ $sess = $_SESSION['userid'];
                 if (isset($_POST['order'])) {
                     if ($_POST['order'] == "cdate") {
                         $order = $_POST['order'] . " DESC";
-                    } else {
+                    } elseif($_POST['order'] == "bewertung"){
                         $order = "gesamtBewertung DESC";
+                    }
+                    else{
+                        $order = 'titel';
                     }
                 } else {
                     $order = 'titel';
@@ -104,8 +107,8 @@ $sess = $_SESSION['userid'];
                         } else {
                             $suchkategorie = "'vegetarisch;vegan;'";
                         }
-                        $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND kategorien LIKE $suchkategorie ORDER BY $order");
-                        $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND kategorien LIKE $suchkategorie ORDER BY $order");
+                        $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND (kategorien LIKE $suchkategorie) ORDER BY $order");
+                        $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') AND (kategorien LIKE $suchkategorie) ORDER BY $order");
                     } else {
                         $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') ORDER BY $order");
                         $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `rezepte` WHERE titel Like '%$suchwort%' AND dauer <= $zeit AND (schwierigkeit LIKE '%$schwierigkeit%') ORDER BY $order");
@@ -133,7 +136,7 @@ $sess = $_SESSION['userid'];
                 echo      '<input type="hidden" name="order" value="">';
                 echo '<select id="filter" name="order" onchange="this.form.submit()">';
                 echo '<option value="">Name</option>';
-                echo '<option value="cdate" ' . $selected . '>Neuste</option>';
+                echo '<option value="cdate" ' . $selected . '>Neueste</option>';
                 echo '<option value="bewertung" ' . $selected2 . '>Bewertung</option>';
                 echo '</select>';
                 echo '</form>';

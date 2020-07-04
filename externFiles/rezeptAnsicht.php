@@ -6,6 +6,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 $sess = $_SESSION['userid'];
 
+$referer = $_SERVER['HTTP_REFERER'];
 
 ?>
 <!DOCTYPE html>
@@ -182,11 +183,12 @@ $sess = $_SESSION['userid'];
 
         <div id="top-buttons">';
 
-    if ($sess != $uid) {
-        echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
-    } else {
-        echo '<a href="Kochbuch.php?nutzer=' . $sess . '"><button class="button">Zurück</button></a>';
-    }
+        if($referer == "http://localhost/42licious/externFiles/SucheFilter.php"){
+            echo '<a href="index.php"><button class="button">Zurück zur Startseite</button></a>';
+        }
+        else {
+            echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
+        }
 
     if ($sess == $uid) {
         echo '<form action="RezeptBearbeiten.php?bearbeiten" method="post">';
