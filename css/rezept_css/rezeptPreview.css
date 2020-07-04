@@ -67,11 +67,10 @@
     margin: 2px 2px;
 }
 
-form {
+#reOrder {
     display: flex;
-    flex-direction: row;
-    margin-bottom: 20px;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 p.sternebewertung {

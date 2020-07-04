@@ -60,7 +60,8 @@
 
 /**********************************************************************************************/
 .search {
-
+    display: flex;
+    flex-direction: row;
 }
 
 
@@ -118,6 +119,13 @@ form.search::after {
     content: "";
     clear: both;
     display: table;
+}
+
+.modal-body{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 /**********************************************************************************************/
