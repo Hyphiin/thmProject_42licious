@@ -40,138 +40,165 @@ $sess = $_SESSION['userid'];
 
                 if (isset($_GET["suchbegriff"])) {
                     $suchwort = $_GET["suchbegriff"];
+                    $suchwortTitel = $suchwort;
+                }
 
-                    if ($_POST["suchbegriff"]) {
-                        $suchwort = $_POST["suchbegriff"];
+
+                if (isset($_GET['order'])) {
+                    if ($_GET['order'] == "created_at" || $_GET['order'] == "cdate") {
+                        $selected = 'selected';
+                        $selected2 = '';
+                    } elseif ($_GET['order'] == "bewertung") {
+                        $selected = '';
+                        $selected2 = 'selected';
+                    } else {
+                        $selected = '';
+                        $selected2 = '';
                     }
+                }
 
-                    if (isset($_GET['order'])) {
-                        if ($_GET['order'] == "created_at" || $_GET['order'] == "cdate") {
-                            $selected = 'selected';
-                            $selected2 = '';
-                        } elseif ($_GET['order'] == "bewertung") {
-                            $selected = '';
-                            $selected2 = 'selected';
-                        } else {
-                            $selected = '';
-                            $selected2 = '';
+                if ($auswahl == 'users') {
+                    $suchwort = explode(" ", $suchwort);
+                    $abfrage = "";
+                    $a = array('vorname', 'nachname', 'nickname');
+                    for ($i = 0; $i < sizeof($suchwort); $i++) {
+                        for ($ii = 0; $ii < sizeof($a); $ii++) {
+                            if ($ii == 0) {
+                                $abfrage .= "(";
+                            }
+                            $abfrage .= "`" . $a[$ii] . "` LIKE '%" . $suchwort[$i] . "%'";
+                            if ($ii < (sizeof($a) - 1)) {
+                                $abfrage .= " OR ";
+                            } else {
+                                $abfrage .= ")";
+                            }
+                        }
+                        if ($i < (sizeof($suchwort) - 1)) {
+                            $abfrage .= " AND ";
                         }
                     }
+                }
 
-                    echo '<div id="head-title">';
-                    echo '<h1>Suchergebnisse für "' . $suchwort . '"</h1>';
-                    echo '</div>';
+                $host_name = "localhost";
+                $database = "42licious";
+                $user_name = "root";
+                $password = "";
 
-                    echo '<div id="top-buttons">';
-                    echo '<div>';
-                    echo '<label for="filter">Sortieren nach:</label>';
-                    echo '<select id="filter" name="filter" onchange="location = this.value">';
-                    echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwort . '">Name</option>';
-                    if ($auswahl == 'users') {
-                        echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwort . '&order=created_at" ' . $selected . '>Erstellungsdatum</option>';
-                    } elseif ($auswahl == 'rezepte') {
+                $db = mysqli_connect($host_name, $user_name, $password, $database);
+
+
+                if (mysqli_connect_errno() == 0) {
+                    if ($auswahl == "users") {
+
+                        echo '<div class="users">';
+
+                        if (isset($_GET['order'])) {
+                            $order = $_GET['order'];
+                        } else {
+                            $order = 'nickname';
+                        }
+
+                        $sql = "SELECT * FROM `users` WHERE $abfrage ORDER BY $order";
+                        $ergebnis = $db->query($sql);
+
+                        $statement1 = $pdo->query("SELECT * FROM `users` WHERE $abfrage ORDER BY $order");
+                        $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `users` WHERE $abfrage ORDER BY $order");
+
+                        $suchergebnisse = $anzahlErgebnisse->fetch();
+
+                        echo '<div id="head-title">';
+                        echo '<h1>' . $suchergebnisse[0] . ' Suchergebnisse für "' . $suchwortTitel . '"</h1>';
+                        echo '</div>';
+
+                        echo '<div id="top-buttons">';
+                        echo '<div>';
+                        echo '<label for="filter">Sortieren nach:</label>';
+                        echo '<select id="filter" name="filter" onchange="location = this.value">';
+                        echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwortTitel . '">Name</option>';
+                        echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwortTitel . '&order=created_at" ' . $selected . '>Erstellungsdatum</option>';
+                        echo '</select>';
+                        echo '</div>';
+
+                        echo '</div>';
+
+                        echo '<div class="result">';
+
+
+                        while ($nutzer = $statement1->fetch()) {
+
+                            $id = $nutzer['id'];
+                            $pic = $nutzer['pic'];
+                            $vorname = $nutzer['vorname'];
+                            $nachname = $nutzer['nachname'];
+                            $nickname = $nutzer['nickname'];
+                            $created = $nutzer['created_at'];
+
+                            echo '<a href="ProfilAnsicht.php?id=' . $id . '">';
+                            echo '<div class="profil-preview">';
+                            echo '<div class="profil-preview-body">';
+                            echo '<div class="profil-preview-pic">';
+                            echo "<img alt='Profil-Bild' id='profil_bild' src='../images/$pic'>";
+                            echo '</div>';
+                            echo '<div class="profil-preview-info">';
+                            echo '<p>Name: ' . $vorname . " " . substr($nachname, 0, 1) . "." . '</p>';
+                            echo '<p>Nutzername: ' . $nickname . '</p>';
+                            echo '<br>';
+                            echo '<p>Mitglied seit: ' . substr($created, 0, 10) . '</p>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</a>';
+                        }
+
+                        echo '</div>';
+                    } else if ($auswahl == "rezepte") {
+
+                        echo '<div class="recipe-container">';
+
+                        if (isset($_GET['order'])) {
+                            if ($_GET['order'] == "cdate") {
+                                $order = $_GET['order'] . " DESC";
+                            } else {
+                                $order = "gesamtBewertung DESC";
+                            }
+                        } else {
+                            $order = 'titel';
+                        }
+
+                        $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order");
+                        $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order");
+
+                        $suchergebnisse = $anzahlErgebnisse->fetch();
+
+                        echo '<div id="head-title">';
+                        echo '<h1>' . $suchergebnisse[0] . ' Suchergebnisse für "' . $suchwortTitel . '"</h1>';
+                        echo '</div>';
+
+                        echo '<div id="top-buttons">';
+                        echo '<div>';
+                        echo '<label for="filter">Sortieren nach:</label>';
+                        echo '<select id="filter" name="filter" onchange="location = this.value">';
+                        echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwort . '">Name</option>';
                         echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwort . '&order=cdate" ' . $selected . '>Neuste</option>';
                         echo '<option value="Suche.php?selection=' . $auswahl . '&suchbegriff=' . $suchwort . '&order=bewertung" ' . $selected2 . '>Bewertung</option>';
-                    }
-                    echo '</select>';
-                    echo '</div>';
+                        echo '</select>';
+                        echo '</div>';
 
-                    echo '</div>';
+                        echo '</div>';
 
-                    echo '<div class="result">';
+                        echo '<div class="result">';
 
-                    if ($auswahl == 'users') {
-                        $suchwort = explode(" ", $suchwort);
-                        $abfrage = "";
-                        $a = array('vorname', 'nachname', 'nickname');
-                        for ($i = 0; $i < sizeof($suchwort); $i++) {
-                            for ($ii = 0; $ii < sizeof($a); $ii++) {
-                                if ($ii == 0) {
-                                    $abfrage .= "(";
-                                }
-                                $abfrage .= "`" . $a[$ii] . "` LIKE '%" . $suchwort[$i] . "%'";
-                                if ($ii < (sizeof($a) - 1)) {
-                                    $abfrage .= " OR ";
-                                } else {
-                                    $abfrage .= ")";
-                                }
-                            }
-                            if ($i < (sizeof($suchwort) - 1)) {
-                                $abfrage .= " AND ";
-                            }
+                        while ($rezept = $statement1->fetch()) {
+                            include('RezeptPreview.php');
                         }
+
+
+                    } else {
+                        echo 'Bitte eine gültige Auswahl treffen!';
                     }
-
-                    $host_name = "localhost";
-                    $database = "42licious";
-                    $user_name = "root";
-                    $password = "";
-
-                    $db = mysqli_connect($host_name, $user_name, $password, $database);
-
-
-                    if (mysqli_connect_errno() == 0) {
-                        if ($auswahl == "users") {
-
-                            echo '<div class="users">';
-
-                            if (isset($_GET['order'])) {
-                                $order = $_GET['order'];
-                            } else {
-                                $order = 'nickname';
-                            }
-
-                            $sql = "SELECT * FROM `users` WHERE $abfrage ORDER BY $order";
-                            $ergebnis = $db->query($sql);
-                            if (is_object($ergebnis)) {
-                                while ($zeile = $ergebnis->fetch_object()) {
-                                    echo '<a href="ProfilAnsicht.php?id=' . $zeile->id . '">';
-                                    echo '<div class="profil-preview">';
-                                    echo '<div class="profil-preview-body">';
-                                    echo '<div class="profil-preview-pic">';
-                                    echo "<img alt='Profil-Bild' id='profil_bild' src='../images/$zeile->pic'>";
-                                    echo '</div>';
-                                    echo '<div class="profil-preview-info">';
-                                    echo '<p>Name: ' . $zeile->vorname . " " . substr($zeile->nachname, 0, 1) . "." . '</p>';
-                                    echo '<p>Nutzername: ' . $zeile->nickname . '</p>';
-                                    echo '<br>';
-                                    echo '<p>Mitglied seit: ' . substr($zeile->created_at, 0, 10) . '</p>';
-                                    echo '</div>';
-                                    echo '</div>';
-                                    echo '</div>';
-                                    echo '</a>';
-                                }
-
-                            }
-                            echo '</div>';
-                        } else if ($auswahl == "rezepte") {
-
-                            echo '<div class="recipe-container">';
-
-                            if (isset($_GET['order'])) {
-                                if ($_GET['order'] == "cdate") {
-                                    $order = $_GET['order'] . " DESC";
-                                } else {
-                                    $order = "gesamtBewertung DESC";
-                                }
-                            } else {
-                                $order = 'titel';
-                            }
-                            
-                                $statement1 = $pdo->query("SELECT * FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order");
-
-
-                            while ($rezept = $statement1->fetch()) {
-                                include('RezeptPreview.php');
-                            }
-
-
-                        } else {
-                            echo 'Bitte eine gültige Auswahl treffen!';
-                        }
-                    }
-                    $db->close();
                 }
+                $db->close();
+
                 ?>
             </div>
             <div id="bottom-buttons">
