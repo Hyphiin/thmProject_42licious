@@ -73,5 +73,10 @@ if($sess!=true){
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
+<script>
+    gsap.from(".recipe-preview-container",{});
+</script>
+
 </body>
 </html>
