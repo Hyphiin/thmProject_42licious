@@ -3,10 +3,11 @@
 }
 
 
-.recipe-preview{
+.recipe-preview {
     margin: 10px;
     border-style: solid;
     border-width: 1px;
+    height: 350px;
 
     display: flex;
     flex-direction: row;
@@ -18,9 +19,13 @@
     border-color: #ABD1C7;
 }
 
+
 .recipe-preview img {
-    width: 100%;
-    height: 100%;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    max-width: 98%;
+    max-height: 98%;
 }
 
 .recipe-preview:hover{
@@ -32,6 +37,9 @@
 }
 
 .recipe-preview-pic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: auto;
     max-width: 40%;
 }

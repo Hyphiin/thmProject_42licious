@@ -79,9 +79,9 @@ $sess = $_SESSION['userid'];
             </div>
 
             <div class="modal-body">
-                <form action="SucheFilter.php" method="post">
+                <form id="filterSuche" action="SucheFilter.php" method="post">
 
-
+                    Kategorien:<br/>
                     <label for="fleisch">
                         <input type="checkbox" id="fleisch" name="fleisch" value="fleisch">
                         <span>Fleisch</span>
@@ -94,16 +94,20 @@ $sess = $_SESSION['userid'];
                         <input type="checkbox" id="vegan" name="vegan" value="vegan">
                         <span>Vegan</span>
                     </label>
+                    <br/><br/>
+                    Zutaten (max 1 pro Feld):<br/>
+                    <input type="text" id = "zutat" name="zutat "placeholder="Zutat eingeben...">
                     <br>
-                    <input type="text" id = "zutat" name="zutat"/>
-                    <br>
-                    <input type="text" id="zutat2" name="zutat2" />
+                    <input type="text" id="zutat2" name="zutat2" "placeholder="Zutat eingeben...">
+
+
                     <p>
-                        max Dauer:
+                        max Dauer:<br/>
                         <input type="number" name="zeit"/>
                         Minuten
                     </p>
                     <p>
+
                         max Schwierigkeit:
                         <select name = "schwierigkeit">
                             <option value="Auswahl">Auswahl</option>
@@ -113,14 +117,16 @@ $sess = $_SESSION['userid'];
                             <option value="">Sehr Schwer</option>
                         </select>
                     </p>
+                    Suchbegriff:<br/>
+                    <input type="text" placeholder="Suchenbegriff eingeben..." name="suchbegriff">
+                    <br/>
 
-                    <input type="text" placeholder="Suchen..." name="suchbegriff">
 
-                    <button class="modalApplyBtn" type="submit">Suchen</button>
 
                 </form>
             </div>
             <div class="modal-footer">
+                <button class="modalCloseBtn" type="submit" form="filterSuche">Suchen</button>
                 <button class="modalCloseBtn" type="button" onclick="recipeModalClose()">Abbrechen</button>
             </div>
         </div>

@@ -5,6 +5,7 @@
 .profil-preview{
 
     margin: 10px;
+    height: 350px;
     border-style: solid;
     display: flex;
     flex-wrap: nowrap;
@@ -14,11 +15,19 @@
 
 }
 
+.profil-preview img {
+    max-width: 98%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+}
+
 .profil-preview-body {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .users .profil-preview{
@@ -34,13 +43,15 @@
 
 
 .profil-preview-pic {
-    margin: 0px 5px;
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
 }
 
 .profil-preview-info {
     margin: 0px 5px;
-    width: 50%;
+    width: 60%;
 }
 
 #head-title{

@@ -66,7 +66,7 @@ echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
                     ('.$bewertung.')             
                     </form>
                 </div>';
-                echo 'Dauer: '.$dauer.' Minuten<br/>';
+                echo '<br/><br/>Dauer: '.$dauer.' Minuten<br/>';
                 echo 'Schwierigkeit: '.$schwierigkeit.'<br/><br/>';
                 echo    nl2br($beschreibung);
                 echo '<br/><br/>';

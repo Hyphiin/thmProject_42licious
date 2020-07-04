@@ -51,8 +51,10 @@ $referer = $_SERVER['HTTP_REFERER'];
     }
 
     if ($sess) {
+        $statement = $pdo->query("SELECT uid FROM rezepte WHERE rid = '$rezeptID' ");
+        $ersteller = $statement->fetch();
         if (isset($_POST['bewertung'])) {
-            if ($sess != $uid) {
+            if ($sess != $ersteller['uid']) {
                 $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
                 $bewertungscheck = $fetch->fetch();
                 $bewertung = $_POST['bewertung'];
