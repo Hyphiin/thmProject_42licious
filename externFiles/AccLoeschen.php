@@ -25,6 +25,21 @@ if ($sess == true){
     <div id="main">
         <div id="main-content">
 
+            <?php
+            if (isset($_GET['delete'])) {
+
+                $statement1 = $pdo->query("DELETE FROM blog WHERE nutzer= '$sess'");
+                $statement2 = $pdo->query("DELETE FROM blogcomments WHERE uid= '$sess'");
+                $statement3 = $pdo->query("DELETE FROM rezepte WHERE uid= '$sess'");
+                $statement4 = $pdo->query("DELETE FROM recipecomments WHERE uid= '$sess'");
+                $statement5 = $pdo->query("DELETE FROM bewertung WHERE BNutzer= '$sess'");
+                $statement6 = $pdo->query("DELETE FROM users WHERE id= '$sess'");
+                session_destroy();
+                echo "Löschen erfolgreich!\n";
+                echo "<a href='index.php'><button class='button'>Startseite</button></a>";
+            }else{
+            ?>
+
             <div class=anmeldefo>
 
                 <div class="form">
@@ -47,18 +62,7 @@ if ($sess == true){
 
     <?php
 
-    if (isset($_GET['delete'])) {
-
-        $statement1 = $pdo->query("DELETE FROM blog WHERE nutzer= '$sess'");
-        $statement2 = $pdo->query("DELETE FROM blogcomments WHERE uid= '$sess'");
-        $statement3 = $pdo->query("DELETE FROM rezepte WHERE uid= '$sess'");
-        $statement4 = $pdo->query("DELETE FROM recipecomments WHERE uid= '$sess'");
-        $statement5 = $pdo->query("DELETE FROM bewertung WHERE BNutzer= '$sess'");
-        $statement6 = $pdo->query("DELETE FROM users WHERE id= '$sess'");
-        session_destroy();
-        echo "Löschen erfolgreich!\n";
-        echo "<a href='index.php'><button class='button'>Startseite</button></a>";
-    }
+            }
     }
     else {
         include("AccNoSess.php");
