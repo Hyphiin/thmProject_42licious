@@ -4,6 +4,11 @@
     background: #254D42;
     border: none;
     margin: auto;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
 }
 
 .content {
