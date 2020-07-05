@@ -72,7 +72,7 @@ if ($sess == true) {
 
                 echo '<form action="?id=' . $blogID . '&edit" method="post">';
                 echo 'Titel:<br>';
-                echo '<input type="text" name="titel" size="40" maxlength="255" value="' . $title . '">';
+                echo '<input type="text" name="titel" size="40" maxlength="3000" value="' . $title . '">';
                 echo '<br><br>';
                 echo 'Inhalt:<br>';
                 echo '<textarea name="inhalt">' . $entry . '</textarea>';
