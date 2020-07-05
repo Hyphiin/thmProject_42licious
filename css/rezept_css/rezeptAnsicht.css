@@ -118,6 +118,11 @@ p {
     justify-content: center;
 }
 
+#comment-area {
+    display: flex;
+    flex-direction: column;
+}
+
 .comment-list .comment {
     display: none;
 }
@@ -150,10 +155,9 @@ p {
  }
 
 
-#main form {
-  display: flex;
+.form-row {
+    display: flex;
     flex-direction: row;
-    margin-bottom: 20px;
 }
 
 #bewertenButton{
