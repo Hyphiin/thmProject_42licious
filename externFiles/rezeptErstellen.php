@@ -172,8 +172,10 @@ if ($sess == true) {
 
         <script>
             var counter = 1;
+            var obergrenze = 20;
 
             function addRow() {
+                if (counter<obergrenze){
                 var table = document.getElementById("zutatenTable");
                 var row = table.insertRow(-1);
                 var cell1 = row.insertCell(0);
@@ -185,11 +187,13 @@ if ($sess == true) {
 
                 document.getElementById("tableLength").value = counter;
                 counter++;
+                }
             }
 
             function deleteRow(row) {
                 var i = row.parentNode.parentNode.rowIndex;
                 document.getElementById('zutatenTable').deleteRow(i);
+                obergrenze++;
             }
 
         </script>

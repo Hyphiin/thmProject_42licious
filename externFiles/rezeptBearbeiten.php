@@ -238,9 +238,10 @@ if ($sess == true) {
     </div>
 
     <script>
-        let counter = (document.getElementById("zutatenTable").rows.length) + 1;
-
+        let counter = (document.getElementById("zutatenTable").rows.length) + 2;
+        obergrenze = 22;
         function addRow() {
+            if (counter<obergrenze){
             let table = document.getElementById("zutatenTable");
             let row = table.insertRow(-1);
             let cell1 = row.insertCell(0);
@@ -252,11 +253,13 @@ if ($sess == true) {
 
             document.getElementById("tableLength").value = counter;
             counter++;
+            }
         }
 
         function deleteRow(row) {
             let i = row.parentNode.parentNode.rowIndex;
             document.getElementById('zutatenTable').deleteRow(i);
+            obergrenze++;
         }
 
 
