@@ -34,3 +34,7 @@ form input.button{
     flex-direction: row;
     justify-content: center;
 }
+
+#mitgliedButton{
+    margin-left: 50%;
+}

@@ -70,6 +70,7 @@ if (isset($errorMessage)) {
 
                 <input type="submit" class="button" value="Abschicken">
             </form>
+            <div id="mitgliedButton">Noch kein Mitglied?  <a href="AccRegistrieren.php"><button type="button" class="button">Mitglied werden!</button></a></div>
         </div>
     </div>
 </div>
