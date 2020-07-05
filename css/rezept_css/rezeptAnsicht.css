@@ -25,7 +25,7 @@ h4 {
 #top-info {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 #recipe-info{
@@ -145,6 +145,12 @@ p {
 #recipe-rating{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.rating-favorite {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 
