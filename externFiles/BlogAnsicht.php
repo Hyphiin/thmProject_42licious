@@ -60,6 +60,10 @@ $sess = $_SESSION['userid'];
         $timestamp = $blog['rdate'];
         $entry = $blog['inhalt'];
 
+
+    ?>
+    <div class="main-content">
+        <?php
         echo '<div id="top-buttons">';
 
         if($sess!=$author){
@@ -74,13 +78,9 @@ $sess = $_SESSION['userid'];
             echo '<button type="submit" class="button">Bearbeiten</button>';
             echo '</form>';
         }
-        ?>
 
-    </div>
 
-    <div class="main-content">
-        <?php
-
+        echo '</div>';
 
         echo '<div id="blog-info">';
 

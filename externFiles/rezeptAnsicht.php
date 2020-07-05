@@ -52,15 +52,15 @@ $referer = $_SERVER['HTTP_REFERER'];
 
     if ($sess) {
         if (isset($_POST['bewertung'])) {
-                $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
-                $bewertungscheck = $fetch->fetch();
-                $bewertung = $_POST['bewertung'];
-                if ($bewertungscheck[0] == 0) {
-                    $statement5 = $pdo->prepare("INSERT INTO bewertung (rezeptID, BSterne, BNutzer) VALUES(:rezeptid, :bsterne, :bnutzer)");
-                    $ergebnis = $statement5->execute(array('rezeptid' => $rezeptID, 'bsterne' => $bewertung, 'bnutzer' => $sess));
-                } elseif ($bewertungscheck[0] != 0) {
-                    $statement6 = $pdo->query("UPDATE bewertung SET BSterne = '$bewertung' WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
-                }
+            $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
+            $bewertungscheck = $fetch->fetch();
+            $bewertung = $_POST['bewertung'];
+            if ($bewertungscheck[0] == 0) {
+                $statement5 = $pdo->prepare("INSERT INTO bewertung (rezeptID, BSterne, BNutzer) VALUES(:rezeptid, :bsterne, :bnutzer)");
+                $ergebnis = $statement5->execute(array('rezeptid' => $rezeptID, 'bsterne' => $bewertung, 'bnutzer' => $sess));
+            } elseif ($bewertungscheck[0] != 0) {
+                $statement6 = $pdo->query("UPDATE bewertung SET BSterne = '$bewertung' WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
+            }
         }
     }
 
@@ -82,7 +82,7 @@ $referer = $_SERVER['HTTP_REFERER'];
     $anleitung = $rezept['anleitung'];
     $gesBewertung = $rezept['gesamtBewertung'];
 
-    if($sess==$uid){
+    if ($sess == $uid) {
         $rDisable = "disabled";
     }
 
@@ -100,10 +100,10 @@ $referer = $_SERVER['HTTP_REFERER'];
                     }
                     for ($i = 0; $i < count($curFavorites); $i++) {
                         if ($i == 0) {
-                            if ($remember!=0) {
+                            if ($remember != 0) {
                                 $favRezepte = $curFavorites[$i];
-                            }else{
-                                $favRezepte = $curFavorites[$i+1];
+                            } else {
+                                $favRezepte = $curFavorites[$i + 1];
                                 $i++;
                             }
                         } elseif ($i != $remember) {
@@ -147,7 +147,6 @@ $referer = $_SERVER['HTTP_REFERER'];
     }
 
 
-
     $statement2 = $pdo->query("SELECT COUNT(BID) FROM bewertung WHERE rezeptID = '$rezeptID' ");
     $bewertungenAnzahl = $statement2->fetch();
     if (!empty($bewertungenAnzahl)) {
@@ -183,39 +182,29 @@ $referer = $_SERVER['HTTP_REFERER'];
 
     echo '<div id="main">
 
+        
+
+        <div class="main-content">
+        
         <div id="top-buttons">';
 
-        if(substr($referer, -15, 15) == "SucheFilter.php"){
-            echo '<a href="index.php"><button class="button">Zurück zur Startseite</button></a>';
-        }
-        else {
-            echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
-        }
+    if (substr($referer, -15, 15) == "SucheFilter.php") {
+        echo '<a href="index.php"><button class="button">Zurück zur Startseite</button></a>';
+    } else {
+        echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
+    }
 
     if ($sess == $uid) {
-        echo '<form action="RezeptBearbeiten.php?bearbeiten" method="post">';
-        echo '<input type="hidden" name="id" value="' . $rezeptID . '">';
+        echo '<form class="form-row" action="RezeptBearbeiten.php?bearbeiten" method="post">';
+        echo '<input type="hidden" name="id" value=" ' . $rezeptID . ' ">';
         echo '<button type="submit" class="button">Bearbeiten</button>';
         echo '</form>';
     }
     echo '</div>
-
-        <div class="main-content">
+        
         
         <div id="top-info">
-        
-        <div id="like-recipe">
-            <form id="fav" method="post" action="?id=' . $rezeptID . '">
-                <p class="merken">
-                    <input type="hidden" name="checkFav" value="' . $fav . '">
-                    <input type="radio" id="like" name="like" value="like" ' . $fav . ' onclick="this.form.submit()"><label for="like" title="Rezept merken"></label>
-                    <span id="Merken">
-                        Merken:
-                    </span>
-                </p>
-            </form>
-        </div>
-        
+            
         <div class="kategorien">';
 
     $kategorie = explode(";", $kategorienListe);
@@ -252,16 +241,16 @@ $referer = $_SERVER['HTTP_REFERER'];
                 </diV>
                 <div class="recipe-preview-description"></div>
             </div>
-
+            <div class="rating-favorite">
             <div id="recipe-rating">
     
-                <form id="stars" method="post" action="?id=' . $rezeptID . '">
+                <form id="stars" class="form-row" method="post" action="?id=' . $rezeptID . '">
                     <p class="sternebewertung">
-                        <input type="radio" id="stern5" name="bewertung" value="5" ' . $Wertung5 . ' onclick="this.form.submit()" '.$rDisable.'><label for="stern5" title="5 Sterne">5 Sterne</label>
-                        <input type="radio" id="stern4" name="bewertung" value="4" ' . $Wertung4 . ' onclick="this.form.submit()" '.$rDisable.'><label for="stern4" title="4 Sterne">4 Sterne</label>
-                        <input type="radio" id="stern3" name="bewertung" value="3" ' . $Wertung3 . ' onclick="this.form.submit()" '.$rDisable.'><label for="stern3" title="3 Sterne">3 Sterne</label>
-                        <input type="radio" id="stern2" name="bewertung" value="2" ' . $Wertung2 . ' onclick="this.form.submit()" '.$rDisable.'><label for="stern2" title="2 Sterne">2 Sterne</label>
-                        <input type="radio" id="stern1" name="bewertung" value="1" ' . $Wertung1 . ' onclick="this.form.submit()" '.$rDisable.'><label for="stern1" title="1 Stern">1 Stern</label>
+                        <input type="radio" id="stern5" name="bewertung" value="5" ' . $Wertung5 . ' onclick="this.form.submit()" ' . $rDisable . '><label for="stern5" title="5 Sterne">5 Sterne</label>
+                        <input type="radio" id="stern4" name="bewertung" value="4" ' . $Wertung4 . ' onclick="this.form.submit()" ' . $rDisable . '><label for="stern4" title="4 Sterne">4 Sterne</label>
+                        <input type="radio" id="stern3" name="bewertung" value="3" ' . $Wertung3 . ' onclick="this.form.submit()" ' . $rDisable . '><label for="stern3" title="3 Sterne">3 Sterne</label>
+                        <input type="radio" id="stern2" name="bewertung" value="2" ' . $Wertung2 . ' onclick="this.form.submit()" ' . $rDisable . '><label for="stern2" title="2 Sterne">2 Sterne</label>
+                        <input type="radio" id="stern1" name="bewertung" value="1" ' . $Wertung1 . ' onclick="this.form.submit()" ' . $rDisable . '><label for="stern1" title="1 Stern">1 Stern</label>
                         <span id="Bewertung" title="Keine Bewertung">
                         ' . $gesBewertung . '';
 
@@ -271,6 +260,19 @@ $referer = $_SERVER['HTTP_REFERER'];
 
 
     echo '</div>
+
+            <div id="like-recipe">
+             <form id="fav" class="form-row" method="post" action="?id=' . $rezeptID . '">
+                <p class="merken">
+                    <input type="hidden" name="checkFav" value="' . $fav . '">
+                    <input type="radio" id="like" name="like" value="like" ' . $fav . ' onclick="this.form.submit()"><label for="like" title="Rezept merken"></label>
+                    <span id="Merken">
+                        Merken:
+                    </span>
+                </p>
+                </form>
+            </div>
+            </div>
 
             <div id="dauer"><h4>Dauer: </h4>' . $dauer . ' Minuten</div>
             <div id="schwierigkeit"><h4>Schwierigkeit: </h4>' . $schwierigkeit . '</div><br/>
@@ -370,7 +372,7 @@ $referer = $_SERVER['HTTP_REFERER'];
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
 <script>
-    gsap.from(".main-content",{y:20});
+    gsap.from(".main-content", {y: 20});
 </script>
 
 </body>
