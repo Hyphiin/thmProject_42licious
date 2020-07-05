@@ -70,7 +70,7 @@ if($sess!=true){
 
 
 
-
+<?php include("Footer.php")?>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>

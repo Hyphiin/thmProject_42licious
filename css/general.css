@@ -121,6 +121,20 @@ a {
     border-color: #ABD1C7;
 }
 
+#footer{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    color: #E6E6E6;
+    background: #254D42 ;
+}
+
+.footertable{
+    display: flex;
+    flex-direction: column;
+}
+
+
 
 
 
