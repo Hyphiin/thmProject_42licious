@@ -78,7 +78,7 @@ if (isset($_GET['register'])) {
         }
 
         if(empty($errors)==true){
-            move_uploaded_file($file_tmp,"../images/".$file_name);
+            move_uploaded_file($file_tmp,"../images/profile/".$file_name);
         }else{
             print_r($errors);
             $error = true;
