@@ -53,7 +53,7 @@ if ($sess == true) {
                 <input type="text" name="titel" size="40" maxlength="255">
                 <br><br>
                 Inhalt:<br>
-                <textarea name="inhalt" maxlength="255"></textarea>
+                <textarea name="inhalt" maxlength="3000"></textarea>
                 <br><br>
                 <input type="submit" value="Bloggen" class="button">
             </form>
