@@ -205,7 +205,7 @@ if ($sess == true) {
                 <input type="hidden" id="tableLength" name="tableLength" value="'.count($zutatenTable).'">          
 
                 <label for="zubereitung">Zubereitung:</label><br/>
-                <textarea class="zubereitung" name="anleitung" maxlength="1000">' . $anleitung . '</textarea><br/>
+                <textarea class="zubereitung" name="anleitung" maxlength="3000">' . $anleitung . '</textarea><br/>
                 </br>
                 <input type="hidden" name="rid" value="' . $rezeptID . '">
                 </form>';

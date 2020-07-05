@@ -151,7 +151,7 @@ if ($sess == true) {
                 <input type="hidden" id="tableLength" name="tableLength" value="">
 
                 <label for="zubereitung">Zubereitung:</label><br/>
-                <textarea class="zubereitung" name="anleitung" placeholder="Zubereitung eingeben..." maxlength="1000"></textarea><br/>
+                <textarea class="zubereitung" name="anleitung" placeholder="Zubereitung eingeben..." maxlength="3000"></textarea><br/>
                 </br>
 
                 <div class="bottom-buttons">
