@@ -197,7 +197,7 @@ $referer = $_SERVER['HTTP_REFERER'];
         }
 
     if ($sess == $uid) {
-        echo '<form action="RezeptBearbeiten.php?bearbeiten" method="post">';
+        echo '<form class="form-row" action="RezeptBearbeiten.php?bearbeiten" method="post">';
         echo '<input type="hidden" name="id" value=" '. $rezeptID .' ">';
         echo '<button type="submit" class="button">Bearbeiten</button>';
         echo '</form>';
@@ -208,7 +208,7 @@ $referer = $_SERVER['HTTP_REFERER'];
         <div id="top-info">
         
         <div id="like-recipe">
-            <form id="fav" method="post" action="?id=' . $rezeptID . '">
+            <form id="fav" class="form-row" method="post" action="?id=' . $rezeptID . '">
                 <p class="merken">
                     <input type="hidden" name="checkFav" value="' . $fav . '">
                     <input type="radio" id="like" name="like" value="like" ' . $fav . ' onclick="this.form.submit()"><label for="like" title="Rezept merken"></label>
@@ -258,7 +258,7 @@ $referer = $_SERVER['HTTP_REFERER'];
 
             <div id="recipe-rating">
     
-                <form id="stars" method="post" action="?id=' . $rezeptID . '">
+                <form id="stars" class="form-row" method="post" action="?id=' . $rezeptID . '">
                     <p class="sternebewertung">
                         <input type="radio" id="stern5" name="bewertung" value="5" ' . $Wertung5 . ' onclick="this.form.submit()" '.$rDisable.'><label for="stern5" title="5 Sterne">5 Sterne</label>
                         <input type="radio" id="stern4" name="bewertung" value="4" ' . $Wertung4 . ' onclick="this.form.submit()" '.$rDisable.'><label for="stern4" title="4 Sterne">4 Sterne</label>
