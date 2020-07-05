@@ -165,6 +165,7 @@ form.search::after {
 
 .dropdown-content {
     float: right;
+    right: 0;
     display: none;
     margin-top: -5px;
     background-color: #f1f1f1;
