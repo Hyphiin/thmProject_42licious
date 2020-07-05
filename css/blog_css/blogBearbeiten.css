@@ -7,6 +7,7 @@
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: center;
+    border-color: #ABD1C7;
 }
 
 #edit-blog{

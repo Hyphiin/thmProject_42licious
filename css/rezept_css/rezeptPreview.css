@@ -8,7 +8,6 @@
     border-style: solid;
     border-width: 1px;
     height: 350px;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -30,6 +29,7 @@
 
 .recipe-preview:hover{
     border-color: #4D2F25;
+    transform: scale(1.02);
 }
 
 .recipe-preview:hover .kategorien div{

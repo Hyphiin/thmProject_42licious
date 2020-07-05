@@ -23,12 +23,14 @@
 .blog-list .blog-preview{
     display: none;
     background-color: #FFFFFF;
-    border-color: #4D2F25;
+    border-color: #ABD1C7;
     border-width: 2px;
 
 }
 
-
+.blog-list a:hover{
+    transform:scale(2);
+}
 
 #bottom-buttons{
     margin: 10px;

@@ -60,6 +60,7 @@ h5{
 
 .button:hover{
     background-color: #99695A;
+    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 8px 25px 0 rgba(0,0,0,0.19);
 }
 
 
@@ -112,6 +113,10 @@ a {
     text-decoration: none;
  }
 
+.comment-list .comment {
+    display: none;
+    border-color: #ABD1C7;
+}
 
 
 

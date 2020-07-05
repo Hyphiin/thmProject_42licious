@@ -368,5 +368,10 @@ $referer = $_SERVER['HTTP_REFERER'];
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="../jscript/comments.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
+<script>
+    gsap.from(".main-content",{y:20});
+</script>
+
 </body>
 </html>

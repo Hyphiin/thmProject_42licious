@@ -1,14 +1,18 @@
 .blog-preview{
-
     margin: 10px;
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: center;
     cursor: pointer;
+    border-color: #ABD1C7;
+}
 
+.blog-preview:hover{
+    border-color: #4D2F25;
+    transform: scale(1.02);
 }
 
 .blog-preview-head{

@@ -18,7 +18,6 @@ if ($sess == true) {
         <link href="../css/general.css" rel="stylesheet" type="text/css">
         <link href="../css/rezept_css/rezeptBearbeiten.css" rel="stylesheet" type="text/css">
         <link href="../css/navigation.css" rel="stylesheet" type="text/css">
-        <link href="../css/navigation.css" rel="stylesheet" type="text/css">
 
     </head>
     <body>
@@ -261,6 +260,11 @@ if ($sess == true) {
         }
 
 
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
+    <script>
+        gsap.from("#main",{y:20});
     </script>
 
     </body>
