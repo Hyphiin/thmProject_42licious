@@ -184,7 +184,7 @@ if ($sess == true) {
 
 
                 <label for="beschreibung">Beschreibung:</label><br/>
-                <textarea class="beschreibung" name="beschreibung" maxlength="500">' . $beschreibung . '</textarea><br/><br/>
+                <textarea class="beschreibung" name="beschreibung" maxlength="255">' . $beschreibung . '</textarea><br/><br/>
 
                 Zutaten für <input class="personen" type="number" min="1" max="30" maxlength="3" name="personen" value="' . $personen . '"> Personen:
                 <table id="zutatenTable">';
@@ -205,7 +205,7 @@ if ($sess == true) {
                 <input type="hidden" id="tableLength" name="tableLength" value="'.count($zutatenTable).'">          
 
                 <label for="zubereitung">Zubereitung:</label><br/>
-                <textarea class="zubereitung" name="anleitung" >' . $anleitung . '</textarea><br/>
+                <textarea class="zubereitung" name="anleitung" maxlength="1000">' . $anleitung . '</textarea><br/>
                 </br>
                 <input type="hidden" name="rid" value="' . $rezeptID . '">
                 </form>';

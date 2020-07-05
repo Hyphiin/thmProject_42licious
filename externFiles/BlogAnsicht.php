@@ -114,7 +114,7 @@ $sess = $_SESSION['userid'];
             echo '<div class="write-comment">';
 
         echo '<form method="post" action="BlogAnsicht.php?comment=1&id='.$blogID.'">';
-            echo  '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="600"></textarea>';
+            echo  '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="400"></textarea>';
              echo '<input type="hidden" name="bid" value="'.$blogID.'">';
             echo '<input type="submit" class="button" value="Kommentieren">';
             echo '</form>';

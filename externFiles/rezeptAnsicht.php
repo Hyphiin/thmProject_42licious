@@ -51,10 +51,7 @@ $referer = $_SERVER['HTTP_REFERER'];
     }
 
     if ($sess) {
-        $statement = $pdo->query("SELECT uid FROM rezepte WHERE rid = '$rezeptID' ");
-        $ersteller = $statement->fetch();
         if (isset($_POST['bewertung'])) {
-            if ($sess != $ersteller['uid']) {
                 $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
                 $bewertungscheck = $fetch->fetch();
                 $bewertung = $_POST['bewertung'];
@@ -64,7 +61,6 @@ $referer = $_SERVER['HTTP_REFERER'];
                 } elseif ($bewertungscheck[0] != 0) {
                     $statement6 = $pdo->query("UPDATE bewertung SET BSterne = '$bewertung' WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
                 }
-            }
         }
     }
 
@@ -85,6 +81,10 @@ $referer = $_SERVER['HTTP_REFERER'];
     $zutatenTable = explode(";", $zutatenListe);
     $anleitung = $rezept['anleitung'];
     $gesBewertung = $rezept['gesamtBewertung'];
+
+    if($sess==$uid){
+        $rDisable = "disabled";
+    }
 
     if ($sess) {
         if ($sess != $uid) {
@@ -257,11 +257,11 @@ $referer = $_SERVER['HTTP_REFERER'];
     
                 <form id="stars" method="post" action="?id=' . $rezeptID . '">
                     <p class="sternebewertung">
-                        <input type="radio" id="stern5" name="bewertung" value="5" ' . $Wertung5 . ' onclick="this.form.submit()"><label for="stern5" title="5 Sterne">5 Sterne</label>
-                        <input type="radio" id="stern4" name="bewertung" value="4" ' . $Wertung4 . ' onclick="this.form.submit()"><label for="stern4" title="4 Sterne">4 Sterne</label>
-                        <input type="radio" id="stern3" name="bewertung" value="3" ' . $Wertung3 . ' onclick="this.form.submit()"><label for="stern3" title="3 Sterne">3 Sterne</label>
-                        <input type="radio" id="stern2" name="bewertung" value="2" ' . $Wertung2 . ' onclick="this.form.submit()"><label for="stern2" title="2 Sterne">2 Sterne</label>
-                        <input type="radio" id="stern1" name="bewertung" value="1" ' . $Wertung1 . ' onclick="this.form.submit()"><label for="stern1" title="1 Stern">1 Stern</label>
+                        <input type="radio" id="stern5" name="bewertung" value="5" ' . $Wertung5 . ' onclick="this.form.submit()" '.$rDisable.'><label for="stern5" title="5 Sterne">5 Sterne</label>
+                        <input type="radio" id="stern4" name="bewertung" value="4" ' . $Wertung4 . ' onclick="this.form.submit()" '.$rDisable.'><label for="stern4" title="4 Sterne">4 Sterne</label>
+                        <input type="radio" id="stern3" name="bewertung" value="3" ' . $Wertung3 . ' onclick="this.form.submit()" '.$rDisable.'><label for="stern3" title="3 Sterne">3 Sterne</label>
+                        <input type="radio" id="stern2" name="bewertung" value="2" ' . $Wertung2 . ' onclick="this.form.submit()" '.$rDisable.'><label for="stern2" title="2 Sterne">2 Sterne</label>
+                        <input type="radio" id="stern1" name="bewertung" value="1" ' . $Wertung1 . ' onclick="this.form.submit()" '.$rDisable.'><label for="stern1" title="1 Stern">1 Stern</label>
                         <span id="Bewertung" title="Keine Bewertung">
                         ' . $gesBewertung . '';
 
@@ -315,7 +315,7 @@ $referer = $_SERVER['HTTP_REFERER'];
         echo '<div class="write-comment">';
 
         echo '<form id="comment-area" method="post" action="RezeptAnsicht.php?id=' . $rezeptID . '&comment=1">';
-        echo '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="600"></textarea>';
+        echo '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="400"></textarea>';
         echo '<input type="hidden" name="rid" value="' . $rezeptID . '">';
         echo '<input id="comment" type="submit" class="button" value="Kommentieren">';
         echo '</form>';

@@ -134,7 +134,7 @@ if ($sess == true) {
 
 
                 <label for="beschreibung">Beschreibung:</label><br/>
-                <textarea class="beschreibung" name="beschreibung" maxlength="500"
+                <textarea class="beschreibung" name="beschreibung" maxlength="255"
                           placeholder="Beschreibung eingeben..."></textarea><br/><br/>
 
                 Zutaten für <input class="personen" type="number" min="1" max="30" name="personen"> Personen:
@@ -151,7 +151,7 @@ if ($sess == true) {
                 <input type="hidden" id="tableLength" name="tableLength" value="">
 
                 <label for="zubereitung">Zubereitung:</label><br/>
-                <textarea class="zubereitung" name="anleitung" placeholder="Zubereitung eingeben..."></textarea><br/>
+                <textarea class="zubereitung" name="anleitung" placeholder="Zubereitung eingeben..." maxlength="1000"></textarea><br/>
                 </br>
 
                 <div class="bottom-buttons">
