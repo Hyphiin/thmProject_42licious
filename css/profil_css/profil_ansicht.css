@@ -43,7 +43,7 @@ text-align: center;
     flex-wrap: nowrap;
     flex-direction: column;
     background-color: #FFFFFF;
-    border-color: #4D2F25;
+    border-color: #ABD1C7;
 }
 #BildUndButtons{
     display: flex;
@@ -91,7 +91,7 @@ text-align: center;
     justify-content: center;
     align-items: center;
     background-color: #FFFFFF;
-    border-color: #4D2F25;
+    border-color: #ABD1C7;
 }
 #last_blog{
     margin: 10px;

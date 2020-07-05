@@ -69,4 +69,10 @@ if ($sess == true){
     </div>
 </div>
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
+<script>
+    gsap.from("#main",{y:15});
+</script>
+
 </html>

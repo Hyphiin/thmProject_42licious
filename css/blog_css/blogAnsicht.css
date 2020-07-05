@@ -19,6 +19,7 @@
 
 #comments{
     margin: 10px;
+    border-color: #ABD1C7;
 }
 
 #blog-info{
@@ -54,5 +55,7 @@ p {
 
 .comment-list .comment {
     display: none;
+    border-color: #ABD1C7;
 }
+
 

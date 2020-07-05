@@ -145,6 +145,11 @@ if ($nutzerID == 0){
 </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
+<script>
+    gsap.from("#main-content",{y:20});
+</script>
+
 </body>
 </html>
 
