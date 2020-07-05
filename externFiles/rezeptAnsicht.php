@@ -183,6 +183,10 @@ $referer = $_SERVER['HTTP_REFERER'];
 
     echo '<div id="main">
 
+        
+
+        <div class="main-content">
+        
         <div id="top-buttons">';
 
         if(substr($referer, -15, 15) == "SucheFilter.php"){
@@ -194,13 +198,12 @@ $referer = $_SERVER['HTTP_REFERER'];
 
     if ($sess == $uid) {
         echo '<form action="RezeptBearbeiten.php?bearbeiten" method="post">';
-        echo '<input type="hidden" name="id" value="' . $rezeptID . '">';
+        echo '<input type="hidden" name="id" value=" '. $rezeptID .' ">';
         echo '<button type="submit" class="button">Bearbeiten</button>';
         echo '</form>';
     }
     echo '</div>
-
-        <div class="main-content">
+        
         
         <div id="top-info">
         
