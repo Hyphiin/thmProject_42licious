@@ -8,13 +8,14 @@
     flex-direction: column;
     justify-content: center;
     border-color: #ABD1C7;
+    background-color: #F3F7F6;
 }
 
 #edit-blog{
     margin: 10px;
     display: flex;
     flex-direction: column;
-
+    background-color: #F3F7F6;
 }
 
 #bottom-buttons{
