@@ -42,11 +42,11 @@ echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
 
                     for($i=0;$i<count($kategorie);$i++){
                     if($kategorie[$i]=="fleisch"){
-                    echo '<div>Fleisch</div>';
+                    echo '<div id="fleischkat">Fleisch</div>';
                     }elseif($kategorie[$i]=="vegetarisch"){
-                    echo '<div>Vegetarisch</div>';
+                    echo '<div id="vegetarischkat">Vegetarisch</div>';
                     }elseif($kategorie[$i]=="vegan"){
-                    echo '<div>Vegan</div>';
+                    echo '<div id="vegankat">Vegan</div>';
                     }}
                     echo '</div>';
                 echo '<div class="titleTime">';
