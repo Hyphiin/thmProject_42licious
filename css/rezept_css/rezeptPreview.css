@@ -36,6 +36,8 @@
     background-color: #4D2F25;
 }
 
+
+
 .recipe-preview-pic {
     display: flex;
     flex-direction: column;
@@ -74,6 +76,20 @@
     font-size: 15px;
     margin: 2px 2px;
 }
+
+#fleischkat{
+    background-color: darkred;
+}
+
+#vegetarischkat{
+    background-color: #15C701;
+}
+
+#vegankat{
+    background-color: green;
+}
+
+
 
 #reOrder {
     display: flex;

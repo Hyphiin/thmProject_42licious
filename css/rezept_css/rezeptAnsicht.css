@@ -94,7 +94,6 @@ h4 {
 }
 
 .kategorien div {
-    background-color: #99695A;;
     max-height: 18px;
     border: none;
     color: white;
@@ -104,6 +103,33 @@ h4 {
     display: inline-block;
     font-size: 15px;
     margin: 2px 2px;
+}
+
+#fleischkat.kategorienlink{
+    background-color: darkred;
+}
+
+#fleischkat.kategorienlink:hover{
+    background-color: #C61000;
+    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 8px 25px 0 rgba(0,0,0,0.19);
+}
+
+#vegetarischkat.kategorienlink{
+    background-color: #15C701;
+}
+
+#vegetarischkat.kategorienlink:hover{
+    background-color: #15AF01;
+    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 8px 25px 0 rgba(0,0,0,0.19);
+}
+
+#veganbutton.kategorienlink{
+    background-color: green;
+}
+
+#veganbutton.kategorienlink:hover{
+    background-color: darkgreen;
+    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 8px 25px 0 rgba(0,0,0,0.19);
 }
 
 p {
