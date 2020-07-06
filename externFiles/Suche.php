@@ -86,6 +86,7 @@ $sess = $_SESSION['userid'];
 
                 $db = mysqli_connect($host_name, $user_name, $password, $database);
 
+                $entryCounter = 0;
 
                 if (mysqli_connect_errno() == 0) {
                     if ($auswahl == "users") {
@@ -105,9 +106,14 @@ $sess = $_SESSION['userid'];
                         $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `users` WHERE $abfrage ORDER BY $order");
 
                         $suchergebnisse = $anzahlErgebnisse->fetch();
+                        if ($suchergebnisse[0]==1){
+                            $suchergebnisseTitel = "1 Suchergebnis";
+                        }else{
+                            $suchergebnisseTitel = "$suchergebnisse[0] Suchergebnisse";
+                        }
 
                         echo '<div id="head-title">';
-                        echo '<h1>' . $suchergebnisse[0] . ' Suchergebnisse für "' . $suchwortTitel . '"</h1>';
+                        echo '<h1>' . $suchergebnisseTitel . ' für "' . $suchwortTitel . '"</h1>';
                         echo '</div>';
 
                         echo '<div id="top-buttons">';
@@ -148,6 +154,11 @@ $sess = $_SESSION['userid'];
                             echo '</div>';
                             echo '</div>';
                             echo '</a>';
+
+                            $entryCounter++;
+                        }
+                        if ($entryCounter==0){
+                            echo '<p id="noEntries">Keine passenden Nutzer gefunden</p>';
                         }
 
                         echo '</div>';
@@ -190,6 +201,10 @@ $sess = $_SESSION['userid'];
 
                         while ($rezept = $statement1->fetch()) {
                             include('RezeptPreview.php');
+                            $entryCounter++;
+                        }
+                        if ($entryCounter==0){
+                            echo '<p id="noEntries">Keine passenden Rezepte gefunden</p>';
                         }
 
 
@@ -199,12 +214,16 @@ $sess = $_SESSION['userid'];
                 }
                 $db->close();
 
-                ?>
-            </div>
-            <div id="bottom-buttons">
-                <button class="button" id="show-more">Mehr anzeigen</button>
-            </div>
 
+            echo '</div>';
+
+            if ($entryCounter>3) {
+                echo '<div id="bottom-buttons">';
+                echo '<button class="button" id="show-more">Mehr anzeigen</button>';
+                echo '</div>';
+            }
+
+            ?>
         </div>
     </div>
 </div>

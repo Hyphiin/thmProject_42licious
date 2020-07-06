@@ -122,6 +122,7 @@ $sess = $_SESSION['userid'];
 }
             echo '<div class="comment-list">';
 
+            $commentCount = 0;
             $statement3 = $pdo->query("SELECT * FROM blogcomments WHERE bid = '$blogID' ORDER BY cid DESC");
             while($comment = $statement3->fetch()) {
                 $uid = $comment['uid'];
@@ -153,13 +154,14 @@ $sess = $_SESSION['userid'];
                     echo '</div>';
                 }
                 echo '</div>';
-
+                $commentCount++;
 
             }
-
-            echo '<div id="bottom-buttons">';
-            echo     '<button class="button" id="show-more">Mehr anzeigen</button>';
-            echo '</div>';
+            if ($commentCount>3) {
+                echo '<div id="bottom-buttons">';
+                echo '<button class="button" id="show-more">Mehr anzeigen</button>';
+                echo '</div>';
+            }
 ?>
     </div>
 

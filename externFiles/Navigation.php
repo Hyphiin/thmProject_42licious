@@ -96,7 +96,7 @@ $sess = $_SESSION['userid'];
                     </label>
                     <br/><br/>
                     Zutaten (max 1 pro Feld):<br/>
-                    <input type="text" id = "zutat" name="zutat "placeholder="Zutat eingeben...">
+                    <input type="text" id = "zutat" name="zutat" placeholder="Zutat eingeben...">
                     <br>
                     <input type="text" id="zutat2" name="zutat2" "placeholder="Zutat eingeben...">
 
