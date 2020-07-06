@@ -115,11 +115,11 @@ h4 {
 }
 
 #vegetarischkat.kategorienlink{
-    background-color: lightgreen;
+    background-color: #15C701;
 }
 
 #vegetarischkat.kategorienlink:hover{
-    background-color: greenyellow;
+    background-color: #15AF01;
     box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 8px 25px 0 rgba(0,0,0,0.19);
 }
 
@@ -128,7 +128,7 @@ h4 {
 }
 
 #veganbutton.kategorienlink:hover{
-    background-color: forestgreen;
+    background-color: darkgreen;
     box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24), 0 8px 25px 0 rgba(0,0,0,0.19);
 }
 
