@@ -29,7 +29,7 @@
 
 .recipe-preview:hover{
     border-color: #4D2F25;
-    transform: scale(1.02);
+    transform: scale(1.013);
 }
 
 .recipe-preview:hover .kategorien div{
