@@ -129,6 +129,10 @@ a {
     background: #254D42 ;
 }
 
+.footertable a{
+    color: #FFFFFF;
+}
+
 .footertable{
     display: flex;
     flex-direction: column;
