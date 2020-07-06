@@ -274,3 +274,9 @@ p.merken > label:hover ~ input:checked ~ label {
     color: red;
     text-shadow: 1px 1px indianred, 2px 2px orangered, .1em .1em .2em rgba(0,0,0,.5);
 }
+
+.kategorienlink{
+    padding: 0;
+    border: none;
+    background: none;
+}

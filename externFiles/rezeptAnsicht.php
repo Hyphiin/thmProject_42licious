@@ -211,11 +211,20 @@ $referer = $_SERVER['HTTP_REFERER'];
 
     for ($i = 0; $i < count($kategorie); $i++) {
         if ($kategorie[$i] == "fleisch") {
-            echo '<div>Fleisch</div>';
+            echo '<form action="SucheFilter.php" method="post">';
+            echo '<input id="katfleisch" type="hidden" name="fleisch" value="fleisch">';
+            echo '<button class="kategorienlink" onclick="this.form.submit()"><div>Fleisch</div></button>';
+            echo '</form>';
         } elseif ($kategorie[$i] == "vegetarisch") {
-            echo '<div>Vegetarisch</div>';
+            echo '<form action="SucheFilter.php" method="post">';
+            echo '<input id="katvegetarisch" type="hidden" name="vegetarisch" value="vegetarisch">';
+            echo '<button class="kategorienlink" onclick="this.form.submit()"><div>Vegetarisch</div></button>';
+            echo '</form>';
         } elseif ($kategorie[$i] == "vegan") {
-            echo '<div>Vegan</div>';
+            echo '<form action="SucheFilter.php" method="post">';
+            echo '<input id="katvegan" type="hidden" name="vegan" value="vegan">';
+            echo '<button id="veganbutton" class="kategorienlink" onclick="this.form.submit()"><div>Vegan</div></button>';
+            echo '</form>';
         }
     };
 
@@ -374,6 +383,5 @@ $referer = $_SERVER['HTTP_REFERER'];
 <script>
     gsap.from(".main-content", {y: 20});
 </script>
-
 </body>
 </html>
