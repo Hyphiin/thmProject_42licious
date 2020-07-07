@@ -288,7 +288,7 @@ $referer = $_SERVER['HTTP_REFERER'];
 
         <div id="beschreibung">
         <h3>Beschreibung:</h3><br/>
-                ' . nl2br($beschreibung) . '
+                <p>' . nl2br($beschreibung) . '</p>
             </div><br/>
 
 
