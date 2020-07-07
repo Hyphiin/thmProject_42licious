@@ -208,17 +208,17 @@ $sess = $_SESSION['userid'];
 
     for ($i = 0; $i < count($kategorie); $i++) {
         if ($kategorie[$i] == "fleisch") {
-            echo '<form action="SucheFilter.php" method="post">';
+            echo '<form action="SucheFilter.php" method="get">';
             echo '<input id="katfleisch" type="hidden" name="fleisch" value="fleisch">';
             echo '<button class="kategorienlink" id="fleischkat" onclick="this.form.submit()"><div>Fleisch</div></button>';
             echo '</form>';
         } elseif ($kategorie[$i] == "vegetarisch") {
-            echo '<form action="SucheFilter.php" method="post">';
+            echo '<form action="SucheFilter.php" method="get">';
             echo '<input id="katvegetarisch" type="hidden" name="vegetarisch" value="vegetarisch">';
             echo '<button class="kategorienlink" id="vegetarischkat" onclick="this.form.submit()"><div>Vegetarisch</div></button>';
             echo '</form>';
         } elseif ($kategorie[$i] == "vegan") {
-            echo '<form action="SucheFilter.php" method="post">';
+            echo '<form action="SucheFilter.php" method="get">';
             echo '<input id="katvegan" type="hidden" name="vegan" value="vegan">';
             echo '<button id="veganbutton" class="kategorienlink" onclick="this.form.submit()"><div>Vegan</div></button>';
             echo '</form>';
