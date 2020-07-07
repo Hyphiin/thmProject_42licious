@@ -63,7 +63,7 @@ echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
                         <input type="radio" id="stern2" name="bewertung" value="2" ' . $Wertung2 . ' disabled><label for="stern2" title="2 Sterne">2 Sterne</label>
                         <input type="radio" id="stern1" name="bewertung" value="1" ' . $Wertung1 . ' disabled><label for="stern1" title="1 Stern">1 Stern</label>
                     </p>   
-                    ('.$bewertung.')             
+                    ('.round($bewertung,1).')             
                     </form>
                 </div>';
                 echo '<br/><br/>Dauer: '.$dauer.' Minuten<br/>';

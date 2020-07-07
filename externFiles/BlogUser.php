@@ -85,7 +85,7 @@ if($nutzer==0){
                 $order = 'id DESC';
             }
 
-
+                $entryCounter = 0;
                 $statement = $pdo->query("SELECT * FROM blog WHERE nutzer = '$nutzer' ORDER BY $order");
                 while($blog = $statement->fetch()) {
 
@@ -108,15 +108,21 @@ if($nutzer==0){
                     
                     echo '</div>';
                     echo '</a>';
+
+                    $entryCounter++;
+                }
+                if ($entryCounter==0){
+                    echo '<p id="noEntries">Keine Blogeinträge vorhanden</p>';
                 }
 
 
             echo '</div>';
 
-            echo '<div id="bottom-buttons">';
-            echo     '<button class="button" id="show-more">Mehr anzeigen</button>';
-            echo '</div>';
-
+                if ($entryCounter>3) {
+                    echo '<div id="bottom-buttons">';
+                    echo '<button class="button" id="show-more">Mehr anzeigen</button>';
+                    echo '</div>';
+                }
                 }
                 ?>
         </div>

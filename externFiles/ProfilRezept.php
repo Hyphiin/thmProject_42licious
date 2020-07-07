@@ -35,17 +35,18 @@ if ($nutzer == 0){
 
     <div id="main">
 
-        <div id="top-buttons">
+        <div class="main-content">
+
+            <div id="top-buttons">
 
             <a href="javascript:history.back()">
                 <button class="button">Zurück</button>
             </a>
 
-        </div>
-
-        <div class="main-content">
+            </div>
 
             <?php
+            $entryCounter = 0;
             $statement = $pdo->query("SELECT * FROM users WHERE id = '$nutzer' ");
             $rezeptAuthor = $statement->fetch();
 
@@ -94,14 +95,23 @@ if ($nutzer == 0){
                 while ($rezept = $statement2->fetch()) {
 
                     include('RezeptPreview.php');
+                    $entryCounter++;
+                }
+                if($entryCounter==0){
+                    echo '<br/><br/>';
+                    echo '<p id="noEntries">Keine Rezepte vorhanden</p>';
                 }
             }
             ?>
         </div>
     </div>
-    <div id="bottom-buttons">
-        <button class="button" id="show-more">Mehr anzeigen</button>
-    </div>
+    <?php
+    if ($entryCounter>3) {
+        echo '<div id="bottom-buttons">';
+        echo '<button class="button" id="show-more">Mehr anzeigen</button>';
+        echo '</div>';
+    }
+    ?>
 </div>
 </div>
 </div>

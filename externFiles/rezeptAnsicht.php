@@ -158,7 +158,7 @@ $referer = $_SERVER['HTTP_REFERER'];
     } elseif ($gesBewertung == 1) {
         $gesBewertung = "Bewertung: " . $gesBewertung . " Stern (" . $bewertungenZahl . ")";
     } else {
-        $gesBewertung = "Bewertung: " . $gesBewertung . " Sterne (" . $bewertungenZahl . ")";
+        $gesBewertung = "Bewertung: " . round($gesBewertung,1) . " Sterne (" . $bewertungenZahl . ")";
     }
 
     $statement3 = $pdo->query("SELECT * FROM users WHERE id = '$uid' ");
@@ -334,6 +334,7 @@ $referer = $_SERVER['HTTP_REFERER'];
     }
     echo '<div class="comment-list">';
 
+    $commentCount = 0;
     $statement3 = $pdo->query("SELECT * FROM recipecomments WHERE rid = '$rezeptID' ORDER BY cid DESC");
     while ($comment = $statement3->fetch()) {
         $uid = $comment['uid'];
@@ -366,12 +367,13 @@ $referer = $_SERVER['HTTP_REFERER'];
         }
         echo '</div>';
 
-
+    $commentCount++;
     }
-
-    echo '<div id="bottom-buttons">';
-    echo '<button class="button" id="show-more">Mehr anzeigen</button>';
-    echo '</div>';
+    if ($commentCount>3) {
+        echo '<div id="bottom-buttons">';
+        echo '<button class="button" id="show-more">Mehr anzeigen</button>';
+        echo '</div>';
+    }
     ?>
 </div>
 

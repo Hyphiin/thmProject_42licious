@@ -138,7 +138,11 @@ a {
     flex-direction: column;
 }
 
-
+#noEntries {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 
 
 

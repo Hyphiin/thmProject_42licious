@@ -40,3 +40,9 @@ h1 a {
 
     color: #4D2F25;
 }
+
+.recipe-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

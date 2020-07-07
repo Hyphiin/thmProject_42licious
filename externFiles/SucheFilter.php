@@ -131,9 +131,14 @@ $sess = $_SESSION['userid'];
                     $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order");
                 }
                 $suchergebnisse = $anzahlErgebnisse->fetch();
+                if ($suchergebnisse[0]==1){
+                    $suchergebnisseTitel = "1 Suchergebnis";
+                }else{
+                    $suchergebnisseTitel = "$suchergebnisse[0] Suchergebnisse";
+                }
 
                 echo '<div id="head-title">';
-                echo '<h1>' . $suchergebnisse[0] . ' Suchergebnisse für "' . $suchwort . '"</h1>';
+                echo '<h1>' . $suchergebnisseTitel . ' für "' . $suchwort . '"</h1>';
                 echo '</div>';
 
                 echo '<div id="top-buttons">';
@@ -142,25 +147,25 @@ $sess = $_SESSION['userid'];
                 echo '<form id="reOrder" action="SucheFilter.php?order" method="post">';
                 if (isset($_POST['fleisch'])) {
                     echo '<input type="hidden" name="fleisch" value="' . $_POST['fleisch'] . '">';
-                };
+                }
                 if (isset($_POST['vegetarisch'])) {
                     echo '<input type="hidden" name="vegetarisch" value="' . $_POST['vegetarisch'] . '">';
-                };
+                }
                 if (isset($_POST['vegan'])) {
                     echo '<input type="hidden" name="vegan" value="' . $_POST['vegan'] . '">';
-                };
+                }
                 if (isset($_POST['zeit'])) {
                     echo '<input type="hidden" name="zeit" value="' . $_POST['zeit'] . '">';
-                };
+                }
                 if (isset($_POST['schwierigkeit'])) {
                     echo '<input type="hidden" name="schwierigkeit" value="' . $_POST['schwierigkeit'] . '">';
-                };
+                }
                 if (isset($_POST['suchbegriff'])) {
                     echo '<input type="hidden" name="suchbegriff" value="' . $_POST['suchbegriff'] . '">';
-                };
+                }
                 if (isset($_POST['zutat'])) {
                     echo '<input type="hidden" name="zutat" value="' . $_POST['zutat'] . '">';
-                };
+                }
                 echo '<input type="hidden" name="order" value="">';
                 echo '<select id="filter" name="order" onchange="this.form.submit()">';
                 echo '<option value="">Name</option>';
@@ -175,18 +180,27 @@ $sess = $_SESSION['userid'];
                 echo '<div class="result">';
                 echo '<div class="recipe-container">';
 
+                $entryCounter = 0;
                 while ($rezept = $statement1->fetch()) {
                     include('RezeptPreview.php');
+                    $entryCounter++;
                 }
 
-                ?>
+                if ($entryCounter==0){
+                    echo '<p id="noEntries">Keine passenden Rezepte gefunden</p>';
+                }
 
 
-            </div>
-            <div id="bottom-buttons">
-                <button class="button" id="show-more">Mehr anzeigen</button>
-            </div>
 
+
+            echo '</div>';
+
+                if ($entryCounter>3) {
+                    echo '<div id="bottom-buttons">';
+                    echo '<button class="button" id="show-more">Mehr anzeigen</button>';
+                    echo '</div>';
+                }
+?>
         </div>
     </div>
 </div>
