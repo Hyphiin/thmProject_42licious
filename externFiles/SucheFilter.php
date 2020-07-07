@@ -33,50 +33,59 @@ $sess = $_SESSION['userid'];
             <div class="search-list">
                 <?php
 
-                if (isset($_POST["fleisch"]) or isset($_POST["vegetarisch"]) or isset($_POST["vegan"])) {
+                if (isset($_GET["fleisch"]) or isset($_GET["vegetarisch"]) or isset($_GET["vegan"])) {
                     $special = true;
                     $kategorien = true;
                 }
 
-                if ($_POST["zeit"] == "") {
+                if ($_GET["zeit"] == "") {
                     $zeit = 9999;
                 } else {
-                    $zeit = $_POST["zeit"];
+                    $zeit = $_GET["zeit"];
                     $special = true;
                 }
 
-                if ($_POST["schwierigkeit"] == "Auswahl") {
+                if ($_GET["schwierigkeit"] == "Auswahl") {
                     $schwierigkeit = "";
                 } else {
-                    $schwierigkeit = $_POST["schwierigkeit"];
+                    $schwierigkeit = $_GET["schwierigkeit"];
                     $special = true;
+                    if ($schwierigkeit=="leicht"){
+                        $schwierigkeit="leicht";
+                    }elseif ($schwierigkeit=="mittel"){
+                        $schwierigkeit="leicht%' OR schwierigkeit LIKE '%mittel";
+                    }elseif ($schwierigkeit=="schwer"){
+                        $schwierigkeit="leicht%' OR schwierigkeit LIKE '%mittel%' OR schwierigkeit LIKE '%schwer%' AND schwierigkeit NOT LIKE '%sehr schwer";
+                    }else{
+                        $schwierigkeit="";
+                    }
                 }
 
-                if (isset($_POST['suchbegriff'])) {
-                    $suchwort = $_POST['suchbegriff'];
+                if (isset($_GET['suchbegriff'])) {
+                    $suchwort = $_GET['suchbegriff'];
                 } else {
                     $suchwort = "";
                 }
 
-                if ($_POST['zutat'] == "Auswahl") {
+                if ($_GET['zutat'] == "Auswahl") {
                     $zutat = "%%";
                 } else {
-                    $zutat = $_POST['zutat'];
+                    $zutat = $_GET['zutat'];
                     $special = true;
                 }
 
-                if ($_POST['zutat2'] == "Auswahl") {
+                if ($_GET['zutat2'] == "Auswahl") {
                     $zutat2 = "%%";
                 } else {
-                    $zutat2 = $_POST['zutat2'];
+                    $zutat2 = $_GET['zutat2'];
                     $special = true;
                 }
 
-                if (isset($_POST['order'])) {
-                    if ($_POST['order'] == "cdate") {
+                if (isset($_GET['order'])) {
+                    if ($_GET['order'] == "cdate") {
                         $selected = 'selected';
                         $selected2 = '';
-                    } elseif ($_POST['order'] == "bewertung") {
+                    } elseif ($_GET['order'] == "bewertung") {
                         $selected = '';
                         $selected2 = 'selected';
                     } else {
@@ -85,10 +94,10 @@ $sess = $_SESSION['userid'];
                     }
                 }
 
-                if (isset($_POST['order'])) {
-                    if ($_POST['order'] == "cdate") {
-                        $order = $_POST['order'] . " DESC";
-                    } elseif ($_POST['order'] == "bewertung") {
+                if (isset($_GET['order'])) {
+                    if ($_GET['order'] == "cdate") {
+                        $order = $_GET['order'] . " DESC";
+                    } elseif ($_GET['order'] == "bewertung") {
                         $order = "gesamtBewertung DESC";
                     } else {
                         $order = 'titel';
@@ -99,20 +108,20 @@ $sess = $_SESSION['userid'];
 
                 if ($special) {
                     if ($kategorien) {
-                        if (isset($_POST['fleisch'])) {
-                            if (isset($_POST['vegetarisch'])) {
-                                if (isset($_POST['vegan'])) {
+                        if (isset($_GET['fleisch'])) {
+                            if (isset($_GET['vegetarisch'])) {
+                                if (isset($_GET['vegan'])) {
                                     $suchkategorie = "'%%'";
                                 } else {
                                     $suchkategorie = "'fleisch;' OR kategorien LIKE 'vegetarisch;'";
                                 }
-                            } elseif (isset($_POST['vegan'])) {
+                            } elseif (isset($_GET['vegan'])) {
                                 $suchkategorie = "'%%'";
                             } else {
                                 $suchkategorie = "'fleisch;'";
                             }
-                        } elseif (isset($_POST['vegetarisch'])) {
-                            if (isset($_POST['vegan'])) {
+                        } elseif (isset($_GET['vegetarisch'])) {
+                            if (isset($_GET['vegan'])) {
                                 $suchkategorie = "'vegetarisch;' OR kategorien LIKE 'vegetarisch;vegan%'";
                             } else {
                                 $suchkategorie = "'vegetarisch;'";
@@ -144,27 +153,27 @@ $sess = $_SESSION['userid'];
                 echo '<div id="top-buttons">';
                 echo '<div>';
                 echo '<label for="filter">Sortieren nach:</label>';
-                echo '<form id="reOrder" action="SucheFilter.php?order" method="post">';
-                if (isset($_POST['fleisch'])) {
-                    echo '<input type="hidden" name="fleisch" value="' . $_POST['fleisch'] . '">';
+                echo '<form id="reOrder" action="SucheFilter.php?order" method="get">';
+                if (isset($_GET['fleisch'])) {
+                    echo '<input type="hidden" name="fleisch" value="' . $_GET['fleisch'] . '">';
                 }
-                if (isset($_POST['vegetarisch'])) {
-                    echo '<input type="hidden" name="vegetarisch" value="' . $_POST['vegetarisch'] . '">';
+                if (isset($_GET['vegetarisch'])) {
+                    echo '<input type="hidden" name="vegetarisch" value="' . $_GET['vegetarisch'] . '">';
                 }
-                if (isset($_POST['vegan'])) {
-                    echo '<input type="hidden" name="vegan" value="' . $_POST['vegan'] . '">';
+                if (isset($_GET['vegan'])) {
+                    echo '<input type="hidden" name="vegan" value="' . $_GET['vegan'] . '">';
                 }
-                if (isset($_POST['zeit'])) {
-                    echo '<input type="hidden" name="zeit" value="' . $_POST['zeit'] . '">';
+                if (isset($_GET['zeit'])) {
+                    echo '<input type="hidden" name="zeit" value="' . $_GET['zeit'] . '">';
                 }
-                if (isset($_POST['schwierigkeit'])) {
-                    echo '<input type="hidden" name="schwierigkeit" value="' . $_POST['schwierigkeit'] . '">';
+                if (isset($_GET['schwierigkeit'])) {
+                    echo '<input type="hidden" name="schwierigkeit" value="' . $_GET['schwierigkeit'] . '">';
                 }
-                if (isset($_POST['suchbegriff'])) {
-                    echo '<input type="hidden" name="suchbegriff" value="' . $_POST['suchbegriff'] . '">';
+                if (isset($_GET['suchbegriff'])) {
+                    echo '<input type="hidden" name="suchbegriff" value="' . $_GET['suchbegriff'] . '">';
                 }
-                if (isset($_POST['zutat'])) {
-                    echo '<input type="hidden" name="zutat" value="' . $_POST['zutat'] . '">';
+                if (isset($_GET['zutat'])) {
+                    echo '<input type="hidden" name="zutat" value="' . $_GET['zutat'] . '">';
                 }
                 echo '<input type="hidden" name="order" value="">';
                 echo '<select id="filter" name="order" onchange="this.form.submit()">';
