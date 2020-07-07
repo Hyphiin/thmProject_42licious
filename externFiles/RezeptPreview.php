@@ -50,8 +50,8 @@ echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
                     }}
                     echo '</div>';
                 echo '<div class="titleTime">';
-                    echo '<h2 class="recipe-preview-title">' . $title . '</h2>';
-                    echo '<p class="recipe-preview-timestamp">' . substr($timestamp,0,10) . '</p>';
+                    echo '<div class="timestamp-container"><p class="recipe-preview-timestamp">' . substr($timestamp,0,10) . '</p></div>';
+                    echo '<div class="title-container"><h2 class="recipe-preview-title">' . $title . '</h2></div>';
                     echo '</div>';
                         echo '<div id="recipe-rating">
     
@@ -68,7 +68,7 @@ echo '<a href="RezeptAnsicht.php?id='.$rezeptID.'">';
                 </div>';
                 echo '<br/><br/>Dauer: '.$dauer.' Minuten<br/>';
                 echo 'Schwierigkeit: '.$schwierigkeit.'<br/><br/>';
-                echo    nl2br($beschreibung);
+                echo  '<p id="beschreibung">'.nl2br(substr($beschreibung,0,80)).'</p>'  ;
                 echo '<br/><br/>';
                 echo '</div>';
 

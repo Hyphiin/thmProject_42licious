@@ -7,7 +7,7 @@
     margin: 10px;
     border-style: solid;
     border-width: 1px;
-    height: 350px;
+    height: 400px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -51,11 +51,21 @@
     width: 60%;
 }
 
+.recipe-preview-title {
+    word-break: break-all;
+}
+
 .titleTime {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
+}
+
+.title-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 
 .kategorien {
@@ -88,8 +98,20 @@
 #vegankat{
     background-color: green;
 }
+.timestamp-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.recipe-preview-timestamp {
+    margin: 5px;
+}
 
-
+#beschreibung {
+    word-break: break-all;
+    margin: 0;
+}
 
 #reOrder {
     display: flex;
