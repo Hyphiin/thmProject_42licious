@@ -155,9 +155,9 @@ $sess = $_SESSION['userid'];
     if ($gesBewertung == 0) {
         $gesBewertung = "Keine Bewertungen";
     } elseif ($gesBewertung == 1) {
-        $gesBewertung = "Bewertung: " . $gesBewertung . " Stern (" . $bewertungenZahl . ")";
+        $gesBewertung = "Bewertung: " . $gesBewertung . " Stern (" . $bewertungenZahl . " Bewertungen)";
     } else {
-        $gesBewertung = "Bewertung: " . round($gesBewertung,1) . " Sterne (" . $bewertungenZahl . ")";
+        $gesBewertung = "Bewertung: " . round($gesBewertung,1) . " Sterne (" . $bewertungenZahl . " Bewertungen)";
     }
 
     $statement3 = $pdo->query("SELECT * FROM users WHERE id = '$uid' ");

@@ -7,7 +7,7 @@
     margin: 10px;
     border-style: solid;
     border-width: 1px;
-    height: 400px;
+    height: 450px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -52,7 +52,7 @@
 }
 
 .recipe-preview-title {
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .titleTime {
@@ -109,7 +109,7 @@
 }
 
 #beschreibung {
-    word-break: break-all;
+    word-break: break-word;
     margin: 0;
 }
 
