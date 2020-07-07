@@ -79,26 +79,26 @@ $sess = $_SESSION['userid'];
             </div>
 
             <div class="modal-body">
-                <form id="filterSuche" action="SucheFilter.php" method="post">
+                <form id="filterSuche" action="SucheFilter.php" method="get">
 
                     Kategorien:<br/>
                     <label for="fleisch">
-                        <input type="checkbox" id="fleisch" name="fleisch" value="fleisch">
+                        <input type="checkbox" id="fleisch" name="fleisch" value="1">
                         <span>Fleisch</span>
                     </label>
                     <label for="vegetarisch">
-                        <input type="checkbox" id="vegetarisch" name="vegetarisch" value="vegetarisch">
+                        <input type="checkbox" id="vegetarisch" name="vegetarisch" value="1">
                         <span>Vegetarisch</span>
                     </label>
                     <label for="vegan">
-                        <input type="checkbox" id="vegan" name="vegan" value="vegan">
+                        <input type="checkbox" id="vegan" name="vegan" value="1">
                         <span>Vegan</span>
                     </label>
                     <br/><br/>
                     Zutaten (max 1 pro Feld):<br/>
                     <input type="text" id = "zutat" name="zutat" placeholder="Zutat eingeben...">
                     <br>
-                    <input type="text" id="zutat2" name="zutat2" "placeholder="Zutat eingeben...">
+                    <input type="text" id="zutat2" name="zutat2" placeholder="Zutat eingeben...">
 
 
                     <p>
@@ -112,9 +112,9 @@ $sess = $_SESSION['userid'];
                         <select name = "schwierigkeit">
                             <option value="Auswahl">Auswahl</option>
                             <option value="leicht">Leicht</option>
-                            <option value="leicht%' OR schwierigkeit LIKE '%mittel">Mittel</option>
-                            <option value="leicht%' OR schwierigkeit LIKE '%mittel%' OR schwierigkeit LIKE '%schwer%' AND schwierigkeit NOT LIKE '%sehr schwer">Schwer</option>
-                            <option value="">Sehr Schwer</option>
+                            <option value="mittel">Mittel</option>
+                            <option value="schwer">Schwer</option>
+                            <option value="sehrschwer">Sehr Schwer</option>
                         </select>
                     </p>
                     Suchbegriff:<br/>

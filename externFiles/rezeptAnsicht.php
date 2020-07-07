@@ -6,7 +6,6 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 $sess = $_SESSION['userid'];
 
-$referer = $_SERVER['HTTP_REFERER'];
 
 ?>
 <!DOCTYPE html>
@@ -188,11 +187,9 @@ $referer = $_SERVER['HTTP_REFERER'];
         
         <div id="top-buttons">';
 
-    if (substr($referer, -15, 15) == "SucheFilter.php") {
-        echo '<a href="index.php"><button class="button">Zurück zur Startseite</button></a>';
-    } else {
+   
         echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
-    }
+
 
     if ($sess == $uid) {
         echo '<form class="form-row" action="RezeptBearbeiten.php?bearbeiten" method="post">';
