@@ -102,7 +102,7 @@ if ($sess == true) {
             <form id="recipe-erstellen" action="?erstellen" method="post" enctype="multipart/form-data">
 
                 <label for="titel">Titel:</label>
-                <input type="text" name="titel" id="titel" size="40" placeholder="Titel eingeben..."><br/>
+                <input type="text" name="titel" id="titel" size="40" maxlength="40" placeholder="Titel eingeben..."><br/>
                 <br/>
 
                 Vorschaubild hochladen:<br>
