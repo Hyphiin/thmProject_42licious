@@ -20,9 +20,20 @@ $sess = $_SESSION['userid'];
 </head>
 <body>
 
+<div id="website">
+
+    <?php include("Navigation.php"); ?>
+
+    <div id="main">
+
+
+        <div id="main-content">
+
 <?php
 if($sess) {
     $showFormular = true;
+}else{
+    echo '<script>window.location.replace("index.php")</script>';
 }
 
 if (isset($_GET['Speichern'])) {
@@ -49,50 +60,41 @@ if (isset($_GET['Speichern'])) {
             die(include 'PWErfolgreichGeaendert.php');
         }
         else{
-            die(include 'PWAenderFehler.php');
+            echo 'Passwort inkorrekt';
         }
     }
 }
 
 if ($showFormular) {
     ?>
-    <div id="website">
 
-        <?php include("Navigation.php"); ?>
-
-        <div id="main">
-
-            <div id="top-buttons">
-
-                <a href="javascript:history.back()"><button class="button">Zurück</button></a>
-
-            </div>
-
-            <div id="main-content">
 
                 <div id="head-title">
                     <h1>Passwort Ändern</h1>
                 </div>
-
-                <form action="?Speichern" method="post">
+                <div id="form">
+                <form action="?Speichern" method="post" id="pw">
 
                     <div class="textfeld">
-                        <label for="aktuell">Aktuelles Passwort:</label>
-                        <input type="password" name="aktuell" id="aktuell"/>
+                        Aktuelles Passwort:<br/>
+                        <input type="password" name="aktuell" id="aktuell" size="40"/>
                     </div>
                     <div class="textfeld">
-                        <label for="neu">Neues Passwort:</label>
-                        <input type="password" name="passwort" id="neu"/>
+                        Neues Passwort:<br/>
+                        <input type="password" name="passwort" id="neu" size="40"/>
                     </div>
                     <div class="textfeld">
-                        <label for="bestätigen">Passwort bestätigen:</label>
-                        <input type="password" name="passwort2" id="bestätigen"/>
+                        Passwort bestätigen:<br/>
+                        <input type="password" name="passwort2" id="bestätigen" size="40"/>
+
                     </div>
-
-                    <input type="submit" class="button" value="Speichern"/>
-                    <button class="button">Abbrechen</button>
-
                 </form>
+                <div>
+                    <br/>
+                    <input type="submit" form="pw"  class="button" value="Speichern"/>
+                   <?php echo '<a href="ProfilAnsicht.php?id='.$sess.'"><button type="button" class="button">Abbrechen</button></a>'; ?>
+                </div>
+                </div>
             </div>
         </div>
     </div>

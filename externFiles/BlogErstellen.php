@@ -32,7 +32,7 @@ if ($sess == true) {
     <div id="main">
         <div class="blog-main">
         <div id="create-blog">
-            <h1>Blogeintrag erstellen</h1>
+
 
             <?php
             if(isset($_GET['erstellen'])){
@@ -41,12 +41,15 @@ if ($sess == true) {
 
                 $statement = $pdo->prepare("INSERT INTO blog (Nutzer, titel, inhalt) VALUES (:Nutzer ,:titel, :inhalt)");
                 $result = $statement->execute(array('Nutzer' => $sess, 'titel' => $titel, 'inhalt' => $inhalt));
+                echo '<div id="notification">';
                 echo 'Blogeintrag erstellt!';
                 echo '<br><br>';
                 echo '<a href="BlogUser.php?nutzer='.$sess.'"><button class="button" id="back">Zurück zum Blog</button></a>';
-                echo '<br><br>';
+                echo '<br>';
+                echo '</div>';
             }else{
 ?>
+            <h1>Blogeintrag erstellen</h1>
 
             <form action="?erstellen=1" method="post">
                 Titel:<br>

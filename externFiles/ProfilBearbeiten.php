@@ -30,7 +30,7 @@ if ($sess == true) {
         <div id="main">
             <div class="profil-edit-main">
             <div class="edit-profile">
-                <h1>Profil bearbeiten</h1>
+
             <?php
             if (isset($_GET['edit'])) {
                 $vorname = $_POST['vorname'];
@@ -74,13 +74,16 @@ if ($sess == true) {
                 $sql = "UPDATE users SET vorname = '$vorname', nachname = '$nachname', nickname= '$nickname', pic= '$file_name' WHERE  id = '$sess' ";
                 $update = $pdo->prepare($sql);
                 $update->execute();
+                echo '<div id="notification">';
+                echo '<br>';
                 echo 'Bearbeitung erfolgreich!';
                 }else{
                     print_r($errors);
                 }
                 echo '<br><br>';
                 echo '<a href="ProfilAnsicht.php?id='.$sess.'"><button class="button" id="back">Zurück zum Profil</button></a>';
-                echo '<br><br>';
+                echo '<br>';
+                echo '</div>';
             }else {
 
                 if (isset($_GET['bearbeiten'])) {
@@ -93,8 +96,10 @@ if ($sess == true) {
                 $nickname = $user['nickname'];
 
 
-                echo '<div id="main-content">';
-                echo '<form action="?edit=1" method="POST" enctype="multipart/form-data">';
+                echo '<div id="form">';
+                echo '<h1>Profil bearbeiten</h1>';
+
+                echo '<form id="edit" action="?edit=1" method="POST" enctype="multipart/form-data">';
 
                 echo 'Vorname:<br>';
                 echo '<input type="text" size="40" maxlength="250" name="vorname" value="' . $vorname . '"><br><br>';
@@ -108,19 +113,21 @@ if ($sess == true) {
                 echo 'Profil-Bild:<br>';
                 echo '<input type="file" accept="image/*" name="pic"/><br><br>';
 
-                echo '<input type="submit" value="Bearbeiten" class="button">';
+                echo '</form>';
+
+                echo '<div>';
+                echo '<input type="submit" form="edit" value="Bearbeiten" class="button">';
                 echo '<a href="ProfilAnsicht.php?id='.$sess.'"><button type="button" class="button">Abbrechen</button></a>';
                 echo '<a href="PWAendern.php"><button type="button" class="button">Passwort Ändern</button></a>';
                 echo '<a href="profilbildLoeschen.php"><button type="button" class="button">Profilbild löschen</button></a>';
                 echo '<a href="AccLoeschen.php"><button type="button" class="button" id="accloeschenbutton">Account löschen</button></a>';
-
-                echo '</form>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
                 echo '</div>';
 
+                echo '<div>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
 
             }
 

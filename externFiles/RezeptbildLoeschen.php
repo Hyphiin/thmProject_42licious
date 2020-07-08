@@ -31,10 +31,13 @@ $statement = $pdo->query("UPDATE rezepte SET pic ='standard.png' WHERE uid='$ses
     <div id="main">
         <div id="main-content">
             <?php
+            echo '<div id="notification">';
+            echo '<br>';
             echo 'Rezeptbild zurückgesetzt';
             echo '<br><br>';
             echo '<a href="RezeptAnsicht.php?id=' . $rid . '"><button class="button" id="back">Zurück zum Rezept</button></a>';
-            echo '<br><br>';
+            echo '<br>';
+            echo '</div>';
             }
             ?>
         </div>

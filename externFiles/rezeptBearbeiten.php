@@ -87,22 +87,26 @@ if ($sess == true) {
                 $sql = "UPDATE rezepte SET titel = '$titel', pic = '$file_name', dauer = '$dauer', schwierigkeit = '$schwierigkeit', kategorien = '$kategorien', beschreibung = '$beschreibung', personen = '$personen', zutatenListe = '$zutatenListe', anleitung = '$anleitung'  WHERE  rid = '$rid' ";
                 $update = $pdo->prepare($sql);
                 $update->execute();
+                echo '<div id="notification">';
                 echo '<br>';
                 echo 'Bearbeitung erfolgreich!';
                 echo '<br><br>';
                 echo '<a href="RezeptAnsicht.php?id='.$rid.'"><button class="button" id="back">Zurück zum Rezept</button></a>';
-                echo '<br><br>';
+                echo '<br>';
+                echo '</div>';
             }elseif(isset($_GET['delete'])) {
                 $rezeptID = $_POST['rezeptID'];
 
                 $statement1 = $pdo->query("DELETE FROM recipecomments WHERE rid= '$rezeptID'");
                 $statement2 = $pdo->query("DELETE FROM bewertung WHERE rezeptID= '$rezeptID'");
                 $statement3 = $pdo->query("DELETE FROM rezepte WHERE rid= '$rezeptID'");
+                echo '<div id="notification">';
                 echo '<br>';
                 echo 'Löschen erfolgreich!';
                 echo '<br><br>';
                 echo '<a href="Kochbuch.php?nutzer='.$sess.'"><button class="button" id="back">Zurück zum Kochbuch</button></a>';
-                echo '<br><br>';
+                echo '<br>';
+                echo '</div>';
             }else{
             if (isset($_GET['bearbeiten'])) {
                 $rezeptID = $_POST['id'];

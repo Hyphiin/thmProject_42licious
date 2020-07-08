@@ -86,12 +86,13 @@ if ($sess == true) {
         if(empty($errors)) {
             $statement = $pdo->query("INSERT INTO rezepte (uid, titel, dauer, schwierigkeit, kategorien, beschreibung, personen, zutatenListe,  anleitung, pic) VALUES ('$sess', '$titel', '$dauer', '$schwierigkeit', '$kategorien', '$beschreibung', '$personen', '$zutatenListe', '$anleitung', '$file_name')");
         }
-
+        echo '<div id="notification">';
         echo '<br>';
         echo 'Rezept erstellt!';
         echo '<br><br>';
         echo '<a href="Kochbuch.php?nutzer=' . $sess . '"><button class="button" id="back">Zurück zum Kochbuch</button></a>';
-        echo '<br><br>';
+        echo '<br>';
+        echo '</div>';
     } else {
         ?>
 

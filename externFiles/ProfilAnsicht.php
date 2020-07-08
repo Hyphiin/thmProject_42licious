@@ -125,7 +125,7 @@ if ($nutzerID == 0){
                 echo '</div>';
                 echo '<div class="blog-preview-body">';
                 echo '<p>';
-                echo nl2br(substr($entry, 0, 100));
+                echo nl2br(substr($entry, 0, 100)).'...';
                 echo '</p>';
                 echo '</div>';
 

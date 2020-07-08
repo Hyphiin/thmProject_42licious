@@ -30,10 +30,13 @@ $statement = $pdo->query("UPDATE users SET pic ='standard.png' WHERE id='$sess'"
     <div id="main">
         <div id="main-content">
             <?php
+            echo '<div id="notification">';
+            echo '<br>';
             echo 'Profilbild zurückgesetzt';
             echo '<br><br>';
             echo '<a href="ProfilAnsicht.php?id=' . $sess . '"><button class="button" id="back">Zurück zum Profil</button></a>';
-            echo '<br><br>';
+            echo '<br>';
+            echo '</div>';
             }
             ?>
         </div>
