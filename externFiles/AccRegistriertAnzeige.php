@@ -8,6 +8,7 @@
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
     <link href="../css/nosess.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 <div id="website">
@@ -16,10 +17,13 @@
     <div id="main">
         <div id="main-content">
             <?php
+            echo '<br>';
+            echo '<div id="notification">';
             echo 'Du wurdest erfolgreich registriert!';
             echo '<br><br>';
             echo '<a href="AccLogin.php"><button class="button" id="back">Weiter zum Login</button></a>';
-            echo '<br><br>';
+            echo '<br>';
+            echo '</div>';
             ?>
         </div>
     </div>

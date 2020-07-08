@@ -60,7 +60,7 @@ if (isset($errorMessage)) {
             <div id="head-title">
                 <h1>Login</h1>
             </div>
-
+            <div id="form">
             <form action="?login=1" method="post">
                 E-Mail:<br>
                 <input type="email" size="40" maxlength="250" name="email"><br><br>
@@ -68,8 +68,9 @@ if (isset($errorMessage)) {
                 Dein Passwort:<br>
                 <input type="password" size="40" maxlength="250" name="passwort"><br>
 
-                <input type="submit" class="button" value="Abschicken">
+                <input type="submit" class="button" value="Login">
             </form>
+            </div>
             <div id="mitgliedButton">Noch kein Mitglied?  <a href="AccRegistrieren.php"><button type="button" class="button">Mitglied werden!</button></a></div>
         </div>
     </div>

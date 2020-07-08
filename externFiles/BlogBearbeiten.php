@@ -30,7 +30,6 @@ if ($sess == true) {
     <div id="main">
         <div class="blog-main">
         <div id="edit-blog">
-            <h1>Blogeintrag bearbeiten</h1>
             <?php
             if (isset($_GET['edit'])) {
                 $titel = $_POST['titel'];
@@ -40,10 +39,12 @@ if ($sess == true) {
                 $sql = "UPDATE blog SET titel = '$titel', inhalt = '$inhalt' WHERE  id = '$ID' ";
                 $update = $pdo->prepare($sql);
                 $update->execute();
+                echo '<div id="notification">';
                 echo 'Bearbeitung erfolgreich!';
                 echo '<br><br>';
                 echo '<a href="BlogAnsicht.php?id='.$ID.'"><button class="button" id="back">Zurück zum Blog</button></a>';
-                echo '<br><br>';
+                echo '<br>';
+                echo '</div>';
             }elseif(isset($_GET['delete'])) {
                 $blogID = $_POST['blogID'];
 
@@ -53,10 +54,12 @@ if ($sess == true) {
                 $sql2 = "DELETE FROM blogcomments WHERE bid = '$blogID'";
                 $update2 = $pdo->prepare($sql2);
                 $update2->execute();
+                echo '<div id="notification">';
                 echo 'Löschen erfolgreich!';
                 echo '<br><br>';
                 echo '<a href="BlogUser.php?nutzer='.$sess.'"><button class="button" id="back">Zurück zum Blog</button></a>';
-                echo '<br><br>';
+                echo '<br>';
+                echo '</div>';
             }else {
 
                 if (isset($_GET['bearbeiten'])) {
@@ -69,6 +72,8 @@ if ($sess == true) {
                 $author = $blog['nutzer'];
                 $title = $blog['titel'];
                 $entry = $blog['inhalt'];
+
+                echo '<h1>Blogeintrag bearbeiten</h1>';
 
                 echo '<form action="?id=' . $blogID . '&edit" method="post">';
                 echo 'Titel:<br>';

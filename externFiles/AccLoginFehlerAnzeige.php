@@ -8,6 +8,7 @@
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
     <link href="../css/nosess.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 <div id="website">
@@ -16,10 +17,13 @@
     <div id="main">
         <div id="main-content">
             <?php
-           echo 'Login fehlgeschlagen!';
-             echo '<br><br>';
-             echo '<a href="AccLogin.php"><button class="button" id="back">Zurück zum Login</button></a>';
-             echo '<br><br>';
+            echo '<div id="notification">';
+            echo '<br>';
+            echo 'Login fehlgeschlagen!';
+            echo '<br><br>';
+            echo '<a href="AccLogin.php"><button class="button" id="back">Zurück zum Login</button></a>';
+            echo '<br>';
+            echo '</div>';
             ?>
            </div>
         </div>

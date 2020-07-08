@@ -31,9 +31,13 @@ $sess = $_SESSION['userid'];
 
 
         <?php
+
+        $lastPage = $_SERVER['HTTP_REFERER'];
+
         if(isset($_GET['comment'])) {
             $bid = $_POST['bid'];
             $message = $_POST['message'];
+            $lastPage = $_POST['lastPage'];
 
 
             $statement1 = $pdo->prepare("INSERT INTO blogcomments (bid, uid, message) VALUES (:bid, :uid ,:message)");
@@ -43,6 +47,7 @@ $sess = $_SESSION['userid'];
 
         if(isset($_GET['delete'])) {
             $cid = $_POST['cid'];
+            $lastPage = $_POST['lastPage'];
 
             $sql = "DELETE FROM blogcomments WHERE cid = '$cid'";
             $update = $pdo->prepare($sql);
@@ -67,7 +72,7 @@ $sess = $_SESSION['userid'];
         echo '<div id="top-buttons">';
 
         if($sess!=$author){
-            echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
+            echo '<a href="'.$lastPage.'"><button class="button">Zurück</button></a>';
         }else{
             echo '<a href="BlogUser.php?nutzer='.$sess.'"><button class="button">Zurück</button></a>';
         }
@@ -116,6 +121,7 @@ $sess = $_SESSION['userid'];
         echo '<form method="post" action="BlogAnsicht.php?comment=1&id='.$blogID.'">';
             echo  '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="400"></textarea>';
              echo '<input type="hidden" name="bid" value="'.$blogID.'">';
+             echo '<input type="hidden" name="lastPage" value="'.$lastPage.'">';
             echo '<input type="submit" class="button" value="Kommentieren">';
             echo '</form>';
             echo '</div>';
@@ -149,6 +155,7 @@ $sess = $_SESSION['userid'];
                     echo '<div class="delete-button">';
                     echo '<form action="?delete=1&id='.$blogID.'" method="post">';
                     echo '<input type="hidden" name="cid" value="'.$cid.'">';
+                    echo '<input type="hidden" name="lastPage" value="'.$lastPage.'">';
                     echo '<button class="button" id="delete">Löschen</button>';
                     echo '</form>';
                     echo '</div>';

@@ -121,6 +121,7 @@ if ($showFormular) {
                     <h1>Registrierung</h1>
                 </div>
 
+                <div id="form">
                 <form action="?register=1" method="post" enctype="multipart/form-data">
                     Vorname:<br>
                     <input type="text" size="40" maxlength="250" name="vorname"><br><br>
@@ -143,8 +144,9 @@ if ($showFormular) {
                     Profil-Bild einfügen:<br>
                     <input type="file" accept="image/*" name="pic"/><br><br>
 
-                    <input type="submit" class="button" value="Abschicken">
+                    <input type="submit" class="button" value="Registrieren">
                 </form>
+                </div>
             </div>
         </div>
     </div>

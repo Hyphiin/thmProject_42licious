@@ -35,26 +35,21 @@ if ($sess == true){
                 $statement5 = $pdo->query("DELETE FROM bewertung WHERE BNutzer= '$sess'");
                 $statement6 = $pdo->query("DELETE FROM users WHERE id= '$sess'");
                 session_destroy();
+                echo '<div id="notification">';
                 echo "Löschen erfolgreich!\n";
                 echo "<a href='index.php'><button class='button'>Startseite</button></a>";
+                echo '<div>';
             }else{
             ?>
 
             <div class=anmeldefo>
 
-                <div class="form">
-                    <form action="?delete=1" method="post">
+                <div class="form" id="form">
+                        <p>Account unwiederruflich löschen?</p>
 
-                        <div class="text">
-                            Account unwiederruflich löschen?
-                        </div>
-
-                        <button class="button" type="submit" name="delete">LÖSCHEN!</button>
-
-                    </form>
-
-                    <div id="bottom-buttons">
-                        <a href="index.php"><button class="button" id="zurück">Zurück</button></a>
+                    <div>
+                        <a href="AccLoeschen.php?delete"><button class="button" type="button" name="delete">LÖSCHEN!</button></a>
+                        <?php echo  '<a href="ProfilAnsicht.php?id='.$sess.'"><button class="button" id="zurück">Abbrechen</button></a>';  ?>
                     </div>
                 </div>
             </div>
