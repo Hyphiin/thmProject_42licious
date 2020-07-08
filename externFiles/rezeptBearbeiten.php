@@ -29,6 +29,8 @@ if ($sess == true) {
         <div id="main">
 
             <?php
+
+            // Änderungen in Datenbank speichern
             if (isset($_GET['edit'])) {
                 $rid = $_POST['rid'];
                 $titel = $_POST['titel'];
@@ -38,47 +40,46 @@ if ($sess == true) {
                 $personen = $_POST['personen'];
                 $anleitung = $_POST['anleitung'];
                 $kategorien = $_POST['cat'];
-                
+
                 $counter = $_POST['tableLength'];
                 $zutatenListe = "";
 
-                for($i = 0; $i < (intval($counter)+1); $i+=1){
-                    $menge = $_POST['menge'.$i.''];
-                    $zutat = $_POST['zutaten'.$i.''];
+                for ($i = 0; $i < (intval($counter) + 1); $i += 1) {
+                    $menge = $_POST['menge' . $i . ''];
+                    $zutat = $_POST['zutaten' . $i . ''];
 
-                    if($menge!="" || $zutat!=""){
+                    if ($menge != "" || $zutat != "") {
                         $zutatenListe .= $menge . ":" . $zutat . ";";
                     }
 
                 }
 
-                if($_FILES['pic']['error']!=4){
-                    $errors= array();
+                if ($_FILES['pic']['error'] != 4) {
+                    $errors = array();
                     $file_name = $_FILES['pic']['name'];
                     $file_size = $_FILES['pic']['size'];
-                    $file_tmp =$_FILES['pic']['tmp_name'];
-                    $file_type=$_FILES['pic']['type'];
-                    $file_ext=strtolower(end(explode('.',$_FILES['pic']['name'])));
+                    $file_tmp = $_FILES['pic']['tmp_name'];
+                    $file_type = $_FILES['pic']['type'];
+                    $file_ext = strtolower(end(explode('.', $_FILES['pic']['name'])));
 
-                    $extensions= array("jpeg","jpg","png");
+                    $extensions = array("jpeg", "jpg", "png");
 
-                    if($file_name=="standard.png"){
-                        $errors[]="Bitte Dateinamen ändern.";
+                    if ($file_name == "standard.png") {
+                        $errors[] = "Bitte Dateinamen ändern.";
                     }
 
-                    if(in_array($file_ext,$extensions)=== false){
-                        $errors[]="Dateiendung nicht erlaubt, bitte wähle eine JPEG oder PNG Datei.";
+                    if (in_array($file_ext, $extensions) === false) {
+                        $errors[] = "Dateiendung nicht erlaubt, bitte wähle eine JPEG oder PNG Datei.";
                     }
 
-                    if($file_size > 2097152){
-                        $errors[]='Dateigröße darf 2MB nicht überschreiten!';
+                    if ($file_size > 2097152) {
+                        $errors[] = 'Dateigröße darf 2MB nicht überschreiten!';
                     }
 
-                    if(empty($errors)==true) {
+                    if (empty($errors) == true) {
                         move_uploaded_file($file_tmp, "../images/rezepte/" . $file_name);
                     }
-                }
-                else{
+                } else {
                     $edit = $pdo->query("SELECT pic FROM rezepte WHERE rid='$rid'");
                     $noedit = $edit->fetch();
                     $file_name = $noedit['pic'];
@@ -91,12 +92,13 @@ if ($sess == true) {
                 echo '<br>';
                 echo 'Bearbeitung erfolgreich!';
                 echo '<br><br>';
-                echo '<a href="RezeptAnsicht.php?id='.$rid.'"><button class="button" id="back">Zurück zum Rezept</button></a>';
+                echo '<a href="RezeptAnsicht.php?id=' . $rid . '"><button class="button" id="back">Zurück zum Rezept</button></a>';
                 echo '<br>';
                 echo '</div>';
-            }elseif(isset($_GET['delete'])) {
+            } elseif (isset($_GET['delete'])) {
                 $rezeptID = $_POST['rezeptID'];
 
+                // Rezept und Bewertungen/Kommentare löschen
                 $statement1 = $pdo->query("DELETE FROM recipecomments WHERE rid= '$rezeptID'");
                 $statement2 = $pdo->query("DELETE FROM bewertung WHERE rezeptID= '$rezeptID'");
                 $statement3 = $pdo->query("DELETE FROM rezepte WHERE rid= '$rezeptID'");
@@ -104,10 +106,13 @@ if ($sess == true) {
                 echo '<br>';
                 echo 'Löschen erfolgreich!';
                 echo '<br><br>';
-                echo '<a href="Kochbuch.php?nutzer='.$sess.'"><button class="button" id="back">Zurück zum Kochbuch</button></a>';
+                echo '<a href="Kochbuch.php?nutzer=' . $sess . '"><button class="button" id="back">Zurück zum Kochbuch</button></a>';
                 echo '<br>';
                 echo '</div>';
-            }else{
+            }
+            else{
+
+            //Rezeptdaten aus Datenbank laden und in Formular füllen
             if (isset($_GET['bearbeiten'])) {
                 $rezeptID = $_POST['id'];
             }
@@ -125,11 +130,11 @@ if ($sess == true) {
             $zutatenListe = $rezept['zutatenListe'];
             $anleitung = $rezept['anleitung'];
 
-            if ($kategorienListe=="fleisch;"){
+            if ($kategorienListe == "fleisch;") {
                 $fleisch = "checked";
-            }elseif ($kategorienListe=="vegetarisch;"){
+            } elseif ($kategorienListe == "vegetarisch;") {
                 $vegetarisch = "checked";
-            }elseif ($kategorienListe=="vegetarisch;vegan;"){
+            } elseif ($kategorienListe == "vegetarisch;vegan;") {
                 $vegan = "checked";
             }
 
@@ -153,35 +158,35 @@ if ($sess == true) {
 
 
                 echo '<label for="dauer">Dauer:</label>
-                <input name="dauer" class="personen" type="number" min="5" max="600" size="4" value="'.$dauer.'" > Minuten<br/>
+                <input name="dauer" class="personen" type="number" min="5" max="600" size="4" value="' . $dauer . '" > Minuten<br/>
                 <br/>';
 
 
-                if($schwierigkeit=="leicht"){
+                if ($schwierigkeit == "leicht") {
                     $leicht = "selected";
-                }elseif ($schwierigkeit=="mittel"){
+                } elseif ($schwierigkeit == "mittel") {
                     $mittel = "selected";
-                }elseif ($schwierigkeit=="schwer"){
+                } elseif ($schwierigkeit == "schwer") {
                     $schwer = "selected";
-                }elseif ($schwierigkeit=="sehr schwer"){
+                } elseif ($schwierigkeit == "sehr schwer") {
                     $sehrschwer = "selected";
                 }
                 echo '<label for="schwierigkeit">Schwierigkeit:</label>
                 <select name="schwierigkeit" id="schwierigkeit">
-                    <option value="leicht" '.$leicht.'>leicht</option>
-                    <option value="mittel" '.$mittel.'>mittel</option>
-                    <option value="schwer" '.$schwer.'>schwer</option>
-                    <option value="sehr schwer" '.$sehrschwer.'>sehr schwer</option>
+                    <option value="leicht" ' . $leicht . '>leicht</option>
+                    <option value="mittel" ' . $mittel . '>mittel</option>
+                    <option value="schwer" ' . $schwer . '>schwer</option>
+                    <option value="sehr schwer" ' . $sehrschwer . '>sehr schwer</option>
                 </select><br/>
                 <br/>';
 
                 echo '<div class="kategorie">
                     Kategorie:
-                    <input type="radio" id="cat1" name="cat" value="fleisch;" '.$fleisch.'>
+                    <input type="radio" id="cat1" name="cat" value="fleisch;" ' . $fleisch . '>
                     <label for="cat1"> Fleisch </label>
-                    <input type="radio" id="cat2" name="cat" value="vegetarisch;" '.$vegetarisch.'>
+                    <input type="radio" id="cat2" name="cat" value="vegetarisch;" ' . $vegetarisch . '>
                     <label for="cat2"> Vegetarisch </label><br>
-                    <input type="radio" id="cat3" name="cat" value="vegetarisch;vegan;" '.$vegan.'>
+                    <input type="radio" id="cat3" name="cat" value="vegetarisch;vegan;" ' . $vegan . '>
                     <label for="cat3"> Vegan </label><br>
                 </div>
                 <br/>
@@ -192,12 +197,12 @@ if ($sess == true) {
 
                 Zutaten für <input class="personen" type="number" min="1" max="30" maxlength="3" name="personen" value="' . $personen . '"> Personen:
                 <table id="zutatenTable">';
-                for ($i = 0; $i < (count($zutatenTable)-1); $i++) {
+                for ($i = 0; $i < (count($zutatenTable) - 1); $i++) {
                     $zutatenSpalte = explode(":", $zutatenTable[$i]);
                     echo '<tr>';
-                    echo '<td><input type="text" name="menge'.$i.'" id="menge" size="40" value="'.$zutatenSpalte[0].'"></td>';
-                    echo '<td><input type="text" name="zutaten'.$i.'" id="zutaten" size="40" value="'.$zutatenSpalte[1].'"></td>';
-                    if($i!=0) {
+                    echo '<td><input type="text" name="menge' . $i . '" id="menge" size="40" value="' . $zutatenSpalte[0] . '"></td>';
+                    echo '<td><input type="text" name="zutaten' . $i . '" id="zutaten" size="40" value="' . $zutatenSpalte[1] . '"></td>';
+                    if ($i != 0) {
                         echo '<td><button class="button" type="button" onclick="deleteRow(this)">-</button></td>';
                     }
                     echo '</tr>';
@@ -206,7 +211,7 @@ if ($sess == true) {
                 <button class="button" id="plus" type="button" onclick="addRow()">+</button>
                 <br/><br/>
 
-                <input type="hidden" id="tableLength" name="tableLength" value="'.count($zutatenTable).'">          
+                <input type="hidden" id="tableLength" name="tableLength" value="' . count($zutatenTable) . '">          
 
                 <label for="zubereitung">Zubereitung:</label><br/>
                 <textarea class="zubereitung" name="anleitung" maxlength="3000">' . $anleitung . '</textarea><br/>
@@ -217,17 +222,16 @@ if ($sess == true) {
                 echo '<div id="bottom-buttons">
                         <div class="bottom-buttons-left">
                             <button type="submit" form="recipe-bearbeiten" class="button" id="create" type="submit">Bearbeiten</button>
-                            <a href="RezeptAnsicht.php?id='.$rezeptID.'"><button type="button" class="button" id="cancel">Abbrechen</button></a>
-                            <a href="RezeptbildLoeschen.php?rid='.$rezeptID.'"><button type="button" class="button" id="cancel">Rezeptbild löschen</button></a>
+                            <a href="RezeptAnsicht.php?id=' . $rezeptID . '"><button type="button" class="button" id="cancel">Abbrechen</button></a>
+                            <a href="RezeptbildLoeschen.php?rid=' . $rezeptID . '"><button type="button" class="button" id="cancel">Rezeptbild löschen</button></a>
                         </div>   
                         <div id="bottom-buttons-right">
                             <form action="?delete" method="post">
-                                <input type="hidden" name="rezeptID" value="'.$rezeptID.'">   
+                                <input type="hidden" name="rezeptID" value="' . $rezeptID . '">   
                                 <button class="button" id="delete">Rezept löschen</button>
                             </form>
                         </div> 
                       </div>';
-
 
 
                 }
@@ -244,19 +248,20 @@ if ($sess == true) {
     <script>
         let counter = (document.getElementById("zutatenTable").rows.length) + 2;
         obergrenze = 22;
-        function addRow() {
-            if (counter<obergrenze){
-            let table = document.getElementById("zutatenTable");
-            let row = table.insertRow(-1);
-            let cell1 = row.insertCell(0);
-            let cell2 = row.insertCell(1);
-            let cell3 = row.insertCell(2);
-            cell1.innerHTML = '<input type="text" name="menge' + counter + '" id="menge" size="40" placeholder="Menge eingeben...">';
-            cell2.innerHTML = '<input type="text" name="zutaten' + counter + '" id="zutaten" size="40" placeholder="Zutaten eingeben...">';
-            cell3.innerHTML = "<button class=\"button\" type=\"button\" onclick=\"deleteRow(this)\">-</button>"
 
-            document.getElementById("tableLength").value = counter;
-            counter++;
+        function addRow() {
+            if (counter < obergrenze) {
+                let table = document.getElementById("zutatenTable");
+                let row = table.insertRow(-1);
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                let cell3 = row.insertCell(2);
+                cell1.innerHTML = '<input type="text" name="menge' + counter + '" id="menge" size="40" placeholder="Menge eingeben...">';
+                cell2.innerHTML = '<input type="text" name="zutaten' + counter + '" id="zutaten" size="40" placeholder="Zutaten eingeben...">';
+                cell3.innerHTML = "<button class=\"button\" type=\"button\" onclick=\"deleteRow(this)\">-</button>"
+
+                document.getElementById("tableLength").value = counter;
+                counter++;
             }
         }
 
@@ -271,7 +276,7 @@ if ($sess == true) {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
     <script>
-        gsap.from("#main",{y:20});
+        gsap.from("#main", {y: 20});
     </script>
 
     </body>

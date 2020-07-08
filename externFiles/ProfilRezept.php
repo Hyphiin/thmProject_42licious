@@ -39,13 +39,15 @@ if ($nutzer == 0){
 
             <div id="top-buttons">
 
-            <a href="javascript:history.back()">
-                <button class="button">Zurück</button>
-            </a>
+                <a href="javascript:history.back()">
+                    <button class="button">Zurück</button>
+                </a>
 
             </div>
 
             <?php
+
+            // Alle Rezepte des ausgewählten Nutzers aus Datenbank laden
             $entryCounter = 0;
             $statement = $pdo->query("SELECT * FROM users WHERE id = '$nutzer' ");
             $rezeptAuthor = $statement->fetch();
@@ -57,56 +59,56 @@ if ($nutzer == 0){
             echo '</div>';
 
             if (isset($_GET['order'])) {
-                    if ($_GET['order'] == "cdate") {
-                        $selected = 'selected';
-                        $selected2 = '';
-                    } elseif ($_GET['order'] == "bewertung") {
-                        $selected = '';
-                        $selected2 = 'selected';
-                    } else {
-                        $selected = '';
-                        $selected2 = '';
-                    }
-                }
-
-                echo '<div class="sortierung">';
-                echo '<label for="sortieren">Sortieren nach </label>';
-                echo '<select id="filter" name="filter" onchange="location = this.value">';
-                echo '<option value="ProfilRezept.php?nutzer=' . $nutzer . '">Name</option>';
-                echo '<option value="ProfilRezept.php?nutzer=' . $nutzer . '&order=cdate" ' . $selected . '>Neuste</option>';
-                echo '<option value="ProfilRezept.php?nutzer=' . $nutzer . '&order=bewertung" ' . $selected2 . '>Bewertung</option>';
-                echo '</select>';
-                echo '</div>';
-
-                echo '<div class="recipies">';
-                echo '<div class="recipe-container">';
-
-                if (isset($_GET['order'])) {
-                    if ($_GET['order'] == "cdate") {
-                        $order = $_GET['order'] . " DESC";
-                    } else {
-                        $order = "gesamtBewertung DESC";
-                    }
+                if ($_GET['order'] == "cdate") {
+                    $selected = 'selected';
+                    $selected2 = '';
+                } elseif ($_GET['order'] == "bewertung") {
+                    $selected = '';
+                    $selected2 = 'selected';
                 } else {
-                    $order = 'titel';
+                    $selected = '';
+                    $selected2 = '';
                 }
+            }
 
-                $statement2 = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzer' ORDER BY $order");
-                while ($rezept = $statement2->fetch()) {
+            echo '<div class="sortierung">';
+            echo '<label for="sortieren">Sortieren nach </label>';
+            echo '<select id="filter" name="filter" onchange="location = this.value">';
+            echo '<option value="ProfilRezept.php?nutzer=' . $nutzer . '">Name</option>';
+            echo '<option value="ProfilRezept.php?nutzer=' . $nutzer . '&order=cdate" ' . $selected . '>Neuste</option>';
+            echo '<option value="ProfilRezept.php?nutzer=' . $nutzer . '&order=bewertung" ' . $selected2 . '>Bewertung</option>';
+            echo '</select>';
+            echo '</div>';
 
-                    include('RezeptPreview.php');
-                    $entryCounter++;
+            echo '<div class="recipies">';
+            echo '<div class="recipe-container">';
+
+            if (isset($_GET['order'])) {
+                if ($_GET['order'] == "cdate") {
+                    $order = $_GET['order'] . " DESC";
+                } else {
+                    $order = "gesamtBewertung DESC";
                 }
-                if($entryCounter==0){
-                    echo '<br/><br/>';
-                    echo '<p id="noEntries">Keine Rezepte vorhanden</p>';
-                }
+            } else {
+                $order = 'titel';
+            }
+
+            $statement2 = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzer' ORDER BY $order");
+            while ($rezept = $statement2->fetch()) {
+
+                include('RezeptPreview.php');
+                $entryCounter++;
+            }
+            if ($entryCounter == 0) {
+                echo '<br/><br/>';
+                echo '<p id="noEntries">Keine Rezepte vorhanden</p>';
+            }
             }
             ?>
         </div>
     </div>
     <?php
-    if ($entryCounter>3) {
+    if ($entryCounter > 3) {
         echo '<div id="bottom-buttons">';
         echo '<button class="button" id="show-more">Mehr anzeigen</button>';
         echo '</div>';
@@ -120,7 +122,7 @@ if ($nutzer == 0){
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
 <script>
-    gsap.from("#main",{y:20});
+    gsap.from("#main", {y: 20});
 </script>
 
 </body>

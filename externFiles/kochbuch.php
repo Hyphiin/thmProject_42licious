@@ -42,6 +42,8 @@ if ($nutzer == 0){
         <div class="main-content">
 
             <?php
+
+            // Favoriten-Seite anzeigen
             if (isset($_GET['fav'])) {
                 $header = "Favoriten";
             } else {
@@ -106,6 +108,7 @@ if ($nutzer == 0){
 
             if (isset($_GET['fav'])) {
 
+                // Favoriten des Nutzers aus Datenbank laden
                 $statement1 = $pdo->query("SELECT favRezepte FROM users WHERE id = '$sess' ");
                 $favorites = $statement1->fetch();
                 if (!empty($favorites[0])) {
@@ -122,6 +125,7 @@ if ($nutzer == 0){
                 }
             } else {
 
+                // Eigene Rezepte aus Datenbank laden
                 $statement3 = $pdo->query("SELECT * FROM rezepte WHERE uid = '$nutzer' ORDER BY $order");
                 while ($rezept = $statement3->fetch()) {
 
@@ -134,7 +138,7 @@ if ($nutzer == 0){
             echo '</div>';
             echo '</div>';
 
-            if ($entryCount>3) {
+            if ($entryCount > 3) {
                 echo '<div id="bottom-buttons">';
                 echo '<button class="button" id="show-more">Mehr anzeigen</button>';
                 echo '</div>';

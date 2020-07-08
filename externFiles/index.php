@@ -6,8 +6,8 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 $sess = $_SESSION['userid'];
 
-if($sess!=true){
-    $sess=0;
+if ($sess != true) {
+    $sess = 0;
 }
 ?>
 <!DOCTYPE html>
@@ -21,7 +21,6 @@ if($sess!=true){
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
     <link href="../css/index.css" rel="stylesheet" type="text/css">
     <link href="../css/rezept_css/rezeptPreview.css" rel="stylesheet" type="text/css">
-
 
 
 </head>
@@ -69,14 +68,13 @@ if($sess!=true){
     </div>
 
 
-
-<?php include("Footer.php")?>
+    <?php include("Footer.php") ?>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
 <script>
-    gsap.from(".recipe-preview-container",{});
-    gsap.from(".main",{y:20})
+    gsap.from(".recipe-preview-container", {});
+    gsap.from(".main", {y: 20})
 </script>
 
 </body>

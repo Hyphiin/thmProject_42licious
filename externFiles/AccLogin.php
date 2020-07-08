@@ -49,10 +49,11 @@ if (isset($errorMessage)) {
 
         <div id="top-buttons">
 
-            <a href="javascript:history.back()"><button class="button">Zurück</button></a>
+            <a href="javascript:history.back()">
+                <button class="button">Zurück</button>
+            </a>
 
         </div>
-
 
 
         <div id="main-content">
@@ -61,24 +62,26 @@ if (isset($errorMessage)) {
                 <h1>Login</h1>
             </div>
             <div id="form">
-            <form action="?login=1" method="post">
-                E-Mail:<br>
-                <input type="email" size="40" maxlength="250" name="email"><br><br>
+                <form action="?login=1" method="post">
+                    E-Mail:<br>
+                    <input type="email" size="40" maxlength="250" name="email"><br><br>
 
-                Dein Passwort:<br>
-                <input type="password" size="40" maxlength="250" name="passwort"><br>
+                    Dein Passwort:<br>
+                    <input type="password" size="40" maxlength="250" name="passwort"><br>
 
-                <input type="submit" class="button" value="Login">
-            </form>
+                    <input type="submit" class="button" value="Login">
+                </form>
             </div>
-            <div id="mitgliedButton">Noch kein Mitglied?  <a href="AccRegistrieren.php"><button type="button" class="button">Mitglied werden!</button></a></div>
+            <div id="mitgliedButton">Noch kein Mitglied? <a href="AccRegistrieren.php">
+                    <button type="button" class="button">Mitglied werden!</button>
+                </a></div>
         </div>
     </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
 <script>
-    gsap.from("#main",{y:15});
+    gsap.from("#main", {y: 15});
 </script>
 
 </body>

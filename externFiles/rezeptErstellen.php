@@ -28,6 +28,7 @@ if ($sess == true) {
 
     echo '<div id="main">';
 
+    // Rezept in Datenbank speichern
     if (isset($_GET['erstellen'])) {
         $titel = $_POST['titel'];
         $pic = $_POST['pic'];
@@ -51,39 +52,38 @@ if ($sess == true) {
 
         }
 
-        if($_FILES['pic']['error']!=4){
-            $errors= array();
+        if ($_FILES['pic']['error'] != 4) {
+            $errors = array();
             $file_name = $_FILES['pic']['name'];
             $file_size = $_FILES['pic']['size'];
-            $file_tmp =$_FILES['pic']['tmp_name'];
-            $file_type=$_FILES['pic']['type'];
-            $file_ext=strtolower(end(explode('.',$_FILES['pic']['name'])));
+            $file_tmp = $_FILES['pic']['tmp_name'];
+            $file_type = $_FILES['pic']['type'];
+            $file_ext = strtolower(end(explode('.', $_FILES['pic']['name'])));
 
-            $extensions= array("jpeg","jpg","png");
+            $extensions = array("jpeg", "jpg", "png");
 
-            if($file_name=="standard.png"){
-                $errors[]="Bitte Dateinamen ändern.";
+            if ($file_name == "standard.png") {
+                $errors[] = "Bitte Dateinamen ändern.";
             }
 
-            if(in_array($file_ext,$extensions)=== false){
-                $errors[]="Dateiendung nicht erlaubt, bitte wähle eine JPEG oder PNG Datei.";
+            if (in_array($file_ext, $extensions) === false) {
+                $errors[] = "Dateiendung nicht erlaubt, bitte wähle eine JPEG oder PNG Datei.";
             }
 
-            if($file_size > 2097152){
-                $errors[]='Dateigröße darf 2MB nicht überschreiten!';
+            if ($file_size > 2097152) {
+                $errors[] = 'Dateigröße darf 2MB nicht überschreiten!';
             }
 
-            if(empty($errors)==true){
-                move_uploaded_file($file_tmp,"../images/rezepte/".$file_name);
-            }else{
+            if (empty($errors) == true) {
+                move_uploaded_file($file_tmp, "../images/rezepte/" . $file_name);
+            } else {
                 print_r($errors);
             }
-        }
-        else{
-            $file_name="standard.png";
+        } else {
+            $file_name = "standard.png";
         }
 
-        if(empty($errors)) {
+        if (empty($errors)) {
             $statement = $pdo->query("INSERT INTO rezepte (uid, titel, dauer, schwierigkeit, kategorien, beschreibung, personen, zutatenListe,  anleitung, pic) VALUES ('$sess', '$titel', '$dauer', '$schwierigkeit', '$kategorien', '$beschreibung', '$personen', '$zutatenListe', '$anleitung', '$file_name')");
         }
         echo '<div id="notification">';
@@ -103,14 +103,16 @@ if ($sess == true) {
             <form id="recipe-erstellen" action="?erstellen" method="post" enctype="multipart/form-data">
 
                 <label for="titel">Titel:</label>
-                <input type="text" name="titel" id="titel" size="40" maxlength="40" placeholder="Titel eingeben..."><br/>
+                <input type="text" name="titel" id="titel" size="40" maxlength="40"
+                       placeholder="Titel eingeben..."><br/>
                 <br/>
 
                 Vorschaubild hochladen:<br>
                 <input type="file" accept="image/*" name="pic"/><br><br>
 
                 <label for="dauer">Dauer:</label>
-                <input name="dauer" class="personen" type="number" min="5" maxlength="3" max="600" size="4"> Minuten<br/>
+                <input name="dauer" class="personen" type="number" min="5" maxlength="3" max="600" size="4">
+                Minuten<br/>
                 <br/>
 
                 <label for="schwierigkeit">Schwierigkeit:</label>
@@ -152,12 +154,15 @@ if ($sess == true) {
                 <input type="hidden" id="tableLength" name="tableLength" value="">
 
                 <label for="zubereitung">Zubereitung:</label><br/>
-                <textarea class="zubereitung" name="anleitung" placeholder="Zubereitung eingeben..." maxlength="3000"></textarea><br/>
+                <textarea class="zubereitung" name="anleitung" placeholder="Zubereitung eingeben..."
+                          maxlength="3000"></textarea><br/>
                 </br>
 
                 <div class="bottom-buttons">
                     <button type="submit" class="button" id="create" type="submit">Erstellen</button>
-                    <a href="javascript:history.back()"><button type="button" class="button" id="cancel">Abbrechen</button></a>
+                    <a href="javascript:history.back()">
+                        <button type="button" class="button" id="cancel">Abbrechen</button>
+                    </a>
                 </div>
 
 
@@ -172,22 +177,23 @@ if ($sess == true) {
         </div>
 
         <script>
+            // Dynamische Zutatentabelle
             var counter = 1;
             var obergrenze = 20;
 
             function addRow() {
-                if (counter<obergrenze){
-                var table = document.getElementById("zutatenTable");
-                var row = table.insertRow(-1);
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
-                var cell3 = row.insertCell(2);
-                cell1.innerHTML = '<input type="text" name="menge' + counter + '" id="menge" size="40" placeholder="Menge eingeben...">';
-                cell2.innerHTML = '<input type="text" name="zutaten' + counter + '" id="zutaten" size="40" placeholder="Zutaten eingeben...">';
-                cell3.innerHTML = "<button class=\"button\" type=\"button\" onclick=\"deleteRow(this)\">-</button>"
+                if (counter < obergrenze) {
+                    var table = document.getElementById("zutatenTable");
+                    var row = table.insertRow(-1);
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
+                    cell1.innerHTML = '<input type="text" name="menge' + counter + '" id="menge" size="40" placeholder="Menge eingeben...">';
+                    cell2.innerHTML = '<input type="text" name="zutaten' + counter + '" id="zutaten" size="40" placeholder="Zutaten eingeben...">';
+                    cell3.innerHTML = "<button class=\"button\" type=\"button\" onclick=\"deleteRow(this)\">-</button>"
 
-                document.getElementById("tableLength").value = counter;
-                counter++;
+                    document.getElementById("tableLength").value = counter;
+                    counter++;
                 }
             }
 
@@ -201,7 +207,7 @@ if ($sess == true) {
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
         <script>
-            gsap.from("#main",{y:15});
+            gsap.from("#main", {y: 15});
         </script>
 
         </body>
@@ -210,9 +216,9 @@ if ($sess == true) {
     }
 } else if ($sess != true) {
 
-    echo"Bitte einloggen!". " ". '<a href="AccLogin.php">zum Login</a>';
-    echo'<br>';
-    echo"Noch kein Mitglied?". " ". '<a href="AccRegistrieren.php">Mitglied werden!</a>';
+    echo "Bitte einloggen!" . " " . '<a href="AccLogin.php">zum Login</a>';
+    echo '<br>';
+    echo "Noch kein Mitglied?" . " " . '<a href="AccRegistrieren.php">Mitglied werden!</a>';
 
 }
 ?>

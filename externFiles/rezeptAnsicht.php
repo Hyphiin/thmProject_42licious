@@ -29,6 +29,7 @@ $sess = $_SESSION['userid'];
 
     $lastPage = $_SERVER['HTTP_REFERER'];
 
+    // Kommentar speichern
     if (isset($_GET['comment'])) {
         $rid = $_POST['rid'];
         $message = $_POST['message'];
@@ -40,6 +41,7 @@ $sess = $_SESSION['userid'];
 
     }
 
+    // Kommentar löschen
     if (isset($_GET['delete'])) {
         $cid = $_POST['cid'];
         $lastPage = $_POST['lastPage'];
@@ -49,10 +51,12 @@ $sess = $_SESSION['userid'];
         $update->execute();
     }
 
+    // Rezept ID aus URL holen
     if (isset($_GET['id'])) {
         $rezeptID = $_GET['id'];
     }
 
+    // Bewertung speichern/aktualisieren
     if ($sess) {
         if (isset($_POST['bewertung'])) {
             $lastPage = $_POST['lastPage'];
@@ -68,7 +72,7 @@ $sess = $_SESSION['userid'];
         }
     }
 
-
+    // Rezeptdaten aus Datenbank laden
     $statement = $pdo->query("SELECT * FROM rezepte WHERE rid = '$rezeptID' ");
     $rezept = $statement->fetch();
 
@@ -90,6 +94,7 @@ $sess = $_SESSION['userid'];
         $rDisable = "disabled";
     }
 
+    // Rezept merken/entmerken
     if ($sess) {
         if ($sess != $uid) {
             if (isset($_POST['like'])) {
@@ -142,6 +147,7 @@ $sess = $_SESSION['userid'];
         }
     }
 
+    // Prüfung ob Rezept bereits Favorit
     $statement10 = $pdo->query("SELECT favRezepte FROM users WHERE id = '$sess' ");
     $favorites = $statement10->fetch();
     $curFavorites = explode(",", $favorites[0]);
@@ -151,7 +157,7 @@ $sess = $_SESSION['userid'];
         }
     }
 
-
+    // Rezeptbewertung aus Datenbank laden und anzeigen
     $statement2 = $pdo->query("SELECT COUNT(BID) FROM bewertung WHERE rezeptID = '$rezeptID' ");
     $bewertungenAnzahl = $statement2->fetch();
     if (!empty($bewertungenAnzahl)) {
@@ -163,13 +169,15 @@ $sess = $_SESSION['userid'];
     } elseif ($gesBewertung == 1) {
         $gesBewertung = "Bewertung: " . $gesBewertung . " Stern (" . $bewertungenZahl . " Bewertungen)";
     } else {
-        $gesBewertung = "Bewertung: " . round($gesBewertung,1) . " Sterne (" . $bewertungenZahl . " Bewertungen)";
+        $gesBewertung = "Bewertung: " . round($gesBewertung, 1) . " Sterne (" . $bewertungenZahl . " Bewertungen)";
     }
 
+    // Aktuellen Nicknamen des Erstellers anzeigen
     $statement3 = $pdo->query("SELECT * FROM users WHERE id = '$uid' ");
     $autor = $statement3->fetch();
     $ersteller = $autor['nickname'];
 
+    // Bewertung des Nutzers (falls vorhanden) aus Datenbank laden und anzeigen
     $statement4 = $pdo->query("SELECT BSterne FROM bewertung WHERE rezeptID = '$rezeptID' AND BNutzer = '$sess' ");
     $userBewertung = $statement4->fetch();
     $UserWertung = $userBewertung['BSterne'];
@@ -193,13 +201,13 @@ $sess = $_SESSION['userid'];
         
         <div id="top-buttons">';
 
-    if($sess!=$uid){
-        echo '<a href="'.$lastPage.'"><button class="button">Zurück</button></a>';
-    }else{
-        echo '<a href="kochbuch.php?nutzer='.$sess.'"><button class="button">Zurück</button></a>';
+    if ($sess != $uid) {
+        echo '<a href="' . $lastPage . '"><button class="button">Zurück</button></a>';
+    } else {
+        echo '<a href="kochbuch.php?nutzer=' . $sess . '"><button class="button">Zurück</button></a>';
     }
 
-
+    // Bearbeiten Button bei Rezeptersteller anzeigen
     if ($sess == $uid) {
         echo '<form class="form-row" action="RezeptBearbeiten.php?bearbeiten" method="post">';
         echo '<input type="hidden" name="id" value=" ' . $rezeptID . ' ">';
@@ -213,6 +221,7 @@ $sess = $_SESSION['userid'];
             
         <div class="kategorien">';
 
+    // Kategorien anzeigen
     $kategorie = explode(";", $kategorienListe);
 
     for ($i = 0; $i < count($kategorie); $i++) {
@@ -235,8 +244,10 @@ $sess = $_SESSION['userid'];
     };
 
 
+    echo '</div>';
+
+    // Rezeptinformationen darstellen
     echo '</div>
-            </div>
             <div id="recipe-info">
                 <div class="recipe-title">
                     <h1>' . $titel . '</h1>
@@ -271,7 +282,7 @@ $sess = $_SESSION['userid'];
 
     echo '    </span>
                     </p>
-                    <input type="hidden" name="lastPage" value="'.$lastPage.'">
+                    <input type="hidden" name="lastPage" value="' . $lastPage . '">
                         </form>';
 
 
@@ -286,7 +297,7 @@ $sess = $_SESSION['userid'];
                         Merken:
                     </span>
                 </p>
-                <input type="hidden" name="lastPage" value="'.$lastPage.'">
+                <input type="hidden" name="lastPage" value="' . $lastPage . '">
                 </form>
             </div>
             </div>
@@ -330,17 +341,20 @@ $sess = $_SESSION['userid'];
     echo '<h3>Kommentare</h3>';
 
 
+    // Kommentare schreiben wenn angemeldet
     if ($sess == true) {
         echo '<div class="write-comment">';
 
         echo '<form id="comment-area" method="post" action="RezeptAnsicht.php?id=' . $rezeptID . '&comment=1">';
         echo '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="400"></textarea>';
         echo '<input type="hidden" name="rid" value="' . $rezeptID . '">';
-        echo '<input type="hidden" name="lastPage" value="'.$lastPage.'">';
+        echo '<input type="hidden" name="lastPage" value="' . $lastPage . '">';
         echo '<input id="comment" type="submit" class="button" value="Kommentieren">';
         echo '</form>';
         echo '</div>';
     }
+
+    // Kommentare aus Datenbank laden
     echo '<div class="comment-list">';
 
     $commentCount = 0;
@@ -366,20 +380,21 @@ $sess = $_SESSION['userid'];
         echo '</p>';
         echo '</div>';
 
+        // Löschenbutton bei Kommentarschreiber anzeigen
         if ($sess == $uid) {
             echo '<div class="delete-button">';
             echo '<form action="?delete=1&id=' . $rezeptID . '" method="post">';
             echo '<input type="hidden" name="cid" value="' . $cid . '">';
-            echo '<input type="hidden" name="lastPage" value="'.$lastPage.'">';
+            echo '<input type="hidden" name="lastPage" value="' . $lastPage . '">';
             echo '<button class="button" id="delete">Löschen</button>';
             echo '</form>';
             echo '</div>';
         }
         echo '</div>';
 
-    $commentCount++;
+        $commentCount++;
     }
-    if ($commentCount>3) {
+    if ($commentCount > 3) {
         echo '<div id="bottom-buttons">';
         echo '<button class="button" id="show-more">Mehr anzeigen</button>';
         echo '</div>';

@@ -34,6 +34,8 @@ $sess = $_SESSION['userid'];
 
                 <?php
 
+                // Suchkategorie, Suchwort und Sortierung auslesen
+
                 if (isset($_GET["selection"])) {
                     $auswahl = $_GET["selection"];
                 }
@@ -56,6 +58,8 @@ $sess = $_SESSION['userid'];
                         $selected2 = '';
                     }
                 }
+
+                // Nutzersuche
 
                 if ($auswahl == 'users') {
                     $suchwort = explode(" ", $suchwort);
@@ -106,9 +110,9 @@ $sess = $_SESSION['userid'];
                         $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `users` WHERE $abfrage ORDER BY $order");
 
                         $suchergebnisse = $anzahlErgebnisse->fetch();
-                        if ($suchergebnisse[0]==1){
+                        if ($suchergebnisse[0] == 1) {
                             $suchergebnisseTitel = "1 Suchergebnis";
-                        }else{
+                        } else {
                             $suchergebnisseTitel = "$suchergebnisse[0] Suchergebnisse";
                         }
 
@@ -157,12 +161,14 @@ $sess = $_SESSION['userid'];
 
                             $entryCounter++;
                         }
-                        if ($entryCounter==0){
+                        if ($entryCounter == 0) {
                             echo '<p id="noEntries">Keine passenden Nutzer gefunden</p>';
                         }
 
                         echo '</div>';
                     } else if ($auswahl == "rezepte") {
+
+                        // Rezeptsuche
 
                         echo '<div class="recipe-container">';
 
@@ -203,7 +209,7 @@ $sess = $_SESSION['userid'];
                             include('RezeptPreview.php');
                             $entryCounter++;
                         }
-                        if ($entryCounter==0){
+                        if ($entryCounter == 0) {
                             echo '<p id="noEntries">Keine passenden Rezepte gefunden</p>';
                         }
 
@@ -215,34 +221,34 @@ $sess = $_SESSION['userid'];
                 $db->close();
 
 
-            echo '</div>';
-
-            if ($entryCounter>3) {
-                echo '<div id="bottom-buttons">';
-                echo '<button class="button" id="show-more">Mehr anzeigen</button>';
                 echo '</div>';
-            }
 
-            ?>
+                if ($entryCounter > 3) {
+                    echo '<div id="bottom-buttons">';
+                    echo '<button class="button" id="show-more">Mehr anzeigen</button>';
+                    echo '</div>';
+                }
+
+                ?>
+            </div>
         </div>
     </div>
-</div>
 
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<?php
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <?php
 
-if ($auswahl == 'users') {
-    echo '<script src="../jscript/profilPreview.js"></script>';
-} elseif ($auswahl == "rezepte") {
-    echo '<script src = "../jscript/recipePreview.js" ></script>';
-}
-?>
+    if ($auswahl == 'users') {
+        echo '<script src="../jscript/profilPreview.js"></script>';
+    } elseif ($auswahl == "rezepte") {
+        echo '<script src = "../jscript/recipePreview.js" ></script>';
+    }
+    ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
-<script>
-    gsap.from(".main-content",{y:20});
-</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
+    <script>
+        gsap.from(".main-content", {y: 20});
+    </script>
 
 </body>
 </html>

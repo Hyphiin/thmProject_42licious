@@ -39,7 +39,7 @@ if ($nutzerID == 0){
 
             <?php
 
-
+            // Nutzerdaten aus Datenbank laden
             $statement = $pdo->query("SELECT * FROM users WHERE id = '$nutzerID' ");
             $user = $statement->fetch();
             $profilID = $user['id'];
@@ -51,9 +51,9 @@ if ($nutzerID == 0){
 
             echo '<div id="top-buttons">';
 
-            if($sess!=$nutzerID){
+            if ($sess != $nutzerID) {
                 echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
-            }else{
+            } else {
                 echo '<a href="index.php"><button class="button">Zurück</button></a>';
             }
 
@@ -86,12 +86,12 @@ if ($nutzerID == 0){
             echo '<p id="nickname">Nickname: ' . $nickname . '</p>';
             echo '</div>';
 
-            echo '<p>Mitglied seit: ' . substr($date,0,10) . '</p>';
+            echo '<p>Mitglied seit: ' . substr($date, 0, 10) . '</p>';
             echo '</div>';
 
             echo '<div id="profil_rechts">';
 
-
+            // Top Rezept des Nutzers anzeigen
             echo '<div class="recipe-highlight">';
             echo '<h4>Top Rezept</h4>';
 
@@ -105,6 +105,7 @@ if ($nutzerID == 0){
             }
             echo '</div>';
 
+            // Letzten Blogeintrag des Nutzers anzeigen
             echo '<div class="recipe-highlight">';
             echo '<h4>Letzter Blogeintrag</h4>';
 
@@ -125,7 +126,7 @@ if ($nutzerID == 0){
                 echo '</div>';
                 echo '<div class="blog-preview-body">';
                 echo '<p>';
-                echo nl2br(substr($entry, 0, 100)).'...';
+                echo nl2br(substr($entry, 0, 100)) . '...';
                 echo '</p>';
                 echo '</div>';
 
@@ -147,7 +148,7 @@ if ($nutzerID == 0){
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
 <script>
-    gsap.from("#main-content",{y:20});
+    gsap.from("#main-content", {y: 20});
 </script>
 
 </body>

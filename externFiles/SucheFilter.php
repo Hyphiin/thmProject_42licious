@@ -33,6 +33,8 @@ $sess = $_SESSION['userid'];
             <div class="search-list">
                 <?php
 
+                // Filter und Sortierung aus Suchmaske auslesen und Suchbefehl zusammenbauen
+
                 if (isset($_GET["fleisch"]) or isset($_GET["vegetarisch"]) or isset($_GET["vegan"])) {
                     $special = true;
                     $kategorien = true;
@@ -50,14 +52,14 @@ $sess = $_SESSION['userid'];
                 } else {
                     $schwierigkeit = $_GET["schwierigkeit"];
                     $special = true;
-                    if ($schwierigkeit=="leicht"){
-                        $schwierigkeit="leicht";
-                    }elseif ($schwierigkeit=="mittel"){
-                        $schwierigkeit="leicht%' OR schwierigkeit LIKE '%mittel";
-                    }elseif ($schwierigkeit=="schwer"){
-                        $schwierigkeit="leicht%' OR schwierigkeit LIKE '%mittel%' OR schwierigkeit LIKE '%schwer%' AND schwierigkeit NOT LIKE '%sehr schwer";
-                    }else{
-                        $schwierigkeit="";
+                    if ($schwierigkeit == "leicht") {
+                        $schwierigkeit = "leicht";
+                    } elseif ($schwierigkeit == "mittel") {
+                        $schwierigkeit = "leicht%' OR schwierigkeit LIKE '%mittel";
+                    } elseif ($schwierigkeit == "schwer") {
+                        $schwierigkeit = "leicht%' OR schwierigkeit LIKE '%mittel%' OR schwierigkeit LIKE '%schwer%' AND schwierigkeit NOT LIKE '%sehr schwer";
+                    } else {
+                        $schwierigkeit = "";
                     }
                 }
 
@@ -140,9 +142,9 @@ $sess = $_SESSION['userid'];
                     $anzahlErgebnisse = $pdo->query("SELECT COUNT(*) FROM `rezepte` WHERE titel Like '%$suchwort%' ORDER BY $order");
                 }
                 $suchergebnisse = $anzahlErgebnisse->fetch();
-                if ($suchergebnisse[0]==1){
+                if ($suchergebnisse[0] == 1) {
                     $suchergebnisseTitel = "1 Suchergebnis";
-                }else{
+                } else {
                     $suchergebnisseTitel = "$suchergebnisse[0] Suchergebnisse";
                 }
 
@@ -195,28 +197,26 @@ $sess = $_SESSION['userid'];
                     $entryCounter++;
                 }
 
-                if ($entryCounter==0){
+                if ($entryCounter == 0) {
                     echo '<p id="noEntries">Keine passenden Rezepte gefunden</p>';
                 }
 
 
+                echo '</div>';
 
-
-            echo '</div>';
-
-                if ($entryCounter>3) {
+                if ($entryCounter > 3) {
                     echo '<div id="bottom-buttons">';
                     echo '<button class="button" id="show-more">Mehr anzeigen</button>';
                     echo '</div>';
                 }
-?>
+                ?>
+            </div>
         </div>
     </div>
-</div>
 
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script src="../jscript/recipePreview.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="../jscript/recipePreview.js"></script>
 
 
 </body>

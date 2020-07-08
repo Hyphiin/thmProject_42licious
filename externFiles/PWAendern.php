@@ -29,50 +29,52 @@ $sess = $_SESSION['userid'];
 
         <div id="main-content">
 
-<?php
-if($sess) {
-    $showFormular = true;
-}else{
-    echo '<script>window.location.replace("index.php")</script>';
-}
+            <?php
 
-if (isset($_GET['Speichern'])) {
-    $error = false;
-    $aktuell = $_POST['aktuell'];
-    $passwort = $_POST['passwort'];
-    $passwort2 = $_POST['passwort2'];
+            // Prüfen ob Session gesetzt ist, ansonsten weiterleiten auf Starseite
+            if ($sess) {
+                $showFormular = true;
+            } else {
+                echo '<script>window.location.replace("index.php")</script>';
+            }
 
-    if (strlen($passwort) == 0) {
-        echo 'Bitte ein Passwort angeben<br>';
-        $error = true;
-    }
-    if ($passwort != $passwort2) {
-        echo 'Die Passwörter müssen übereinstimmen<br>';
-        $error = true;
-    }
+            // Eingegebene Daten auf Richtigkeit prüfen und Datenbank aktualisieren
+            if (isset($_GET['Speichern'])) {
+                $error = false;
+                $aktuell = $_POST['aktuell'];
+                $passwort = $_POST['passwort'];
+                $passwort2 = $_POST['passwort2'];
 
-    if(!$error){
-        $check = $pdo->query("SELECT * FROM users WHERE id = '$sess'");
-        $user = $check->fetch();
-        if ($user !== false && password_verify($aktuell, $user['passwort'])) {
-            $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
-            $statement = $pdo->query("UPDATE users SET passwort = '$passwort_hash' WHERE id = '$sess'");
-            die(include 'PWErfolgreichGeaendert.php');
-        }
-        else{
-            echo 'Passwort inkorrekt';
-        }
-    }
-}
+                if (strlen($passwort) == 0) {
+                    echo 'Bitte ein Passwort angeben<br>';
+                    $error = true;
+                }
+                if ($passwort != $passwort2) {
+                    echo 'Die Passwörter müssen übereinstimmen<br>';
+                    $error = true;
+                }
 
-if ($showFormular) {
-    ?>
+                if (!$error) {
+                    $check = $pdo->query("SELECT * FROM users WHERE id = '$sess'");
+                    $user = $check->fetch();
+                    if ($user !== false && password_verify($aktuell, $user['passwort'])) {
+                        $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
+                        $statement = $pdo->query("UPDATE users SET passwort = '$passwort_hash' WHERE id = '$sess'");
+                        die(include 'PWErfolgreichGeaendert.php');
+                    } else {
+                        echo 'Passwort inkorrekt';
+                    }
+                }
+            }
+
+            if ($showFormular) {
+            ?>
 
 
-                <div id="head-title">
-                    <h1>Passwort Ändern</h1>
-                </div>
-                <div id="form">
+            <div id="head-title">
+                <h1>Passwort Ändern</h1>
+            </div>
+            <div id="form">
                 <form action="?Speichern" method="post" id="pw">
 
                     <div class="textfeld">
@@ -91,21 +93,21 @@ if ($showFormular) {
                 </form>
                 <div>
                     <br/>
-                    <input type="submit" form="pw"  class="button" value="Speichern"/>
-                   <?php echo '<a href="ProfilAnsicht.php?id='.$sess.'"><button type="button" class="button">Abbrechen</button></a>'; ?>
-                </div>
+                    <input type="submit" form="pw" class="button" value="Speichern"/>
+                    <?php echo '<a href="ProfilAnsicht.php?id=' . $sess . '"><button type="button" class="button">Abbrechen</button></a>'; ?>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <?php
+<?php
 } //Ende von if($showFormular)
 ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
 <script>
-    gsap.from("#main",{y:15});
+    gsap.from("#main", {y: 15});
 </script>
 
 </body>

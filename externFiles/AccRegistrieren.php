@@ -55,37 +55,36 @@ if (isset($_GET['register'])) {
         }
     }
 
-    if($_FILES['pic']['error']!=4){
-        $errors= array();
+    if ($_FILES['pic']['error'] != 4) {
+        $errors = array();
         $file_name = $_FILES['pic']['name'];
         $file_size = $_FILES['pic']['size'];
-        $file_tmp =$_FILES['pic']['tmp_name'];
-        $file_type=$_FILES['pic']['type'];
-        $file_ext=strtolower(end(explode('.',$_FILES['pic']['name'])));
+        $file_tmp = $_FILES['pic']['tmp_name'];
+        $file_type = $_FILES['pic']['type'];
+        $file_ext = strtolower(end(explode('.', $_FILES['pic']['name'])));
 
-        $extensions= array("jpeg","jpg","png");
+        $extensions = array("jpeg", "jpg", "png");
 
-        if($file_name=="standard.png"){
-            $errors[]="Bitte Dateinamen ändern.";
+        if ($file_name == "standard.png") {
+            $errors[] = "Bitte Dateinamen ändern.";
         }
 
-        if(in_array($file_ext,$extensions)=== false){
-            $errors[]="Dateiendung nicht erlaubt, bitte wähle eine JPEG oder PNG Datei.";
+        if (in_array($file_ext, $extensions) === false) {
+            $errors[] = "Dateiendung nicht erlaubt, bitte wähle eine JPEG oder PNG Datei.";
         }
 
-        if($file_size > 2097152){
-            $errors[]='Dateigröße darf 2MB nicht überschreiten!';
+        if ($file_size > 2097152) {
+            $errors[] = 'Dateigröße darf 2MB nicht überschreiten!';
         }
 
-        if(empty($errors)==true){
-            move_uploaded_file($file_tmp,"../images/profile/".$file_name);
-        }else{
+        if (empty($errors) == true) {
+            move_uploaded_file($file_tmp, "../images/profile/" . $file_name);
+        } else {
             print_r($errors);
             $error = true;
         }
-    }
-    else{
-        $file_name="standard.png";
+    } else {
+        $file_name = "standard.png";
     }
 
     //Keine Fehler, wir können den Nutzer registrieren
@@ -111,7 +110,9 @@ if ($showFormular) {
 
             <div id="top-buttons">
 
-                <a href="javascript:history.back()"><button class="button">Zurück</button></a>
+                <a href="javascript:history.back()">
+                    <button class="button">Zurück</button>
+                </a>
 
             </div>
 
@@ -122,30 +123,30 @@ if ($showFormular) {
                 </div>
 
                 <div id="form">
-                <form action="?register=1" method="post" enctype="multipart/form-data">
-                    Vorname:<br>
-                    <input type="text" size="40" maxlength="250" name="vorname"><br><br>
+                    <form action="?register=1" method="post" enctype="multipart/form-data">
+                        Vorname:<br>
+                        <input type="text" size="40" maxlength="250" name="vorname"><br><br>
 
-                    Nachname:<br>
-                    <input type="text" size="40" maxlength="250" name="nachname"><br><br>
+                        Nachname:<br>
+                        <input type="text" size="40" maxlength="250" name="nachname"><br><br>
 
-                    E-Mail:<br>
-                    <input type="email" size="40" maxlength="250" name="email"><br><br>
+                        E-Mail:<br>
+                        <input type="email" size="40" maxlength="250" name="email"><br><br>
 
-                    Nickname:<br>
-                    <input type="text" size="40" maxlength="250" name="nickname"><br><br>
+                        Nickname:<br>
+                        <input type="text" size="40" maxlength="250" name="nickname"><br><br>
 
-                    Dein Passwort:<br>
-                    <input type="password" size="40" maxlength="250" name="passwort"><br>
+                        Dein Passwort:<br>
+                        <input type="password" size="40" maxlength="250" name="passwort"><br>
 
-                    Passwort wiederholen:<br>
-                    <input type="password" size="40" maxlength="250" name="passwort2"><br><br>
+                        Passwort wiederholen:<br>
+                        <input type="password" size="40" maxlength="250" name="passwort2"><br><br>
 
-                    Profil-Bild einfügen:<br>
-                    <input type="file" accept="image/*" name="pic"/><br><br>
+                        Profil-Bild einfügen:<br>
+                        <input type="file" accept="image/*" name="pic"/><br><br>
 
-                    <input type="submit" class="button" value="Registrieren">
-                </form>
+                        <input type="submit" class="button" value="Registrieren">
+                    </form>
                 </div>
             </div>
         </div>
@@ -157,7 +158,7 @@ if ($showFormular) {
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
 <script>
-    gsap.from("#main",{y:20});
+    gsap.from("#main", {y: 20});
 </script>
 
 </body>

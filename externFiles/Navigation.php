@@ -32,7 +32,7 @@ $sess = $_SESSION['userid'];
     <?php
     $statement = $pdo->query("SELECT pic FROM users WHERE id= '$sess'");
     $user = $statement->fetch();
-    $pic= $user['pic'];
+    $pic = $user['pic'];
 
 
     ?>
@@ -41,20 +41,20 @@ $sess = $_SESSION['userid'];
         <button onclick="dropdown()" class="dropbtn"><?php
             if (isset($pic)) {
                 echo "<img alt='Profil-Bild' id='profil_bild' src='../images/profile/$pic'>";
-            }else{
+            } else {
                 echo '<img alt="Profil-Bild" id="profil_bild" src="../images/profile/profileIcon.png">';
             }
             ?>
         </button>
         <div id="myDropdown" class="dropdown-content">
             <?php
-            if(!isset($sess)) {
+            if (!isset($sess)) {
                 echo "<a href='AccLogin.php'>Login</a>";
                 echo "<a href='AccRegistrieren.php'>Register</a>";
             }
             ?>
             <?php
-            if(isset($sess)) {
+            if (isset($sess)) {
                 echo "<a href='AccLogout.php'>Logout</a>";
             }
             ?>
@@ -63,9 +63,9 @@ $sess = $_SESSION['userid'];
 
     <ul class="content" id="b">
         <?php
-        echo '<li><a href="Kochbuch.php?nutzer='.$sess.'">Kochbuch</a></li>';
-        echo '<li><a href="BlogUser.php?nutzer='.$sess.'">Blog</a></li>';
-        echo '<li><a href="ProfilAnsicht.php?id='.$sess.'">Profil</a></li>';
+        echo '<li><a href="Kochbuch.php?nutzer=' . $sess . '">Kochbuch</a></li>';
+        echo '<li><a href="BlogUser.php?nutzer=' . $sess . '">Blog</a></li>';
+        echo '<li><a href="ProfilAnsicht.php?id=' . $sess . '">Profil</a></li>';
         ?>
     </ul>
 
@@ -96,7 +96,7 @@ $sess = $_SESSION['userid'];
                     </label>
                     <br/><br/>
                     Zutaten (max 1 pro Feld):<br/>
-                    <input type="text" id = "zutat" name="zutat" placeholder="Zutat eingeben...">
+                    <input type="text" id="zutat" name="zutat" placeholder="Zutat eingeben...">
                     <br>
                     <input type="text" id="zutat2" name="zutat2" placeholder="Zutat eingeben...">
 
@@ -109,7 +109,7 @@ $sess = $_SESSION['userid'];
                     <p>
 
                         max Schwierigkeit:
-                        <select name = "schwierigkeit">
+                        <select name="schwierigkeit">
                             <option value="Auswahl">Auswahl</option>
                             <option value="leicht">Leicht</option>
                             <option value="mittel">Mittel</option>
@@ -120,7 +120,6 @@ $sess = $_SESSION['userid'];
                     Suchbegriff:<br/>
                     <input type="text" placeholder="Suchenbegriff eingeben..." name="suchbegriff">
                     <br/>
-
 
 
                 </form>
@@ -140,12 +139,10 @@ $sess = $_SESSION['userid'];
 <script>
     let x = document.getElementById("zutat");
     let y = document.getElementById("zutat2");
-    x.onchange = function (){
-        if(x.value!="") {
+    x.onchange = function () {
+        if (x.value != "") {
             y.style.display = "block";
-        }
-        else
-        {
+        } else {
             y.style.display = "none";
         }
     }
