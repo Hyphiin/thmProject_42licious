@@ -13,7 +13,7 @@ $sess = $_SESSION['userid'];
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title>Registrierung</title>
+    <title>42licious - Passwort ändern</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
     <link href="../css/forms_css/anmeldeFormular.css" rel="stylesheet" type="text/css">

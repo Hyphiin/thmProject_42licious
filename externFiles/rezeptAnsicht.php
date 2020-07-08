@@ -13,7 +13,7 @@ $sess = $_SESSION['userid'];
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>42licious-RezeptAnsicht</title>
+    <title>42licious - Rezept</title>
 
     <link href="../css/rezept_css/rezeptAnsicht.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">

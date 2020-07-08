@@ -21,7 +21,7 @@ if ($nutzer == 0){
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title>42licious-Profil-Rezeptansicht</title>
+    <title>42licious - Rezeptliste</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/profil_css/profil_rezept.css" rel="stylesheet" type="text/css">
     <link href="../css/rezept_css/rezeptPreview.css" rel="stylesheet" type="text/css">

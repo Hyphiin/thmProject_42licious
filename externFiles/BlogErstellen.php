@@ -17,7 +17,7 @@ if ($sess == true) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>42licious-BlogErstellen</title>
+    <title>42licious - Blog erstellen</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
     <link href="../css/blog_css/blogErstellen.css" rel="stylesheet" type="text/css">

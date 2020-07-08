@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title>NoSess</title>
+    <title>42licious - Logout</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
     <link href="../css/nosess.css" rel="stylesheet" type="text/css">

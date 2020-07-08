@@ -14,7 +14,7 @@ if ($sess == true) {
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <title>42licious-RezeptErstellen</title>
+        <title>42licious - Rezept erstellen</title>
         <link href="../css/general.css" rel="stylesheet" type="text/css">
         <link href="../css/rezept_css/rezeptErstellen.css" rel="stylesheet" type="text/css">
         <link href="../css/navigation.css" rel="stylesheet" type="text/css">

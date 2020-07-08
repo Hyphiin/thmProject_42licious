@@ -15,7 +15,7 @@ if ($sess == true) {
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <title>Editieren</title>
+        <title>42licious - Profil bearbeiten</title>
         <link href="../css/general.css" rel="stylesheet" type="text/css">
         <link href="../css/navigation.css" rel="stylesheet" type="text/css">
         <link href="../css/profil_css/profil_edit.css" rel="stylesheet" type="text/css">

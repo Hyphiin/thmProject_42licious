@@ -16,7 +16,7 @@ if($sess!=true){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>42licious</title>
+    <title>42licious - Startseite</title>
     <link href="../css/general.css" rel="stylesheet" type="text/css">
     <link href="../css/navigation.css" rel="stylesheet" type="text/css">
     <link href="../css/index.css" rel="stylesheet" type="text/css">
