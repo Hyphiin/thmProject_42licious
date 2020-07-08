@@ -27,9 +27,12 @@ $sess = $_SESSION['userid'];
 
     <?php include("Navigation.php");
 
+    $lastPage = $_SERVER['HTTP_REFERER'];
+
     if (isset($_GET['comment'])) {
         $rid = $_POST['rid'];
         $message = $_POST['message'];
+        $lastPage = $_POST['lastPage'];
 
 
         $statement1 = $pdo->prepare("INSERT INTO recipecomments (rid, uid, message) VALUES (:rid, :uid ,:message)");
@@ -39,6 +42,7 @@ $sess = $_SESSION['userid'];
 
     if (isset($_GET['delete'])) {
         $cid = $_POST['cid'];
+        $lastPage = $_POST['lastPage'];
 
         $sql = "DELETE FROM recipecomments WHERE cid = '$cid'";
         $update = $pdo->prepare($sql);
@@ -51,6 +55,7 @@ $sess = $_SESSION['userid'];
 
     if ($sess) {
         if (isset($_POST['bewertung'])) {
+            $lastPage = $_POST['lastPage'];
             $fetch = $pdo->query("SELECT COUNT(*) FROM bewertung WHERE BNutzer = '$sess' AND rezeptID = '$rezeptID'");
             $bewertungscheck = $fetch->fetch();
             $bewertung = $_POST['bewertung'];
@@ -88,6 +93,7 @@ $sess = $_SESSION['userid'];
     if ($sess) {
         if ($sess != $uid) {
             if (isset($_POST['like'])) {
+                $lastPage = $_POST['lastPage'];
                 if ($_POST['checkFav'] == "checked") {
                     $statement7 = $pdo->query("SELECT favRezepte FROM users WHERE id = '$sess' ");
                     $favorites = $statement7->fetch();
@@ -187,8 +193,11 @@ $sess = $_SESSION['userid'];
         
         <div id="top-buttons">';
 
-   
-        echo '<a href="javascript:history.back()"><button class="button">Zurück</button></a>';
+    if($sess!=$uid){
+        echo '<a href="'.$lastPage.'"><button class="button">Zurück</button></a>';
+    }else{
+        echo '<a href="kochbuch.php?nutzer='.$sess.'"><button class="button">Zurück</button></a>';
+    }
 
 
     if ($sess == $uid) {
@@ -262,6 +271,7 @@ $sess = $_SESSION['userid'];
 
     echo '    </span>
                     </p>
+                    <input type="hidden" name="lastPage" value="'.$lastPage.'">
                         </form>';
 
 
@@ -276,6 +286,7 @@ $sess = $_SESSION['userid'];
                         Merken:
                     </span>
                 </p>
+                <input type="hidden" name="lastPage" value="'.$lastPage.'">
                 </form>
             </div>
             </div>
@@ -325,6 +336,7 @@ $sess = $_SESSION['userid'];
         echo '<form id="comment-area" method="post" action="RezeptAnsicht.php?id=' . $rezeptID . '&comment=1">';
         echo '<textarea placeholder="Kommentar schreiben..." name="message" maxlength="400"></textarea>';
         echo '<input type="hidden" name="rid" value="' . $rezeptID . '">';
+        echo '<input type="hidden" name="lastPage" value="'.$lastPage.'">';
         echo '<input id="comment" type="submit" class="button" value="Kommentieren">';
         echo '</form>';
         echo '</div>';
@@ -358,6 +370,7 @@ $sess = $_SESSION['userid'];
             echo '<div class="delete-button">';
             echo '<form action="?delete=1&id=' . $rezeptID . '" method="post">';
             echo '<input type="hidden" name="cid" value="' . $cid . '">';
+            echo '<input type="hidden" name="lastPage" value="'.$lastPage.'">';
             echo '<button class="button" id="delete">Löschen</button>';
             echo '</form>';
             echo '</div>';
