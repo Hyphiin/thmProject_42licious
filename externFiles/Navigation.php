@@ -146,19 +146,4 @@ $sess = $_SESSION['userid'];
             y.style.display = "none";
         }
     }
-
-
-    const currentLocation = location.href;
-    const menueItem = document.querySelectorAll("a");
-    const menueLenght = menueItem.length;
-    for (let i = 0; i < menueLenght; i++) {
-        if (menueItem[i].href === currentLocation && document.URL != "http://localhost:63342/42licious/externFiles/index.php" ) {
-
-            menueItem[i].parentElement.className = "active";
-
-            console.log(menueItem)
-        }
-    }
-
-
 </script>
