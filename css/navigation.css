@@ -58,6 +58,10 @@
     background: #E6E6E6;
 }
 
+.active {
+    background: #99695A;
+}
+
 /**********************************************************************************************/
 .search {
     display: flex;
@@ -121,7 +125,7 @@ form.search::after {
     display: table;
 }
 
-.modal-body{
+.modal-body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -176,7 +180,7 @@ form.search::after {
     z-index: 500;
 }
 
-.dropdown-content.show{
+.dropdown-content.show {
     z-index: 500;
     overflow: auto;
     position: fixed;
@@ -282,7 +286,7 @@ form.search::after {
 }
 
 
-.tableModal{
+.tableModal {
     margin: auto;
     width: 50%;
     text-align: center;
@@ -298,6 +302,6 @@ form.search::after {
 }
 
 
-#zutat2{
+#zutat2 {
     display: none;
 }
